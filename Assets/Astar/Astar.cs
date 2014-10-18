@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class Astar : MonoBehaviour {
 
-	public bool search;
-	public bool repeatSearch;
-	public float steptime;
 	[System.Serializable]
 	public class GraphData {
 		public Transform nodePrefab;
@@ -24,8 +21,7 @@ public class Astar : MonoBehaviour {
 				for (int x = 0; x < X; x++) {
 					for (int y = 0; y < Y; y++) {
 						Vector3 position = new Vector3(x * spacing, 0, y * spacing);
-						node n = nodePrefab.Spawn(position, Quaternion.identity).GetComponent<node>();
-						n.graph = this;
+						node n = new node(position, this);
 						graph[x,y] = n;
 					}
 				}
@@ -69,7 +65,7 @@ public class Astar : MonoBehaviour {
 			float d1 = Mathf.Infinity;
 			for (int x = 0; x < X; x++) {
 				for (int y = 0; y < Y; y++) {
-					float d2 = Vector3.Distance(graph[x,y].tr.position, position);
+					float d2 = Vector3.Distance(graph[x,y].position, position);
 					if (d2 < d1) {
 						nearestNode = graph[x,y];
 						d1 = d2;
@@ -78,8 +74,211 @@ public class Astar : MonoBehaviour {
 			}
 			return nearestNode;
 		}
+		
+		public void DrawGizmos() {
+			for (int x = 0; x < X; x++) {
+				for (int y = 0; y < Y; y++) {
+					graph[x,y].DrawGizmos();
+				}
+			}
+		}
 	}
 	
+	[System.Serializable]
+	public class node {
+
+		public enum State {
+			regular,
+			start,
+			destination,
+			path,
+			open,
+			closed
+		}
+		public enum Type {
+			walkable,
+			obstructed,
+			unexplored
+		}
+		
+		public GraphData graph;
+		public bool highlight;
+		public List<node> connected = new List<node>();
+		
+		public State state {
+			get {
+				return _state;
+			}
+			set {
+				_state = value;
+				switch(_state) {
+				case State.regular:
+					type = _type;
+					break;
+				case State.start:
+					_color = Color.Lerp(Color.clear, Color.yellow, 0.75f);
+					break;
+				case State.destination:
+					_color = Color.green;
+					break;
+				case State.path:
+					_color = Color.Lerp(Color.clear, Color.green, 0.75f);
+					break;
+				case State.closed:
+					_color = Color.Lerp(Color.clear, Color.cyan, 0.75f);
+					break;
+				case State.open:
+					_color = Color.Lerp(Color.clear, Color.magenta, 0.75f);
+					break;
+				default:
+					_color = Color.magenta;
+					break; 
+				}
+			}
+		}
+		
+		public Type type {
+			get{
+				return _type;
+			}
+			set {
+				_type = value;
+				if (state != State.regular) return;
+				switch(_type){
+				case Type.obstructed:
+					_color = Color.Lerp(Color.clear, Color.red, 0.75f);
+					break;
+				case Type.walkable:
+					_color = Color.Lerp(Color.clear, Color.green, 0.25f);
+					break;
+				case Type.unexplored:
+					_color = Color.Lerp(Color.clear, Color.black, 0.25f);
+					break;
+				}
+			}
+		}
+		
+		public int index {
+			get; private set;
+		}
+		public node parent {
+			get {
+				return _parent;
+			}
+			set {
+				_parent = value;
+				if (_parent) {
+					G = _parent.G;
+					G += Vector3.Distance(position, _parent.position);
+				}
+				else {
+					G = 0f;
+					type = type;
+				}
+				
+			}
+		}
+		public node child {
+			get; set;
+		}
+		public node destination {
+			get {
+				return _destination;
+			}
+			set {
+				_destination = value;
+				if (_destination) {
+					H = Mathf.Abs(position.x - _destination.position.x);
+					H += Mathf.Abs(position.y - _destination.position.y);
+					H += Mathf.Abs(position.z - _destination.position.z);
+				}
+				else {
+					H = 0f;
+					type = type;
+				}
+			}
+		}
+		
+		public float G {
+			get; private set;
+		}
+		
+		public float H {
+			get; private set;
+		}
+		
+		public float F {
+			get {
+				return G + H;
+			}
+		}
+		
+		public Vector3 position {
+			get; private set;
+		}
+		
+		private static int node_count;
+		private node _parent;
+		private node _destination;
+		private State _state;
+		private Type _type;
+		private Color _color;
+		
+		public static implicit operator bool(node n) {
+			return n != null;
+		}
+		
+		public node(Vector3 location, GraphData g) {
+			index = node_count++;
+			position = location;
+			graph = g;
+			state = State.regular;
+			type = Type.unexplored;
+			Explore();
+		}
+		
+		public void Explore() {
+			if (Physics.CheckSphere(position, graph.spacing-0.5f))
+				type = Type.obstructed;
+			else
+				type = Type.walkable;
+		}
+		
+		public float TentativeG(node potentialParent) {
+			float tG = potentialParent.G;
+			tG += Vector3.Distance(position, potentialParent.position);
+			return tG;
+		}
+		
+		public void DrawGizmos() {
+			
+			if (state == State.regular) return;
+			
+			Gizmos.color = highlight ? Color.white : _color;
+			Gizmos.DrawWireCube(
+				position, 
+				Vector3.one * graph.spacing * 0.25f
+				);
+			if (parent) {
+				Gizmos.DrawLine(position, parent.position);
+			}
+			else {
+				foreach(node n in connected) {
+					Gizmos.DrawLine(position, n.position);
+				}
+			}
+			
+			
+			if (child) {
+				Gizmos.color = Color.green;
+				Gizmos.DrawLine(position, child.position);
+			}
+		}
+	}
+	
+	public bool search;
+	public bool repeatSearch;
+	public float steptime;
 	public Transform target;
 	public GraphData graphData = new GraphData();
 	
@@ -157,7 +356,7 @@ public class Astar : MonoBehaviour {
 			open.Remove(current);
 			closed.Add(current);
 			if (current.state != node.State.start)
-				current.state = node.State.path;
+				current.state = node.State.closed;
 			
 			foreach(node n in current.connected) {
 				if (closed.Contains(n)) continue;
@@ -170,7 +369,7 @@ public class Astar : MonoBehaviour {
 					if (!open.Contains(n)) {
 						open.Add(n);
 						if (n.state != node.State.destination)
-							n.state = node.State.pathHead;
+							n.state = node.State.open;
 					}
 				}
 			}
@@ -198,16 +397,18 @@ public class Astar : MonoBehaviour {
 			if (current.parent) {
 				current.parent.child = current;
 				current = current.parent;
-				if (current.state == node.State.path)
-				current.state = node.State.regular;
+				if (current.state == node.State.closed)
+				current.state = node.State.path;
 				
 			}
 			yield return new WaitForSeconds(steptime);
 		}
-		foreach (node n in open) {
-			if (n.state != node.State.destination)
-				n.state = node.State.regular;
-		}
+		yield return new WaitForSeconds(1f);
 	}
 	
+	
+	void OnDrawGizmos() {
+		if (Application.isPlaying)
+		graphData.DrawGizmos();
+	}
 }

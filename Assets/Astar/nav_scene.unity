@@ -2160,8 +2160,8 @@ MonoBehaviour:
   target: {fileID: 1080969588}
   graphData:
     nodePrefab: {fileID: 400000, guid: 082e6ab942c4d784cb4313b12d89d9ee, type: 2}
-    X: 25
-    Y: 25
+    X: 200
+    Y: 200
     spacing: 2
 --- !u!4 &1709768063
 Transform:
