@@ -13,6 +13,7 @@ public class Robot : MonoBehaviour {
 	
 	// private members
 	// ~-~-~-~-~-~-~-~-
+	private INavigation _navigation {get;set;}
 	private bool 		_moveEnabled = true;
 	private Vector3 	_move;			// the move command applied to our rigidbody
 	private Vector3 	_manualMove;
@@ -32,7 +33,7 @@ public class Robot : MonoBehaviour {
 	public Vector3? nextSensorData {
 		get {
 			Vector3? data = sensors[_snsrIndex].data;
-			if (++_snsrIndex > sensors.Length) _snsrIndex = 0;
+			if (++_snsrIndex >= sensors.Length) _snsrIndex = 0;
 			return data;
 		}
 	}
@@ -67,6 +68,7 @@ public class Robot : MonoBehaviour {
 	// ~-~-~-~-~-~-~-~-
 	private void Awake() {
 		InitialiseSensors();
+		_navigation = GetComponent(typeof(INavigation)) as INavigation;
 	}
 	
 	private void Update() {
@@ -75,6 +77,13 @@ public class Robot : MonoBehaviour {
 			float y = Input.GetAxis ("Vertical");
 			_manualMove.x = x * maxSpeed;
 			_manualMove.z = y * maxSpeed;
+		}
+		else {
+			Vector3? data = nextSensorData;
+			if (data.HasValue) {
+				_navigation.DepthData(transform.position, data.Value, true);
+			}
+			_move = _navigation.MoveDirection(transform.position);
 		}
 	}
 	
@@ -88,7 +97,7 @@ public class Robot : MonoBehaviour {
 		}
 		if (canMove) {
 			Vector3 force = move * rigidbody.mass * rigidbody.drag;
-			rigidbody.AddForce(move);
+			rigidbody.AddForce(force);
 		}
 	}
 	

@@ -16,14 +16,4 @@ public class Sensor : MonoBehaviour {
 			return data;
 		}
 	}
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
