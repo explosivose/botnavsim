@@ -18,7 +18,7 @@ RenderSettings:
   m_FogDensity: .00999999978
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_AmbientLight: {r: .463235319, g: .396474928, b: .296334356, a: 1}
   m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: .5
   m_FlareStrength: 1
@@ -126,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 68559004}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1709768063}
   m_RootOrder: 0
@@ -189,7 +189,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 60
-  orthographic: 1
+  orthographic: 0
   orthographic size: 50
   m_Depth: -1
   m_CullingMask:
@@ -208,8 +208,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 77809484}
-  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 50, y: 100, z: 50}
+  m_LocalRotation: {x: .500070035, y: 0, z: 0, w: .865985036}
+  m_LocalPosition: {x: 50, y: 57, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -225,7 +225,7 @@ GameObject:
   - 33: {fileID: 113308914}
   - 65: {fileID: 113308913}
   - 23: {fileID: 113308912}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -294,7 +294,7 @@ GameObject:
   - 33: {fileID: 128331100}
   - 65: {fileID: 128331099}
   - 23: {fileID: 128331098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -363,7 +363,7 @@ GameObject:
   - 33: {fileID: 161505794}
   - 65: {fileID: 161505793}
   - 23: {fileID: 161505792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -432,7 +432,7 @@ GameObject:
   - 33: {fileID: 176017719}
   - 65: {fileID: 176017718}
   - 23: {fileID: 176017717}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +501,7 @@ GameObject:
   - 33: {fileID: 259171984}
   - 65: {fileID: 259171983}
   - 23: {fileID: 259171982}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -570,7 +570,7 @@ GameObject:
   - 33: {fileID: 367043957}
   - 65: {fileID: 367043956}
   - 23: {fileID: 367043955}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -639,7 +639,7 @@ GameObject:
   - 33: {fileID: 457240527}
   - 65: {fileID: 457240526}
   - 23: {fileID: 457240525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   - 33: {fileID: 546667888}
   - 65: {fileID: 546667887}
   - 23: {fileID: 546667886}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -777,7 +777,7 @@ GameObject:
   - 33: {fileID: 557023376}
   - 65: {fileID: 557023375}
   - 23: {fileID: 557023374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,7 +846,7 @@ GameObject:
   - 33: {fileID: 597330112}
   - 65: {fileID: 597330111}
   - 23: {fileID: 597330110}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -915,7 +915,7 @@ GameObject:
   - 33: {fileID: 618849154}
   - 65: {fileID: 618849153}
   - 23: {fileID: 618849152}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -984,7 +984,7 @@ GameObject:
   - 33: {fileID: 700820244}
   - 65: {fileID: 700820243}
   - 23: {fileID: 700820242}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1053,7 +1053,7 @@ GameObject:
   - 33: {fileID: 832485641}
   - 65: {fileID: 832485640}
   - 23: {fileID: 832485639}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1122,7 +1122,7 @@ GameObject:
   - 33: {fileID: 876023916}
   - 65: {fileID: 876023915}
   - 23: {fileID: 876023914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1191,7 +1191,7 @@ GameObject:
   - 33: {fileID: 938936498}
   - 65: {fileID: 938936497}
   - 23: {fileID: 938936496}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1260,7 +1260,7 @@ GameObject:
   - 33: {fileID: 990561331}
   - 65: {fileID: 990561330}
   - 23: {fileID: 990561329}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1385,7 +1385,7 @@ GameObject:
   - 33: {fileID: 1086418319}
   - 65: {fileID: 1086418318}
   - 23: {fileID: 1086418317}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1454,7 +1454,7 @@ GameObject:
   - 33: {fileID: 1100701949}
   - 65: {fileID: 1100701948}
   - 23: {fileID: 1100701947}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1523,7 +1523,7 @@ GameObject:
   - 33: {fileID: 1159487920}
   - 65: {fileID: 1159487919}
   - 23: {fileID: 1159487918}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,6 +1581,76 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 20
+--- !u!1 &1229128676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1229128680}
+  - 33: {fileID: 1229128679}
+  - 64: {fileID: 1229128678}
+  - 23: {fileID: 1229128677}
+  m_Layer: 0
+  m_Name: Plane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!23 &1229128677
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229128676}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!64 &1229128678
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229128676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_SmoothSphereCollisions: 0
+  m_Convex: 0
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!33 &1229128679
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229128676}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1229128680
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1229128676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 50, y: -1, z: 50}
+  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 36
 --- !u!1 &1235518783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,7 +1662,7 @@ GameObject:
   - 33: {fileID: 1235518786}
   - 65: {fileID: 1235518785}
   - 23: {fileID: 1235518784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1661,7 +1731,7 @@ GameObject:
   - 33: {fileID: 1305075384}
   - 65: {fileID: 1305075383}
   - 23: {fileID: 1305075382}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1730,7 +1800,7 @@ GameObject:
   - 33: {fileID: 1364769050}
   - 65: {fileID: 1364769049}
   - 23: {fileID: 1364769048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1819,8 +1889,8 @@ Light:
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
-    m_Resolution: -1
+    m_Type: 1
+    m_Resolution: 3
     m_Strength: 1
     m_Bias: .0500000007
     m_Softness: 4
@@ -1845,7 +1915,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1395855834}
-  m_LocalRotation: {x: .408217937, y: -.234569728, z: .109381661, w: .875426114}
+  m_LocalRotation: {x: .126443923, y: -.855233252, z: .247093067, w: .437644988}
   m_LocalPosition: {x: 11, y: -3, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -1862,7 +1932,7 @@ GameObject:
   - 33: {fileID: 1430326545}
   - 65: {fileID: 1430326544}
   - 23: {fileID: 1430326543}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1931,7 +2001,7 @@ GameObject:
   - 33: {fileID: 1603946007}
   - 65: {fileID: 1603946006}
   - 23: {fileID: 1603946005}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2000,7 +2070,7 @@ GameObject:
   - 33: {fileID: 1653757732}
   - 65: {fileID: 1653757731}
   - 23: {fileID: 1653757730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2067,6 +2137,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 1709768063}
   - 114: {fileID: 1709768062}
+  - 54: {fileID: 1709768066}
+  - 114: {fileID: 1709768065}
+  - 65: {fileID: 1709768064}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -2090,7 +2163,6 @@ MonoBehaviour:
   steptime: .0199999996
   target: {fileID: 1080969588}
   graphData:
-    nodePrefab: {fileID: 400000, guid: 082e6ab942c4d784cb4313b12d89d9ee, type: 2}
     X: 200
     Y: 200
     spacing: 2
@@ -2107,6 +2179,48 @@ Transform:
   - {fileID: 68559008}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!65 &1709768064
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1709768061}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1709768065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1709768061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9984c6baccbf52a4697d023d9771303c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manualControl: 0
+  maxSpeed: 10
+  sensors: []
+  destination: {fileID: 0}
+--- !u!54 &1709768066
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1709768061}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 1
+  m_AngularDrag: .100000001
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1782233580
 GameObject:
   m_ObjectHideFlags: 0
@@ -2118,7 +2232,7 @@ GameObject:
   - 33: {fileID: 1782233583}
   - 65: {fileID: 1782233582}
   - 23: {fileID: 1782233581}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2187,7 +2301,7 @@ GameObject:
   - 33: {fileID: 1802977905}
   - 65: {fileID: 1802977904}
   - 23: {fileID: 1802977903}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2256,7 +2370,7 @@ GameObject:
   - 33: {fileID: 1827994434}
   - 65: {fileID: 1827994433}
   - 23: {fileID: 1827994432}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2325,7 +2439,7 @@ GameObject:
   - 33: {fileID: 1828819552}
   - 65: {fileID: 1828819551}
   - 23: {fileID: 1828819550}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2508,7 @@ GameObject:
   - 33: {fileID: 1831611304}
   - 65: {fileID: 1831611303}
   - 23: {fileID: 1831611302}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2463,7 +2577,7 @@ GameObject:
   - 33: {fileID: 1890162872}
   - 65: {fileID: 1890162871}
   - 23: {fileID: 1890162870}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2532,7 +2646,7 @@ GameObject:
   - 33: {fileID: 2081503508}
   - 65: {fileID: 2081503507}
   - 23: {fileID: 2081503506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

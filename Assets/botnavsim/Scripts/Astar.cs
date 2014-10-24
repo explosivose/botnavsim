@@ -2,8 +2,150 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Astar : MonoBehaviour {
+public class Astar : MonoBehaviour, INavigation {
 
+	public bool search;
+	public bool repeatSearch;
+	public float steptime;
+	public Transform target;
+	public GraphData graphData = new GraphData();
+	
+	private List<node> open = new List<node>();
+	private List<node> closed = new List<node>();
+	
+	public node destinationNode {
+		get; private set;
+	}
+
+	public Vector3 MoveDirection(Vector3 currentPosition) {
+		return Vector3.zero;
+	}
+	
+	public void DepthData(Vector3 start, Vector3 end, bool obstructed) {
+		
+	}
+
+	void Awake() {
+		graphData.Initialise();
+		graphData.BuildGraph();
+	}
+	
+	IEnumerator Start() {
+		yield return new WaitForSeconds(1f);
+		while(true) {
+			if (search || repeatSearch) {
+				yield return StartCoroutine(Path(target.position));
+				search = false;
+			}
+			yield return new WaitForFixedUpdate();
+		}
+	}
+	
+	void InitialiseSearch() {
+		foreach (node n in closed) {
+			n.child = null;
+			n.parent = null;
+			n.destination = null;
+			n.state = node.State.regular;
+		}
+		closed.Clear();
+		foreach (node n in open) {
+			n.child = null;
+			n.parent = null;
+			n.destination = null;
+			n.state = node.State.regular;
+		}
+		open.Clear();
+	}
+	
+	node LowestFscoreInOpen() {
+		node lowest = open[0];
+		foreach (node n in open) {
+			if (n.F < lowest.F) lowest = n;
+		}
+		return lowest;
+	}
+	
+	IEnumerator Path(Vector3 destination) {
+		InitialiseSearch();
+
+		bool success = false;
+		
+		node start = graphData.NearestNode(transform.position);
+		start.state = node.State.start;
+		destinationNode = graphData.NearestNode(destination);
+		destinationNode.state = node.State.destination;
+				
+		open.Add(start);
+		node current;
+		while( open.Count > 0 ) {
+			current = LowestFscoreInOpen();
+			if (current.state == node.State.destination) {
+				yield return StartCoroutine(ReconstructPath());
+				success = true;
+				break;
+			}
+			
+			current.destination = destinationNode;
+			
+			open.Remove(current);
+			closed.Add(current);
+			if (current.state != node.State.start)
+				current.state = node.State.closed;
+			
+			foreach(node n in current.connected) {
+				if (closed.Contains(n)) continue;
+				if (n.type == node.Type.obstructed) continue;
+				
+				n.destination = destinationNode;
+
+				if (!open.Contains(n) || n.TentativeG(current) < n.G) {
+					n.parent = current;
+					if (!open.Contains(n)) {
+						open.Add(n);
+						if (n.state != node.State.destination)
+							n.state = node.State.open;
+					}
+				}
+			}
+			
+			yield return new WaitForSeconds(steptime);
+		}
+		
+		if (success) {
+			Debug.Log ("Path completed.");
+		}
+		else {
+			// failure! destination was not found.
+			Debug.LogWarning("Could not find path to destination.");
+		}
+		
+	}
+	
+	IEnumerator ReconstructPath() {
+		node current = destinationNode;
+		/*foreach (node n in closed) {
+			if (n.state != node.State.start)
+				n.state = node.State.regular;
+		}*/
+		while (current.state != node.State.start) {
+			if (current.parent) {
+				current.parent.child = current;
+				current = current.parent;
+				if (current.state == node.State.closed)
+				current.state = node.State.path;
+				
+			}
+			yield return new WaitForSeconds(steptime);
+		}
+		yield return new WaitForSeconds(1f);
+	}
+	
+	void OnDrawGizmos() {
+		if (Application.isPlaying)
+		graphData.DrawGizmos();
+	}
+	
 	[System.Serializable]
 	public class GraphData {
 		public int X = 25;
@@ -15,14 +157,14 @@ public class Astar : MonoBehaviour {
 			graph = new node[X,Y];
 		}
 		public void BuildGraph() {
-
-				for (int x = 0; x < X; x++) {
-					for (int y = 0; y < Y; y++) {
-						Vector3 position = new Vector3(x * spacing, 0, y * spacing);
-						node n = new node(position, this);
-						graph[x,y] = n;
-					}
+			
+			for (int x = 0; x < X; x++) {
+				for (int y = 0; y < Y; y++) {
+					Vector3 position = new Vector3(x * spacing, 0, y * spacing);
+					node n = new node(position, this);
+					graph[x,y] = n;
 				}
+			}
 			
 			ConnectNodes();
 		}
@@ -84,7 +226,7 @@ public class Astar : MonoBehaviour {
 	
 	[System.Serializable]
 	public class node {
-
+		
 		public enum State {
 			regular,
 			start,
@@ -236,7 +378,7 @@ public class Astar : MonoBehaviour {
 		}
 		
 		public void Explore() {
-			if (Physics.CheckSphere(position, graph.spacing-0.5f))
+			if (Physics.CheckSphere(position, graph.spacing-0.5f, LayerMask.NameToLayer("Static")))
 				type = Type.obstructed;
 			else
 				type = Type.walkable;
@@ -274,139 +416,4 @@ public class Astar : MonoBehaviour {
 		}
 	}
 	
-	public bool search;
-	public bool repeatSearch;
-	public float steptime;
-	public Transform target;
-	public GraphData graphData = new GraphData();
-	
-	private List<node> open = new List<node>();
-	private List<node> closed = new List<node>();
-	
-	public node destinationNode {
-		get; private set;
-	}
-
-	void Awake() {
-		graphData.Initialise();
-		graphData.BuildGraph();
-	}
-	
-	IEnumerator Start() {
-		yield return new WaitForSeconds(1f);
-		while(true) {
-			if (search || repeatSearch) {
-				yield return StartCoroutine(Path(target.position));
-				search = false;
-			}
-			yield return new WaitForFixedUpdate();
-		}
-	}
-	
-	
-	void InitialiseSearch() {
-		foreach (node n in closed) {
-			n.child = null;
-			n.parent = null;
-			n.destination = null;
-			n.state = node.State.regular;
-		}
-		closed.Clear();
-		foreach (node n in open) {
-			n.child = null;
-			n.parent = null;
-			n.destination = null;
-			n.state = node.State.regular;
-		}
-		open.Clear();
-	}
-	
-	node LowestFscoreInOpen() {
-		node lowest = open[0];
-		foreach (node n in open) {
-			if (n.F < lowest.F) lowest = n;
-		}
-		return lowest;
-	}
-	
-	IEnumerator Path(Vector3 destination) {
-		InitialiseSearch();
-
-		bool success = false;
-		
-		node start = graphData.NearestNode(transform.position);
-		start.state = node.State.start;
-		destinationNode = graphData.NearestNode(destination);
-		destinationNode.state = node.State.destination;
-				
-		open.Add(start);
-		node current;
-		while( open.Count > 0 ) {
-			current = LowestFscoreInOpen();
-			if (current.state == node.State.destination) {
-				yield return StartCoroutine(ReconstructPath());
-				success = true;
-				break;
-			}
-			
-			current.destination = destinationNode;
-			
-			open.Remove(current);
-			closed.Add(current);
-			if (current.state != node.State.start)
-				current.state = node.State.closed;
-			
-			foreach(node n in current.connected) {
-				if (closed.Contains(n)) continue;
-				if (n.type == node.Type.obstructed) continue;
-				
-				n.destination = destinationNode;
-
-				if (!open.Contains(n) || n.TentativeG(current) < n.G) {
-					n.parent = current;
-					if (!open.Contains(n)) {
-						open.Add(n);
-						if (n.state != node.State.destination)
-							n.state = node.State.open;
-					}
-				}
-			}
-			
-			yield return new WaitForSeconds(steptime);
-		}
-		
-		if (success) {
-			Debug.Log ("Path completed.");
-		}
-		else {
-			// failure! destination was not found.
-			Debug.LogWarning("Could not find path to destination.");
-		}
-		
-	}
-	
-	IEnumerator ReconstructPath() {
-		node current = destinationNode;
-		/*foreach (node n in closed) {
-			if (n.state != node.State.start)
-				n.state = node.State.regular;
-		}*/
-		while (current.state != node.State.start) {
-			if (current.parent) {
-				current.parent.child = current;
-				current = current.parent;
-				if (current.state == node.State.closed)
-				current.state = node.State.path;
-				
-			}
-			yield return new WaitForSeconds(steptime);
-		}
-		yield return new WaitForSeconds(1f);
-	}
-	
-	
-	void OnDrawGizmos() {
-		if (Application.isPlaying)
-		graphData.DrawGizmos();
-	}
 }
