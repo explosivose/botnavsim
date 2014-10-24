@@ -12,13 +12,21 @@ public class Astar : MonoBehaviour, INavigation {
 	
 	private List<node> open = new List<node>();
 	private List<node> closed = new List<node>();
+	private node pathnode;
+	private bool pathready;
 	
 	public node destinationNode {
 		get; private set;
 	}
 
 	public Vector3 MoveDirection(Vector3 currentPosition) {
-		return Vector3.zero;
+		if (!pathready) return Vector3.zero;
+		if (pathnode.state != node.State.destination)
+			if (Vector3.Distance(currentPosition, pathnode.position) < 1f) 
+				pathnode = pathnode.child;
+		
+		Debug.DrawLine(currentPosition, pathnode.position, Color.red);
+		return pathnode.position - currentPosition;
 	}
 	
 	public void DepthData(Vector3 start, Vector3 end, bool obstructed) {
@@ -42,6 +50,7 @@ public class Astar : MonoBehaviour, INavigation {
 	}
 	
 	void InitialiseSearch() {
+		pathready = false;
 		foreach (node n in closed) {
 			n.child = null;
 			n.parent = null;
@@ -71,12 +80,12 @@ public class Astar : MonoBehaviour, INavigation {
 
 		bool success = false;
 		
-		node start = graphData.NearestNode(transform.position);
-		start.state = node.State.start;
+		pathnode = graphData.NearestNode(transform.position);
+		pathnode.state = node.State.start;
 		destinationNode = graphData.NearestNode(destination);
 		destinationNode.state = node.State.destination;
 				
-		open.Add(start);
+		open.Add(pathnode);
 		node current;
 		while( open.Count > 0 ) {
 			current = LowestFscoreInOpen();
@@ -134,10 +143,10 @@ public class Astar : MonoBehaviour, INavigation {
 				current = current.parent;
 				if (current.state == node.State.closed)
 				current.state = node.State.path;
-				
 			}
 			yield return new WaitForSeconds(steptime);
 		}
+		pathready = true;
 		yield return new WaitForSeconds(1f);
 	}
 	
@@ -152,6 +161,7 @@ public class Astar : MonoBehaviour, INavigation {
 		public int Y = 25;
 		public float spacing = 1f;
 		public node[,] graph;
+		public LayerMask obstacleMask;
 		
 		public void Initialise() {
 			graph = new node[X,Y];
@@ -378,7 +388,7 @@ public class Astar : MonoBehaviour, INavigation {
 		}
 		
 		public void Explore() {
-			if (Physics.CheckSphere(position, graph.spacing-0.5f, LayerMask.NameToLayer("Static")))
+			if (Physics.CheckSphere(position, graph.spacing-0.5f, graph.obstacleMask))
 				type = Type.obstructed;
 			else
 				type = Type.walkable;

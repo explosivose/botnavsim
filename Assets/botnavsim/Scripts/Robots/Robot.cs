@@ -96,9 +96,10 @@ public class Robot : MonoBehaviour {
 			}
 		}
 		if (canMove) {
-			Vector3 force = move * rigidbody.mass * rigidbody.drag;
+			Vector3 force = move * rigidbody.mass * rigidbody.drag * maxSpeed;
 			rigidbody.AddForce(force);
 		}
+		Debug.DrawRay(transform.position, move, Color.green);
 	}
 	
 }

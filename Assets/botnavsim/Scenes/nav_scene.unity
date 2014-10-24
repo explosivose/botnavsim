@@ -2291,13 +2291,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   search: 1
-  repeatSearch: 1
+  repeatSearch: 0
   steptime: .0199999996
   target: {fileID: 1080969588}
   graphData:
     X: 200
     Y: 200
     spacing: 2
+    obstacleMask:
+      serializedVersion: 2
+      m_Bits: 256
 --- !u!4 &1709768063
 Transform:
   m_ObjectHideFlags: 0
@@ -2305,7 +2308,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709768061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 65, y: 1, z: 66}
+  m_LocalPosition: {x: 15, y: 1, z: 48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 68559008}
@@ -2336,8 +2339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9984c6baccbf52a4697d023d9771303c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualControl: 1
-  maxSpeed: 20
+  manualControl: 0
+  maxSpeed: 2
   sensors: []
   destination: {fileID: 0}
 --- !u!54 &1709768066
@@ -2347,10 +2350,10 @@ Rigidbody:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1709768061}
   serializedVersion: 2
-  m_Mass: .5
-  m_Drag: 1
+  m_Mass: 1
+  m_Drag: 5
   m_AngularDrag: .100000001
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
