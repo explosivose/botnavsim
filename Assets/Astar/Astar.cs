@@ -6,14 +6,12 @@ public class Astar : MonoBehaviour {
 
 	[System.Serializable]
 	public class GraphData {
-		public Transform nodePrefab;
 		public int X = 25;
 		public int Y = 25;
 		public float spacing = 1f;
 		public node[,] graph;
 		
 		public void Initialise() {
-			nodePrefab.CreatePool();
 			graph = new node[X,Y];
 		}
 		public void BuildGraph() {
