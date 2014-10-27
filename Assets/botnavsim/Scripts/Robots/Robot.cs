@@ -13,7 +13,8 @@ public class Robot : MonoBehaviour {
 	
 	// private members
 	// ~-~-~-~-~-~-~-~-
-	private INavigation _navigation {get;set;}
+	[System.NonSerialized]
+	private INavigation _navigation;
 	private bool 		_moveEnabled = true;
 	private Vector3 	_move;			// the move command applied to our rigidbody
 	private Vector3 	_manualMove;
@@ -81,7 +82,8 @@ public class Robot : MonoBehaviour {
 		else {
 			Vector3? data = nextSensorData;
 			if (data.HasValue) {
-				_navigation.DepthData(transform.position, data.Value, true);
+				_navigation.DepthData(transform.position, 
+					transform.position + data.Value, true);
 			}
 			_move = _navigation.MoveDirection(transform.position);
 		}

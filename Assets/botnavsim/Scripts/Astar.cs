@@ -30,9 +30,23 @@ public class Astar : MonoBehaviour, INavigation {
 	}
 	
 	public void DepthData(Vector3 start, Vector3 end, bool obstructed) {
-		
+		Vector3 mark = start;
+		float length = Vector3.Distance(start, end);
+		for (float dist = 0f; dist < length; dist += graphData.spacing) {
+			mark = Vector3.Lerp(start, end, dist/length);
+			node n = graphData.NearestNode(mark);
+			if (n.type != node.Type.obstructed) {
+				n.type = node.Type.walkable;
+			}
+			Debug.DrawRay(mark, Vector3.up, Color.magenta);
+		}
+		if (obstructed) {
+			node n = graphData.NearestNode(end);
+			n.type = node.Type.obstructed;
+			if (NodeInPath(n)) search = true;
+		}
 	}
-
+	
 	void Awake() {
 		graphData.Initialise();
 		graphData.BuildGraph();
@@ -80,9 +94,9 @@ public class Astar : MonoBehaviour, INavigation {
 
 		bool success = false;
 		
-		pathnode = graphData.NearestNode(transform.position);
+		pathnode = graphData.NearestUnobstructedNode(transform.position);
 		pathnode.state = node.State.start;
-		destinationNode = graphData.NearestNode(destination);
+		destinationNode = graphData.NearestUnobstructedNode(destination);
 		destinationNode.state = node.State.destination;
 				
 		open.Add(pathnode);
@@ -147,8 +161,18 @@ public class Astar : MonoBehaviour, INavigation {
 			yield return new WaitForSeconds(steptime);
 		}
 		pathready = true;
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.5f);
 	}
+	
+	bool NodeInPath(node n) {
+		if (!pathready) return false;
+		node current = destinationNode;
+		while(current.state != node.State.start) {
+			if (current.index == n.index) return true;
+			current = current.parent;
+		}
+		return false;
+	} 
 	
 	void OnDrawGizmos() {
 		if (Application.isPlaying)
@@ -160,7 +184,8 @@ public class Astar : MonoBehaviour, INavigation {
 		public int X = 25;
 		public int Y = 25;
 		public float spacing = 1f;
-		public node[,] graph;
+		public node[,] graph {get;set;}
+		public bool detectObstacles;
 		public LayerMask obstacleMask;
 		
 		public void Initialise() {
@@ -172,6 +197,7 @@ public class Astar : MonoBehaviour, INavigation {
 				for (int y = 0; y < Y; y++) {
 					Vector3 position = new Vector3(x * spacing, 0, y * spacing);
 					node n = new node(position, this);
+					if (detectObstacles) n.Explore();
 					graph[x,y] = n;
 				}
 			}
@@ -219,6 +245,23 @@ public class Astar : MonoBehaviour, INavigation {
 					if (d2 < d1) {
 						nearestNode = graph[x,y];
 						d1 = d2;
+					}
+				}
+			}
+			return nearestNode;
+		}
+		
+		public node NearestUnobstructedNode(Vector3 position) {
+			node nearestNode = graph[0,0];
+			float d1 = Mathf.Infinity;
+			for (int x = 0; x < X; x++) {
+				for (int y = 0; y < Y; y++) {
+					if (graph[x,y].type != node.Type.obstructed) {
+						float d2 = Vector3.Distance(graph[x,y].position, position);
+						if (d2 < d1) {
+							nearestNode = graph[x,y];
+							d1 = d2;
+						}
 					}
 				}
 			}
@@ -384,7 +427,6 @@ public class Astar : MonoBehaviour, INavigation {
 			graph = g;
 			state = State.regular;
 			type = Type.unexplored;
-			Explore();
 		}
 		
 		public void Explore() {
@@ -401,6 +443,15 @@ public class Astar : MonoBehaviour, INavigation {
 		}
 		
 		public void DrawGizmos() {
+			
+			if (type == Type.obstructed) {
+				Gizmos.color = Color.red;
+				Gizmos.DrawWireCube(
+					position,
+					Vector3.one
+					);
+				return;
+			}
 			
 			if (state == State.regular) return;
 			
