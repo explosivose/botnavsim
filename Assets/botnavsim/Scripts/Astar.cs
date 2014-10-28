@@ -7,9 +7,9 @@ public class Astar : MonoBehaviour, INavigation {
 	public bool search;
 	public bool repeatSearch;
 	public float steptime;
-	public Transform target;
 	public GraphData graphData = new GraphData();
 	
+	private Vector3 target;
 	private List<node> open = new List<node>();
 	private List<node> closed = new List<node>();
 	private node pathnode;
@@ -47,6 +47,15 @@ public class Astar : MonoBehaviour, INavigation {
 		}
 	}
 	
+	public void SetDestination(Vector3 destination) {
+		target = destination;
+		search = true;
+	}
+	
+	public Vector3 GetDestination() {
+		return target;
+	}
+	
 	void Awake() {
 		graphData.Initialise();
 		graphData.BuildGraph();
@@ -56,7 +65,7 @@ public class Astar : MonoBehaviour, INavigation {
 		yield return new WaitForSeconds(1f);
 		while(true) {
 			if (search || repeatSearch) {
-				yield return StartCoroutine(Path(target.position));
+				yield return StartCoroutine(Path(target));
 				search = false;
 			}
 			yield return new WaitForFixedUpdate();
@@ -136,11 +145,11 @@ public class Astar : MonoBehaviour, INavigation {
 		}
 		
 		if (success) {
-			Debug.Log ("Path completed.");
+			Debug.Log ("A*: Path completed.");
 		}
 		else {
 			// failure! destination was not found.
-			Debug.LogWarning("Could not find path to destination.");
+			Debug.LogWarning("A*: Could not find path to destination.");
 		}
 		
 	}

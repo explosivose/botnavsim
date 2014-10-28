@@ -39,6 +39,25 @@ public class Robot : MonoBehaviour {
 		}
 	}
 	
+	public string description {
+		get {
+			int distance = Mathf.RoundToInt(
+				Vector3.Distance(transform.position,destination.position));
+			
+			string desc = "Number of sensors: " + sensors.Length.ToString() + "\n";
+			desc += "Robot speed: " + maxSpeed.ToString() + "\n";
+			desc = "Distance remaining: " + distance.ToString() + "\n";
+			return desc;
+		}
+	}
+	
+	public float distanceToDestination {
+		get {
+			if (!destination) return 0f;
+			else return Vector3.Distance(transform.position, destination.position);
+		}
+	}
+	
 	// public methods
 	// ~-~-~-~-~-~-~-~-
 	
@@ -70,6 +89,7 @@ public class Robot : MonoBehaviour {
 	private void Awake() {
 		InitialiseSensors();
 		_navigation = GetComponent(typeof(INavigation)) as INavigation;
+		_navigation.SetDestination(destination.position);
 	}
 	
 	private void Update() {
@@ -80,6 +100,10 @@ public class Robot : MonoBehaviour {
 			_manualMove.z = y * maxSpeed;
 		}
 		else {
+			if (destination.hasChanged) {
+				_navigation.SetDestination(destination.position);
+				destination.hasChanged = false;
+			}
 			Vector3? data = nextSensorData;
 			if (data.HasValue) {
 				_navigation.DepthData(transform.position, 
