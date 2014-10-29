@@ -38,6 +38,8 @@ public class CameraPerspective : MonoBehaviour {
 	
 	private Perspective _p;
 	private Transform _camera;
+	private Vector3 targetPosition;
+	private Quaternion targetRotation;
 	
 	public void CyclePerspective() {
 		perspective++;
@@ -49,12 +51,12 @@ public class CameraPerspective : MonoBehaviour {
 	}
 	
 	void Update() {
-		Vector3 targetPosition;
-		Quaternion targetRotation;
+
 		Transform bot = Simulation.robot.transform;
 		switch (_p) {
 		case Perspective.FirstPerson:
 			targetPosition = bot.position + Vector3.up * 1.5f;
+			if (bot.rigidbody.velocity.magnitude > 0.1f)
 			targetRotation = Quaternion.LookRotation(bot.rigidbody.velocity);
 			break;
 		case Perspective.ThirdPerson:
@@ -67,13 +69,15 @@ public class CameraPerspective : MonoBehaviour {
 		default:
 		case Perspective.Birdseye:
 			targetPosition = (bot.position + Simulation.destination.transform.position)/2f;
-			targetPosition += Vector3.up * 10f;
+			targetPosition += Vector3.up * 100f;
 			targetRotation = Quaternion.LookRotation(Vector3.down);
-			_camera.camera.orthographicSize = Simulation.botscript.distanceToDestination;
+			float size = Simulation.botscript.distanceToDestination * 0.75f;
+			size = Mathf.Max(size, 10f);
+			_camera.camera.orthographicSize = size;
 			break;
 		}
 		
-		_camera.position = Vector3.Lerp(_camera.position, targetPosition, Time.deltaTime);
-		_camera.rotation = Quaternion.Lerp(_camera.rotation, targetRotation, Time.deltaTime);
+		_camera.position = Vector3.Slerp(_camera.position, targetPosition, Time.deltaTime * 2f);
+		_camera.rotation = Quaternion.Slerp(_camera.rotation, targetRotation, Time.deltaTime * 1f);
 	}
 }

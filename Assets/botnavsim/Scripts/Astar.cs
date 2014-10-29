@@ -6,6 +6,7 @@ public class Astar : MonoBehaviour, INavigation {
 
 	public bool search;
 	public bool repeatSearch;
+	public bool showsteps;
 	public float steptime;
 	public GraphData graphData = new GraphData();
 	
@@ -19,6 +20,11 @@ public class Astar : MonoBehaviour, INavigation {
 		get; private set;
 	}
 
+	/// <summary>
+	/// Part of the INavigation interface.
+	/// </summary>
+	/// <returns>Direction to next node in path.</returns>
+	/// <param name="currentPosition">Current position of mobile robot.</param>
 	public Vector3 MoveDirection(Vector3 currentPosition) {
 		if (!pathready) return Vector3.zero;
 		if (pathnode.state != node.State.destination)
@@ -29,6 +35,13 @@ public class Astar : MonoBehaviour, INavigation {
 		return pathnode.position - currentPosition;
 	}
 	
+	/// <summary>
+	/// Part of the INavigation interface.
+	/// </summary>
+	/// <param name="start">Sensor world position.</param>
+	/// <param name="end">End of sensor range.</param>
+	/// <param name="obstructed"><c>true</c> indicates obstruction at
+	/// the end of the sensor range.</param>
 	public void DepthData(Vector3 start, Vector3 end, bool obstructed) {
 		Vector3 mark = start;
 		float length = Vector3.Distance(start, end);
@@ -47,31 +60,51 @@ public class Astar : MonoBehaviour, INavigation {
 		}
 	}
 	
+	/// <summary>
+	/// Sets the destination. Part of the INavigation interface.
+	/// </summary>
+	/// <param name="destination">Destination.</param>
 	public void SetDestination(Vector3 destination) {
 		target = destination;
 		search = true;
 	}
 	
+	/// <summary>
+	/// Gets the destination. Part of the INavigation interface.
+	/// </summary>
+	/// <returns>The destination.</returns>
 	public Vector3 GetDestination() {
 		return target;
 	}
 	
+	/// <summary>
+	/// Awake this instance. (Monobehaviour)
+	/// </summary>
 	void Awake() {
 		graphData.Initialise();
-		graphData.BuildGraph();
+		graphData.BuildGraph(transform.position);
 	}
 	
+	/// <summary>
+	/// Start this instance. (Monobehaviour)
+	/// </summary>
 	IEnumerator Start() {
 		yield return new WaitForSeconds(1f);
 		while(true) {
 			if (search || repeatSearch) {
-				yield return StartCoroutine(Path(target));
+				if (showsteps)
+					yield return StartCoroutine(BuildPath(target));
+				else
+					BuildPathInstant(target);
 				search = false;
 			}
 			yield return new WaitForFixedUpdate();
 		}
 	}
 	
+	/// <summary>
+	/// Deletes any recorded data from previous searches.
+	/// </summary>
 	void InitialiseSearch() {
 		pathready = false;
 		foreach (node n in closed) {
@@ -90,6 +123,10 @@ public class Astar : MonoBehaviour, INavigation {
 		open.Clear();
 	}
 	
+	/// <summary>
+	/// Gets the lowest f score in open list.
+	/// </summary>
+	/// <returns>The lowest f score in open list.</returns>
 	node LowestFscoreInOpen() {
 		node lowest = open[0];
 		foreach (node n in open) {
@@ -98,7 +135,11 @@ public class Astar : MonoBehaviour, INavigation {
 		return lowest;
 	}
 	
-	IEnumerator Path(Vector3 destination) {
+	/// <summary>
+	/// A* Search routine with wait states to demonstrate steps.
+	/// </summary>
+	/// <param name="destination">Destination.</param>
+	IEnumerator BuildPath(Vector3 destination) {
 		InitialiseSearch();
 
 		bool success = false;
@@ -154,12 +195,11 @@ public class Astar : MonoBehaviour, INavigation {
 		
 	}
 	
+	/// <summary>
+	/// Reconstructs the path with wait states to demonstrate steps
+	/// </summary>
 	IEnumerator ReconstructPath() {
 		node current = destinationNode;
-		/*foreach (node n in closed) {
-			if (n.state != node.State.start)
-				n.state = node.State.regular;
-		}*/
 		while (current.state != node.State.start) {
 			if (current.parent) {
 				current.parent.child = current;
@@ -173,6 +213,85 @@ public class Astar : MonoBehaviour, INavigation {
 		yield return new WaitForSeconds(0.5f);
 	}
 	
+	/// <summary>
+	/// A* Search routine with no wait states.
+	/// </summary>
+	/// <param name="destination">Destination.</param>
+	void BuildPathInstant(Vector3 destination) {
+		InitialiseSearch();
+		
+		bool success = false;
+		
+		pathnode = graphData.NearestUnobstructedNode(transform.position);
+		pathnode.state = node.State.start;
+		destinationNode = graphData.NearestUnobstructedNode(destination);
+		destinationNode.state = node.State.destination;
+		
+		open.Add(pathnode);
+		node current;
+		while( open.Count > 0 ) {
+			current = LowestFscoreInOpen();
+			if (current.state == node.State.destination) {
+				ReconstructPathInstantly();
+				success = true;
+				break;
+			}
+			
+			current.destination = destinationNode;
+			
+			open.Remove(current);
+			closed.Add(current);
+			if (current.state != node.State.start)
+				current.state = node.State.closed;
+			
+			foreach(node n in current.connected) {
+				if (closed.Contains(n)) continue;
+				if (n.type == node.Type.obstructed) continue;
+				
+				n.destination = destinationNode;
+				
+				if (!open.Contains(n) || n.TentativeG(current) < n.G) {
+					n.parent = current;
+					if (!open.Contains(n)) {
+						open.Add(n);
+						if (n.state != node.State.destination)
+							n.state = node.State.open;
+					}
+				}
+			}
+		}
+		
+		if (success) {
+			Debug.Log ("A*: Path completed.");
+		}
+		else {
+			// failure! destination was not found.
+			Debug.LogWarning("A*: Could not find path to destination.");
+		}
+		
+	}
+	
+	/// <summary>
+	/// Reconstructs the path with no wait states.
+	/// </summary>
+	void ReconstructPathInstantly() {
+		node current = destinationNode;
+		while (current.state != node.State.start) {
+			if (current.parent) {
+				current.parent.child = current;
+				current = current.parent;
+				if (current.state == node.State.closed)
+					current.state = node.State.path;
+			}
+		}
+		pathready = true;
+	}
+	
+	/// <summary>
+	/// Check if node n is featured in the current A* path.
+	/// </summary>
+	/// <returns><c>true</c>, if node is in path, <c>false</c> otherwise.</returns>
+	/// <param name="n">N.</param>
 	bool NodeInPath(node n) {
 		if (!pathready) return false;
 		node current = destinationNode;
@@ -183,13 +302,18 @@ public class Astar : MonoBehaviour, INavigation {
 		return false;
 	} 
 	
+	/// <summary>
+	/// Raises the draw gizmos event. (Monobehaviour)
+	/// </summary>
 	void OnDrawGizmos() {
 		if (Application.isPlaying)
 		graphData.DrawGizmos();
 	}
 	
+	
 	[System.Serializable]
 	public class GraphData {
+		public bool drawDebug;
 		public int X = 25;
 		public int Y = 25;
 		public float spacing = 1f;
@@ -200,11 +324,12 @@ public class Astar : MonoBehaviour, INavigation {
 		public void Initialise() {
 			graph = new node[X,Y];
 		}
-		public void BuildGraph() {
+		public void BuildGraph(Vector3 location) {
 			
 			for (int x = 0; x < X; x++) {
 				for (int y = 0; y < Y; y++) {
 					Vector3 position = new Vector3(x * spacing, 0, y * spacing);
+					position += location;
 					node n = new node(position, this);
 					if (detectObstacles) n.Explore();
 					graph[x,y] = n;
@@ -277,7 +402,17 @@ public class Astar : MonoBehaviour, INavigation {
 			return nearestNode;
 		}
 		
+		public node RandomUnobstructedNode() {
+			int x = Random.Range(0,X);
+			int y = Random.Range(0,Y);
+			if (graph[x,y].type == node.Type.obstructed) 
+				return RandomUnobstructedNode();
+			else
+				return graph[x,y];
+		}
+		
 		public void DrawGizmos() {
+			if (!drawDebug) return;
 			for (int x = 0; x < X; x++) {
 				for (int y = 0; y < Y; y++) {
 					graph[x,y].DrawGizmos();

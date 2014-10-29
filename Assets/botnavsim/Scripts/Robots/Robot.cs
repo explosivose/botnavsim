@@ -7,15 +7,16 @@ public class Robot : MonoBehaviour {
 	// public fields
 	// ~-~-~-~-~-~-~-~-
 	public bool 		manualControl = false;
+	public bool 		moveEnabled;
 	public float 		maxSpeed = 10f;
 	public Sensor[] 	sensors;
 	public Transform 	destination;
+	
 	
 	// private members
 	// ~-~-~-~-~-~-~-~-
 	[System.NonSerialized]
 	private INavigation _navigation;
-	private bool 		_moveEnabled = true;
 	private Vector3 	_move;			// the move command applied to our rigidbody
 	private Vector3 	_manualMove;
 	private Vector3?	_destination;	// used to automatically stop when near a target location
@@ -61,19 +62,18 @@ public class Robot : MonoBehaviour {
 	// public methods
 	// ~-~-~-~-~-~-~-~-
 	
-	
-	public void Halt() {
-		_moveEnabled = false;
+	public void NavigateToDestination() {
+		_navigation.SetDestination(destination.position);
 	}
 	
 	public void Move(Vector3 direction, float speedpc = 1f) {
-		_moveEnabled = true;
+		moveEnabled = true;
 		_move = direction.normalized * maxSpeed * speedpc;
 		_destination = null;
 	}
 	
 	public void MoveTo(Vector3 location, float speedpc = 1f, float stopDistance = 1f) {
-		_moveEnabled = true;
+		moveEnabled = true;
 		Vector3 direction = location - transform.position;
 		_move = direction.normalized * maxSpeed * speedpc;
 		_destination = location;
@@ -89,7 +89,6 @@ public class Robot : MonoBehaviour {
 	private void Awake() {
 		InitialiseSensors();
 		_navigation = GetComponent(typeof(INavigation)) as INavigation;
-		_navigation.SetDestination(destination.position);
 	}
 	
 	private void Update() {
@@ -99,7 +98,7 @@ public class Robot : MonoBehaviour {
 			_manualMove.x = x * maxSpeed;
 			_manualMove.z = y * maxSpeed;
 		}
-		else {
+		else if (Simulation.isRunning){
 			if (destination.hasChanged) {
 				_navigation.SetDestination(destination.position);
 				destination.hasChanged = false;
@@ -114,7 +113,7 @@ public class Robot : MonoBehaviour {
 	}
 	
 	private void FixedUpdate() {
-		bool canMove = _moveEnabled;
+		bool canMove = moveEnabled;
 		Vector3 move = manualControl ? _manualMove : _move;
 		if (_destination.HasValue) {
 			if (Vector3.Distance(_destination.Value, transform.position) < _stopDistance) {
