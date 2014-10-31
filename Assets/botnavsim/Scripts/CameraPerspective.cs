@@ -17,19 +17,19 @@ public class CameraPerspective : MonoBehaviour {
 			_p = value;
 			switch (_p) {
 			case Perspective.FirstPerson:
-				_camera.camera.orthographic = false;
-				_camera.camera.fieldOfView = 120f;
-				_camera.parent = Simulation.robot.transform;
+				_camera.orthographic = false;
+				_camera.fieldOfView = 120f;
+				_camera.transform.parent = Simulation.robot.transform;
 				break;
 			case Perspective.ThirdPerson:
 				_camera.camera.orthographic = false;
 				_camera.camera.fieldOfView = 60f;
-				_camera.parent = Simulation.robot.transform;
+				_camera.transform.parent = Simulation.robot.transform;
 				break;
 			default:
 			case Perspective.Birdseye:
 				_camera.camera.orthographic = true;
-				_camera.parent = null;
+				_camera.transform.parent = null;
 				
 				break;
 			}
@@ -37,7 +37,7 @@ public class CameraPerspective : MonoBehaviour {
 	}
 	
 	private Perspective _p;
-	private Transform _camera;
+	private Camera _camera;
 	private Vector3 targetPosition;
 	private Quaternion targetRotation;
 	
@@ -46,8 +46,8 @@ public class CameraPerspective : MonoBehaviour {
 		if (perspective > Perspective.Birdseye) perspective = Perspective.FirstPerson;
 	}
 	
-	void Start() {
-		_camera = Camera.main.transform;
+	void Awake() {
+		_camera = GetComponent<Camera>();
 	}
 	
 	void Update() {
@@ -60,7 +60,7 @@ public class CameraPerspective : MonoBehaviour {
 			targetRotation = Quaternion.LookRotation(bot.rigidbody.velocity);
 			break;
 		case Perspective.ThirdPerson:
-			_camera.camera.orthographic = false;
+			_camera.orthographic = false;
 			targetPosition = bot.position;
 			targetPosition -= bot.rigidbody.velocity.normalized * 5f;
 			targetPosition += bot.up * 5f;
@@ -73,11 +73,20 @@ public class CameraPerspective : MonoBehaviour {
 			targetRotation = Quaternion.LookRotation(Vector3.down);
 			float size = Simulation.botscript.distanceToDestination * 0.75f;
 			size = Mathf.Max(size, 10f);
-			_camera.camera.orthographicSize = size;
+			_camera.orthographicSize = size;
 			break;
 		}
 		
-		_camera.position = Vector3.Slerp(_camera.position, targetPosition, Time.deltaTime * 2f);
-		_camera.rotation = Quaternion.Slerp(_camera.rotation, targetRotation, Time.deltaTime * 1f);
+		_camera.transform.position = Vector3.Slerp(
+			_camera.transform.position, 
+			targetPosition, 
+			Time.deltaTime * 2f
+			);
+		
+		_camera.transform.rotation = Quaternion.Slerp(
+			_camera.transform.rotation, 
+			targetRotation, 
+			Time.deltaTime * 1f
+			);
 	}
 }
