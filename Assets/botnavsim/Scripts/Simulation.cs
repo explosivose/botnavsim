@@ -7,7 +7,8 @@ public class Simulation : MonoBehaviour {
 	
 	public static GameObject robot;
 	public static GameObject destination;
-	public static CameraPerspective cam;
+	public static CameraPerspective camPersp;
+	public static CameraType camType;
 	
 	public static Robot botscript;
 	
@@ -45,6 +46,7 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	private Astar _astar;
+	private bool _hideMenu;
 	
 	void Awake() {
 		if (Instance) {
@@ -59,7 +61,8 @@ public class Simulation : MonoBehaviour {
 	void Start() {
 		robot = GameObject.Find("Bot");
 		destination = GameObject.Find("Destination");
-		cam = Camera.main.GetComponent<CameraPerspective>();
+		camPersp = Camera.main.GetComponent<CameraPerspective>();
+		camType = Camera.main.GetComponent<CameraType>();
 		
 		if (robot) 
 			botscript = robot.GetComponent<Robot>();
@@ -67,14 +70,15 @@ public class Simulation : MonoBehaviour {
 			Debug.LogError("Bot not found.");
 			
 		botscript.destination = destination.transform;
-		cam.perspective = CameraPerspective.Perspective.Birdseye;
+		camPersp.perspective = CameraPerspective.Perspective.Birdseye;
+		camType.type = CameraType.Type.Hybrid;
 		
 		StopSimulation();
 	}
 	
 	void Update() {
 		if (Input.GetKeyUp(KeyCode.Space)) {
-			cam.CyclePerspective();
+			camPersp.CyclePerspective();
 		}
 		if (isRunning) {
 			if (botscript.distanceToDestination < 1f) {
@@ -85,7 +89,7 @@ public class Simulation : MonoBehaviour {
 	
 	void OnGUI() {
 		// controls
-		float top = 0f, left = 0f, width = 250f, height = 200f;
+		float top = 0f, left = 0f, width = 250f, height = 100f;
 		Rect rect = new Rect(left, top, width, height);
 		GUILayout.Window(0, rect, WindowControls, "A* Search Demo");
 
@@ -97,20 +101,44 @@ public class Simulation : MonoBehaviour {
 		GUILayout.Label("Start distance: " + startDistance);
 		GUILayout.Label(botscript.description);
 		
+		if (_hideMenu) {
+			if (GUILayout.Button("Show Menu")) {
+				_hideMenu = false;
+			}
+			return;
+		}
+		
+		if (GUILayout.Button ("Hide Menu")) {
+			_hideMenu = true;
+		}
+		
 		if(GUILayout.Button("Start")) {
 			if (isRunning) StopSimulation();
 			StartSimulation();
 		}
-		if (GUILayout.Button("Change camera")) {
-			cam.CyclePerspective();
+		if (GUILayout.Button("Change Camera Mode")) {
+			camType.CycleType();
 		}
-		GUILayout.Label("Viewing from: " + cam.perspective.ToString());
+		if (GUILayout.Button("Change camera")) {
+			camPersp.CyclePerspective();
+		}
+		GUILayout.Label("Viewing from: " + camPersp.perspective.ToString());
+		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Timescale");
 		Time.timeScale = GUILayout.HorizontalSlider(Time.timeScale, 0f, 3f);
 		GUILayout.EndHorizontal();
+		
 		bool steps = robot.GetComponent<Astar>().showsteps;
 		steps = GUILayout.Toggle(steps,"Show steps");
 		robot.GetComponent<Astar>().showsteps = steps;
+		
+		if(GUILayout.Button("Change Scene")) {
+			if (isRunning) StopSimulation();
+			int level = Application.loadedLevel;
+			if (++level > Application.levelCount-1) 
+				level = 0;
+			Application.LoadLevel(level); 
+		}
 	}
 }

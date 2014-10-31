@@ -19,6 +19,10 @@ public class Astar : MonoBehaviour, INavigation {
 	public node destinationNode {
 		get; private set;
 	}
+	
+	public node startNode {
+		get; private set;
+	}
 
 	/// <summary>
 	/// Part of the INavigation interface.
@@ -28,7 +32,7 @@ public class Astar : MonoBehaviour, INavigation {
 	public Vector3 MoveDirection(Vector3 currentPosition) {
 		if (!pathready) return Vector3.zero;
 		if (pathnode.state != node.State.destination)
-			if (Vector3.Distance(currentPosition, pathnode.position) < 1f) 
+			if (Vector3.Distance(currentPosition, pathnode.position) < graphData.spacing * 0.6f) 
 				pathnode = pathnode.child;
 		
 		Debug.DrawLine(currentPosition, pathnode.position, Color.red);
@@ -145,6 +149,7 @@ public class Astar : MonoBehaviour, INavigation {
 		bool success = false;
 		
 		pathnode = graphData.NearestUnobstructedNode(transform.position);
+		startNode = pathnode;
 		pathnode.state = node.State.start;
 		destinationNode = graphData.NearestUnobstructedNode(destination);
 		destinationNode.state = node.State.destination;
@@ -200,7 +205,7 @@ public class Astar : MonoBehaviour, INavigation {
 	/// </summary>
 	IEnumerator ReconstructPath() {
 		node current = destinationNode;
-		while (current.state != node.State.start) {
+		while (current != startNode) {
 			if (current.parent) {
 				current.parent.child = current;
 				current = current.parent;
@@ -276,7 +281,7 @@ public class Astar : MonoBehaviour, INavigation {
 	/// </summary>
 	void ReconstructPathInstantly() {
 		node current = destinationNode;
-		while (current.state != node.State.start) {
+		while (current != startNode) {
 			if (current.parent) {
 				current.parent.child = current;
 				current = current.parent;
@@ -320,6 +325,7 @@ public class Astar : MonoBehaviour, INavigation {
 		public node[,] graph {get;set;}
 		public bool detectObstacles;
 		public LayerMask obstacleMask;
+		public Transform nodeRenderPrefab;
 		
 		public void Initialise() {
 			graph = new node[X,Y];
@@ -330,7 +336,7 @@ public class Astar : MonoBehaviour, INavigation {
 				for (int y = 0; y < Y; y++) {
 					Vector3 position = new Vector3(x * spacing, 0, y * spacing);
 					position += location;
-					node n = new node(position, this);
+					node n = new node(position, nodeRenderPrefab, this);
 					if (detectObstacles) n.Explore();
 					graph[x,y] = n;
 				}
@@ -440,7 +446,20 @@ public class Astar : MonoBehaviour, INavigation {
 		
 		public GraphData graph;
 		public bool highlight;
+		public Color color {
+			get {
+				return _color;
+			}
+		}
 		public List<node> connected = new List<node>();
+		
+		/// <summary>
+		/// Set true if node state, type, parent or child is changed.
+		/// </summary>
+		/// <value><c>true</c> if has changed; otherwise, <c>false</c>.</value>
+		public bool hasChanged {
+			get; set;
+		}
 		
 		public State state {
 			get {
@@ -448,6 +467,7 @@ public class Astar : MonoBehaviour, INavigation {
 			}
 			set {
 				_state = value;
+				hasChanged = true;
 				switch(_state) {
 				case State.regular:
 					type = _type;
@@ -480,6 +500,7 @@ public class Astar : MonoBehaviour, INavigation {
 			}
 			set {
 				_type = value;
+				hasChanged = true;
 				if (state != State.regular) return;
 				switch(_type){
 				case Type.obstructed:
@@ -504,6 +525,7 @@ public class Astar : MonoBehaviour, INavigation {
 			}
 			set {
 				_parent = value;
+				hasChanged = true;
 				if (_parent) {
 					G = _parent.G;
 					G += Vector3.Distance(position, _parent.position);
@@ -515,9 +537,17 @@ public class Astar : MonoBehaviour, INavigation {
 				
 			}
 		}
+		
 		public node child {
-			get; set;
+			get  {
+				return _child;
+			}
+			set {
+				_child = value;
+				hasChanged = true;
+			}
 		}
+		
 		public node destination {
 			get {
 				return _destination;
@@ -556,21 +586,30 @@ public class Astar : MonoBehaviour, INavigation {
 		
 		private static int node_count;
 		private node _parent;
+		private node _child;
 		private node _destination;
 		private State _state;
 		private Type _type;
 		private Color _color;
-		
+		private Transform _renderPrefab;
+		private Transform _renderInstance;
 		public static implicit operator bool(node n) {
 			return n != null;
 		}
 		
-		public node(Vector3 location, GraphData g) {
+		public node(Vector3 location, Transform nodePrefab, GraphData g) {
 			index = node_count++;
 			position = location;
 			graph = g;
 			state = State.regular;
 			type = Type.unexplored;
+			if (nodePrefab) {
+				_renderPrefab = nodePrefab;
+				_renderPrefab.CreatePool();
+				_renderInstance = _renderPrefab.Spawn(location);
+				_renderInstance.parent = Simulation.Instance.transform;
+				_renderInstance.GetComponent<AstarNodeRender>().myNode = this;
+			}
 		}
 		
 		public void Explore() {
