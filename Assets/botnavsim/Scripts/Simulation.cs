@@ -99,7 +99,7 @@ public class Simulation : MonoBehaviour {
 				StopSimulation();
 				if (_autoRepeat) StartCoroutine(StartAgain());
 			}
-			if (botscript.isStuck && _autoRepeat) {
+			else if (botscript.isStuck && _autoRepeat) {
 				Debug.LogWarning("Robot thinks its stuck. Restarting...");
 				StopSimulation();
 				StartCoroutine(StartAgain());
@@ -123,10 +123,6 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	void WindowControls(int windowID) {
-		
-		GUILayout.Label("Simulation time: " + time);
-		GUILayout.Label("Start distance: " + startDistance);
-		GUILayout.Label(botscript.description);
 		
 		if (_hideMenu) {
 			if (GUILayout.Button("Show Menu")) {
@@ -173,5 +169,13 @@ public class Simulation : MonoBehaviour {
 				level = 0;
 			Application.LoadLevel(level); 
 		}
+		if (GUILayout.Button("Quit")) {
+			Application.Quit();
+		}
+
+		GUILayout.Label("Simulation time: " + time);
+		GUILayout.Label("Start distance: " + startDistance);
+		GUILayout.Label(botscript.description);
+
 	}
 }
