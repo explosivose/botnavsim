@@ -193,7 +193,7 @@ public class Astar : MonoBehaviour, INavigation {
 				}
 			}
 			
-			yield return new WaitForSeconds(steptime);
+			//yield return new WaitForSeconds(steptime);
 		}
 		
 		if (success) {

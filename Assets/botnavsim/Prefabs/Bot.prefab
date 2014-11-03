@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,8 @@ GameObject:
   - 23: {fileID: 2300002}
   - 114: {fileID: 11400000}
   - 108: {fileID: 10800000}
-  m_Layer: 0
+  - 65: {fileID: 6500000}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +46,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 108: {fileID: 10800002}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +65,8 @@ GameObject:
   - 23: {fileID: 2300004}
   - 114: {fileID: 11400002}
   - 108: {fileID: 10800004}
-  m_Layer: 0
+  - 65: {fileID: 6500002}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,7 +85,8 @@ GameObject:
   - 23: {fileID: 2300006}
   - 114: {fileID: 11400004}
   - 108: {fileID: 10800006}
-  m_Layer: 0
+  - 65: {fileID: 6500004}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +105,8 @@ GameObject:
   - 23: {fileID: 2300008}
   - 114: {fileID: 11400006}
   - 108: {fileID: 10800008}
-  m_Layer: 0
+  - 65: {fileID: 6500006}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +125,8 @@ GameObject:
   - 23: {fileID: 2300010}
   - 114: {fileID: 11400008}
   - 108: {fileID: 10800010}
-  m_Layer: 0
+  - 65: {fileID: 6500008}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +145,8 @@ GameObject:
   - 23: {fileID: 2300012}
   - 114: {fileID: 11400010}
   - 108: {fileID: 10800012}
-  m_Layer: 0
+  - 65: {fileID: 6500010}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +184,8 @@ GameObject:
   - 23: {fileID: 2300014}
   - 114: {fileID: 11400016}
   - 108: {fileID: 10800014}
-  m_Layer: 0
+  - 65: {fileID: 6500012}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +204,8 @@ GameObject:
   - 23: {fileID: 2300016}
   - 114: {fileID: 11400018}
   - 108: {fileID: 10800016}
-  m_Layer: 0
+  - 65: {fileID: 6500014}
+  m_Layer: 2
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +222,7 @@ GameObject:
   - 4: {fileID: 400022}
   - 33: {fileID: 3300018}
   - 23: {fileID: 2300018}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,6 +669,102 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!65 &6500000
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100002}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: -4.79203663e-08, y: 0, z: 0}
+--- !u!65 &6500002
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6500004
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100008}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: 3.0391675e-08, y: 0, z: -1.1920929e-07}
+--- !u!65 &6500006
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100010}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6500008
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100012}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6500010
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6500012
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: -3.08455128e-08, y: 0, z: 0}
+--- !u!65 &6500014
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.25}
+  m_Center: {x: 2.40979716e-08, y: 0, z: 0}
 --- !u!108 &10800000
 Light:
   m_ObjectHideFlags: 1
@@ -1102,8 +1206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualControl: 0
   moveEnabled: 0
-  maxSpeed: 2
-  stopDistance: 0
+  maxSpeed: 10
+  stopDistance: 2
   sensors: []
   destination: {fileID: 0}
 --- !u!114 &11400016
@@ -1146,7 +1250,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.25
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &100100000
 Prefab:

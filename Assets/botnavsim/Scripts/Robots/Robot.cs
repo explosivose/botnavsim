@@ -22,7 +22,8 @@ public class Robot : MonoBehaviour {
 	private Vector3 	_manualMove;
 	private Vector3?	_destination;	// used to automatically stop when near a target location
 	private int 		_snsrIndex;		// circular index for sensor array
-	
+	private int 		_stuckCounter;
+
 	// public properties
 	// ~-~-~-~-~-~-~-~-
 	
@@ -44,11 +45,18 @@ public class Robot : MonoBehaviour {
 		get {
 			int distance = Mathf.RoundToInt(
 				Vector3.Distance(transform.position,destination.position));
-			
-			string desc = "Number of sensors: " + sensors.Length.ToString() + "\n";
-			desc += "Robot speed: " + (rigidbody.velocity.magnitude/maxSpeed).ToString() + "%\n";
-			if (atDestination) desc += "Arrived at destination." + "\n";
-			else desc += "Distance remaining: " + distance.ToString() + "\n";
+			string desc = "";
+
+			if (atDestination) desc += "Arrived at destination!" + "\n";
+
+			desc = "Number of sensors: " + sensors.Length.ToString() + "\n";
+			if (isStuck) {
+				desc += "\" I think I'm stuck!!\"\n";
+			}
+			if (!atDestination)  {
+				desc += "Robot speed: " + (100f * speed01).ToString("0") + "%\n";
+				desc += "Distance remaining: " + distance.ToString() + "\n";
+			}
 			return desc;
 		}
 	}
@@ -68,7 +76,19 @@ public class Robot : MonoBehaviour {
 			else return Vector3.Distance(transform.position, destination.position);
 		}
 	}
-	
+
+	public float speed01 {
+		get {
+			return rigidbody.velocity.magnitude/maxSpeed;
+		}
+	}
+
+	public bool isStuck {
+		get {
+			return _stuckCounter > 300;
+		}
+	}
+
 	// public methods
 	// ~-~-~-~-~-~-~-~-
 	
@@ -101,6 +121,11 @@ public class Robot : MonoBehaviour {
 	}
 	
 	private void Update() {
+		Vector3? data = nextSensorData;
+		if (data.HasValue) {
+			_navigation.DepthData(transform.position, 
+			                      transform.position + data.Value, true);
+		}
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
 			float y = Input.GetAxis ("Vertical");
@@ -112,25 +137,26 @@ public class Robot : MonoBehaviour {
 				_navigation.SetDestination(destination.position);
 				destination.hasChanged = false;
 			}
-			Vector3? data = nextSensorData;
-			if (data.HasValue) {
-				_navigation.DepthData(transform.position, 
-					transform.position + data.Value, true);
-			}
+
 			_move = _navigation.MoveDirection(transform.position);
 		}
+
+		if (rigidbody.velocity.magnitude < 1f && Simulation.time > 1f)
+			_stuckCounter++;
+		else
+			_stuckCounter = 0;
 	}
 	
 	private void FixedUpdate() {
-		bool canMove = moveEnabled;
+		bool canMove = moveEnabled || manualControl;
 		Vector3 move = manualControl ? _manualMove : _move;
 		if (_destination.HasValue) {
-			if (Vector3.Distance(_destination.Value, transform.position) < stopDistance) {
+			if (atDestination) {
 				canMove = false;
 			}
 		}
 		if (canMove) {
-			Vector3 force = move * rigidbody.mass * rigidbody.drag * maxSpeed;
+			Vector3 force = move.normalized * rigidbody.mass * rigidbody.drag * maxSpeed;
 			rigidbody.AddForce(force);
 		}
 		Debug.DrawRay(transform.position, move, Color.green);

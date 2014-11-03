@@ -59,7 +59,8 @@ public class Simulation : MonoBehaviour {
 	
 	private Astar _astar;
 	private bool _hideMenu;
-	
+	private bool _autoRepeat;
+
 	void Awake() {
 		if (Instance) {
 			Destroy(this.gameObject);
@@ -96,10 +97,23 @@ public class Simulation : MonoBehaviour {
 		if (isRunning) {
 			if (botscript.atDestination) {
 				StopSimulation();
+				if (_autoRepeat) StartCoroutine(StartAgain());
 			}
+			if (botscript.isStuck && _autoRepeat) {
+				Debug.LogWarning("Robot thinks its stuck. Restarting...");
+				StopSimulation();
+				StartCoroutine(StartAgain());
+			}
+
 		}
 	}
-	
+
+	IEnumerator StartAgain() {
+		yield return new WaitForSeconds(3f);
+		StopSimulation();
+		StartSimulation();
+	}
+
 	void OnGUI() {
 		// controls
 		float top = 0f, left = 0f, width = 250f, height = 100f;
@@ -132,7 +146,7 @@ public class Simulation : MonoBehaviour {
 		if (GUILayout.Button("Change Camera Mode")) {
 			camType.CycleType();
 		}
-		if (GUILayout.Button("Change camera")) {
+		if (GUILayout.Button("Change camera Perspective")) {
 			camPersp.CyclePerspective();
 		}
 		GUILayout.Label("Viewing from: " + camPersp.perspective.ToString());
@@ -141,11 +155,17 @@ public class Simulation : MonoBehaviour {
 		GUILayout.Label("Timescale");
 		Time.timeScale = GUILayout.HorizontalSlider(Time.timeScale, 0f, 3f);
 		GUILayout.EndHorizontal();
-		
+		/* commented out for release to avoid a fatal inf loop bug somewhere...
 		bool steps = robot.GetComponent<Astar>().showsteps;
 		steps = GUILayout.Toggle(steps,"Show steps");
 		robot.GetComponent<Astar>().showsteps = steps;
-		
+		*/
+		bool manual = botscript.manualControl;
+		manual = GUILayout.Toggle(manual,"Manual Control");
+		botscript.manualControl = manual;
+
+		_autoRepeat = GUILayout.Toggle(_autoRepeat, "Auto Repeat");
+
 		if(GUILayout.Button("Change Scene")) {
 			if (isRunning) StopSimulation();
 			int level = Application.loadedLevel;
