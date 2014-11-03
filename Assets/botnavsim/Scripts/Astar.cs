@@ -4,18 +4,22 @@ using System.Collections.Generic;
 
 public class Astar : MonoBehaviour, INavigation {
 
-	public bool search;
-	public bool repeatSearch;
+	// public fields
+	// ~-~-~-~-~-~-~-~-
 	public bool showsteps;
 	public float steptime;
 	public GraphData graphData = new GraphData();
-	
+
+	// private members
+	// ~-~-~-~-~-~-~-~-
 	private Vector3 target;
 	private List<node> open = new List<node>();
 	private List<node> closed = new List<node>();
 	private node pathnode;
 	private bool pathready;
-	
+
+	// public properties
+	// ~-~-~-~-~-~-~-~-
 	public node destinationNode {
 		get; private set;
 	}
@@ -23,6 +27,9 @@ public class Astar : MonoBehaviour, INavigation {
 	public node startNode {
 		get; private set;
 	}
+
+	// public methods
+	// ~-~-~-~-~-~-~-~-
 
 	/// <summary>
 	/// Part of the INavigation interface.
@@ -60,7 +67,7 @@ public class Astar : MonoBehaviour, INavigation {
 		if (obstructed) {
 			node n = graphData.NearestNode(end);
 			n.type = node.Type.obstructed;
-			if (NodeInPath(n)) search = true;
+			if (NodeInPath(n)) StartSearch();
 		}
 	}
 	
@@ -69,8 +76,9 @@ public class Astar : MonoBehaviour, INavigation {
 	/// </summary>
 	/// <param name="destination">Destination.</param>
 	public void SetDestination(Vector3 destination) {
+		StopAllCoroutines(); // stop any current searches.
 		target = destination;
-		search = true;
+		StartSearch();
 	}
 	
 	/// <summary>
@@ -80,7 +88,10 @@ public class Astar : MonoBehaviour, INavigation {
 	public Vector3 GetDestination() {
 		return target;
 	}
-	
+
+	// private methods
+	// ~-~-~-~-~-~-~-~-
+
 	/// <summary>
 	/// Awake this instance. (Monobehaviour)
 	/// </summary>
@@ -88,24 +99,19 @@ public class Astar : MonoBehaviour, INavigation {
 		graphData.Initialise();
 		graphData.BuildGraph(transform.position);
 	}
-	
+
 	/// <summary>
-	/// Start this instance. (Monobehaviour)
+	/// Starts the A* search to target.
 	/// </summary>
-	IEnumerator Start() {
-		yield return new WaitForSeconds(1f);
-		while(true) {
-			if (search || repeatSearch) {
-				if (showsteps)
-					yield return StartCoroutine(BuildPath(target));
-				else
-					BuildPathInstant(target);
-				search = false;
-			}
-			yield return new WaitForFixedUpdate();
+	void StartSearch() {
+		if (showsteps) {
+			StartCoroutine( BuildPath(target) );
+		}
+		else {
+			BuildPathInstant(target);
 		}
 	}
-	
+
 	/// <summary>
 	/// Deletes any recorded data from previous searches.
 	/// </summary>
@@ -302,6 +308,7 @@ public class Astar : MonoBehaviour, INavigation {
 		node current = destinationNode;
 		while(current.state != node.State.start) {
 			if (current.index == n.index) return true;
+			if (!current.parent) return false;
 			current = current.parent;
 		}
 		return false;

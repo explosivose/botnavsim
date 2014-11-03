@@ -2404,6 +2404,64 @@ Tree:
   m_PrefabInternal: {fileID: 1806410912}
   m_GameObject: {fileID: 100830558}
   m_TreeData: {fileID: 11400000, guid: 08170dd4d8d521f49a99199199f35808, type: 2}
+--- !u!1 &104096012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100022, guid: aed4ea0735e99cc41a216ce9316b5413, type: 2}
+  m_PrefabInternal: {fileID: 1040161126}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 104096013}
+  - 33: {fileID: 104096015}
+  - 23: {fileID: 104096014}
+  m_Layer: 0
+  m_Name: Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104096013
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400022, guid: aed4ea0735e99cc41a216ce9316b5413, type: 2}
+  m_PrefabInternal: {fileID: 1040161126}
+  m_GameObject: {fileID: 104096012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1077021817}
+  m_RootOrder: 0
+--- !u!23 &104096014
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300018, guid: aed4ea0735e99cc41a216ce9316b5413,
+    type: 2}
+  m_PrefabInternal: {fileID: 1040161126}
+  m_GameObject: {fileID: 104096012}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 10302, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &104096015
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300018, guid: aed4ea0735e99cc41a216ce9316b5413,
+    type: 2}
+  m_PrefabInternal: {fileID: 1040161126}
+  m_GameObject: {fileID: 104096012}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &105201561
 GameObject:
   m_ObjectHideFlags: 0
@@ -13262,7 +13320,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -13281,8 +13339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &423376561
@@ -17448,7 +17506,7 @@ GameObject:
   - 4: {fileID: 549205303}
   - 33: {fileID: 549205305}
   - 23: {fileID: 549205304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17466,7 +17524,7 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1077021817}
-  m_RootOrder: 0
+  m_RootOrder: 10
 --- !u!23 &549205304
 Renderer:
   m_ObjectHideFlags: 0
@@ -26982,7 +27040,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -27001,8 +27059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &837860695
@@ -27663,7 +27721,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -27682,8 +27740,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &855817998
@@ -29433,7 +29491,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -29452,8 +29510,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &920577814
@@ -29585,7 +29643,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -29604,8 +29662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &925121029
@@ -32936,8 +32994,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983b6d59872745945987aa096a0bb590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  search: 0
-  repeatSearch: 0
   showsteps: 0
   steptime: 0
   graphData:
@@ -36041,7 +36097,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1077021814
 Rigidbody:
@@ -36074,6 +36130,7 @@ MonoBehaviour:
   manualControl: 0
   moveEnabled: 0
   maxSpeed: 2
+  stopDistance: 0
   sensors: []
   destination: {fileID: 0}
 --- !u!114 &1077021816
@@ -36088,15 +36145,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983b6d59872745945987aa096a0bb590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  search: 0
-  repeatSearch: 0
-  showsteps: 0
+  showsteps: 1
   steptime: .00999999978
   graphData:
     drawDebug: 1
-    X: 100
-    Y: 100
-    spacing: 4
+    X: 50
+    Y: 50
+    spacing: 2
     detectObstacles: 0
     obstacleMask:
       serializedVersion: 2
@@ -36112,7 +36167,7 @@ Transform:
   m_LocalPosition: {x: 208, y: 18, z: 125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 549205303}
+  - {fileID: 104096013}
   - {fileID: 1454614421}
   - {fileID: 423376558}
   - {fileID: 1893149193}
@@ -36122,6 +36177,7 @@ Transform:
   - {fileID: 837860692}
   - {fileID: 1730534206}
   - {fileID: 925121026}
+  - {fileID: 549205303}
   m_Father: {fileID: 0}
   m_RootOrder: 6
 --- !u!1 &1078037895
@@ -60287,7 +60343,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -60306,8 +60362,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &1730534209
@@ -61597,6 +61653,7 @@ GameObject:
   - 124: {fileID: 1770649356}
   - 81: {fileID: 1770649355}
   - 114: {fileID: 1770649354}
+  - 114: {fileID: 1770649360}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -61685,6 +61742,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
+--- !u!114 &1770649360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: ca9f596cd9add0244993b763c805ca74,
+    type: 2}
+  m_PrefabInternal: {fileID: 233111054}
+  m_GameObject: {fileID: 1770649353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1a6efdac3c5a146b2767027e59649b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maskNormal:
+    serializedVersion: 2
+    m_Bits: 4294967039
+  maskBotData:
+    serializedVersion: 2
+    m_Bits: 256
+  maskHybrid:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &1771692021
 Prefab:
   m_ObjectHideFlags: 0
@@ -66426,7 +66504,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -66445,8 +66523,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &1889805304
@@ -66672,7 +66750,7 @@ Light:
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_Lightmapping: 1
   m_ShadowSamples: 1
   m_ShadowRadius: 0
@@ -66691,8 +66769,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0824c3ad9e0534d44a1661d564f1632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 1
-  radius: 2
+  type: 0
+  radius: 1
   drawDebug: 1
   maxDistance: 50
 --- !u!23 &1893149196
