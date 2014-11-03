@@ -51,8 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 983b6d59872745945987aa096a0bb590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  search: 0
-  repeatSearch: 0
+  showsteps: 0
   steptime: 0
   graphData:
     drawDebug: 0
@@ -63,6 +62,7 @@ MonoBehaviour:
     obstacleMask:
       serializedVersion: 2
       m_Bits: 256
+    nodeRenderPrefab: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

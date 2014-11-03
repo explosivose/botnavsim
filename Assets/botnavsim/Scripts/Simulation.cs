@@ -1,28 +1,40 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// This is a manager object used to overlook the running of a simulation.
 public class Simulation : MonoBehaviour {
 
+	// Singleton pattern
 	public static Simulation Instance;
-	
+
+	// static class members (for easy access in other classes)
 	public static GameObject robot;
 	public static GameObject destination;
 	public static CameraPerspective camPersp;
 	public static CameraType camType;
-	
 	public static Robot botscript;
-	
 	public static bool isRunning = false;
-	
+
+	// Simulation.time
+	/// <summary>
+	/// Time since robot started searching for destination.
+	/// </summary>
+	/// <value>Time (seconds) since robot started searching for destination.</value>
 	public static float time {
 		get {
 			if (isRunning) stopTime = Time.time;
 			return stopTime - startTime;
 		}
 	}
-	
+
+	// Time variables used to calculate Simulation.time
 	private static float startTime;
 	private static float stopTime;
+
+	// Simulation.startDistance
+	/// <summary>
+	/// Distance from robot start position and destination.
+	/// </summary>
 	private static float startDistance;
 	
 	public void StartSimulation() {
@@ -56,6 +68,7 @@ public class Simulation : MonoBehaviour {
 			Instance = this;
 		}
 		_astar = GetComponent<Astar>();
+
 	}
 	
 	void Start() {
@@ -68,7 +81,7 @@ public class Simulation : MonoBehaviour {
 			botscript = robot.GetComponent<Robot>();
 		else 
 			Debug.LogError("Bot not found.");
-			
+
 		botscript.destination = destination.transform;
 		camPersp.perspective = CameraPerspective.Perspective.Birdseye;
 		camType.type = CameraType.Type.Hybrid;
@@ -81,7 +94,7 @@ public class Simulation : MonoBehaviour {
 			camPersp.CyclePerspective();
 		}
 		if (isRunning) {
-			if (botscript.distanceToDestination < 1f) {
+			if (botscript.atDestination) {
 				StopSimulation();
 			}
 		}

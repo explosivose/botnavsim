@@ -9,8 +9,9 @@ public class Robot : MonoBehaviour {
 	public bool 		manualControl = false;
 	public bool 		moveEnabled;
 	public float 		maxSpeed = 10f;
+	public float		stopDistance;	// how close the robot will get to _destination before stopping
 	public Sensor[] 	sensors;
-	public Transform 	destination;
+	public Transform 	destination;	
 	
 	
 	// private members
@@ -20,7 +21,6 @@ public class Robot : MonoBehaviour {
 	private Vector3 	_move;			// the move command applied to our rigidbody
 	private Vector3 	_manualMove;
 	private Vector3?	_destination;	// used to automatically stop when near a target location
-	private float 		_stopDistance;	// how close the robot will get to _destination before stopping
 	private int 		_snsrIndex;		// circular index for sensor array
 	
 	// public properties
@@ -46,12 +46,22 @@ public class Robot : MonoBehaviour {
 				Vector3.Distance(transform.position,destination.position));
 			
 			string desc = "Number of sensors: " + sensors.Length.ToString() + "\n";
-			desc += "Robot speed: " + maxSpeed.ToString() + "\n";
-			desc = "Distance remaining: " + distance.ToString() + "\n";
+			desc += "Robot speed: " + (rigidbody.velocity.magnitude/maxSpeed).ToString() + "%\n";
+			if (atDestination) desc += "Arrived at destination." + "\n";
+			else desc += "Distance remaining: " + distance.ToString() + "\n";
 			return desc;
 		}
 	}
-	
+
+	public bool atDestination {
+		get {
+			if (!destination) return false;
+			float distance = Vector3.Distance(transform.position, destination.position);
+			if (distance < stopDistance) return true;
+			return false;
+		}
+	}
+
 	public float distanceToDestination {
 		get {
 			if (!destination) return 0f;
@@ -72,12 +82,11 @@ public class Robot : MonoBehaviour {
 		_destination = null;
 	}
 	
-	public void MoveTo(Vector3 location, float speedpc = 1f, float stopDistance = 1f) {
+	public void MoveTo(Vector3 location, float speedpc = 1f) {
 		moveEnabled = true;
 		Vector3 direction = location - transform.position;
 		_move = direction.normalized * maxSpeed * speedpc;
 		_destination = location;
-		_stopDistance = stopDistance;
 	}
 	
 	public void InitialiseSensors() {
@@ -116,7 +125,7 @@ public class Robot : MonoBehaviour {
 		bool canMove = moveEnabled;
 		Vector3 move = manualControl ? _manualMove : _move;
 		if (_destination.HasValue) {
-			if (Vector3.Distance(_destination.Value, transform.position) < _stopDistance) {
+			if (Vector3.Distance(_destination.Value, transform.position) < stopDistance) {
 				canMove = false;
 			}
 		}
