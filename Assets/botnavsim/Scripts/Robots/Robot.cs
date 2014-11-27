@@ -13,10 +13,21 @@ public class Robot : MonoBehaviour {
 	public Sensor[] 	sensors;
 	public Transform 	destination;	
 	
+	public INavigation 	navigation {
+		get {
+			return _navigation;
+		}
+		set {
+			_navigation = value;
+			_navigation.SetSearchSpace(Simulation.simulationSpace);
+			_navigation.SetBotPosition(transform.position);
+			_navigation.SetDestination(destination.position);
+		}
+	}
 	
 	// private members
 	// ~-~-~-~-~-~-~-~-
-	[System.NonSerialized]
+	//[System.NonSerialized]
 	private INavigation _navigation;
 	private Vector3 	_move;			// the move command applied to our rigidbody
 	private Vector3 	_manualMove;
@@ -51,9 +62,12 @@ public class Robot : MonoBehaviour {
 
 			desc = "Number of sensors: " + sensors.Length.ToString() + "\n";
 			if (isStuck) {
-				desc += "\" I think I'm stuck!!\"\n";
+				desc += "\"I think I'm stuck!!\"\n";
 			}
-			if (!atDestination)  {
+			if (!_navigation.SearchComplete()) {
+				desc += "Waiting for path...\n";
+			}
+			else if (!atDestination)  {
 				desc += "Robot speed: " + (100f * speed01).ToString("0") + "%\n";
 				desc += "Distance remaining: " + distance.ToString() + "\n";
 			}
@@ -93,6 +107,7 @@ public class Robot : MonoBehaviour {
 	// ~-~-~-~-~-~-~-~-
 	
 	public void NavigateToDestination() {
+		if (_navigation == null) return;
 		_navigation.SetDestination(destination.position);
 	}
 	
@@ -121,6 +136,7 @@ public class Robot : MonoBehaviour {
 	}
 	
 	private void Update() {
+		if (_navigation == null) return;
 		Vector3? data = nextSensorData;
 		if (data.HasValue) {
 			_navigation.DepthData(transform.position, 
@@ -134,11 +150,12 @@ public class Robot : MonoBehaviour {
 		}
 		else if (Simulation.isRunning){
 			if (destination.hasChanged) {
+				_navigation.SetBotPosition(transform.position);
 				_navigation.SetDestination(destination.position);
 				destination.hasChanged = false;
 			}
-
-			_move = _navigation.MoveDirection(transform.position);
+			if (_navigation.SearchComplete())
+				_move = _navigation.MoveDirection(transform.position);
 		}
 
 		if (rigidbody.velocity.magnitude < 1f && Simulation.time > 1f)
@@ -162,4 +179,8 @@ public class Robot : MonoBehaviour {
 		Debug.DrawRay(transform.position, move, Color.green);
 	}
 	
+	void OnDrawGizmos() {
+		if (_navigation != null)
+			_navigation.DrawGizmos();
+	}
 }

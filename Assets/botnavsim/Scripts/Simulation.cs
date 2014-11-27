@@ -14,7 +14,8 @@ public class Simulation : MonoBehaviour {
 	public static CameraType camType;
 	public static Robot botscript;
 	public static bool isRunning = false;
-
+	public static Bounds simulationSpace;
+	
 	// Simulation.time
 	/// <summary>
 	/// Time since robot started searching for destination.
@@ -57,7 +58,7 @@ public class Simulation : MonoBehaviour {
 		isRunning = false;
 	}
 	
-	private Astar _astar;
+	private AstarNative _astar;
 	private bool _hideMenu;
 	private bool _autoRepeat;
 
@@ -68,11 +69,15 @@ public class Simulation : MonoBehaviour {
 		else {
 			Instance = this;
 		}
-		_astar = GetComponent<Astar>();
+		_astar = GetComponent<AstarNative>();
 
 	}
 	
 	void Start() {
+		simulationSpace = new Bounds(Vector3.zero, Vector3.zero);
+		foreach(Renderer r in FindObjectsOfType<Renderer>())
+			simulationSpace.Encapsulate(r.bounds);
+		
 		robot = GameObject.Find("Bot");
 		destination = GameObject.Find("Destination");
 		camPersp = Camera.main.GetComponent<CameraPerspective>();
@@ -177,5 +182,10 @@ public class Simulation : MonoBehaviour {
 		GUILayout.Label("Start distance: " + startDistance);
 		GUILayout.Label(botscript.description);
 
+	}
+	
+	void OnDrawGizmos() {
+		if (isRunning)
+			Gizmos.DrawWireCube(simulationSpace.center, simulationSpace.size);
 	}
 }

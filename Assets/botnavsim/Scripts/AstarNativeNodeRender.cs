@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class AstarNodeRender : MonoBehaviour {
-
+	
 	public Material obstructedMat;
 	public Material openMat;
 	public Material closedMat;
@@ -10,7 +10,7 @@ public class AstarNodeRender : MonoBehaviour {
 	public Material startMat;
 	public Material destinationMat;
 	
-	public Astar.node myNode {get; set;}
+	public AstarNative.node myNode {get; set;}
 	
 	private MeshRenderer _renderer;
 	private LineRenderer _line;
@@ -31,14 +31,14 @@ public class AstarNodeRender : MonoBehaviour {
 	
 	void UpdateMaterial() {
 		
-		if (myNode.type == Astar.node.Type.obstructed) {
+		if (myNode.type == AstarNative.node.Type.obstructed) {
 			_renderer.enabled = true;
 			_renderer.material = obstructedMat;
 			_line.enabled = false;
 			return;
 		}
-			
-		if (myNode.state == Astar.node.State.regular) {
+		
+		if (myNode.state == AstarNative.node.State.regular) {
 			_renderer.enabled = false;
 			_line.enabled = false;
 			return;
@@ -47,18 +47,18 @@ public class AstarNodeRender : MonoBehaviour {
 			_renderer.enabled = true;
 		}
 		
-		if (myNode.state == Astar.node.State.start) 
+		if (myNode.state == AstarNative.node.State.start) 
 			_renderer.material = startMat;
-		else if (myNode.state == Astar.node.State.destination)
+		else if (myNode.state == AstarNative.node.State.destination)
 			_renderer.material = destinationMat;
-		else if (myNode.state == Astar.node.State.closed)
+		else if (myNode.state == AstarNative.node.State.closed)
 			_renderer.material = closedMat;
-		else if (myNode.state == Astar.node.State.open) 
+		else if (myNode.state == AstarNative.node.State.open) 
 			_renderer.material = openMat;
-		else if (myNode.state == Astar.node.State.path)
+		else if (myNode.state == AstarNative.node.State.path)
 			_renderer.material = pathMat;
-			
-
+		
+		
 		if (myNode.child) {
 			_line.enabled = true;
 			_line.SetVertexCount(2);
