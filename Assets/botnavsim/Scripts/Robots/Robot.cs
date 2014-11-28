@@ -19,9 +19,9 @@ public class Robot : MonoBehaviour {
 		}
 		set {
 			_navigation = value;
-			_navigation.SetSearchSpace(Simulation.simulationSpace);
-			_navigation.SetBotPosition(transform.position);
-			_navigation.SetDestination(destination.position);
+			_navigation.searchBounds = Simulation.bounds;
+			_navigation.origin = transform.position;
+			_navigation.destination = destination.position;
 		}
 	}
 	
@@ -64,12 +64,17 @@ public class Robot : MonoBehaviour {
 			if (isStuck) {
 				desc += "\"I think I'm stuck!!\"\n";
 			}
-			if (!_navigation.SearchComplete()) {
-				desc += "Waiting for path...\n";
+			if (_navigation == null) {
+				desc += "Navigation Algorithm not loaded...\n";
 			}
-			else if (!atDestination)  {
-				desc += "Robot speed: " + (100f * speed01).ToString("0") + "%\n";
-				desc += "Distance remaining: " + distance.ToString() + "\n";
+			else {
+				if (!_navigation.pathFound) {
+					desc += "Waiting for path...\n";
+				}
+				else if (!atDestination)  {
+					desc += "Robot speed: " + (100f * speed01).ToString("0") + "%\n";
+					desc += "Distance remaining: " + distance.ToString() + "\n";
+				}
 			}
 			return desc;
 		}
@@ -108,7 +113,7 @@ public class Robot : MonoBehaviour {
 	
 	public void NavigateToDestination() {
 		if (_navigation == null) return;
-		_navigation.SetDestination(destination.position);
+		StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
 	}
 	
 	public void Move(Vector3 direction, float speedpc = 1f) {
@@ -139,7 +144,7 @@ public class Robot : MonoBehaviour {
 		if (_navigation == null) return;
 		Vector3? data = nextSensorData;
 		if (data.HasValue) {
-			_navigation.DepthData(transform.position, 
+			_navigation.Proximity(transform.position, 
 			                      transform.position + data.Value, true);
 		}
 		if (manualControl) {
@@ -150,12 +155,11 @@ public class Robot : MonoBehaviour {
 		}
 		else if (Simulation.isRunning){
 			if (destination.hasChanged) {
-				_navigation.SetBotPosition(transform.position);
-				_navigation.SetDestination(destination.position);
+				StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
 				destination.hasChanged = false;
 			}
-			if (_navigation.SearchComplete())
-				_move = _navigation.MoveDirection(transform.position);
+			if (_navigation.pathFound)
+				_move = _navigation.PathDirection(transform.position);
 		}
 
 		if (rigidbody.velocity.magnitude < 1f && Simulation.time > 1f)

@@ -14,7 +14,7 @@ public class Simulation : MonoBehaviour {
 	public static CameraType camType;
 	public static Robot botscript;
 	public static bool isRunning = false;
-	public static Bounds simulationSpace;
+	public static Bounds bounds;
 	
 	// Simulation.time
 	/// <summary>
@@ -74,9 +74,9 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	void Start() {
-		simulationSpace = new Bounds(Vector3.zero, Vector3.zero);
+		bounds = new Bounds(Vector3.zero, Vector3.zero);
 		foreach(Renderer r in FindObjectsOfType<Renderer>())
-			simulationSpace.Encapsulate(r.bounds);
+			bounds.Encapsulate(r.bounds);
 		
 		robot = GameObject.Find("Bot");
 		destination = GameObject.Find("Destination");
@@ -186,6 +186,6 @@ public class Simulation : MonoBehaviour {
 	
 	void OnDrawGizmos() {
 		if (isRunning)
-			Gizmos.DrawWireCube(simulationSpace.center, simulationSpace.size);
+			Gizmos.DrawWireCube(bounds.center, bounds.size);
 	}
 }

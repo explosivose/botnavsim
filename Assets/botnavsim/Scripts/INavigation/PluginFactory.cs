@@ -18,7 +18,6 @@ public class PluginFactory<T> {
 			Debug.LogError("File not found (" + file + ")");
 			return default(T);
 		}
-		
 		Type[] assemblyTypes =  Assembly.LoadFrom(file).GetTypes();
 		foreach(Type assemblyType in assemblyTypes) {
 			Type interfaceType = assemblyType.GetInterface(typeof(T).FullName);
@@ -35,7 +34,8 @@ public class PluginFactory<T> {
 		List<string> list = new List<string>();
 		// find .dll files
 		foreach (string file in Directory.GetFiles(path, "*.dll")) {
-			foreach (Type assemblyType in Assembly.LoadFrom(file).GetTypes()) {
+			Assembly assembly = Assembly.LoadFrom(file);
+			foreach (Type assemblyType in assembly.GetTypes()) {
 				Type interfaceType = assemblyType.GetInterface(typeof(T).FullName);
 				if (interfaceType != null) {
 					list.Add(Path.GetFileName(file));

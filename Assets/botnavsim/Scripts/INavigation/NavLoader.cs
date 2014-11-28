@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-//using System.ComponentModel.Composition;
 using System.Collections.Generic;
 using System;
-//using System.ComponentModel.Composition.Hosting;
 using System.IO;
 
-public class NavLoader : MonoBehaviour {
+public class NavLoader : Singleton<NavLoader> {
 
 	
 	string searchDirectory;
