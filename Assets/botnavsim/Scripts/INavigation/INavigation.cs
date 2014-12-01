@@ -62,7 +62,8 @@ public interface INavigation {
 	/// </summary>
 	void DrawGizmos();
 	
-
+	void DrawDebugInfo();
+	
 	/* Some other methods that might be useful in future...
 	void Obstruction(Vector3 location);
 	

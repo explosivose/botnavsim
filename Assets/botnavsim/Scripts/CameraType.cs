@@ -46,4 +46,10 @@ public class CameraType : MonoBehaviour {
 		_camera = GetComponent<Camera>();
 	}
 	
+	void Update() {
+		if (type == Type.BotData || type == Type.Hybrid) {
+			Simulation.botscript.navigation.DrawDebugInfo();
+		}
+	}
+	
 }

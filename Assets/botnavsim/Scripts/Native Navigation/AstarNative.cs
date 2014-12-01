@@ -87,7 +87,10 @@ public class AstarNative : MonoBehaviour, INavigation {
 	public void DrawGizmos () {
 		throw new System.NotImplementedException ();
 	}
-
+	
+	public void DrawDebugInfo() {
+		
+	}
 
 	// private methods
 	// ~-~-~-~-~-~-~-~-
