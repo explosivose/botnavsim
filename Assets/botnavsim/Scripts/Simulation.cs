@@ -4,24 +4,39 @@ using System.Collections;
 // This is a manager object used to overlook the running of a simulation.
 public class Simulation : MonoBehaviour {
 
+	public enum State {
+		preSimulation,
+		simulating,
+		postSimulation
+	}
+	
+
 	// Singleton pattern
 	public static Simulation Instance;
 
 	// static class members (for easy access in other classes)
+	public static State state = State.preSimulation;
 	public static GameObject robot {
 		get { return _robot; }
 		set {
+			if(_robot) _robot.transform.Recycle();
 			_robot = value;
 			botscript = _robot.GetComponent<Robot>();
 			botscript.destination = destination.transform;
 		}
 	}
+	public static INavigation navigation;
 	public static GameObject destination;
 	public static CameraPerspective camPersp;
 	public static CameraType camType;
 	public static Robot botscript;
-	public static bool isRunning = false;
+	public static bool isRunning {
+		get { return state == State.simulating; }
+	}
 	public static Bounds bounds;
+	public static bool isReady {
+		get { return navigation != null && robot != null; }
+	}
 	
 	// Simulation.time
 	/// <summary>
@@ -49,14 +64,17 @@ public class Simulation : MonoBehaviour {
 	
 	public void StartSimulation() {
 		
-		robot.transform.position 
-			= _astar.graphData.RandomUnobstructedNode().position;
+		if (botscript.navigation == null)
+			botscript.navigation = navigation;
+		
+		//robot.transform.position 
+		//	= _astar.graphData.RandomUnobstructedNode().position;
 		destination.transform.position 
 			= _astar.graphData.RandomUnobstructedNode().position;
 		
 		botscript.moveEnabled = true;
 		botscript.NavigateToDestination();
-		isRunning = true;
+		state = State.simulating;
 		startDistance = botscript.distanceToDestination;
 		startTime = Time.time;
 	}
@@ -66,7 +84,12 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			botscript.moveEnabled = false;
 		}
-		isRunning = false;
+		if (isRunning) {
+			state = State.postSimulation;
+		}
+		else {
+			state = State.preSimulation;
+		}
 	}
 	
 	private AstarNative _astar;
@@ -121,14 +144,6 @@ public class Simulation : MonoBehaviour {
 		yield return new WaitForSeconds(3f);
 		StopSimulation();
 		StartSimulation();
-	}
-
-	void OnGUI() {
-		// controls
-		float top = 0f, left = 0f, width = 250f, height = 100f;
-		Rect rect = new Rect(left, top, width, height);
-		//GUILayout.Window(0, rect, WindowControls, "A* Search Demo");
-
 	}
 	
 	void WindowControls(int windowID) {

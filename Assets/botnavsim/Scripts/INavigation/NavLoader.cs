@@ -30,7 +30,7 @@ public class NavLoader {
 		INavigation navigation = _loader.CreatePlugin(
 			_searchDirectory + "\\" + name);
 	 	activePlugin = name;
-		Simulation.botscript.navigation = navigation;
+		Simulation.navigation = navigation;
 		
 	}
 

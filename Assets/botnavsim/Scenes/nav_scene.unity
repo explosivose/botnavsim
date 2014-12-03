@@ -1548,7 +1548,7 @@ MonoBehaviour:
   windowNavAlg:
     DesignHeight: 0
     HeightIs: 1
-    DesignWidth: 300
+    DesignWidth: 240
     WidthIs: 1
     Align: 2
     verticalOffset: 0
@@ -1556,7 +1556,7 @@ MonoBehaviour:
   windowRobot:
     DesignHeight: 0
     HeightIs: 1
-    DesignWidth: 300
+    DesignWidth: 240
     WidthIs: 1
     Align: 5
     verticalOffset: 0
@@ -1564,15 +1564,15 @@ MonoBehaviour:
   windowEnv:
     DesignHeight: 0
     HeightIs: 1
-    DesignWidth: 300
+    DesignWidth: 240
     WidthIs: 1
     Align: 8
-    verticalOffset: 0
+    verticalOffset: 100
     horizontalOffset: 0
   windowSim:
     DesignHeight: 0
     HeightIs: 1
-    DesignWidth: 300
+    DesignWidth: 240
     WidthIs: 1
     Align: 1
     verticalOffset: 0

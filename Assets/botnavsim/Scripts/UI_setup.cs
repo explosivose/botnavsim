@@ -47,10 +47,12 @@ public class UI_setup : MonoBehaviour {
 	/// </summary>
 	void OnGUI() {
 		int i = 1;
+		_rectSim = GUILayout.Window(i++, _rectSim, WindowSimulationSettings, "Simulation Settings", _style.window);
+		if (Simulation.isRunning) return;
 		_rectNavAlg = GUILayout.Window(i++, _rectNavAlg, WindowNavAlgorithms, "Navigation Algorithm", _style.window);
 		_rectRobot = GUILayout.Window(i++, _rectRobot, WindowRobotGallery, "Robot Gallery", _style.window);
 		_rectEnv = GUILayout.Window(i++, _rectEnv, WindowEnvironmentGallery, "Environment Gallery", _style.window);
-		_rectSim = GUILayout.Window(i++, _rectSim, WindowSimulationSettings, "Simulation Settings", _style.window);
+		
 	}
 	
 	/// <summary>
@@ -153,8 +155,14 @@ public class UI_setup : MonoBehaviour {
 	}
 	
 	void WindowSimulationSettings(int windowID) {
-		if (GUILayout.Button("START", _style.button)) {
-			Simulation.Instance.StartSimulation();
+		if (Simulation.isReady) {
+			if (GUILayout.Button("START", _style.button)) {
+				Simulation.Instance.StartSimulation();
+			}
 		}
+		else {
+			GUILayout.Label("Select a robot and navigation algorithm.");
+		}
+
 	}
 }

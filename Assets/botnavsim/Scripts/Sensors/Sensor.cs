@@ -28,10 +28,12 @@ public class Sensor : MonoBehaviour {
 			data = transform.forward * hit.distance;
 			if (drawDebug) Debug.DrawRay(transform.position, 
 			                             data.Value, Color.red, 0.05f);
+			Draw.Instance.Line(transform.position, transform.position + data.Value, Color.red);
 		}
 		else {
 			if (drawDebug) Debug.DrawRay(transform.position, 
 			          transform.forward * maxDistance, Color.green, 0.05f);
+			Draw.Instance.Line(transform.position, transform.position + transform.forward * maxDistance, Color.green);
 		}
 		return data;
 	}
