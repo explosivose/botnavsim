@@ -51,7 +51,7 @@ public class CameraPerspective : MonoBehaviour {
 	}
 	
 	void Update() {
-
+		if (!Simulation.isRunning) return;
 		Transform bot = Simulation.robot.transform;
 		switch (_p) {
 		case Perspective.FirstPerson:

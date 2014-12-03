@@ -166,7 +166,7 @@ GameObject:
   - 54: {fileID: 5400000}
   - 135: {fileID: 13500000}
   m_Layer: 2
-  m_Name: Bot
+  m_Name: Hover8Sensors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

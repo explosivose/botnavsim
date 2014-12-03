@@ -8,7 +8,14 @@ public class Simulation : MonoBehaviour {
 	public static Simulation Instance;
 
 	// static class members (for easy access in other classes)
-	public static GameObject robot;
+	public static GameObject robot {
+		get { return _robot; }
+		set {
+			_robot = value;
+			botscript = _robot.GetComponent<Robot>();
+			botscript.destination = destination.transform;
+		}
+	}
 	public static GameObject destination;
 	public static CameraPerspective camPersp;
 	public static CameraType camType;
@@ -27,6 +34,8 @@ public class Simulation : MonoBehaviour {
 			return stopTime - startTime;
 		}
 	}
+
+	private static GameObject _robot;
 
 	// Time variables used to calculate Simulation.time
 	private static float startTime;
@@ -53,8 +62,10 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	public void StopSimulation() {
-		robot.rigidbody.velocity = Vector3.zero;
-		botscript.moveEnabled = false;
+		if (robot) {
+			robot.rigidbody.velocity = Vector3.zero;
+			botscript.moveEnabled = false;
+		}
 		isRunning = false;
 	}
 	
@@ -78,17 +89,10 @@ public class Simulation : MonoBehaviour {
 		foreach(Renderer r in FindObjectsOfType<Renderer>())
 			bounds.Encapsulate(r.bounds);
 		
-		robot = GameObject.Find("Bot");
 		destination = GameObject.Find("Destination");
 		camPersp = Camera.main.GetComponent<CameraPerspective>();
 		camType = Camera.main.GetComponent<CameraType>();
-		
-		if (robot) 
-			botscript = robot.GetComponent<Robot>();
-		else 
-			Debug.LogError("Bot not found.");
 
-		botscript.destination = destination.transform;
 		camPersp.perspective = CameraPerspective.Perspective.Birdseye;
 		camType.type = CameraType.Type.Hybrid;
 		
@@ -123,7 +127,7 @@ public class Simulation : MonoBehaviour {
 		// controls
 		float top = 0f, left = 0f, width = 250f, height = 100f;
 		Rect rect = new Rect(left, top, width, height);
-		GUILayout.Window(0, rect, WindowControls, "A* Search Demo");
+		//GUILayout.Window(0, rect, WindowControls, "A* Search Demo");
 
 	}
 	
