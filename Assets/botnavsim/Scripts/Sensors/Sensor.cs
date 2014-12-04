@@ -1,8 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class Sensor : MonoBehaviour {
 
+	public struct ProximityData {
+		public Vector3 direction;
+		public bool obstructed;
+	}
+	
 	public enum Type {
 		Raycast,
 		Spherecast
@@ -13,24 +20,27 @@ public class Sensor : MonoBehaviour {
 	public bool drawDebug;
 	public float maxDistance;
 
-	public Vector3? data {
+	public ProximityData data {
 		get {
 			if (type == Type.Raycast) return Raycast ();
 			else return Spherecast();
 		}
 	}
 	
-	Vector3? Raycast() {
+	ProximityData Raycast() {
 		Ray ray = new Ray(transform.position, transform.forward);
 		RaycastHit hit;
-		Vector3? data = null;
+		ProximityData data = new ProximityData();
 		if (Physics.Raycast(ray, out hit, maxDistance)) {
-			data = transform.forward * hit.distance;
+			data.direction = transform.forward * hit.distance;
+			data.obstructed = true;
 			if (drawDebug) Debug.DrawRay(transform.position, 
-			                             data.Value, Color.red, 0.05f);
-			Draw.Instance.Line(transform.position, transform.position + data.Value, Color.red);
+			                             data.direction, Color.red, 0.05f);
+			Draw.Instance.Line(transform.position, transform.position + data.direction, Color.red);
 		}
 		else {
+			data.direction = transform.forward * maxDistance;
+			data.obstructed = false;
 			if (drawDebug) Debug.DrawRay(transform.position, 
 			          transform.forward * maxDistance, Color.green, 0.05f);
 			Draw.Instance.Line(transform.position, transform.position + transform.forward * maxDistance, Color.green);
@@ -38,16 +48,19 @@ public class Sensor : MonoBehaviour {
 		return data;
 	}
 	
-	Vector3? Spherecast() {
+	ProximityData Spherecast() {
 		Ray ray = new Ray(transform.position, transform.forward);
 		RaycastHit hit;
-		Vector3? data = null;
+		ProximityData data = new ProximityData();
 		if (Physics.SphereCast(ray, radius, out hit, maxDistance)) {
-			data = transform.forward * hit.distance;
+			data.direction = transform.forward * hit.distance;
+			data.obstructed = true;
 			if (drawDebug) Debug.DrawRay(transform.position, 
-		                             data.Value, Color.red,0.1f);
+		                             data.direction, Color.red,0.1f);
 		}
 		else {
+			data.direction = transform.forward * maxDistance;
+			data.obstructed = false;
 			if (drawDebug) Debug.DrawRay(transform.position, 
 			             transform.forward * maxDistance, Color.green, 0.1f);
 		}

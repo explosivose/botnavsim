@@ -122,7 +122,6 @@ public class UI_setup : MonoBehaviour {
 			if (GUILayout.Button(BotLoader.robotsFound[i].name, _style.button))
 				BotLoader.SetRobot(i);
 		
-		GUILayout.Label("Gallery not yet implemented.", _style.label);
 		GUI.DragWindow();
 	}
 	
@@ -150,14 +149,20 @@ public class UI_setup : MonoBehaviour {
 			
 		// gallery goes here...
 		
-		GUILayout.Label("Gallery not yet implemented.", _style.label);
+		for(int i = 0; i < Application.levelCount; i++)
+			if (GUILayout.Button("Level " + i, _style.button))
+				Application.LoadLevel(i);
+			
 		GUI.DragWindow();
 	}
 	
 	void WindowSimulationSettings(int windowID) {
 		if (Simulation.isReady) {
 			if (GUILayout.Button("START", _style.button)) {
-				Simulation.Instance.StartSimulation();
+				Simulation.Run();
+			}
+			if (GUILayout.Button("STOP", _style.button)) {
+				Simulation.Stop();
 			}
 		}
 		else {

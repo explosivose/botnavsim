@@ -8,6 +8,7 @@ public class Robot : MonoBehaviour {
 	// ~-~-~-~-~-~-~-~-
 	public bool 		manualControl = false;
 	public bool 		moveEnabled;
+	public bool 		faceMoveDirection = false;
 	public float 		maxSpeed = 10f;
 	public float		stopDistance;	// how close the robot will get to _destination before stopping
 	public Sensor[] 	sensors;
@@ -44,9 +45,9 @@ public class Robot : MonoBehaviour {
 	/// </summary>
 	/// <value>Depth data from the next sensor in a circular
 	/// indexed array of sensors</value>
-	public Vector3? nextSensorData {
+	public Sensor.ProximityData nextSensorData {
 		get {
-			Vector3? data = sensors[_snsrIndex].data;
+			Sensor.ProximityData data = sensors[_snsrIndex].data;
 			if (++_snsrIndex >= sensors.Length) _snsrIndex = 0;
 			return data;
 		}
@@ -142,11 +143,10 @@ public class Robot : MonoBehaviour {
 	
 	private void Update() {
 		if (_navigation == null) return;
-		Vector3? data = nextSensorData;
-		if (data.HasValue) {
-			_navigation.Proximity(transform.position, 
-			                      transform.position + data.Value, true);
-		}
+		Sensor.ProximityData data = nextSensorData;
+		_navigation.Proximity(transform.position, 
+			                      transform.position + data.direction, data.obstructed);
+		
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
 			float y = Input.GetAxis ("Vertical");
@@ -177,6 +177,8 @@ public class Robot : MonoBehaviour {
 			}
 		}
 		if (canMove) {
+			Quaternion rotation = Quaternion.LookRotation(move);
+			transform.rotation = rotation;//Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
 			Vector3 force = move.normalized * rigidbody.mass * rigidbody.drag * maxSpeed;
 			rigidbody.AddForce(force);
 		}

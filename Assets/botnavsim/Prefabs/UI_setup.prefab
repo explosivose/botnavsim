@@ -9,9 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
   m_Layer: 0
-  m_Name: Simulation
+  m_Name: UI_setup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +23,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 38.5251846, y: 9.69998646, z: 6.33694458}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -37,32 +36,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a13a05817dcfc1445a95b70cb3125758, type: 3}
+  m_Script: {fileID: 11500000, guid: 40cdf38da12b30949ae7e0d386bb55d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11400002
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45bfd662851fc64ca7d59aefdd36029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showsteps: 0
-  steptime: 0
-  graphData:
-    drawDebug: 0
-    X: 50
-    Y: 50
-    spacing: 2
-    detectObstacles: 1
-    obstacleMask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    nodeRenderPrefab: {fileID: 0}
+  windowNavAlg:
+    DesignHeight: 0
+    HeightIs: 1
+    DesignWidth: 240
+    WidthIs: 1
+    Align: 2
+    verticalOffset: 0
+    horizontalOffset: 0
+  windowRobot:
+    DesignHeight: 0
+    HeightIs: 1
+    DesignWidth: 240
+    WidthIs: 1
+    Align: 5
+    verticalOffset: 0
+    horizontalOffset: 0
+  windowEnv:
+    DesignHeight: 0
+    HeightIs: 1
+    DesignWidth: 240
+    WidthIs: 1
+    Align: 8
+    verticalOffset: 100
+    horizontalOffset: 0
+  windowSim:
+    DesignHeight: 0
+    HeightIs: 1
+    DesignWidth: 240
+    WidthIs: 1
+    Align: 1
+    verticalOffset: 0
+    horizontalOffset: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

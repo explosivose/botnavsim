@@ -27,8 +27,6 @@ public class Simulation : MonoBehaviour {
 	}
 	public static INavigation navigation;
 	public static GameObject destination;
-	public static CameraPerspective camPersp;
-	public static CameraType camType;
 	public static Robot botscript;
 	public static bool isRunning {
 		get { return state == State.simulating; }
@@ -37,6 +35,7 @@ public class Simulation : MonoBehaviour {
 	public static bool isReady {
 		get { return navigation != null && robot != null; }
 	}
+	public static bool autoRepeat;
 	
 	// Simulation.time
 	/// <summary>
@@ -62,7 +61,7 @@ public class Simulation : MonoBehaviour {
 	/// </summary>
 	private static float startDistance;
 	
-	public void StartSimulation() {
+	public static void Run() {
 		
 		if (botscript.navigation == null)
 			botscript.navigation = navigation;
@@ -70,7 +69,7 @@ public class Simulation : MonoBehaviour {
 		//robot.transform.position 
 		//	= _astar.graphData.RandomUnobstructedNode().position;
 		destination.transform.position 
-			= _astar.graphData.RandomUnobstructedNode().position;
+			= Instance.astar.graphData.RandomUnobstructedNode().position;
 		
 		botscript.moveEnabled = true;
 		botscript.NavigateToDestination();
@@ -79,7 +78,7 @@ public class Simulation : MonoBehaviour {
 		startTime = Time.time;
 	}
 	
-	public void StopSimulation() {
+	public static void Stop() {
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
 			botscript.moveEnabled = false;
@@ -92,9 +91,8 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 	
-	private AstarNative _astar;
+	public AstarNative astar;
 	private bool _hideMenu;
-	private bool _autoRepeat;
 
 	void Awake() {
 		if (Instance) {
@@ -103,7 +101,7 @@ public class Simulation : MonoBehaviour {
 		else {
 			Instance = this;
 		}
-		_astar = GetComponent<AstarNative>();
+		astar = GetComponent<AstarNative>();
 
 	}
 	
@@ -113,27 +111,19 @@ public class Simulation : MonoBehaviour {
 			bounds.Encapsulate(r.bounds);
 		
 		destination = GameObject.Find("Destination");
-		camPersp = Camera.main.GetComponent<CameraPerspective>();
-		camType = Camera.main.GetComponent<CameraType>();
-
-		camPersp.perspective = CameraPerspective.Perspective.Birdseye;
-		camType.type = CameraType.Type.Hybrid;
 		
-		StopSimulation();
+		Stop();
 	}
 	
 	void Update() {
-		if (Input.GetKeyUp(KeyCode.Space)) {
-			camPersp.CyclePerspective();
-		}
 		if (isRunning) {
 			if (botscript.atDestination) {
-				StopSimulation();
-				if (_autoRepeat) StartCoroutine(StartAgain());
+				Stop();
+				if (autoRepeat) StartCoroutine(StartAgain());
 			}
-			else if (botscript.isStuck && _autoRepeat) {
+			else if (botscript.isStuck && autoRepeat) {
 				Debug.LogWarning("Robot thinks its stuck. Restarting...");
-				StopSimulation();
+				Stop();
 				StartCoroutine(StartAgain());
 			}
 
@@ -142,67 +132,10 @@ public class Simulation : MonoBehaviour {
 
 	IEnumerator StartAgain() {
 		yield return new WaitForSeconds(3f);
-		StopSimulation();
-		StartSimulation();
+		Stop();
+		Run();
 	}
-	
-	void WindowControls(int windowID) {
 		
-		if (_hideMenu) {
-			if (GUILayout.Button("Show Menu")) {
-				_hideMenu = false;
-			}
-			return;
-		}
-		
-		if (GUILayout.Button ("Hide Menu")) {
-			_hideMenu = true;
-		}
-		
-		if(GUILayout.Button("Start")) {
-			if (isRunning) StopSimulation();
-			StartSimulation();
-		}
-		if (GUILayout.Button("Change Camera Mode")) {
-			camType.CycleType();
-		}
-		if (GUILayout.Button("Change camera Perspective")) {
-			camPersp.CyclePerspective();
-		}
-		GUILayout.Label("Viewing from: " + camPersp.perspective.ToString());
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Timescale");
-		Time.timeScale = GUILayout.HorizontalSlider(Time.timeScale, 0f, 3f);
-		GUILayout.EndHorizontal();
-		/* commented out for release to avoid a fatal inf loop bug somewhere...
-		bool steps = robot.GetComponent<Astar>().showsteps;
-		steps = GUILayout.Toggle(steps,"Show steps");
-		robot.GetComponent<Astar>().showsteps = steps;
-		*/
-		bool manual = botscript.manualControl;
-		manual = GUILayout.Toggle(manual,"Manual Control");
-		botscript.manualControl = manual;
-
-		_autoRepeat = GUILayout.Toggle(_autoRepeat, "Auto Repeat");
-
-		if(GUILayout.Button("Change Scene")) {
-			if (isRunning) StopSimulation();
-			int level = Application.loadedLevel;
-			if (++level > Application.levelCount-1) 
-				level = 0;
-			Application.LoadLevel(level); 
-		}
-		if (GUILayout.Button("Quit")) {
-			Application.Quit();
-		}
-
-		GUILayout.Label("Simulation time: " + time);
-		GUILayout.Label("Start distance: " + startDistance);
-		GUILayout.Label(botscript.description);
-
-	}
-	
 	void OnDrawGizmos() {
 		if (isRunning)
 			Gizmos.DrawWireCube(bounds.center, bounds.size);
