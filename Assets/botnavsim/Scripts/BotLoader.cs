@@ -7,6 +7,7 @@ public class BotLoader {
 	public static List<GameObject> robotsFound = new List<GameObject>();
 	
 	public static void SearchForRobots() {
+		robotsFound.Clear();
 		GameObject[] robots = Resources.LoadAll<GameObject>("Robots/");
 		foreach (GameObject r in robots) {
 			if (r.GetComponent<Robot>()) {
