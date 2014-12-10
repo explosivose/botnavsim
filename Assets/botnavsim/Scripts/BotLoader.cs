@@ -20,4 +20,13 @@ public class BotLoader {
 		Transform robot = robotsFound[index].transform.Spawn();
 		Simulation.robot = robot.gameObject;
 	}
+	
+	public static void SetRobot(string name) {
+		foreach (GameObject r in robotsFound) {
+			if (r.name == name) {
+				Transform robot = r.transform.Spawn();
+				Simulation.robot = robot.gameObject;
+			}	
+		}
+	}
 }

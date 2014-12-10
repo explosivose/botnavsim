@@ -7,7 +7,6 @@ using System.IO;
 public class NavLoader {
 
 	public static List<string> pluginsFound = new List<string>();
-	public static string activePlugin = "<NONE>";
 	private static string _searchDirectory;
 	private static PluginFactory<INavigation> _loader = new PluginFactory<INavigation>();
 	
@@ -29,7 +28,7 @@ public class NavLoader {
 		if (!name.Contains(".dll")) name += ".dll";
 		INavigation navigation = _loader.CreatePlugin(
 			_searchDirectory + "\\" + name);
-	 	activePlugin = name;
+	 	Simulation.settings.navigationAssemblyName = name;
 		Simulation.navigation = navigation;
 		
 	}

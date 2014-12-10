@@ -914,6 +914,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: windowSim.Align
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
   m_RootGameObject: {fileID: 1780533659}
@@ -1665,7 +1669,7 @@ MonoBehaviour:
     HeightIs: 1
     DesignWidth: 240
     WidthIs: 1
-    Align: 1
+    Align: 0
     verticalOffset: 0
     horizontalOffset: 0
 --- !u!4 &1780533661
@@ -1693,6 +1697,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   windowSim:
+    DesignHeight: 0
+    HeightIs: 1
+    DesignWidth: 0
+    WidthIs: 1
+    Align: 0
+    verticalOffset: 0
+    horizontalOffset: 0
+  windowCam:
     DesignHeight: 0
     HeightIs: 1
     DesignWidth: 0
