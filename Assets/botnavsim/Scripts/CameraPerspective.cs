@@ -71,7 +71,7 @@ public class CameraPerspective : MonoBehaviour {
 			targetPosition = (bot.position + Simulation.destination.transform.position)/2f;
 			targetPosition += Vector3.up * 100f;
 			targetRotation = Quaternion.LookRotation(Vector3.down);
-			float size = Simulation.botscript.distanceToDestination * 0.75f;
+			float size = Simulation.robot.distanceToDestination * 0.75f;
 			size = Mathf.Max(size, 10f);
 			_camera.orthographicSize = size;
 			break;

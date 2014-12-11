@@ -158,7 +158,7 @@ public class UI_setup : MonoBehaviour {
 		
 		if (Simulation.isReady) {
 			if (GUILayout.Button("START", _style.button)) {
-				Simulation.Run();
+				Simulation.Begin();
 			}
 		}
 		else {
@@ -179,7 +179,7 @@ public class UI_setup : MonoBehaviour {
 		
 		foreach(string s in NavLoader.pluginsFound) {
 			if (GUILayout.Button(s, _style.button)) {
-				NavLoader.SetPlugin(s);
+				Simulation.settings.navigationAssemblyName = s;
 				_showNavAlg = false;
 			}
 				

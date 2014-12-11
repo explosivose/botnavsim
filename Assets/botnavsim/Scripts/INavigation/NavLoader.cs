@@ -24,13 +24,9 @@ public class NavLoader {
 		
 	}
 	
-	public static void SetPlugin(string name) {
+	public static INavigation LoadPlugin(string name) {
 		if (!name.Contains(".dll")) name += ".dll";
-		INavigation navigation = _loader.CreatePlugin(
-			_searchDirectory + "\\" + name);
-	 	Simulation.settings.navigationAssemblyName = name;
-		Simulation.navigation = navigation;
-		
+		return _loader.CreatePlugin(_searchDirectory + "\\" + name);
 	}
 
 }

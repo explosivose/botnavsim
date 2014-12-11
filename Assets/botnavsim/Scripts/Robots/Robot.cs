@@ -143,9 +143,7 @@ public class Robot : MonoBehaviour {
 	
 	private void Update() {
 		if (_navigation == null) return;
-		Sensor.ProximityData data = nextSensorData;
-		_navigation.Proximity(transform.position, 
-			                      transform.position + data.direction, data.obstructed);
+
 		
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
@@ -154,6 +152,9 @@ public class Robot : MonoBehaviour {
 			_manualMove.z = y * maxSpeed;
 		}
 		else if (Simulation.isRunning){
+			Sensor.ProximityData data = nextSensorData;
+			_navigation.Proximity(transform.position, 
+				transform.position + data.direction, data.obstructed);
 			if (destination.hasChanged) {
 				StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
 				destination.hasChanged = false;

@@ -38,26 +38,35 @@ public class Simulation : MonoBehaviour {
 			}
 		}
 	}
-	public static Settings settings = new Settings();
-
+	
 	// Singleton pattern
 	public static Simulation Instance;
+	
+	// Settings for the current simulation (as specified by UI_setup)
+	public static Settings settings = new Settings();
 
 	// static class members (for easy access in other classes)
-	public static State state = State.preSimulation;
-	public static int testNumber;
-	public static GameObject robot {
+	
+	// Simulation state (enumeration)
+	public static State state {get; set;}
+	
+	// Current test number (1 to settings.numberOfTests)
+	public static int testNumber {get; set;}
+	
+	// Reference to the robot monobehaviour
+	public static Robot robot {
 		get { return _robot; }
 		set {
 			if(_robot) _robot.transform.Recycle();
 			_robot = value;
-			botscript = _robot.GetComponent<Robot>();
-			botscript.destination = destination.transform;
+			robot.destination = destination.transform;
 		}
 	}
-	public static INavigation navigation;
-	public static GameObject destination;
-	public static Robot botscript;
+
+	// Reference to the destination
+	public static GameObject destination { get; set; }
+	
+	// Simulation states
 	public static bool preSimulation {
 		get { return state == State.preSimulation; }
 	}
@@ -67,12 +76,18 @@ public class Simulation : MonoBehaviour {
 	public static bool isFinished {
 		get { return state == State.finished; }
 	}
+	
+	// Simulation bounds (search space for INavigation)
 	public static Bounds bounds;
+	
+	// is the simulation ready to begin?
 	public static bool isReady {
 		get {
 			return settings.robotName != "<none>" && settings.navigationAssemblyName != "<none>";
 		}
 	}
+	
+	// is the simulation paused?
 	public static bool paused {
 		get { return _paused; }
 		set {
@@ -82,18 +97,16 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 	
-	// Simulation.time
-	/// <summary>
-	/// Time since robot started searching for destination.
-	/// </summary>
-	/// <value>Time (seconds) since robot started searching for destination.</value>
+
+	// Time (seconds) since robot started searching for destination.
 	public static float time {
 		get {
-			if (isRunning) stopTime = Time.time;
-			return stopTime - startTime;
+			if (isRunning) _stopTime = Time.time;
+			return _stopTime - _startTime;
 		}
 	}
 	
+	// Simulation time scale 
 	public static float timeScale {
 		get { return _timeScale; }
 		set {
@@ -102,26 +115,20 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
-	private static GameObject _robot;
-
 	// Time variables used to calculate Simulation.time
-	private static float startTime;
-	private static float stopTime;
+	private static float _startTime;
+	private static float _stopTime;
+	
+	private static Robot _robot;
 	private static bool _paused;
 	private static float _timeScale;
 	
-	// Simulation.startDistance
-	/// <summary>
-	/// Distance from robot start position and destination.
-	/// </summary>
-	private static float startDistance;
-	
-	public static void Run() {
+	public static void Begin() {
 		//Application.LoadLevel(settings.levelIndex);
-		BotLoader.SetRobot(settings.robotName);
+		Camera.main.transform.parent = null;
+		robot = BotLoader.LoadRobot(settings.robotName);
 		
-		if (botscript.navigation == null)
-			botscript.navigation = navigation;
+		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
 
 		timeScale = settings.initialTimeScale;
 		testNumber = 0;
@@ -137,17 +144,16 @@ public class Simulation : MonoBehaviour {
 			destination.transform.position 
 				= Instance.astar.graphData.RandomUnobstructedNode().position;
 		
-		botscript.moveEnabled = true;
-		botscript.NavigateToDestination();
+		robot.moveEnabled = true;
+		robot.NavigateToDestination();
 		state = State.simulating;
-		startDistance = botscript.distanceToDestination;
-		startTime = Time.time;
+		_startTime = Time.time;
 	}
 	
 	public static void Stop() {
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
-			botscript.moveEnabled = false;
+			robot.moveEnabled = false;
 		}
 		if (isRunning) {
 			state = State.finished;
@@ -183,7 +189,7 @@ public class Simulation : MonoBehaviour {
 	
 	void Update() {
 		if (isRunning) {
-			if (botscript.atDestination) {
+			if (robot.atDestination) {
 				if (testNumber >= settings.numberOfTests) {
 					Stop();
 				}
@@ -194,7 +200,7 @@ public class Simulation : MonoBehaviour {
 				}
 
 			}
-			else if (botscript.isStuck && settings.repeatOnRobotIsStuck) {
+			else if (robot.isStuck && settings.repeatOnRobotIsStuck) {
 				Debug.LogWarning("Robot thinks its stuck. Restarting...");
 				NextTest();
 			}
@@ -205,11 +211,10 @@ public class Simulation : MonoBehaviour {
 	IEnumerator StartAgain() {
 		yield return new WaitForSeconds(3f);
 		Stop();
-		Run();
+		Begin();
 	}
 		
 	void OnDrawGizmos() {
-		if (isRunning)
-			Gizmos.DrawWireCube(bounds.center, bounds.size);
+		Gizmos.DrawWireCube(bounds.center, bounds.size);
 	}
 }

@@ -116,7 +116,7 @@ public class UI_Simulation : MonoBehaviour {
 		}
 		if (Simulation.isFinished) {
 			if  (GUILayout.Button("Start Again")) {
-				Simulation.Run();
+				Simulation.Begin();
 			}
 			if (GUILayout.Button("New Simulation...")) {
 				Simulation.state = Simulation.State.preSimulation;
@@ -148,7 +148,7 @@ public class UI_Simulation : MonoBehaviour {
 		
 		if(GUILayout.Button("Start")) {
 			if (Simulation.isRunning) Simulation.Stop();
-			Simulation.Run();
+			Simulation.Begin();
 		}
 		if (GUILayout.Button("Change Camera Mode")) {
 			_camType.CycleType();
@@ -167,9 +167,9 @@ public class UI_Simulation : MonoBehaviour {
 		steps = GUILayout.Toggle(steps,"Show steps");
 		robot.GetComponent<Astar>().showsteps = steps;
 		*/
-		bool manual = Simulation.botscript.manualControl;
+		bool manual = Simulation.robot.manualControl;
 		manual = GUILayout.Toggle(manual,"Manual Control");
-		Simulation.botscript.manualControl = manual;
+		Simulation.robot.manualControl = manual;
 		
 		//Simulation.autoRepeat = GUILayout.Toggle(Simulation.autoRepeat, "Auto Repeat");
 		
@@ -178,7 +178,7 @@ public class UI_Simulation : MonoBehaviour {
 		}
 		
 		GUILayout.Label("Simulation time: " + Simulation.time);
-		GUILayout.Label(Simulation.botscript.description);
+		GUILayout.Label(Simulation.robot.description);
 		
 	}
 }
