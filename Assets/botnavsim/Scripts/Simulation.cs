@@ -12,7 +12,7 @@ public class Simulation : MonoBehaviour {
 	
 	[System.Serializable]
 	public class Settings {
-		public int levelIndex;
+		public string environmentName = "<none>";
 		public string navigationAssemblyName = "<none>";
 		public string robotName = "<none>";
 		public int numberOfTests = 1;
@@ -62,7 +62,12 @@ public class Simulation : MonoBehaviour {
 			robot.destination = destination.transform;
 		}
 	}
-
+	
+	// reference to the environment
+	public static GameObject environment {
+		get; set;
+	}
+	
 	// Reference to the destination
 	public static GameObject destination { get; set; }
 	
@@ -123,8 +128,12 @@ public class Simulation : MonoBehaviour {
 	private static bool _paused;
 	private static float _timeScale;
 	
+	// start the simulation 
 	public static void Begin() {
-		//Application.LoadLevel(settings.levelIndex);
+		if (environment) environment.transform.Recycle();
+		environment = EnvLoader.LoadEnvironment(settings.environmentName);
+		SetBounds();
+		destination.transform.position = RandomInBounds();
 		Camera.main.transform.parent = null;
 		robot = BotLoader.LoadRobot(settings.robotName);
 		
@@ -135,14 +144,15 @@ public class Simulation : MonoBehaviour {
 		NextTest();
 	}
 	
+	// skip to the next test in the simulation
 	public static void NextTest() {
 		testNumber++;
 		if (settings.randomizeOrigin)
-			robot.transform.position 
-				= Instance.astar.graphData.RandomUnobstructedNode().position;
+			robot.transform.position = RandomInBounds();
+				//= Instance.astar.graphData.RandomUnobstructedNode().position;
 		if (settings.randomizeDestination)
-			destination.transform.position 
-				= Instance.astar.graphData.RandomUnobstructedNode().position;
+			destination.transform.position = RandomInBounds();
+				//= Instance.astar.graphData.RandomUnobstructedNode().position;
 		
 		robot.moveEnabled = true;
 		robot.NavigateToDestination();
@@ -150,6 +160,7 @@ public class Simulation : MonoBehaviour {
 		_startTime = Time.time;
 	}
 	
+	// stop the simulation
 	public static void Stop() {
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
@@ -178,9 +189,7 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	void Start() {
-		bounds = new Bounds(Vector3.zero, Vector3.zero);
-		foreach(Renderer r in FindObjectsOfType<Renderer>())
-			bounds.Encapsulate(r.bounds);
+
 		
 		destination = GameObject.Find("Destination");
 		
@@ -208,6 +217,20 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
+	static void SetBounds() {
+		bounds = new Bounds(Vector3.zero, Vector3.zero);
+		foreach(Renderer r in FindObjectsOfType<Renderer>())
+			bounds.Encapsulate(r.bounds);
+	}
+	
+	static Vector3 RandomInBounds() {
+		Vector3 v = bounds.min;
+		v.x += Random.Range(0f, bounds.max.x);
+		v.y += Random.Range(0f, bounds.max.y);
+		v.z += Random.Range(0f, bounds.max.z);
+		return v;
+	}
+	
 	IEnumerator StartAgain() {
 		yield return new WaitForSeconds(3f);
 		Stop();

@@ -42,6 +42,7 @@ public class UI_setup : MonoBehaviour {
 	void Start() {
 		NavLoader.SearchForPlugins();
 		BotLoader.SearchForRobots();
+		EnvLoader.SearchForEnvironments();
 	}
 	
 	/// <summary>
@@ -81,7 +82,7 @@ public class UI_setup : MonoBehaviour {
 		
 		float leftWidth = 150f;
 		string robotName = Simulation.settings.robotName;
-		string envName = Simulation.settings.levelIndex.ToString();
+		string envName = Simulation.settings.environmentName;
 		string algName = Simulation.settings.navigationAssemblyName;
 			
 		GUILayout.BeginHorizontal();
@@ -211,11 +212,13 @@ public class UI_setup : MonoBehaviour {
 	/// </summary>
 	void WindowEnvironmentGallery(int windowID) {
 		GUILayout.Button("Create new environment...");
+		GUILayout.Space(10);
+		
 		// gallery goes here...
 		
-		for(int i = 0; i < Application.levelCount; i++) {
-			if (GUILayout.Button("Level " + i, _style.button)) {
-				Simulation.settings.levelIndex = i;
+		for(int i = 0; i < EnvLoader.environmentsFound.Count; i++) {
+			if (GUILayout.Button(EnvLoader.environmentsFound[i].name, _style.button)) {
+				Simulation.settings.environmentName = EnvLoader.environmentsFound[i].name;
 				_showEnv = false;
 			}
 		}
