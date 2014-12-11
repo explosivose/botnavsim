@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 108: {fileID: 10800012}
   - 65: {fileID: 6500010}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - 33: {fileID: 3300018}
   - 23: {fileID: 2300018}
   - 114: {fileID: 11400000}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 100022}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca56acaf65851b34b8edcd2cb823b137, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f420d6d910d6f64aafb3c4ea8c46f1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 720
@@ -314,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualControl: 0
   moveEnabled: 0
+  faceMoveDirection: 0
   maxSpeed: 10
   stopDistance: 2
   sensors: []
