@@ -65,8 +65,8 @@ public class UI_Simulation : MonoBehaviour {
 		
 		bool randomDest = Simulation.settings.randomizeDestination;
 		bool randomStart = Simulation.settings.randomizeOrigin;
-		bool repeatOnComplete = Simulation.settings.repeatOnNavObjectiveComplete;
-		bool repeatOnStuck = Simulation.settings.repeatOnRobotIsStuck;
+		bool repeatOnComplete = Simulation.settings.continueOnNavObjectiveComplete;
+		bool repeatOnStuck = Simulation.settings.continueOnRobotIsStuck;
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Random Destination: ", GUILayout.Width(leftWidth));
@@ -90,8 +90,8 @@ public class UI_Simulation : MonoBehaviour {
 		
 		Simulation.settings.randomizeDestination = randomDest;
 		Simulation.settings.randomizeOrigin = randomStart;
-		Simulation.settings.repeatOnNavObjectiveComplete = repeatOnComplete;
-		Simulation.settings.repeatOnRobotIsStuck = repeatOnStuck;
+		Simulation.settings.continueOnNavObjectiveComplete = repeatOnComplete;
+		Simulation.settings.continueOnRobotIsStuck = repeatOnStuck;
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Camera: ", GUILayout.Width(leftWidth));
@@ -110,7 +110,7 @@ public class UI_Simulation : MonoBehaviour {
 					Simulation.paused = true;
 			}
 			if (GUILayout.Button("Stop"))
-				Simulation.Stop();
+				Simulation.End();
 			if (GUILayout.Button("Next Test"))
 				Simulation.NextTest();
 		}
@@ -147,7 +147,7 @@ public class UI_Simulation : MonoBehaviour {
 		}
 		
 		if(GUILayout.Button("Start")) {
-			if (Simulation.isRunning) Simulation.Stop();
+			if (Simulation.isRunning) Simulation.End();
 			Simulation.Begin();
 		}
 		if (GUILayout.Button("Change Camera Mode")) {

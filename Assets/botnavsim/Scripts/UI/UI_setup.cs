@@ -115,8 +115,8 @@ public class UI_setup : MonoBehaviour {
 		string numberOfTests = Simulation.settings.numberOfTests.ToString();
 		bool randomDest = Simulation.settings.randomizeDestination;
 		bool randomStart = Simulation.settings.randomizeOrigin;
-		bool repeatOnComplete = Simulation.settings.repeatOnNavObjectiveComplete;
-		bool repeatOnStuck = Simulation.settings.repeatOnRobotIsStuck;
+		bool repeatOnComplete = Simulation.settings.continueOnNavObjectiveComplete;
+		bool repeatOnStuck = Simulation.settings.continueOnRobotIsStuck;
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Number of tests: ", GUILayout.Width(leftWidth));
@@ -154,8 +154,8 @@ public class UI_setup : MonoBehaviour {
 			
 		Simulation.settings.randomizeDestination = randomDest;
 		Simulation.settings.randomizeOrigin = randomStart;
-		Simulation.settings.repeatOnNavObjectiveComplete = repeatOnComplete;
-		Simulation.settings.repeatOnRobotIsStuck = repeatOnStuck;
+		Simulation.settings.continueOnNavObjectiveComplete = repeatOnComplete;
+		Simulation.settings.continueOnRobotIsStuck = repeatOnStuck;
 		
 		if (Simulation.isReady) {
 			if (GUILayout.Button("START", _style.button)) {

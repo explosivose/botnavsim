@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 // This is a manager object used to overlook the running of a simulation.
 public class Simulation : MonoBehaviour {
@@ -7,6 +8,7 @@ public class Simulation : MonoBehaviour {
 	public enum State {
 		preSimulation,
 		simulating,
+		stopped,
 		finished
 	}
 	
@@ -18,8 +20,8 @@ public class Simulation : MonoBehaviour {
 		public int numberOfTests = 1;
 		public bool randomizeDestination = false;
 		public bool randomizeOrigin = false;
-		public bool repeatOnNavObjectiveComplete = false;
-		public bool repeatOnRobotIsStuck = false;
+		public bool continueOnNavObjectiveComplete = false;
+		public bool continueOnRobotIsStuck = false;
 		public float initialTimeScale = 1f;
 		public string summary {
 			get {
@@ -31,7 +33,7 @@ public class Simulation : MonoBehaviour {
 					s += "\nRandom destination";
 				if (randomizeOrigin)
 					s += "\nRandom origin.";
-				if (repeatOnRobotIsStuck)
+				if (continueOnRobotIsStuck)
 					s += "\nAuto repeat if robot gets stuck.";
 				
 				return s;
@@ -42,10 +44,15 @@ public class Simulation : MonoBehaviour {
 	// Singleton pattern
 	public static Simulation Instance;
 	
+	
+	/** Static  Properties **/
+	
+	
 	// Settings for the current simulation (as specified by UI_setup)
 	public static Settings settings = new Settings();
 
-	// static class members (for easy access in other classes)
+	// List of settings to iterate through in batch mode
+	public static List<Settings> batch = new List<Settings>();
 	
 	// Simulation state (enumeration)
 	public static State state {get; set;}
@@ -63,7 +70,7 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 	
-	// reference to the environment
+	// Reference to the environment
 	public static GameObject environment {
 		get; set;
 	}
@@ -77,6 +84,9 @@ public class Simulation : MonoBehaviour {
 	}
 	public static bool isRunning {
 		get { return state == State.simulating; }
+	}
+	public static bool isStopped {
+		get { return state == State.stopped; }
 	}
 	public static bool isFinished {
 		get { return state == State.finished; }
@@ -101,7 +111,6 @@ public class Simulation : MonoBehaviour {
 			else Time.timeScale = timeScale;
 		}
 	}
-	
 
 	// Time (seconds) since robot started searching for destination.
 	public static float time {
@@ -128,7 +137,9 @@ public class Simulation : MonoBehaviour {
 	private static bool _paused;
 	private static float _timeScale;
 	
-	// start the simulation 
+	/** Static Methods **/
+	
+	// Start the simulation 
 	public static void Begin() {
 		if (environment) environment.transform.Recycle();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
@@ -144,38 +155,69 @@ public class Simulation : MonoBehaviour {
 		NextTest();
 	}
 	
-	// skip to the next test in the simulation
+	// Skip to the next test in the simulation
 	public static void NextTest() {
-		testNumber++;
+		if (++testNumber >= settings.numberOfTests) {
+			End();
+			return;
+		}
+		Instance.StartCoroutine(StartTestRoutine());
+	}
+	
+	public static void StopTest() {
+		if (robot) {
+			robot.rigidbody.velocity = Vector3.zero;
+			robot.moveEnabled = false;
+		}
+		state = State.stopped;
+	}
+	
+	// Stop the simulation
+	public static void End() {
+		if (robot) {
+			robot.rigidbody.velocity = Vector3.zero;
+			robot.moveEnabled = false;
+		}
+		state = State.finished;
+	}
+	
+	// Routine for starting a new test
+	private static IEnumerator StartTestRoutine() {
+		StopTest();
+		yield return new WaitForSeconds(1f);
 		if (settings.randomizeOrigin)
 			robot.transform.position = RandomInBounds();
-				//= Instance.astar.graphData.RandomUnobstructedNode().position;
 		if (settings.randomizeDestination)
 			destination.transform.position = RandomInBounds();
-				//= Instance.astar.graphData.RandomUnobstructedNode().position;
-		
+		yield return new WaitForSeconds(1f);
 		robot.moveEnabled = true;
 		robot.NavigateToDestination();
 		state = State.simulating;
 		_startTime = Time.time;
 	}
 	
-	// stop the simulation
-	public static void Stop() {
-		if (robot) {
-			robot.rigidbody.velocity = Vector3.zero;
-			robot.moveEnabled = false;
-		}
-		if (isRunning) {
-			state = State.finished;
-		}
-		else {
-			state = State.preSimulation;
-		}
+	// Set the simulation bounds to encapsulate all renderers in scene
+	private static void SetBounds() {
+		bounds = new Bounds(Vector3.zero, Vector3.zero);
+		foreach(Renderer r in FindObjectsOfType<Renderer>())
+			bounds.Encapsulate(r.bounds);
 	}
+	
+	// Return a random position inside the simulation bounds
+	private static Vector3 RandomInBounds() {
+		Vector3 v = bounds.min;
+		v.x += Random.Range(0f, bounds.max.x);
+		v.y += Random.Range(0f, bounds.max.y);
+		v.z += Random.Range(0f, bounds.max.z);
+		return v;
+	}
+	
+	/** Instance Members **/
 	
 	public AstarNative astar;
 	private bool _hideMenu;
+
+	/** Instance Methods **/
 
 	void Awake() {
 		if (Instance) {
@@ -189,54 +231,25 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	void Start() {
-
-		
 		destination = GameObject.Find("Destination");
-		
-		Stop();
 	}
 	
 	void Update() {
 		if (isRunning) {
-			if (robot.atDestination) {
-				if (testNumber >= settings.numberOfTests) {
-					Stop();
-				}
-				else {
-					if (settings.repeatOnNavObjectiveComplete) {
-						NextTest();
-					} 
-				}
-
-			}
-			else if (robot.isStuck && settings.repeatOnRobotIsStuck) {
-				Debug.LogWarning("Robot thinks its stuck. Restarting...");
+			// check for conditions to end the test
+			if (robot.atDestination && settings.continueOnNavObjectiveComplete) {
 				NextTest();
 			}
+			if (robot.isStuck && settings.continueOnRobotIsStuck) {
+				NextTest();
+			}
+			
 
 		}
 	}
 
-	static void SetBounds() {
-		bounds = new Bounds(Vector3.zero, Vector3.zero);
-		foreach(Renderer r in FindObjectsOfType<Renderer>())
-			bounds.Encapsulate(r.bounds);
-	}
-	
-	static Vector3 RandomInBounds() {
-		Vector3 v = bounds.min;
-		v.x += Random.Range(0f, bounds.max.x);
-		v.y += Random.Range(0f, bounds.max.y);
-		v.z += Random.Range(0f, bounds.max.z);
-		return v;
-	}
-	
-	IEnumerator StartAgain() {
-		yield return new WaitForSeconds(3f);
-		Stop();
-		Begin();
-	}
-		
+
+			
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(bounds.center, bounds.size);
 	}
