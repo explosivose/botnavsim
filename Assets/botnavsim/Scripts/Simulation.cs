@@ -14,6 +14,9 @@ public class Simulation : MonoBehaviour {
 	
 	[System.Serializable]
 	public class Settings {
+		public string title = "New Simulation";
+		public string date = System.DateTime.Now.ToShortDateString();
+		public string time = System.DateTime.Now.ToShortTimeString();
 		public string environmentName = "<none>";
 		public string navigationAssemblyName = "<none>";
 		public string robotName = "<none>";
@@ -23,6 +26,11 @@ public class Simulation : MonoBehaviour {
 		public bool continueOnNavObjectiveComplete = false;
 		public bool continueOnRobotIsStuck = false;
 		public float initialTimeScale = 1f;
+		public string name {
+			get {
+				return robotName + "|" + navigationAssemblyName + "|" + environmentName;
+			}
+		}
 		public string summary {
 			get {
 				string s = "";
