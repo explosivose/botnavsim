@@ -26,6 +26,16 @@ public class Simulation : MonoBehaviour {
 		public bool continueOnNavObjectiveComplete = false;
 		public bool continueOnRobotIsStuck = false;
 		public float initialTimeScale = 1f;
+		public bool isValid {
+			get {
+				bool v = true;
+				v &= environmentName != "<none>";
+				v &= navigationAssemblyName != "<none>";
+				v &= robotName != "<none>";
+				v &= numberOfTests > 0;
+				return v;
+			}
+		}
 		public string name {
 			get {
 				return robotName + "|" + navigationAssemblyName + "|" + environmentName;
