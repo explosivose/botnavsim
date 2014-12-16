@@ -130,7 +130,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: .0196078438}
+  m_BackGroundColor: {r: .53298682, g: .378838688, b: .669117689, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -248,6 +248,18 @@ Prefab:
     - target: {fileID: 400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_RootOrder
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: .53298682
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: .378838688
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: .669117689
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
@@ -507,38 +519,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cdf38da12b30949ae7e0d386bb55d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowNavAlg:
-    DesignHeight: 0
-    HeightIs: 1
-    DesignWidth: 240
-    WidthIs: 1
-    Align: 2
-    verticalOffset: 0
-    horizontalOffset: 0
-  windowRobot:
-    DesignHeight: 0
-    HeightIs: 1
-    DesignWidth: 240
-    WidthIs: 1
-    Align: 5
-    verticalOffset: 0
-    horizontalOffset: 0
-  windowEnv:
-    DesignHeight: 0
-    HeightIs: 1
-    DesignWidth: 240
-    WidthIs: 1
-    Align: 8
-    verticalOffset: 100
-    horizontalOffset: 0
-  windowSim:
-    DesignHeight: 0
-    HeightIs: 1
-    DesignWidth: 240
-    WidthIs: 1
-    Align: 4
-    verticalOffset: -200
-    horizontalOffset: 0
 --- !u!4 &1780533661
 Transform:
   m_ObjectHideFlags: 0
