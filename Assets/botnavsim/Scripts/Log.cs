@@ -11,7 +11,7 @@ public class Log  {
 		public bool robotDistanceToDestination;
 	}
 	
-	public static float rate = 0.1f;
+	public static float rate = 0.05f;
 	
 	private static bool logging = false;
 	private static string header;
@@ -44,10 +44,20 @@ public class Log  {
 	}
 	
 	private static IEnumerator LogRoutine() {
+		string headings = "\"Time\",\"";
+		headings += "TimeScale\",\"";
+		headings += "Robot Position\",\"";
+		headings += "Destination Position\",\"";
+		headings += "Path Found\",\"";
+		headings += "Navigation Vector\",\"";
+		log.Enqueue(headings);
 		while (logging) {
 			string line = "\"" + Simulation.time.ToString() + "\",\"";
+			line += Simulation.timeScale.ToString() + "\",\"";
 			line += Simulation.robot.transform.position.ToString() + "\",\"";
-			line += Simulation.destination.transform.position.ToString() + "\"";
+			line += Simulation.destination.transform.position.ToString() + "\",\"";
+			line += Simulation.robot.navigation.pathFound + "\",\"";
+			line += Simulation.robot.moveCommand + "\",\"";
 			log.Enqueue(line);
 			yield return new WaitForSeconds(rate);
 		}

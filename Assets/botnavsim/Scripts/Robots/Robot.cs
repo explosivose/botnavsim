@@ -14,17 +14,7 @@ public class Robot : MonoBehaviour {
 	public Sensor[] 	sensors;
 	public Transform 	destination;	
 	
-	public INavigation 	navigation {
-		get {
-			return _navigation;
-		}
-		set {
-			_navigation = value;
-			_navigation.searchBounds = Simulation.bounds;
-			_navigation.origin = transform.position;
-			_navigation.destination = destination.position;
-		}
-	}
+
 	
 	// private members
 	// ~-~-~-~-~-~-~-~-
@@ -38,6 +28,24 @@ public class Robot : MonoBehaviour {
 
 	// public properties
 	// ~-~-~-~-~-~-~-~-
+	
+	public INavigation 	navigation {
+		get {
+			return _navigation;
+		}
+		set {
+			_navigation = value;
+			_navigation.searchBounds = Simulation.bounds;
+			_navigation.origin = transform.position;
+			_navigation.destination = destination.position;
+		}
+	}
+	
+	public Vector3 moveCommand {
+		get {
+			return _move.normalized;
+		}
+	}
 	
 	/// <summary>
 	/// Gets depth data from the next sensor in a circular
@@ -116,19 +124,7 @@ public class Robot : MonoBehaviour {
 		if (_navigation == null) return;
 		StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
 	}
-	
-	public void Move(Vector3 direction, float speedpc = 1f) {
-		moveEnabled = true;
-		_move = direction.normalized * maxSpeed * speedpc;
-		_destination = null;
-	}
-	
-	public void MoveTo(Vector3 location, float speedpc = 1f) {
-		moveEnabled = true;
-		Vector3 direction = location - transform.position;
-		_move = direction.normalized * maxSpeed * speedpc;
-		_destination = location;
-	}
+
 	
 	public void InitialiseSensors() {
 		sensors = GetComponentsInChildren<Sensor>();
