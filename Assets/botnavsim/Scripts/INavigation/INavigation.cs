@@ -55,6 +55,14 @@ public interface INavigation {
 	/// <param name="obstructed">If set to <c>true</c> position at <param name="to"/> is obstructed.</param>
 	void Proximity(Vector3 from, Vector3 to, bool obstructed);
 	
+	/// <summary>
+	/// Indicates the frame of reference for proximity data inputs.
+	/// World space is proximity data relative to (0,0,0)
+	/// Self space is proximity data relative to robot position and rotation
+	/// </summary>
+	/// <value>The proximity relative to.</value>
+	Space proximityRelativeTo {get;}
+	
 	//# Debugging
 	
 	/// <summary>

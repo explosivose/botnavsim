@@ -157,6 +157,9 @@ public class Robot : MonoBehaviour {
 		}
 		else if (Simulation.isRunning){
 			Sensor.ProximityData data = nextSensorData;
+			if (_navigation.proximityRelativeTo == Space.Self) {
+				data.direction = transform.InverseTransformDirection(data.direction);
+			}
 			_navigation.Proximity(transform.position, 
 				transform.position + data.direction, data.obstructed);
 			if (destination.hasChanged) {

@@ -27,6 +27,7 @@ public class AstarNative : MonoBehaviour, INavigation {
 	public Vector3 origin {get; set;}
 	public Vector3 destination {get; set;}
 	public bool pathFound { get {return pathready;} }	
+	public Space proximityRelativeTo {get; private set;}
 
 	// public methods
 	// ~-~-~-~-~-~-~-~-
@@ -55,6 +56,7 @@ public class AstarNative : MonoBehaviour, INavigation {
 	/// <param name="obstructed"><c>true</c> indicates obstruction at
 	/// the end of the sensor range.</param>
 	public void Proximity(Vector3 from, Vector3 to, bool obstructed) {
+		
 		Vector3 mark = from;
 		float length = Vector3.Distance(from, to);
 		for (float dist = 0f; dist < length; dist += graphData.spacing) {
