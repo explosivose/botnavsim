@@ -14,7 +14,7 @@ public class Simulation : MonoBehaviour {
 	
 	[System.Serializable]
 	public class Settings {
-		public string title = "New Simulation";
+		public string title = "Simulation";
 		public string environmentName = "<none>";
 		public string navigationAssemblyName = "<none>";
 		public string robotName = "<none>";
@@ -273,8 +273,12 @@ public class Simulation : MonoBehaviour {
 	private static Vector3 RandomInBounds() {
 		Vector3 v = bounds.min;
 		v.x += Random.Range(0f, bounds.max.x);
-		v.y += Random.Range(0f, bounds.max.y);
+		v.y += bounds.max.y;
 		v.z += Random.Range(0f, bounds.max.z);
+		RaycastHit hit;
+		if (Physics.Raycast(v, Vector3.down, out hit, 100f)) {
+			v = hit.point + hit.normal;
+		}
 		return v;
 	}
 	
@@ -314,9 +318,11 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
-
-			
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(bounds.center, bounds.size);
+	}
+	
+	void OnApplicationQuit() {
+		Log.Stop();
 	}
 }

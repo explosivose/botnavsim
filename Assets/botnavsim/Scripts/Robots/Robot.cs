@@ -18,13 +18,14 @@ public class Robot : MonoBehaviour {
 	
 	// private members
 	// ~-~-~-~-~-~-~-~-
-	//[System.NonSerialized]
+	
 	private INavigation _navigation;
 	private Vector3 	_move;			// the move command applied to our rigidbody
 	private Vector3 	_manualMove;
 	private Vector3?	_destination;	// used to automatically stop when near a target location
 	private int 		_snsrIndex;		// circular index for sensor array
 	private int 		_stuckCounter;
+	private Vector3[]	_positions;
 
 	// public properties
 	// ~-~-~-~-~-~-~-~-
@@ -113,7 +114,13 @@ public class Robot : MonoBehaviour {
 
 	public bool isStuck {
 		get {
-			return _stuckCounter > 300;
+			return _stuckCounter > 30;
+		}
+	}
+
+	public int stuckpc {
+		get {
+			return Mathf.RoundToInt((float)_stuckCounter/(float)30);
 		}
 	}
 
@@ -135,6 +142,7 @@ public class Robot : MonoBehaviour {
 	private void Awake() {
 		InitialiseSensors();
 		_navigation = GetComponent(typeof(INavigation)) as INavigation;
+		StartCoroutine(StuckDetector());
 	}
 	
 	private void Update() {
@@ -159,10 +167,6 @@ public class Robot : MonoBehaviour {
 				_move = _navigation.PathDirection(transform.position);
 		}
 
-		if (rigidbody.velocity.magnitude < 1f && Simulation.time > 1f)
-			_stuckCounter++;
-		else
-			_stuckCounter = 0;
 	}
 	
 	private void FixedUpdate() {
@@ -185,5 +189,26 @@ public class Robot : MonoBehaviour {
 	void OnDrawGizmos() {
 		if (_navigation != null)
 			_navigation.DrawGizmos();
+	}
+	
+	private IEnumerator StuckDetector() {
+		_positions = new Vector3[30];
+		int i = 0;
+		while(true) {
+			_positions[i] = transform.position;
+			if (++i >= _positions.Length) i = 0;
+			Vector3 avg = Vector3.zero;
+			foreach(Vector3 v in _positions) {
+				avg += v;
+			}
+			avg /= (float)_positions.Length;
+			if (Vector3.Distance(avg, transform.position) < 1f && Simulation.isRunning) {
+				_stuckCounter++;
+			}
+			else {
+				_stuckCounter = 0;
+			}
+			yield return new WaitForSeconds(0.3f);
+		}
 	}
 }

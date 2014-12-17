@@ -50,6 +50,7 @@ public class Log  {
 		headings += "Destination Position\",\"";
 		headings += "Path Found\",\"";
 		headings += "Navigation Vector\",\"";
+		headings += "Robot Stuck\",\"";
 		log.Enqueue(headings);
 		while (logging) {
 			string line = "\"" + Simulation.time.ToString() + "\",\"";
@@ -58,6 +59,7 @@ public class Log  {
 			line += Simulation.destination.transform.position.ToString() + "\",\"";
 			line += Simulation.robot.navigation.pathFound + "\",\"";
 			line += Simulation.robot.moveCommand + "\",\"";
+			line += Simulation.robot.stuckpc + "\",\"";
 			log.Enqueue(line);
 			yield return new WaitForSeconds(rate);
 		}
