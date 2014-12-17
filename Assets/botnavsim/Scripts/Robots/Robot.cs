@@ -165,6 +165,8 @@ public class Robot : MonoBehaviour {
 			}
 			if (_navigation.pathFound)
 				_move = _navigation.PathDirection(transform.position);
+			else
+				_move = Vector3.zero;
 		}
 
 	}

@@ -309,12 +309,17 @@ public class Simulation : MonoBehaviour {
 		if (isRunning) {
 			// check for conditions to end the test
 			if (robot.atDestination && settings.continueOnNavObjectiveComplete) {
+				Debug.Log("Simulation: nav objective complete!");
 				NextTest();
 			}
 			if (robot.isStuck && settings.continueOnRobotIsStuck) {
+				Debug.LogWarning("Simulation: Robot appears to be stuck! Skipping test.");
 				NextTest();
 			}
-			
+			if (settings.maximumTestTime > 0 && time > settings.maximumTestTime) {
+				Debug.LogWarning("Simulation: Max test time exceeded! Skipping test.");
+				NextTest();
+			}
 
 		}
 	}
