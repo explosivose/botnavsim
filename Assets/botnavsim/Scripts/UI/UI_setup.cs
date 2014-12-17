@@ -53,7 +53,7 @@ public class UI_setup : MonoBehaviour {
 	
 	void SetupWindow(int windowID) {
 		
-		float leftWidth = 150f;
+		float leftWidth = 200f;
 		string robotName = _tempSim.robotName;
 		string envName = _tempSim.environmentName;
 		string algName = _tempSim.navigationAssemblyName;
@@ -85,6 +85,8 @@ public class UI_setup : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		
 		string numberOfTests = _tempSim.numberOfTests.ToString();
+		string testTime = _tempSim.maximumTestTime.ToString();
+		float timeScale = _tempSim.initialTimeScale;
 		bool randomDest = _tempSim.randomizeDestination;
 		bool randomStart = _tempSim.randomizeOrigin;
 		bool repeatOnComplete = _tempSim.continueOnNavObjectiveComplete;
@@ -92,7 +94,17 @@ public class UI_setup : MonoBehaviour {
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Number of tests: ", GUILayout.Width(leftWidth));
-		numberOfTests = GUILayout.TextField(numberOfTests.ToString());
+		numberOfTests = GUILayout.TextField(numberOfTests);
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Maximum test time (s): ", GUILayout.Width(leftWidth));
+		testTime = GUILayout.TextField(testTime);
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Initial timescale + (" + timeScale.ToString("G2") + "): ", GUILayout.Width(leftWidth));
+		timeScale = GUILayout.HorizontalSlider(timeScale, 0.5f, 4f);
 		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();
@@ -123,7 +135,17 @@ public class UI_setup : MonoBehaviour {
 				Debug.Log("User should enter a number...");
 			}
 		}
-			
+		
+		if (Strings.IsDigitsOnly(testTime)) {
+			try {
+				_tempSim.maximumTestTime = Convert.ToInt32(testTime);
+			}
+			catch {
+				Debug.Log("User should enter a number...");
+			}
+		}
+		
+		_tempSim.initialTimeScale = timeScale;
 		_tempSim.randomizeDestination = randomDest;
 		_tempSim.randomizeOrigin = randomStart;
 		_tempSim.continueOnNavObjectiveComplete = repeatOnComplete;

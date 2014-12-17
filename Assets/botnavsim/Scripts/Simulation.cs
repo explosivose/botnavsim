@@ -19,6 +19,7 @@ public class Simulation : MonoBehaviour {
 		public string navigationAssemblyName = "<none>";
 		public string robotName = "<none>";
 		public int numberOfTests = 1;
+		public int maximumTestTime = 60;
 		public bool randomizeDestination = false;
 		public bool randomizeOrigin = false;
 		public bool continueOnNavObjectiveComplete = false;

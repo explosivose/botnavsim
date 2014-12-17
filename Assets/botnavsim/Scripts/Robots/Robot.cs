@@ -120,7 +120,7 @@ public class Robot : MonoBehaviour {
 
 	public int stuckpc {
 		get {
-			return Mathf.RoundToInt((float)_stuckCounter/(float)30);
+			return Mathf.RoundToInt(100f*(float)_stuckCounter/(float)30);
 		}
 	}
 
