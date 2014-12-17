@@ -30,7 +30,8 @@ public class Log  {
 		if (logging) {
 			logging = false;
 			string path = System.Environment.CurrentDirectory + "\\Logs\\";
-			path += Simulation.settings.title + "_test" + Simulation.testNumber;
+			path += Simulation.settings.datetime.ToString("yyyyMMdd-HHmmss-");
+			path += Simulation.settings.title + "_" + Simulation.testNumber;
 			path += ".dat";
 			string data = header + "\n";
 			while(log.Count > 0) {
@@ -44,9 +45,9 @@ public class Log  {
 	
 	private static IEnumerator LogRoutine() {
 		while (logging) {
-			string line = Simulation.time.ToString() + ",";
-			line += Simulation.robot.transform.position.ToString() + ",";
-			line += Simulation.destination.transform.position.ToString();
+			string line = "\"" + Simulation.time.ToString() + "\",\"";
+			line += Simulation.robot.transform.position.ToString() + "\",\"";
+			line += Simulation.destination.transform.position.ToString() + "\"";
 			log.Enqueue(line);
 			yield return new WaitForSeconds(rate);
 		}

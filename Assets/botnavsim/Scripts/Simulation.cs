@@ -15,8 +15,6 @@ public class Simulation : MonoBehaviour {
 	[System.Serializable]
 	public class Settings {
 		public string title = "New Simulation";
-		public string date = System.DateTime.Now.ToShortDateString();
-		public string time = System.DateTime.Now.ToShortTimeString();
 		public string environmentName = "<none>";
 		public string navigationAssemblyName = "<none>";
 		public string robotName = "<none>";
@@ -57,6 +55,21 @@ public class Simulation : MonoBehaviour {
 				
 				return s;
 			}
+		}
+		public System.DateTime datetime {get; private set;}
+		public string date {
+			get {
+				return datetime.ToShortDateString();
+			}
+		}
+		public string time {
+			get {
+				return datetime.ToShortTimeString();
+			}
+		}
+		
+		public Settings() {
+			datetime = System.DateTime.Now;
 		}
 	}
 	
@@ -168,6 +181,7 @@ public class Simulation : MonoBehaviour {
 	
 	// Start the next simulation
 	public static void NextSimulation() {
+		Log.Stop();
 		if (++simulationNumber > batch.Count) {
 			simulationNumber--;
 			End();
@@ -178,6 +192,7 @@ public class Simulation : MonoBehaviour {
 	
 	// Start the next test in the simulation
 	public static void NextTest() {
+		Log.Stop();
 		if (++testNumber > settings.numberOfTests) {
 			testNumber--;
 			NextSimulation();
@@ -193,7 +208,6 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
-		Log.Stop();
 		state = State.stopped;
 	}
 	
@@ -203,7 +217,6 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
-		Log.Stop();
 		state = State.stopped;
 	}
 	
@@ -213,7 +226,6 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
-		Log.Stop();
 		state = State.finished;
 	}
 	
@@ -226,11 +238,11 @@ public class Simulation : MonoBehaviour {
 		if (settings.randomizeDestination)
 			destination.transform.position = RandomInBounds();
 		yield return new WaitForSeconds(1f);
+		state = State.simulating;
+		_startTime = Time.time;
 		Log.Start();
 		robot.moveEnabled = true;
 		robot.NavigateToDestination();
-		state = State.simulating;
-		_startTime = Time.time;
 	}
 	
 	// Routine for starting a new simulation
