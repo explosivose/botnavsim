@@ -35,7 +35,15 @@ public class PluginFactory<T> {
 		// find .dll files
 		foreach (string file in Directory.GetFiles(path, "*.dll")) {
 			Assembly assembly = Assembly.LoadFrom(file);
-			foreach (Type assemblyType in assembly.GetTypes()) {
+			Type[] types;
+			try {
+				types = assembly.GetTypes();
+			}
+			catch {
+				Debug.LogError(file + " is not INavigation compatible!");
+				continue;
+			}
+			foreach (Type assemblyType in types) {
 				Type interfaceType = assemblyType.GetInterface(typeof(T).FullName);
 				if (interfaceType != null) {
 					list.Add(Path.GetFileName(file));
