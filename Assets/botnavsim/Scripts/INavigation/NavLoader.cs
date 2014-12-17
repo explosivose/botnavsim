@@ -16,12 +16,9 @@ public class NavLoader {
 #if UNITY_EDITOR
 		_searchDirectory += "\\Assets\\botnavsim\\INavigation";
 #endif
-		Debug.Log ("Search directory: " + _searchDirectory);
-		pluginsFound = _loader.ListPlugins(_searchDirectory);	
-		foreach(string s in pluginsFound) {
-			Debug.Log("INavigation Plugin: " + s);
-		}
 		
+		pluginsFound = _loader.ListPlugins(_searchDirectory);	
+		Debug.Log ("Found " + pluginsFound.Count + " plugins at " + _searchDirectory);
 	}
 	
 	public static INavigation LoadPlugin(string name) {

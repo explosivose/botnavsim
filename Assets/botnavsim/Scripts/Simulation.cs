@@ -47,6 +47,7 @@ public class Simulation : MonoBehaviour {
 				s += "Number of tests: " + numberOfTests;
 				s += "\nRobot: " + robotName;
 				s += "\nNavigation Assembly: " + navigationAssemblyName;
+				s += "\nEnvironment: " + environmentName;
 				if (randomizeDestination)
 					s += "\nRandom destination";
 				if (randomizeOrigin)
@@ -161,7 +162,6 @@ public class Simulation : MonoBehaviour {
 	
 	// Start the simulation 
 	public static void Begin() {
-		Debug.Log("Simulation begin...");
 		simulationNumber = 0;
 		NextSimulation();
 	}
@@ -183,6 +183,7 @@ public class Simulation : MonoBehaviour {
 			NextSimulation();
 			return;
 		}
+		
 		Instance.StartCoroutine(StartTestRoutine());
 	}
 	
@@ -192,6 +193,7 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
+		Log.Stop();
 		state = State.stopped;
 	}
 	
@@ -201,6 +203,7 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
+		Log.Stop();
 		state = State.stopped;
 	}
 	
@@ -210,6 +213,7 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
+		Log.Stop();
 		state = State.finished;
 	}
 	
@@ -217,12 +221,12 @@ public class Simulation : MonoBehaviour {
 	private static IEnumerator StartTestRoutine() {
 		StopTest();
 		yield return new WaitForSeconds(1f);
-		Debug.Log("Test number " + testNumber);
 		if (settings.randomizeOrigin)
 			robot.transform.position = RandomInBounds();
 		if (settings.randomizeDestination)
 			destination.transform.position = RandomInBounds();
 		yield return new WaitForSeconds(1f);
+		Log.Start();
 		robot.moveEnabled = true;
 		robot.NavigateToDestination();
 		state = State.simulating;
@@ -232,7 +236,6 @@ public class Simulation : MonoBehaviour {
 	// Routine for starting a new simulation
 	private static IEnumerator StartSimulationRoutine() {
 		StopSimulation();
-		Debug.Log("Starting simulation " + simulationNumber);
 		settings = batch[simulationNumber-1];
 		if (environment) environment.transform.Recycle();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
