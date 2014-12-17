@@ -152,7 +152,7 @@ public class UI_setup : MonoBehaviour {
 				child = WindowBatchList;
 			}
 			if (GUILayout.Button("START")) {
-				Simulation.settings = _tempSim;
+				Simulation.batch.Add(_tempSim);
 				Simulation.Begin();
 			}
 		}

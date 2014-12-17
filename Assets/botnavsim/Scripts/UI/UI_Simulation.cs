@@ -8,7 +8,6 @@ public class UI_Simulation : MonoBehaviour {
 	private GUISkin _style;
 	private Rect _rectSim;
 	private Rect _rectCam;
-	private bool _hideMenu = true;
 	private bool _showCameraMenu;
 	private CameraPerspective _camPersp;
 	private CameraType _camType;
@@ -47,6 +46,11 @@ public class UI_Simulation : MonoBehaviour {
 	
 	void SimulationWindow(int windowID) {
 		float leftWidth = 150f;
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Sim Number: ", GUILayout.Width(leftWidth));
+		GUILayout.Label(Simulation.simulationNumber + " of " + Simulation.batch.Count);
+		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Simulation Time: ", GUILayout.Width(leftWidth));
@@ -133,52 +137,4 @@ public class UI_Simulation : MonoBehaviour {
 		}
 	}
 	
-	void WindowControls(int windowID) {
-		
-		if (_hideMenu) {
-			if (GUILayout.Button("Show Menu")) {
-				_hideMenu = false;
-			}
-			return;
-		}
-		
-		if (GUILayout.Button ("Hide Menu")) {
-			_hideMenu = true;
-		}
-		
-		if(GUILayout.Button("Start")) {
-			if (Simulation.isRunning) Simulation.End();
-			Simulation.Begin();
-		}
-		if (GUILayout.Button("Change Camera Mode")) {
-			_camType.CycleType();
-		}
-		if (GUILayout.Button("Change camera Perspective")) {
-			_camPersp.CyclePerspective();
-		}
-		GUILayout.Label("Viewing from: " + _camPersp.perspective.ToString());
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Timescale");
-		Time.timeScale = GUILayout.HorizontalSlider(Time.timeScale, 0f, 3f);
-		GUILayout.EndHorizontal();
-		/* commented out for release to avoid a fatal inf loop bug somewhere...
-		bool steps = robot.GetComponent<Astar>().showsteps;
-		steps = GUILayout.Toggle(steps,"Show steps");
-		robot.GetComponent<Astar>().showsteps = steps;
-		*/
-		bool manual = Simulation.robot.manualControl;
-		manual = GUILayout.Toggle(manual,"Manual Control");
-		Simulation.robot.manualControl = manual;
-		
-		//Simulation.autoRepeat = GUILayout.Toggle(Simulation.autoRepeat, "Auto Repeat");
-		
-		if (GUILayout.Button("Quit")) {
-			Application.Quit();
-		}
-		
-		GUILayout.Label("Simulation time: " + Simulation.time);
-		GUILayout.Label(Simulation.robot.description);
-		
-	}
 }

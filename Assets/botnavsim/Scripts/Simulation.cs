@@ -65,6 +65,8 @@ public class Simulation : MonoBehaviour {
 	
 	/** Static  Properties **/
 	
+	// Simulation state (enumeration)
+	public static State state {get; set;}
 	
 	// Settings for the current simulation (as specified by UI_setup)
 	public static Settings settings = new Settings();
@@ -72,8 +74,8 @@ public class Simulation : MonoBehaviour {
 	// List of settings to iterate through in batch mode
 	public static List<Settings> batch = new List<Settings>();
 	
-	// Simulation state (enumeration)
-	public static State state {get; set;}
+	// Current simulation number (1 to batch.Count)
+	public static int simulationNumber {get; set;}
 	
 	// Current test number (1 to settings.numberOfTests)
 	public static int testNumber {get; set;}
@@ -159,30 +161,42 @@ public class Simulation : MonoBehaviour {
 	
 	// Start the simulation 
 	public static void Begin() {
-		if (environment) environment.transform.Recycle();
-		environment = EnvLoader.LoadEnvironment(settings.environmentName);
-		SetBounds();
-		destination.transform.position = RandomInBounds();
-		Camera.main.transform.parent = null;
-		robot = BotLoader.LoadRobot(settings.robotName);
-		
-		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
-
-		timeScale = settings.initialTimeScale;
-		testNumber = 0;
-		NextTest();
+		Debug.Log("Simulation begin...");
+		simulationNumber = 0;
+		NextSimulation();
 	}
 	
-	// Skip to the next test in the simulation
-	public static void NextTest() {
-		if (++testNumber >= settings.numberOfTests) {
+	// Start the next simulation
+	public static void NextSimulation() {
+		if (++simulationNumber > batch.Count) {
+			simulationNumber--;
 			End();
+			return;
+		}
+		Instance.StartCoroutine(StartSimulationRoutine());
+	}
+	
+	// Start the next test in the simulation
+	public static void NextTest() {
+		if (++testNumber > settings.numberOfTests) {
+			testNumber--;
+			NextSimulation();
 			return;
 		}
 		Instance.StartCoroutine(StartTestRoutine());
 	}
 	
+	// Stop the current test
 	public static void StopTest() {
+		if (robot) {
+			robot.rigidbody.velocity = Vector3.zero;
+			robot.moveEnabled = false;
+		}
+		state = State.stopped;
+	}
+	
+	// Stop the current simulation
+	public static void StopSimulation() {
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
@@ -203,6 +217,7 @@ public class Simulation : MonoBehaviour {
 	private static IEnumerator StartTestRoutine() {
 		StopTest();
 		yield return new WaitForSeconds(1f);
+		Debug.Log("Test number " + testNumber);
 		if (settings.randomizeOrigin)
 			robot.transform.position = RandomInBounds();
 		if (settings.randomizeDestination)
@@ -212,6 +227,24 @@ public class Simulation : MonoBehaviour {
 		robot.NavigateToDestination();
 		state = State.simulating;
 		_startTime = Time.time;
+	}
+	
+	// Routine for starting a new simulation
+	private static IEnumerator StartSimulationRoutine() {
+		StopSimulation();
+		Debug.Log("Starting simulation " + simulationNumber);
+		settings = batch[simulationNumber-1];
+		if (environment) environment.transform.Recycle();
+		environment = EnvLoader.LoadEnvironment(settings.environmentName);
+		SetBounds();
+		destination.transform.position = RandomInBounds();
+		Camera.main.transform.parent = null;
+		robot = BotLoader.LoadRobot(settings.robotName);
+		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
+		timeScale = settings.initialTimeScale;
+		testNumber = 0;
+		NextTest();
+		yield break;
 	}
 	
 	// Set the simulation bounds to encapsulate all renderers in scene
