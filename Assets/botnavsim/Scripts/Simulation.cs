@@ -267,7 +267,7 @@ public class Simulation : MonoBehaviour {
 	// Set the simulation bounds to encapsulate all renderers in scene
 	private static void SetBounds() {
 		bounds = new Bounds(Vector3.zero, Vector3.zero);
-		foreach(Renderer r in FindObjectsOfType<Renderer>())
+		foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
 			bounds.Encapsulate(r.bounds);
 	}
 	
