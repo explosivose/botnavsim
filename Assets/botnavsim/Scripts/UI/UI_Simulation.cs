@@ -59,7 +59,7 @@ public class UI_Simulation : MonoBehaviour {
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Simulation Time: ", GUILayout.Width(leftWidth));
-		GUILayout.Label(Simulation.time.ToString("G4"));
+		GUILayout.Label(Simulation.time.ToString("G4") + "/" + Simulation.settings.maximumTestTime);
 		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();

@@ -40,6 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13a05817dcfc1445a95b70cb3125758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  astar: {fileID: 0}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -54,7 +55,7 @@ MonoBehaviour:
   showsteps: 0
   steptime: 0
   graphData:
-    drawDebug: 0
+    drawDebug: 1
     X: 50
     Y: 50
     spacing: 2
