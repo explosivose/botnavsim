@@ -34,7 +34,7 @@ public class UI_Simulation : MonoBehaviour {
 		int i = 100;
 		if (Simulation.preSimulation) return;
 		
-		_rectSim = GUILayout.Window(i++, _rectSim, SimulationWindow, "Simulation Settings");
+		_rectSim = GUILayout.Window(i++, _rectSim, SimulationWindow, Simulation.settings.title);
 		if (_showCameraMenu) {
 			_rectCam.y = _rectSim.y;
 			_rectCam.x = _rectSim.x + _rectSim.width;
@@ -47,10 +47,10 @@ public class UI_Simulation : MonoBehaviour {
 	void SimulationWindow(int windowID) {
 		float leftWidth = 150f;
 		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Sim Number: ", GUILayout.Width(leftWidth));
-		GUILayout.Label(Simulation.simulationNumber + " of " + Simulation.batch.Count);
-		GUILayout.EndHorizontal();
+		
+		GUILayout.Label(Simulation.settings.robotName + "\n" +
+		                Simulation.settings.environmentName + "\n" + 
+		                Simulation.settings.navigationAssemblyName);
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Simulation Time: ", GUILayout.Width(leftWidth));
@@ -58,13 +58,18 @@ public class UI_Simulation : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();
+		GUILayout.Label("Timescale (" + Simulation.timeScale.ToString("G2") + "): ", GUILayout.Width(leftWidth));
+		Simulation.timeScale = GUILayout.HorizontalSlider(Simulation.timeScale, 0.5f, 4f);
+		GUILayout.EndHorizontal();
+
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Sim Number: ", GUILayout.Width(leftWidth));
+		GUILayout.Label(Simulation.simulationNumber + " of " + Simulation.batch.Count);
+		GUILayout.EndHorizontal();
+
+		GUILayout.BeginHorizontal();
 		GUILayout.Label("Test Number: ", GUILayout.Width(leftWidth));
 		GUILayout.Label(Simulation.testNumber + " of " + Simulation.settings.numberOfTests);
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Robot: ", GUILayout.Width(leftWidth));
-		GUILayout.Label(Simulation.settings.robotName);
 		GUILayout.EndHorizontal();
 		
 		bool randomDest = Simulation.settings.randomizeDestination;
