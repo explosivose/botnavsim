@@ -19,7 +19,8 @@ public class Log  {
 	
 	public static void Start() {
 		Simulation.Settings info = Simulation.settings;
-		header = info.title + ", " + info.date + " " + info.time;
+		header = Strings.projectTitle + " " + Strings.projectVersion + " - Data Log";
+		header += "\n" + info.title + ", " + info.date + " " + info.time;
 		header += "\n" + info.summary;
 		header += "\n" + "Test number: " + Simulation.testNumber;
 		logging = true;

@@ -228,6 +228,7 @@ public class Simulation : MonoBehaviour {
 			robot.moveEnabled = false;
 		}
 		state = State.finished;
+		Log.Stop();
 	}
 	
 	// Routine for starting a new test
