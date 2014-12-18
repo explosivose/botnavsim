@@ -30,8 +30,11 @@ public class Log  {
 	public static void Stop() {
 		if (logging) {
 			logging = false;
-			string path = System.Environment.CurrentDirectory + "\\Logs\\";
-			path += System.DateTime.Now.ToString("yyyyMMdd-HHmmss-");
+			string path = System.Environment.CurrentDirectory + "\\Logs";
+			if (!Directory.Exists(path)) {
+				Directory.CreateDirectory(path);
+			}
+			path += "\\" + System.DateTime.Now.ToString("yyyyMMdd-HHmmss-");
 			path += Simulation.settings.title + "_" + Simulation.testNumber;
 			path += ".dat";
 			string data = header + "\n";
@@ -60,7 +63,7 @@ public class Log  {
 			line += Simulation.destination.transform.position.ToString() + "\",\"";
 			line += Simulation.robot.navigation.pathFound + "\",\"";
 			line += Simulation.robot.moveCommand + "\",\"";
-			line += Simulation.robot.stuckpc + "\",\"";
+			line += Simulation.robot.stuckpc + "\"";
 			log.Enqueue(line);
 			yield return new WaitForSeconds(rate);
 		}
