@@ -54,6 +54,7 @@ public class UI_setup : MonoBehaviour {
 	void SetupWindow(int windowID) {
 		
 		float leftWidth = 200f;
+		string title = _tempSim.title;
 		string robotName = _tempSim.robotName;
 		string envName = _tempSim.environmentName;
 		string algName = _tempSim.navigationAssemblyName;
@@ -66,8 +67,14 @@ public class UI_setup : MonoBehaviour {
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Title: ", GUILayout.Width(leftWidth));
-		_tempSim.title = GUILayout.TextField(_tempSim.title);
+		title = GUILayout.TextField(title);
 		GUILayout.EndHorizontal();
+		
+		bool valid = true;
+		foreach(char c in Strings.invalidFileNameChars) {
+			if (title.Contains(c.ToString())) valid = false;
+		}
+		if (valid) _tempSim.title = title;
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Robot: ", GUILayout.Width(leftWidth));
@@ -89,6 +96,8 @@ public class UI_setup : MonoBehaviour {
 			child = WindowNavAlgorithms;
 		}
 		GUILayout.EndHorizontal();
+		
+
 		
 		string numberOfTests = _tempSim.numberOfTests.ToString();
 		string testTime = _tempSim.maximumTestTime.ToString();
