@@ -42,7 +42,7 @@ public class UI_setup : MonoBehaviour {
 		GUI.skin = _style;
 		int i = 1;
 		
-		_rectMain = GUILayout.Window(i++, _rectMain, SetupWindow, "Create Simulation");
+		_rectMain = GUILayout.Window(i++, _rectMain, SetupWindow, Strings.projectTitle + " " + Strings.projectVersion);
 		
 		if (child != null) {
 			_rectChild.y = _rectMain.y;
