@@ -41,6 +41,7 @@ public class PluginFactory<T> {
 			}
 			catch {
 				Debug.LogError(file + " is not INavigation compatible!");
+				list.Add("INCOMPATIBLE: " + Path.GetFileName(file));
 				continue;
 			}
 			foreach (Type assemblyType in types) {

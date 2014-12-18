@@ -37,8 +37,15 @@ public class Robot : MonoBehaviour {
 		set {
 			_navigation = value;
 			_navigation.searchBounds = Simulation.bounds;
-			_navigation.origin = transform.position;
-			_navigation.destination = destination.position;
+			if (_navigation.spaceRelativeTo == Space.Self) {
+				_navigation.origin = Vector3.zero;
+				_navigation.destination = transform.InverseTransformPoint(destination.position);
+			}
+			else {
+				_navigation.origin = transform.position;
+				_navigation.destination = destination.position;
+			}
+
 		}
 	}
 	
@@ -157,17 +164,34 @@ public class Robot : MonoBehaviour {
 		}
 		else if (Simulation.isRunning){
 			Sensor.ProximityData data = nextSensorData;
-			if (_navigation.proximityRelativeTo == Space.Self) {
+			if (_navigation.spaceRelativeTo == Space.Self) {
 				data.direction = transform.InverseTransformDirection(data.direction);
+				_navigation.Proximity(Vector3.zero, data.direction, data.obstructed);
 			}
-			_navigation.Proximity(transform.position, 
-				transform.position + data.direction, data.obstructed);
+			else {
+				_navigation.Proximity(transform.position, 
+				                      transform.position + data.direction, data.obstructed);
+			}
+			
 			if (destination.hasChanged) {
-				StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
+				if (_navigation.spaceRelativeTo == Space.Self) {
+					Vector3 dest = transform.InverseTransformPoint(destination.position);
+					StartCoroutine( _navigation.SearchForPath(Vector3.zero, dest) );
+				}
+				else {
+					StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
+				}
+				
 				destination.hasChanged = false;
 			}
 			if (_navigation.pathFound)
-				_move = _navigation.PathDirection(transform.position);
+				if (navigation.spaceRelativeTo == Space.Self) {
+					_move = _navigation.PathDirection(Vector3.zero);
+					_move = transform.TransformDirection(_move);
+				}
+				else {
+					_move = _navigation.PathDirection(transform.position);
+				}
 			else
 				_move = Vector3.zero;
 		}

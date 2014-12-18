@@ -30,7 +30,7 @@ public class Log  {
 		if (logging) {
 			logging = false;
 			string path = System.Environment.CurrentDirectory + "\\Logs\\";
-			path += Simulation.settings.datetime.ToString("yyyyMMdd-HHmmss-");
+			path += System.DateTime.Now.ToString("yyyyMMdd-HHmmss-");
 			path += Simulation.settings.title + "_" + Simulation.testNumber;
 			path += ".dat";
 			string data = header + "\n";

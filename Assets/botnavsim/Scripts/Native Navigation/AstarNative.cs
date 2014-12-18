@@ -27,7 +27,7 @@ public class AstarNative : MonoBehaviour, INavigation {
 	public Vector3 origin {get; set;}
 	public Vector3 destination {get; set;}
 	public bool pathFound { get {return pathready;} }	
-	public Space proximityRelativeTo {get; private set;}
+	public Space spaceRelativeTo {get; private set;}
 
 	// public methods
 	// ~-~-~-~-~-~-~-~-

@@ -56,12 +56,12 @@ public interface INavigation {
 	void Proximity(Vector3 from, Vector3 to, bool obstructed);
 	
 	/// <summary>
-	/// Indicates the frame of reference for proximity data inputs.
-	/// World space is proximity data relative to (0,0,0)
-	/// Self space is proximity data relative to robot position and rotation
+	/// Indicates the frame of reference
+	/// World space is data relative to (0,0,0)
+	/// Self space is data relative to robot position and rotation
 	/// </summary>
 	/// <value>The proximity relative to.</value>
-	Space proximityRelativeTo {get;}
+	Space spaceRelativeTo {get;}
 	
 	//# Debugging
 	

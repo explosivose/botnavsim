@@ -36,14 +36,14 @@ public class Sensor : MonoBehaviour {
 			data.obstructed = true;
 			if (drawDebug) Debug.DrawRay(transform.position, 
 			                             data.direction, Color.red, 0.05f);
-			Draw.Instance.Line(transform.position, transform.position + data.direction, Color.red);
+			//Draw.Instance.Line(transform.position, transform.position + data.direction, Color.red);
 		}
 		else {
 			data.direction = transform.forward * maxDistance;
 			data.obstructed = false;
 			if (drawDebug) Debug.DrawRay(transform.position, 
 			          transform.forward * maxDistance, Color.green, 0.05f);
-			Draw.Instance.Line(transform.position, transform.position + transform.forward * maxDistance, Color.green);
+			//Draw.Instance.Line(transform.position, transform.position + transform.forward * maxDistance, Color.green);
 		}
 		return data;
 	}

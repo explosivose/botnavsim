@@ -103,7 +103,7 @@ public class UI_setup : MonoBehaviour {
 		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();
-		GUILayout.Label("Initial timescale + (" + timeScale.ToString("G2") + "): ", GUILayout.Width(leftWidth));
+		GUILayout.Label("Initial timescale (" + timeScale.ToString("G2") + "): ", GUILayout.Width(leftWidth));
 		timeScale = GUILayout.HorizontalSlider(timeScale, 0.5f, 4f);
 		GUILayout.EndHorizontal();
 		
