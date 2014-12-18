@@ -47,6 +47,11 @@ public class UI_Simulation : MonoBehaviour {
 	void SimulationWindow(int windowID) {
 		float leftWidth = 150f;
 		
+		if (GUILayout.Button("Exit Application")) {
+			Application.Quit();
+		}
+		
+		GUILayout.Space (10);
 		
 		GUILayout.Label(Simulation.settings.robotName + "\n" +
 		                Simulation.settings.environmentName + "\n" + 

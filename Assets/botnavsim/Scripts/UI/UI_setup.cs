@@ -58,6 +58,12 @@ public class UI_setup : MonoBehaviour {
 		string envName = _tempSim.environmentName;
 		string algName = _tempSim.navigationAssemblyName;
 		
+		if (GUILayout.Button("Exit Application")) {
+			Application.Quit();
+		}
+		
+		GUILayout.Space (10);
+		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Title: ", GUILayout.Width(leftWidth));
 		_tempSim.title = GUILayout.TextField(_tempSim.title);
