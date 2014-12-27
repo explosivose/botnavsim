@@ -207,8 +207,10 @@ public class Robot : MonoBehaviour {
 			}
 		}
 		if (canMove) {
-			Quaternion rotation = Quaternion.LookRotation(move);
-			transform.rotation = rotation;//Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
+			if (move != Vector3.zero) {
+				Quaternion rotation = Quaternion.LookRotation(move);
+				transform.rotation = rotation;//Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
+			}
 			Vector3 force = move.normalized * rigidbody.mass * rigidbody.drag * maxSpeed;
 			rigidbody.AddForce(force);
 		}
