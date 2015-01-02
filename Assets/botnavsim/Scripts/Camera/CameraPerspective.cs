@@ -36,7 +36,7 @@ public class CameraPerspective : MonoBehaviour {
 		}
 	}
 	
-	private Perspective _p;
+	private Perspective _p = Perspective.Birdseye;
 	private Camera _camera;
 	private Vector3 targetPosition;
 	private Quaternion targetRotation;

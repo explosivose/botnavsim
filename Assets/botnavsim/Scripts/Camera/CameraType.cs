@@ -34,7 +34,7 @@ public class CameraType : MonoBehaviour {
 		}
 	}
 	
-	private Type _type;
+	private Type _type = Type.Hybrid;
 	private Camera _camera;
 	
 	public void CycleType() {
