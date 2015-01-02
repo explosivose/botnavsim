@@ -11,7 +11,15 @@ public class Simulation : MonoBehaviour {
 		stopped,
 		finished
 	}
-	
+
+	public enum StopCode {
+		Unspecified,
+		UserRequestNextTest,
+		RobotReachedDestination,
+		MaxTimeExceeded,
+		RobotIsStuck
+	}
+
 	[System.Serializable]
 	public class Settings {
 		public string title = "Simulation";
@@ -73,7 +81,7 @@ public class Simulation : MonoBehaviour {
 			datetime = System.DateTime.Now;
 		}
 	}
-	
+
 	// Singleton pattern
 	public static Simulation Instance;
 	
@@ -182,7 +190,7 @@ public class Simulation : MonoBehaviour {
 	
 	// Start the next simulation
 	public static void NextSimulation() {
-		Log.Stop();
+		Log.Stop(0);
 		if (++simulationNumber > batch.Count) {
 			simulationNumber--;
 			End();
@@ -192,8 +200,8 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	// Start the next test in the simulation
-	public static void NextTest() {
-		Log.Stop();
+	public static void NextTest(StopCode code) {
+		Log.Stop(code);
 		if (++testNumber > settings.numberOfTests) {
 			testNumber--;
 			NextSimulation();
@@ -228,7 +236,7 @@ public class Simulation : MonoBehaviour {
 			robot.moveEnabled = false;
 		}
 		state = State.finished;
-		Log.Stop();
+		Log.Stop(0);
 	}
 	
 	// Routine for starting a new test
@@ -260,7 +268,7 @@ public class Simulation : MonoBehaviour {
 		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
 		timeScale = settings.initialTimeScale;
 		testNumber = 0;
-		NextTest();
+		NextTest(0);
 		yield break;
 	}
 	
@@ -311,15 +319,15 @@ public class Simulation : MonoBehaviour {
 			// check for conditions to end the test
 			if (robot.atDestination && settings.continueOnNavObjectiveComplete) {
 				Debug.Log("Simulation: nav objective complete!");
-				NextTest();
+				NextTest(StopCode.RobotReachedDestination);
 			}
 			if (robot.isStuck && settings.continueOnRobotIsStuck) {
 				Debug.LogWarning("Simulation: Robot appears to be stuck! Skipping test.");
-				NextTest();
+				NextTest(StopCode.RobotIsStuck);
 			}
 			if (settings.maximumTestTime > 0 && time > settings.maximumTestTime) {
 				Debug.LogWarning("Simulation: Max test time exceeded! Skipping test.");
-				NextTest();
+				NextTest(StopCode.MaxTimeExceeded);
 			}
 
 		}
@@ -330,6 +338,6 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	void OnApplicationQuit() {
-		Log.Stop();
+		Log.Stop(0);
 	}
 }

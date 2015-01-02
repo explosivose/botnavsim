@@ -126,7 +126,7 @@ public class UI_Simulation : MonoBehaviour {
 			if (GUILayout.Button("Stop"))
 				Simulation.End();
 			if (GUILayout.Button("Next Test"))
-				Simulation.NextTest();
+				Simulation.NextTest(Simulation.StopCode.UserRequestNextTest);
 		}
 		if (Simulation.isFinished) {
 			if  (GUILayout.Button("Start Again")) {
