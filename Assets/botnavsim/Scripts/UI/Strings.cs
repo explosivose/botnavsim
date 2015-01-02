@@ -26,7 +26,11 @@ public static class Strings  {
 	
 	private static char[] _invalidFileNameChars;
 	private static char[] _invalidPathChars;
-	
+
+	public static string newline {
+		get { return System.Environment.NewLine; }
+	}
+
 	public static bool IsDigitsOnly(string str) {
 		foreach (char c in str) {
 			if (c < '0' || c > '9') {

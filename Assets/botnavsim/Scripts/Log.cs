@@ -16,18 +16,18 @@ public class Log  {
 	private static bool logging = false;
 	private static string header;
 	private static Queue<string> log = new Queue<string>();
-	
+
 	public static void Start() {
 		Simulation.Settings info = Simulation.settings;
 		header = Strings.projectTitle + " " + Strings.projectVersion + " - Data Log";
-		header += "\n" + info.title + ", " + info.date + " " + info.time;
-		header += "\n" + info.summary;
-		header += "\n" + "Test number: " + Simulation.testNumber;
+		header += Strings.newline + info.title + ", " + info.date + " " + info.time;
+		header += Strings.newline + info.summary;
+		header += Strings.newline + "Test number: " + Simulation.testNumber;
 		logging = true;
 		Simulation.Instance.StartCoroutine(LogRoutine());
 	}
 	
-	public static void Stop() {
+	public static void Stop(Simulation.StopCode stopcode) {
 		if (logging) {
 			logging = false;
 			string path = System.Environment.CurrentDirectory + "\\Logs";
@@ -37,13 +37,16 @@ public class Log  {
 			path += "\\" + System.DateTime.Now.ToString("yyyyMMdd-HHmmss-");
 			path += Simulation.settings.title + "_" + Simulation.testNumber;
 			path += ".dat";
-			string data = header + "\n";
+			header += " ran for: " + Simulation.time;
+			header += " and stopped with " + stopcode.ToString() + Strings.newline; 
+			string data = header + Strings.newline;
 			while(log.Count > 0) {
-				data += log.Dequeue() + "\n";
+				data += log.Dequeue() + Strings.newline;
 			}
 			File.WriteAllText(path, data);
 			Debug.Log("Log created at: " + path);
 		}
+		
 		log.Clear();
 	}
 	
