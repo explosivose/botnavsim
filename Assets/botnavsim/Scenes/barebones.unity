@@ -133,6 +133,7 @@ GameObject:
   - 114: {fileID: 77809490}
   - 114: {fileID: 77809491}
   - 114: {fileID: 77809492}
+  - 114: {fileID: 77809493}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -217,7 +218,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1498422430}
   m_GameObject: {fileID: 77809484}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad103671ebbf22c44b5451219390e547, type: 3}
   m_Name: 
@@ -229,7 +230,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1498422430}
   m_GameObject: {fileID: 77809484}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5e1a6efdac3c5a146b2767027e59649b, type: 3}
   m_Name: 
@@ -255,6 +256,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e226e341184878c4d93f838ccbc081df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &77809493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 77809484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84755421176a9f34eac9d423a5227d88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 10
+  maskNormal:
+    serializedVersion: 2
+    m_Bits: 4294967039
+  maskBotData:
+    serializedVersion: 2
+    m_Bits: 256
+  maskHybrid:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &610891075
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 799c1a8c0c9a015448b1be5b6141bef1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeRate: .5
+  fadeRate: .25
 --- !u!212 &610891077
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -480,6 +502,18 @@ Prefab:
     - target: {fileID: 400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400006, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: fadeRate
+      value: .25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}

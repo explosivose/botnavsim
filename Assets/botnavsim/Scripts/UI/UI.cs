@@ -96,6 +96,7 @@ public class UI : MonoBehaviour {
 
 		float leftWidth = 200f;
 		string title = settings.title;
+		bool exhibitionMode = settings.exhibitionMode;
 				
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Title", GUILayout.Width(leftWidth));
@@ -107,6 +108,11 @@ public class UI : MonoBehaviour {
 			if (title.Contains(c.ToString())) valid = false;
 		}
 		if (valid) settings.title = title;
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Exhibition Mode: ", GUILayout.Width(leftWidth));
+		exhibitionMode = GUILayout.Toggle(exhibitionMode, "");
+		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Robot selection: ", GUILayout.Width(leftWidth));
@@ -192,6 +198,7 @@ public class UI : MonoBehaviour {
 			}
 		}
 
+		settings.exhibitionMode = exhibitionMode;
 		settings.robotName = _robotGallerySelection;
 		settings.environmentName = _environmentGallerySelection;
 		settings.navigationAssemblyName = _navListSelection;

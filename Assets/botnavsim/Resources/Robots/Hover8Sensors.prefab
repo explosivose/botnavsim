@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 400000}
   - 33: {fileID: 3300000}
   - 23: {fileID: 2300000}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 108: {fileID: 10800000}
   - 65: {fileID: 6500000}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 108: {fileID: 10800002}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - 114: {fileID: 11400002}
   - 108: {fileID: 10800004}
   - 65: {fileID: 6500002}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 108: {fileID: 10800006}
   - 65: {fileID: 6500004}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   - 114: {fileID: 11400006}
   - 108: {fileID: 10800008}
   - 65: {fileID: 6500006}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - 114: {fileID: 11400008}
   - 108: {fileID: 10800010}
   - 65: {fileID: 6500008}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 108: {fileID: 10800012}
   - 65: {fileID: 6500010}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ GameObject:
   - 114: {fileID: 11400014}
   - 54: {fileID: 5400000}
   - 135: {fileID: 13500000}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Hover8Sensors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - 114: {fileID: 11400016}
   - 108: {fileID: 10800014}
   - 65: {fileID: 6500012}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - 114: {fileID: 11400018}
   - 108: {fileID: 10800016}
   - 65: {fileID: 6500014}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1182,6 +1182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualControl: 0
   moveEnabled: 0
+  faceMoveDirection: 0
   maxSpeed: 10
   stopDistance: 2
   sensors: []
