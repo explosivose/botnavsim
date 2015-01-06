@@ -23,6 +23,7 @@ public class Simulation : MonoBehaviour {
 	[System.Serializable]
 	public class Settings {
 		public string title = "Simulation";
+		public bool exhibitionMode = false;
 		public string environmentName = "<none>";
 		public string navigationAssemblyName = "<none>";
 		public string robotName = "<none>";
@@ -239,6 +240,19 @@ public class Simulation : MonoBehaviour {
 		Log.Stop(0);
 	}
 	
+	// Return a random position inside the simulation bounds
+	public static Vector3 RandomInBounds() {
+		Vector3 v = bounds.min;
+		v.x += Random.Range(0f, bounds.max.x);
+		v.y += bounds.max.y;
+		v.z += Random.Range(0f, bounds.max.z);
+		RaycastHit hit;
+		if (Physics.Raycast(v, Vector3.down, out hit, 100f)) {
+			v = hit.point + hit.normal;
+		}
+		return v;
+	}
+	
 	// Routine for starting a new test
 	private static IEnumerator StartTestRoutine() {
 		StopTest();
@@ -249,6 +263,7 @@ public class Simulation : MonoBehaviour {
 			destination.transform.position = RandomInBounds();
 		yield return new WaitForSeconds(1f);
 		state = State.simulating;
+		yield return new WaitForSeconds(1f);
 		_startTime = Time.time;
 		Log.Start();
 		robot.moveEnabled = true;
@@ -279,18 +294,7 @@ public class Simulation : MonoBehaviour {
 			bounds.Encapsulate(r.bounds);
 	}
 	
-	// Return a random position inside the simulation bounds
-	private static Vector3 RandomInBounds() {
-		Vector3 v = bounds.min;
-		v.x += Random.Range(0f, bounds.max.x);
-		v.y += bounds.max.y;
-		v.z += Random.Range(0f, bounds.max.z);
-		RaycastHit hit;
-		if (Physics.Raycast(v, Vector3.down, out hit, 100f)) {
-			v = hit.point + hit.normal;
-		}
-		return v;
-	}
+
 	
 	/** Instance Members **/
 	

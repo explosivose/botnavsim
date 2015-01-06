@@ -55,6 +55,11 @@ public class Robot : MonoBehaviour {
 		}
 	}
 	
+	public Vector3 position {
+		get{ return transform.position; }
+		set{ transform.position = value; }
+	}
+	
 	/// <summary>
 	/// Gets depth data from the next sensor in a circular
 	/// indexed array of sensors

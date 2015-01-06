@@ -28,7 +28,7 @@ GameObject:
   - 114: {fileID: 11400000}
   - 54: {fileID: 5400000}
   - 135: {fileID: 13500000}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Hover4Sensors_mazesolver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 23: {fileID: 2300002}
   - 114: {fileID: 11400002}
   - 65: {fileID: 6500000}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - 23: {fileID: 2300004}
   - 114: {fileID: 11400004}
   - 65: {fileID: 6500002}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,7 +85,7 @@ GameObject:
   - 23: {fileID: 2300006}
   - 114: {fileID: 11400006}
   - 65: {fileID: 6500004}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   - 23: {fileID: 2300008}
   - 114: {fileID: 11400008}
   - 65: {fileID: 6500006}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400012}
   - 108: {fileID: 10800008}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   - 4: {fileID: 400014}
   - 33: {fileID: 3300010}
   - 23: {fileID: 2300010}
-  m_Layer: 2
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
