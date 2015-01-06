@@ -19,21 +19,69 @@ public class Simulation : MonoBehaviour {
 		MaxTimeExceeded,
 		RobotIsStuck
 	}
-
+	
 	[System.Serializable]
 	public class Settings {
+		
+		/// <summary>
+		/// The title of this simulation.
+		/// </summary>
 		public string title = "Simulation";
-		public bool exhibitionMode = false;
-		public string environmentName = "<none>";
-		public string navigationAssemblyName = "<none>";
-		public string robotName = "<none>";
-		public int numberOfTests = 1;
-		public int maximumTestTime = 60;
-		public bool randomizeDestination = false;
-		public bool randomizeOrigin = false;
-		public bool continueOnNavObjectiveComplete = false;
-		public bool continueOnRobotIsStuck = false;
+		
 		public float initialTimeScale = 1f;
+		
+		/// <summary>
+		/// The number of repeat tests with these parameters.
+		/// </summary>
+		public int numberOfTests = 1;
+		
+		/// ### Core Parameters ###
+		
+		/// <summary>
+		/// The filename of the environment to load.
+		/// </summary>
+		public string environmentName = "<none>";
+		/// <summary>
+		/// The filename of the navigation assembly to load.
+		/// </summary>
+		public string navigationAssemblyName = "<none>";
+		/// <summary>
+		/// The filename of the robot to load.
+		/// </summary>
+		public string robotName = "<none>";
+
+				
+		/// ### Initial Conditions ###
+		
+		/// <summary>
+		/// If true, robot starts each test at a random location in simulation bounds.
+		/// </summary>
+		public bool randomizeOrigin = false;
+		/// <summary>
+		/// If true, destination starts each test at a random location in simulation bounds.
+		/// </summary>
+		public bool randomizeDestination = false;
+		
+		/// ### Termination Conditions ###
+		
+		/// <summary>
+		/// The maximum test time in seconds.
+		/// </summary>
+		public int maximumTestTime = 60;
+		/// <summary>
+		/// If true, test ends when robot reaches the destination.
+		/// </summary>
+		public bool continueOnNavObjectiveComplete = false;
+		/// <summary>
+		/// If true, test ends when robot average position over time doesn't change enough.
+		/// </summary>
+		public bool continueOnRobotIsStuck = false;
+		
+		
+		/// <summary>
+		/// Gets a value indicating whether this <see cref="Simulation+Settings"/> is valid.
+		/// </summary>
+		/// <value><c>true</c> if is valid; otherwise, <c>false</c>.</value>
 		public bool isValid {
 			get {
 				bool v = true;
@@ -44,6 +92,14 @@ public class Simulation : MonoBehaviour {
 				return v;
 			}
 		}
+		
+		/// <summary>
+		/// Gets or sets a value indicating whether this <see cref="Simulation+Settings"/> is active
+		/// and determines which properties are editable in UI().
+		/// </summary>
+		/// <value><c>true</c> if active; otherwise, <c>false</c>.</value>
+		public bool active { get; set; }
+		
 		public string name {
 			get {
 				return robotName + "|" + navigationAssemblyName + "|" + environmentName;
@@ -92,8 +148,18 @@ public class Simulation : MonoBehaviour {
 	// Simulation state (enumeration)
 	public static State state {get; set;}
 	
-	// Settings for the current simulation (as specified by UI_setup)
-	public static Settings settings = new Settings();
+	// Exhibition mode
+	public static bool exhibitionMode;
+	
+	// Settings for the current simulation
+	public static Settings settings {
+		get { return _settings; }
+		set {
+			_settings.active = false;
+			_settings = value;
+			_settings.active = true;
+		}
+	}
 
 	// List of settings to iterate through in batch mode
 	public static List<Settings> batch = new List<Settings>();
@@ -177,6 +243,7 @@ public class Simulation : MonoBehaviour {
 	private static float _startTime;
 	private static float _stopTime;
 	
+	private static Settings _settings;
 	private static Robot _robot;
 	private static bool _paused;
 	private static float _timeScale;
@@ -311,7 +378,7 @@ public class Simulation : MonoBehaviour {
 			Instance = this;
 		}
 		astar = GetComponent<AstarNative>();
-
+		_settings = new Settings();
 	}
 	
 	void Start() {

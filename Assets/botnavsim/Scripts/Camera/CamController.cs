@@ -101,7 +101,7 @@ public class CamController : Singleton<CamController> {
 		if (Simulation.isRunning) {
 			PerspectiveUpdate();
 		}
-		else if (Simulation.settings.exhibitionMode) {
+		else if (Simulation.exhibitionMode) {
 			SkyPerspective();
 		}
 		

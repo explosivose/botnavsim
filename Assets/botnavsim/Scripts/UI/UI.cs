@@ -13,6 +13,7 @@ public class UI : MonoBehaviour {
 	private string _robotGallerySelection;
 	private string _environmentGallerySelection;
 	private int _batchIndex;
+	private bool _liveEditSettings;
 
 	void Awake() {
 		_skin = Resources.Load<GUISkin>("GUI_style");
@@ -33,6 +34,7 @@ public class UI : MonoBehaviour {
 
 	void OnGUI() {
 		GUI.skin = _skin;
+		_rect.height = 0f;
 		_rect = GUILayout.Window(0, _rect, _window.Peek(), Strings.projectTitle + " " + Strings.projectVersion);
 
 	}
@@ -91,16 +93,88 @@ public class UI : MonoBehaviour {
 		
 		GUI.DragWindow();
 	}
-
+	
 	void SimulationSettingsControls(Simulation.Settings settings) {
 
-		float leftWidth = 200f;
+		float lw = 200f;
 		string title = settings.title;
-		bool exhibitionMode = settings.exhibitionMode;
-				
+		string numberOfTests = settings.numberOfTests.ToString();
+		string testTime = settings.maximumTestTime.ToString();
+		bool randomDest = settings.randomizeDestination;
+		bool randomStart = settings.randomizeOrigin;
+		bool repeatOnComplete = settings.continueOnNavObjectiveComplete;
+		bool repeatOnStuck = settings.continueOnRobotIsStuck;
+		
+		if (settings.active) {
+			GUILayout.Label(settings.title + "\n" + 
+							settings.robotName + "\n" +
+			                settings.environmentName + "\n" + 
+			                settings.navigationAssemblyName);
+		}
+		else {
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Title", GUILayout.Width(lw));
+			title = GUILayout.TextField(title);
+			GUILayout.EndHorizontal();
+			
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Number of tests: ", GUILayout.Width(lw));
+			numberOfTests = GUILayout.TextField(numberOfTests);
+			GUILayout.EndHorizontal();
+			
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Robot selection: ", GUILayout.Width(lw));
+			if (GUILayout.Button(_robotGallerySelection)) {
+				_window.Push(RobotGalleryWindow);
+			}
+			GUILayout.EndHorizontal();
+			
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Environment selection: ", GUILayout.Width(lw));
+			if (GUILayout.Button(_environmentGallerySelection)) {
+				_window.Push(EnvironmentGalleryWindow);
+			}
+			GUILayout.EndHorizontal();
+			
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Algorithm selection: ", GUILayout.Width(lw));
+			if (GUILayout.Button(_navListSelection)) {
+				_window.Push(NavListWindow);
+			}
+			GUILayout.EndHorizontal();
+		}
+
 		GUILayout.BeginHorizontal();
-		GUILayout.Label("Title", GUILayout.Width(leftWidth));
-		title = GUILayout.TextField(title);
+		GUILayout.Label("Randomize Start: ", GUILayout.Width(lw));
+		randomStart = GUILayout.Toggle(randomStart,"");
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Randomize Destination: ", GUILayout.Width(lw));
+		randomDest = GUILayout.Toggle(randomDest,"");
+		GUILayout.EndHorizontal();
+		
+		if (settings.active) {
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Time (s): " + Simulation.time.ToString("G2"), GUILayout.Width(lw));
+			testTime = GUILayout.TextField(testTime);
+			GUILayout.EndHorizontal();
+		}
+		else {
+			GUILayout.BeginHorizontal();
+			GUILayout.Label("Maximum Simulation Time (s): ", GUILayout.Width(lw));
+			testTime = GUILayout.TextField(testTime);
+			GUILayout.EndHorizontal();
+		}
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Repeat on complete: " , GUILayout.Width(lw));
+		repeatOnComplete = GUILayout.Toggle(repeatOnComplete,"");
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Repeat on stuck: ", GUILayout.Width(lw));
+		repeatOnStuck = GUILayout.Toggle(repeatOnStuck, "");
 		GUILayout.EndHorizontal();
 		
 		bool valid = true;
@@ -108,77 +182,6 @@ public class UI : MonoBehaviour {
 			if (title.Contains(c.ToString())) valid = false;
 		}
 		if (valid) settings.title = title;
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Exhibition Mode: ", GUILayout.Width(leftWidth));
-		exhibitionMode = GUILayout.Toggle(exhibitionMode, "");
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Robot selection: ", GUILayout.Width(leftWidth));
-		if (GUILayout.Button(_robotGallerySelection)) {
-			_window.Push(RobotGalleryWindow);
-		}
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Environment selection: ", GUILayout.Width(leftWidth));
-		if (GUILayout.Button(_environmentGallerySelection)) {
-			_window.Push(EnvironmentGalleryWindow);
-		}
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Algorithm selection: ", GUILayout.Width(leftWidth));
-		if (GUILayout.Button(_navListSelection)) {
-			_window.Push(NavListWindow);
-		}
-		GUILayout.EndHorizontal();
-		
-		
-		
-		string numberOfTests = settings.numberOfTests.ToString();
-		string testTime = settings.maximumTestTime.ToString();
-		float timeScale = settings.initialTimeScale;
-		bool randomDest = settings.randomizeDestination;
-		bool randomStart = settings.randomizeOrigin;
-		bool repeatOnComplete = settings.continueOnNavObjectiveComplete;
-		bool repeatOnStuck = settings.continueOnRobotIsStuck;
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Number of tests: ", GUILayout.Width(leftWidth));
-		numberOfTests = GUILayout.TextField(numberOfTests);
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Maximum test time (s): ", GUILayout.Width(leftWidth));
-		testTime = GUILayout.TextField(testTime);
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Initial timescale (" + timeScale.ToString("G2") + "): ", GUILayout.Width(leftWidth));
-		timeScale = GUILayout.HorizontalSlider(timeScale, 0.5f, 4f);
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Random Destination: ", GUILayout.Width(leftWidth));
-		randomDest = GUILayout.Toggle(randomDest,"");
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Random Start: ", GUILayout.Width(leftWidth));
-		randomStart = GUILayout.Toggle(randomStart,"");
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Repeat on complete: " , GUILayout.Width(leftWidth));
-		repeatOnComplete = GUILayout.Toggle(repeatOnComplete,"");
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Repeat on stuck: ", GUILayout.Width(leftWidth));
-		repeatOnStuck = GUILayout.Toggle(repeatOnStuck, "");
-		GUILayout.EndHorizontal();
 		
 		if (Strings.IsDigitsOnly(numberOfTests)) {
 			try {
@@ -197,16 +200,90 @@ public class UI : MonoBehaviour {
 				Debug.Log("User should enter a number...");
 			}
 		}
-
-		settings.exhibitionMode = exhibitionMode;
+		
 		settings.robotName = _robotGallerySelection;
 		settings.environmentName = _environmentGallerySelection;
 		settings.navigationAssemblyName = _navListSelection;
-		settings.initialTimeScale = timeScale;
 		settings.randomizeDestination = randomDest;
 		settings.randomizeOrigin = randomStart;
 		settings.continueOnNavObjectiveComplete = repeatOnComplete;
 		settings.continueOnRobotIsStuck = repeatOnStuck;
+	}
+
+	void SimulationWindow(int windowID) {
+		float lw = 200f;
+		
+		WindowHeader();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Exhibition Mode: ", GUILayout.Width(lw));
+		Simulation.exhibitionMode = GUILayout.Toggle(Simulation.exhibitionMode, "");
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Simulation Timescale: ", GUILayout.Width(lw));
+		Simulation.timeScale = GUILayout.HorizontalSlider(
+			Simulation.timeScale,
+			0.5f, 4f);
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Camera Perspective: ", GUILayout.Width(lw));
+		if (GUILayout.Button(CamController.Instance.perspective.ToString())) {
+			CamController.Instance.CyclePerspective();
+		}
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Render Mode: ", GUILayout.Width(lw));
+		if (GUILayout.Button(CamController.Instance.renderMode.ToString())) {
+			CamController.Instance.CycleRenderMode();
+		}
+		GUILayout.EndHorizontal();
+		
+		if (Simulation.isRunning) {
+			GUILayout.BeginHorizontal();
+			if (Simulation.paused) {
+				if (GUILayout.Button("Play"))
+					Simulation.paused = false;
+			}
+			else {
+				if (GUILayout.Button("Pause"))
+					Simulation.paused = true;
+			}
+			if (GUILayout.Button("Stop")) {
+				Simulation.End();
+				_window.Pop();
+			}
+			GUILayout.EndHorizontal();
+			if (GUILayout.Button("Next Test")) {
+				Simulation.NextTest(Simulation.StopCode.UserRequestNextTest);
+				_window.Pop();
+			}
+			
+		}
+		if (Simulation.isFinished) {
+			if  (GUILayout.Button("Start Again")) {
+				Simulation.Begin();
+			}
+			if (GUILayout.Button("New Simulation...")) {
+				Simulation.state = Simulation.State.preSimulation;
+			}
+		}
+		
+		if (_liveEditSettings) {
+			if (GUILayout.Button("Hide Settings")) {
+				_liveEditSettings = false;
+			}
+			SimulationSettingsControls(Simulation.settings);
+		}
+		else {
+			if (GUILayout.Button("Show Settings")) {
+				_liveEditSettings = true;
+			}
+		}
+		
+		GUI.DragWindow();
 	}
 
 	/// <summary>
@@ -233,7 +310,7 @@ public class UI : MonoBehaviour {
 				_window.Pop();
 			}
 		}
-		
+		GUI.DragWindow();
 	}
 	
 	/// <summary>
@@ -265,6 +342,7 @@ public class UI : MonoBehaviour {
 		
 		// start robot creator
 		GUILayout.Button("Create new robot...");
+		GUI.DragWindow();
 	}
 	
 	/// <summary>
@@ -296,6 +374,7 @@ public class UI : MonoBehaviour {
 		
 		// start environment creator
 		GUILayout.Button("Create new environment...");
+		GUI.DragWindow();
 	}
 	
 	
@@ -318,9 +397,15 @@ public class UI : MonoBehaviour {
 			}
 		}
 		GUILayout.Space (10);
+		if (GUILayout.Button("Start Batch")) {
+			_window.Push(SimulationWindow);
+			Simulation.Begin();
+		}
+		GUILayout.Space (20);
 		if (GUILayout.Button("Clear Batch")) {
 			Simulation.batch.Clear();
 		}
+		GUI.DragWindow();
 	}
 	
 	void SimSummaryWindow(int windowID) {
@@ -342,101 +427,8 @@ public class UI : MonoBehaviour {
 			else
 				_window.Pop();
 		}
+		GUI.DragWindow();
 	}
 
-	void SimulationWindow(int windowID) {
-		float leftWidth = 150f;
-		
-		WindowHeader();
-		
-		GUILayout.Label(Simulation.settings.robotName + "\n" +
-		                Simulation.settings.environmentName + "\n" + 
-		                Simulation.settings.navigationAssemblyName);
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Simulation Time: ", GUILayout.Width(leftWidth));
-		GUILayout.Label(Simulation.time.ToString("G4") + "/" + Simulation.settings.maximumTestTime);
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Timescale (" + Simulation.timeScale.ToString("G2") + "): ", GUILayout.Width(leftWidth));
-		Simulation.timeScale = GUILayout.HorizontalSlider(Simulation.timeScale, 0.5f, 4f);
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Sim Number: ", GUILayout.Width(leftWidth));
-		GUILayout.Label(Simulation.simulationNumber + " of " + Simulation.batch.Count);
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Test Number: ", GUILayout.Width(leftWidth));
-		GUILayout.Label(Simulation.testNumber + " of " + Simulation.settings.numberOfTests);
-		GUILayout.EndHorizontal();
-		
-		bool randomDest = Simulation.settings.randomizeDestination;
-		bool randomStart = Simulation.settings.randomizeOrigin;
-		bool repeatOnComplete = Simulation.settings.continueOnNavObjectiveComplete;
-		bool repeatOnStuck = Simulation.settings.continueOnRobotIsStuck;
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Random Destination: ", GUILayout.Width(leftWidth));
-		randomDest = GUILayout.Toggle(randomDest,"");
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Random Start: ", GUILayout.Width(leftWidth));
-		randomStart = GUILayout.Toggle(randomStart,"");
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Repeat on complete: " , GUILayout.Width(leftWidth));
-		repeatOnComplete = GUILayout.Toggle(repeatOnComplete,"");
-		GUILayout.EndHorizontal();
-		
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Repeat on stuck: ", GUILayout.Width(leftWidth));
-		repeatOnStuck = GUILayout.Toggle(repeatOnStuck, "");
-		GUILayout.EndHorizontal();
-		
-		Simulation.settings.randomizeDestination = randomDest;
-		Simulation.settings.randomizeOrigin = randomStart;
-		Simulation.settings.continueOnNavObjectiveComplete = repeatOnComplete;
-		Simulation.settings.continueOnRobotIsStuck = repeatOnStuck;
-		/*
-		GUILayout.BeginHorizontal();
-		GUILayout.Label("Camera: ", GUILayout.Width(leftWidth));
-		if (GUILayout.Button(_camPersp.perspective.ToString() + "/" + _camType.type.ToString())) {
-			_showCameraMenu = true;
-		}
-		GUILayout.EndHorizontal();
-		*/
-		if (Simulation.isRunning) {
-			if (Simulation.paused) {
-				if (GUILayout.Button("Play"))
-					Simulation.paused = false;
-			}
-			else {
-				if (GUILayout.Button("Pause"))
-					Simulation.paused = true;
-			}
-			if (GUILayout.Button("Stop")) {
-				Simulation.End();
-				_window.Pop();
-			}
-				
-			if (GUILayout.Button("Next Test")) {
-				Simulation.NextTest(Simulation.StopCode.UserRequestNextTest);
-				_window.Pop();
-			}
-				
-		}
-		if (Simulation.isFinished) {
-			if  (GUILayout.Button("Start Again")) {
-				Simulation.Begin();
-			}
-			if (GUILayout.Button("New Simulation...")) {
-				Simulation.state = Simulation.State.preSimulation;
-			}
-		}
-	}
+
 }
