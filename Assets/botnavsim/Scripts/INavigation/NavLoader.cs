@@ -30,13 +30,13 @@ public class NavLoader {
 	
 	public static INavigation RandomPlugin() {
 		SearchForPlugins();
-		int index = UnityEngine.Random.Range(0, pluginsFound.Count-1);
+		int index = UnityEngine.Random.Range(0, pluginsFound.Count);
 		return LoadPlugin(pluginsFound[index]);
 	}
 	
 	public static string RandomPluginName() {
 		SearchForPlugins();
-		int index = UnityEngine.Random.Range(0, pluginsFound.Count-1);
+		int index = UnityEngine.Random.Range(0, pluginsFound.Count);
 		return pluginsFound[index];
 	}
 }

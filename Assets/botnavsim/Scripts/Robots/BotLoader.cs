@@ -34,13 +34,13 @@ public class BotLoader {
 	
 	public static Robot RandomRobot() {
 		SearchForRobots();
-		int index = Random.Range(0, robotsFound.Count-1);
+		int index = Random.Range(0, robotsFound.Count);
 		return LoadRobot(index);
 	}
 	
 	public static string RandomRobotName() {
 		SearchForRobots();
-		int index = Random.Range(0, robotsFound.Count-1);
+		int index = Random.Range(0, robotsFound.Count);
 		return robotsFound[index].name;
 	}
 }
