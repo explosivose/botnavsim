@@ -13,7 +13,6 @@ public class Robot : MonoBehaviour {
 	public float		stopDistance;	// how close the robot will get to _destination before stopping
 	public Sensor[] 	sensors;
 	public Transform 	destination;	
-	
 
 	
 	// private members
@@ -59,6 +58,8 @@ public class Robot : MonoBehaviour {
 		get{ return transform.position; }
 		set{ transform.position = value; }
 	}
+	
+	public Transform cameraMount { get; private set; }
 	
 	/// <summary>
 	/// Gets depth data from the next sensor in a circular
@@ -153,8 +154,12 @@ public class Robot : MonoBehaviour {
 	// ~-~-~-~-~-~-~-~-
 	private void Awake() {
 		InitialiseSensors();
-		_navigation = GetComponent(typeof(INavigation)) as INavigation;
 		StartCoroutine(StuckDetector());
+		cameraMount = transform.Find("CameraMount");
+		if (!cameraMount) {
+			cameraMount = transform;
+			Debug.LogWarning("CameraMount object not found on Robot.");
+		} 
 	}
 	
 	private void Update() {
