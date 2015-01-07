@@ -48,6 +48,8 @@ public class UI : MonoBehaviour {
 
 	void SetupWindow(int windowID) {
 		
+		float lw = 200f;
+		
 		WindowHeader();
 
 		// controls and title
@@ -55,6 +57,23 @@ public class UI : MonoBehaviour {
 		GUILayout.Label("Simulation Setup");
 		GUILayout.EndHorizontal();
 
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Log to file: ", GUILayout.Width(lw));
+		Simulation.loggingEnabled = GUILayout.Toggle(Simulation.loggingEnabled, "");
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Exhibition Mode: ", GUILayout.Width(lw));
+		Simulation.exhibitionMode = GUILayout.Toggle(Simulation.exhibitionMode, "");
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Simulation Timescale: ", GUILayout.Width(lw));
+		Simulation.timeScale = GUILayout.HorizontalSlider(
+			Simulation.timeScale,
+			0.5f, 4f);
+		GUILayout.EndHorizontal();
+		
 		SimulationSettingsControls(_tempSim);
 				
 		if (Simulation.batch.Count > 0 ) {
@@ -233,6 +252,11 @@ public class UI : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label(Simulation.settings.title + ", " + Simulation.settings.time, GUILayout.Width(lw));
 		GUILayout.Label(Simulation.testNumber + "/" + Simulation.settings.numberOfTests);
+		GUILayout.EndHorizontal();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Log to file: ", GUILayout.Width(lw));
+		Simulation.loggingEnabled = GUILayout.Toggle(Simulation.loggingEnabled, "");
 		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();

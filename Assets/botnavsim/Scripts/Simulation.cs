@@ -214,6 +214,9 @@ public class Simulation : MonoBehaviour {
 	// Simulation bounds (search space for INavigation)
 	public static Bounds bounds;
 	
+	// Is logging enabled?
+	public static bool loggingEnabled = true;
+	
 	// is the simulation ready to begin?
 	public static bool isReady {
 		get {
@@ -350,7 +353,7 @@ public class Simulation : MonoBehaviour {
 		state = State.simulating;
 		yield return new WaitForSeconds(1f);
 		_startTime = Time.time;
-		Log.Start();
+		if (loggingEnabled) Log.Start();
 		robot.moveEnabled = true;
 		robot.NavigateToDestination();
 	}
@@ -383,7 +386,6 @@ public class Simulation : MonoBehaviour {
 	/** Instance Members **/
 	
 	public AstarNative astar;
-	private bool _hideMenu;
 
 	/** Instance Methods **/
 
