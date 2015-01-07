@@ -35,6 +35,8 @@ public class CamController : Singleton<CamController> {
 				_camera.orthographic = false;
 				_camera.fieldOfView = 120f;
 				_camera.transform.parent = Simulation.robot.transform;
+				_camera.transform.localPosition = Vector3.zero;
+				_camera.transform.localRotation = Quaternion.identity;
 				break;
 			case Perspective.ThirdPerson:
 				_camera.camera.orthographic = false;
@@ -45,6 +47,7 @@ public class CamController : Singleton<CamController> {
 				_camera.camera.fieldOfView = 60f;
 				Bounds b = Simulation.bounds;
 				Vector3 position = b.max;
+				position.y *= 2f;
 				position.x = Random.value < 0.5f ? b.min.x : b.max.x;
 				position.z = Random.value < 0.5f ? b.min.z : b.max.z;
 				transform.position = position;
@@ -136,15 +139,15 @@ public class CamController : Singleton<CamController> {
 		if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
 		if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
 		
-		if (Simulation.isRunning) {
+		if (Simulation.isReady) {
 			PerspectiveUpdate();
+			RenderModeUpdate();
 		}
-		
-		RenderModeUpdate();
+
 	}
 	
 	void RenderModeUpdate() {
-		if (Simulation.isReady && renderMode != RenderMode.Normal) 
+		if (renderMode != RenderMode.Normal) 
 			Simulation.robot.navigation.DrawDebugInfo();
 	}
 	
@@ -156,9 +159,6 @@ public class CamController : Singleton<CamController> {
 			break;
 		case Perspective.ThirdPerson:
 			ThirdPersonPerspective();
-			break;
-		case Perspective.FirstPerson: 
-			FirstPersonPerspective();
 			break;
 		}
 	}
@@ -190,6 +190,11 @@ public class CamController : Singleton<CamController> {
 	}
 	
 	void ThirdPersonPerspective() {
+		
+		// adjust third person distance with scroll wheel input
+		_3rdPersonDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
+		_3rdPersonDist = Mathf.Min(_3rdPersonDist, 20f);
+		_3rdPersonDist = Mathf.Max(_3rdPersonDist, 1f);
 		
 		// move camera position based on input
 		if (Input.GetMouseButton(1)) {
@@ -231,7 +236,4 @@ public class CamController : Singleton<CamController> {
 			);
 	}
 	
-	void FirstPersonPerspective() {
-		
-	}
 }
