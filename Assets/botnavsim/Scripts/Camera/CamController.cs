@@ -5,6 +5,7 @@ public class CamController : Singleton<CamController> {
 
 	public float mouseSensitivity = 10f;
 	
+	public LayerMask maskCameraCollision;
 	public LayerMask maskNormal;
 	public LayerMask maskBotData;
 	public LayerMask maskHybrid;
@@ -12,6 +13,7 @@ public class CamController : Singleton<CamController> {
 	public enum Perspective {
 		Birdseye,
 		ThirdPerson,
+		Landscape,
 		FirstPerson
 	}
 	
@@ -37,6 +39,16 @@ public class CamController : Singleton<CamController> {
 			case Perspective.ThirdPerson:
 				_camera.camera.orthographic = false;
 				_camera.camera.fieldOfView = 60f;
+				break;
+			case Perspective.Landscape:
+				_camera.camera.orthographic = false;
+				_camera.camera.fieldOfView = 60f;
+				Bounds b = Simulation.bounds;
+				Vector3 position = b.max;
+				position.x = Random.value < 0.5f ? b.min.x : b.max.x;
+				position.z = Random.value < 0.5f ? b.min.z : b.max.z;
+				transform.position = position;
+				transform.rotation = Quaternion.LookRotation(b.center - transform.position);
 				break;
 			default:
 			case Perspective.Birdseye:
@@ -69,16 +81,41 @@ public class CamController : Singleton<CamController> {
 		}
 	}
 	
+	public void OnTestStart() {
+		if (Simulation.exhibitionMode) {
+			RandomPerspective();
+			RandomRenderMode();
+		}
+	}
+	
+	public void OnTestEnd() {
+		if (Simulation.exhibitionMode) {
+			perspective = Perspective.Landscape;
+		}
+	}
+	
 	// Increment perspective circularly
 	public void CyclePerspective() {
-		perspective++;
-		if (perspective > Perspective.FirstPerson) perspective = Perspective.Birdseye;
+		int length = System.Enum.GetValues(typeof(Perspective)).Length;
+		if ((int)perspective + 1 >= length) perspective = 0;
+		else perspective++;
+	}
+	
+	public void RandomPerspective() {
+		System.Array values = System.Enum.GetValues(typeof(Perspective));
+		perspective = (Perspective)values.GetValue(Random.Range(0,values.Length-1));
 	}
 	
 	// Increment rendermode circularly
 	public void CycleRenderMode() {
-		renderMode++;
-		if (renderMode > RenderMode.BotData) renderMode = RenderMode.Hybrid;
+		int length = System.Enum.GetValues(typeof(RenderMode)).Length;
+		if ((int)renderMode + 1 >= length) renderMode = 0;
+		else renderMode++;
+	}
+	
+	public void RandomRenderMode() {
+		System.Array values = System.Enum.GetValues(typeof(RenderMode));
+		renderMode = (RenderMode)values.GetValue(Random.Range(0,values.Length-1));
 	}
 	
 	private Perspective _p;
@@ -87,9 +124,7 @@ public class CamController : Singleton<CamController> {
 	private Robot _robot;
 	private float _3rdPersonDist = 10f;
 	private Vector3 _3rdPersonDir = Vector3.one;
-	private Vector3 _skyPoint;
-	private Quaternion _skyRotation;
-	private bool _skyViewNeedsUpdating;
+
 	
 	void Awake() {
 		_camera = GetComponent<Camera>();
@@ -101,9 +136,6 @@ public class CamController : Singleton<CamController> {
 		if (Simulation.isRunning) {
 			PerspectiveUpdate();
 		}
-		else if (Simulation.exhibitionMode) {
-			SkyPerspective();
-		}
 		
 		RenderModeUpdate();
 	}
@@ -114,7 +146,7 @@ public class CamController : Singleton<CamController> {
 	}
 	
 	void PerspectiveUpdate() {
-		_skyViewNeedsUpdating = true;
+
 		switch(perspective) {
 		case Perspective.Birdseye:
 			BirdseyePerspective();
@@ -142,7 +174,7 @@ public class CamController : Singleton<CamController> {
 		_camera.transform.position = Vector3.Slerp(
 			_camera.transform.position, 
 			targetPosition, 
-			Time.deltaTime * 2f
+			Time.deltaTime * 4f
 			);
 		
 		// look down
@@ -150,7 +182,7 @@ public class CamController : Singleton<CamController> {
 		_camera.transform.rotation = Quaternion.Slerp(
 			_camera.transform.rotation, 
 			targetRotation, 
-			Time.deltaTime * 1f
+			Time.deltaTime * 8f
 			);
 	}
 	
@@ -171,8 +203,9 @@ public class CamController : Singleton<CamController> {
 		Ray ray = new Ray(_robot.position, _3rdPersonDir);
 		RaycastHit hit;
 		// if raycast hit, put camera on hit object
-		if (Physics.SphereCast(ray, 0.5f, out hit, _3rdPersonDist, maskNormal)) {
+		if (Physics.SphereCast(ray, 0.5f, out hit, _3rdPersonDist, maskCameraCollision)) {
 			targetPosition = hit.point + hit.normal;
+			Debug.DrawLine(ray.origin, hit.point, Color.red);
 		}
 		// else place camera at _3rdPersonDist away from robot
 		else {
@@ -197,29 +230,5 @@ public class CamController : Singleton<CamController> {
 	
 	void FirstPersonPerspective() {
 		
-	}
-	
-	void SkyPerspective() {
-		if (_skyViewNeedsUpdating) {
-			_skyPoint = Simulation.RandomInBounds();
-			_skyPoint.y = Simulation.bounds.max.y;
-			_skyPoint.z = Simulation.bounds.min.z;
-			_skyRotation = Quaternion.LookRotation(Simulation.bounds.center - _skyPoint);
-			
-			perspective = Perspective.ThirdPerson;
-			_skyViewNeedsUpdating = false;
-		}
-		// smooth move to position
-		_camera.transform.position = Vector3.Slerp(
-			_camera.transform.position, 
-			_skyPoint, 
-			Time.deltaTime * 4f
-			);
-		// look at robot
-		_camera.transform.rotation = Quaternion.Slerp(
-			_camera.transform.rotation, 
-			_skyRotation, 
-			Time.deltaTime * 4f
-			);
 	}
 }

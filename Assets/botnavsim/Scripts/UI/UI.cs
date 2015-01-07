@@ -9,9 +9,9 @@ public class UI : MonoBehaviour {
 	private GUISkin _skin;
 	private Rect _rect;
 	private Simulation.Settings _tempSim;
-	private string _navListSelection;
-	private string _robotGallerySelection;
-	private string _environmentGallerySelection;
+	private string 	_navListSelection;
+	private string 	_robotGallerySelection;
+	private string 	_environmentGallerySelection;
 	private int _batchIndex;
 	private bool _liveEditSettings;
 
@@ -98,6 +98,21 @@ public class UI : MonoBehaviour {
 
 		float lw = 200f;
 		string title = settings.title;
+		string robotName = settings.robotName;
+		if (_robotGallerySelection != null) {
+			robotName = _robotGallerySelection;
+			_robotGallerySelection = null;
+		}
+		string environmentName = settings.environmentName;
+		if (_environmentGallerySelection != null) {
+			environmentName = _environmentGallerySelection;
+			_environmentGallerySelection = null;
+		}
+		string navigationAssemblyName = settings.navigationAssemblyName;
+		if (_navListSelection != null) {
+			navigationAssemblyName = _navListSelection;
+			_navListSelection = null;
+		}
 		string numberOfTests = settings.numberOfTests.ToString();
 		string testTime = settings.maximumTestTime.ToString();
 		bool randomDest = settings.randomizeDestination;
@@ -124,21 +139,21 @@ public class UI : MonoBehaviour {
 			
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Robot selection: ", GUILayout.Width(lw));
-			if (GUILayout.Button(_robotGallerySelection)) {
+			if (GUILayout.Button(robotName)) {
 				_window.Push(RobotGalleryWindow);
 			}
 			GUILayout.EndHorizontal();
 			
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Environment selection: ", GUILayout.Width(lw));
-			if (GUILayout.Button(_environmentGallerySelection)) {
+			if (GUILayout.Button(environmentName)) {
 				_window.Push(EnvironmentGalleryWindow);
 			}
 			GUILayout.EndHorizontal();
 			
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Algorithm selection: ", GUILayout.Width(lw));
-			if (GUILayout.Button(_navListSelection)) {
+			if (GUILayout.Button(navigationAssemblyName)) {
 				_window.Push(NavListWindow);
 			}
 			GUILayout.EndHorizontal();
@@ -201,9 +216,9 @@ public class UI : MonoBehaviour {
 			}
 		}
 		
-		settings.robotName = _robotGallerySelection;
-		settings.environmentName = _environmentGallerySelection;
-		settings.navigationAssemblyName = _navListSelection;
+		settings.robotName = robotName;
+		settings.environmentName = environmentName;
+		settings.navigationAssemblyName = navigationAssemblyName;
 		settings.randomizeDestination = randomDest;
 		settings.randomizeOrigin = randomStart;
 		settings.continueOnNavObjectiveComplete = repeatOnComplete;
@@ -214,6 +229,11 @@ public class UI : MonoBehaviour {
 		float lw = 200f;
 		
 		WindowHeader();
+		
+		GUILayout.BeginHorizontal();
+		GUILayout.Label(Simulation.settings.title + ", " + Simulation.settings.time, GUILayout.Width(lw));
+		GUILayout.Label(Simulation.testNumber + "/" + Simulation.settings.numberOfTests);
+		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Exhibition Mode: ", GUILayout.Width(lw));
@@ -305,7 +325,6 @@ public class UI : MonoBehaviour {
 		
 		foreach(string s in NavLoader.pluginsFound) {
 			if (GUILayout.Button(s)) {
-				//_tempSim.navigationAssemblyName = s;
 				_navListSelection = s;
 				_window.Pop();
 			}
@@ -332,7 +351,6 @@ public class UI : MonoBehaviour {
 		// gallery goes here...
 		for(int i = 0; i < BotLoader.robotsFound.Count; i++) {
 			if (GUILayout.Button(BotLoader.robotsFound[i].name)) {
-				//_tempSim.robotName = BotLoader.robotsFound[i].name;
 				_robotGallerySelection = BotLoader.robotsFound[i].name;
 				_window.Pop();
 			}
@@ -364,7 +382,6 @@ public class UI : MonoBehaviour {
 		// gallery goes here...
 		for(int i = 0; i < EnvLoader.environmentsFound.Count; i++) {
 			if (GUILayout.Button(EnvLoader.environmentsFound[i].name)) {
-				//_tempSim.environmentName = EnvLoader.environmentsFound[i].name;
 				_environmentGallerySelection = EnvLoader.environmentsFound[i].name;
 				_window.Pop();
 			}

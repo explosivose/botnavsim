@@ -44,7 +44,6 @@ Do GL.Lines instead...
 	Material glLineMaterial;
 	List<LineData> gl_lines = new List<LineData>();
 	List<CubeData> gl_cubes = new List<CubeData>();
-	CameraType type;
 	
 	void Awake() {
 		line = new GameObject("Line").transform;
@@ -52,7 +51,6 @@ Do GL.Lines instead...
 		LineRenderer ren =  line.GetComponent<LineRenderer>();
 		ren.material = Resources.Load<Material>("Materials/Line");
 		glLineMaterial = ren.material;
-		type = GetComponent<CameraType>();
 	}
 		
 	public void Line(Vector3 start, Vector3 end, float thickness, Color color) {
@@ -142,7 +140,7 @@ Do GL.Lines instead...
 	/// Raises the post render event. Use this for GL stuff.
 	/// </summary>
 	void OnPostRender() {
-		if (type.type == CameraType.Type.Normal) return;
+		if (CamController.Instance.renderMode == CamController.RenderMode.Normal) return;
 		GL.PushMatrix();
 		glLineMaterial.SetPass(0);
 		foreach(LineData line in gl_lines) {

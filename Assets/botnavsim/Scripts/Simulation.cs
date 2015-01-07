@@ -27,9 +27,7 @@ public class Simulation : MonoBehaviour {
 		/// The title of this simulation.
 		/// </summary>
 		public string title = "Simulation";
-		
-		public float initialTimeScale = 1f;
-		
+				
 		/// <summary>
 		/// The number of repeat tests with these parameters.
 		/// </summary>
@@ -136,6 +134,17 @@ public class Simulation : MonoBehaviour {
 		
 		public Settings() {
 			datetime = System.DateTime.Now;
+		}
+		
+		public void Randomize() {
+			title = "Random Settings";
+			numberOfTests = 3;
+			environmentName = EnvLoader.RandomEnvironmentName();
+			robotName = BotLoader.RandomRobotName();
+			navigationAssemblyName = NavLoader.RandomPluginName();
+			randomizeDestination = true;
+			continueOnNavObjectiveComplete = true;
+			continueOnRobotIsStuck = true;
 		}
 	}
 
@@ -246,7 +255,7 @@ public class Simulation : MonoBehaviour {
 	private static Settings _settings;
 	private static Robot _robot;
 	private static bool _paused;
-	private static float _timeScale;
+	private static float _timeScale = 1f;
 	
 	/** Static Methods **/
 	
@@ -305,6 +314,13 @@ public class Simulation : MonoBehaviour {
 		}
 		state = State.finished;
 		Log.Stop(0);
+		if (exhibitionMode) {
+			batch.Clear();
+			settings = new Settings();
+			settings.Randomize();
+			batch.Add(settings);
+			Begin();
+		}
 	}
 	
 	// Return a random position inside the simulation bounds
@@ -322,6 +338,7 @@ public class Simulation : MonoBehaviour {
 	
 	// Routine for starting a new test
 	private static IEnumerator StartTestRoutine() {
+		CamController.Instance.OnTestEnd();
 		StopTest();
 		yield return new WaitForSeconds(1f);
 		if (settings.randomizeOrigin)
@@ -329,6 +346,7 @@ public class Simulation : MonoBehaviour {
 		if (settings.randomizeDestination)
 			destination.transform.position = RandomInBounds();
 		yield return new WaitForSeconds(1f);
+		CamController.Instance.OnTestStart();
 		state = State.simulating;
 		yield return new WaitForSeconds(1f);
 		_startTime = Time.time;
@@ -348,7 +366,6 @@ public class Simulation : MonoBehaviour {
 		Camera.main.transform.parent = null;
 		robot = BotLoader.LoadRobot(settings.robotName);
 		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
-		timeScale = settings.initialTimeScale;
 		testNumber = 0;
 		NextTest(0);
 		yield break;
