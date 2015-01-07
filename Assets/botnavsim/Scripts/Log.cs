@@ -1,32 +1,79 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
 public class Log  {
 
-	public class List {
-		public bool robotPosition;
-		public bool destinationPosition;
-		public bool robotDistanceToDestination;
+	// list of parameters that can be logged
+	public enum Parameters {
+		SimulationTime,
+		SimulationTimeScale,
+		RobotPosition,
+		RobotIsStuck,
+		DestinationPosition,
+		NavigationPathFound,
+		NavigationMoveDirection
 	}
 	
+	// static members
 	public static float rate = 0.05f;
+	public static HashSet<Parameters> availableParams = new HashSet<Parameters>();
+	public static HashSet<Parameters> selectedParams = new HashSet<Parameters>();
 	
 	private static bool logging = false;
 	private static string header;
 	private static Queue<string> log = new Queue<string>();
-
+	
+	// static constructor initialises static members
+	static Log() {
+		foreach(Parameters p in (Parameters[])Enum.GetValues(typeof(Parameters))) {
+			availableParams.Add(p);
+		}
+		// parameters logged by default
+		LogParameter(Parameters.SimulationTime, true);
+		LogParameter(Parameters.RobotPosition, true);
+		LogParameter(Parameters.NavigationMoveDirection, true);
+		LogParameter(Parameters.DestinationPosition, true);
+	}
+	
+	// move a parameter between available and selected
+	public static void LogParameter(Parameters parameter, bool log) {
+		if (log) {
+			if (!availableParams.Contains(parameter)) {
+				Debug.LogWarning("Attempted to log unavailable parameter");
+				return;
+			}
+			availableParams.Remove(parameter);
+			selectedParams.Add(parameter);
+		}
+		else {
+			selectedParams.Remove(parameter);
+			availableParams.Add(parameter);
+		}
+	}
+	
+	// begin logging
 	public static void Start() {
+		Debug.Log("Log Started.");
 		Simulation.Settings info = Simulation.settings;
 		header = Strings.projectTitle + " " + Strings.projectVersion + " - Data Log";
 		header += Strings.newline + info.title + ", " + info.date + " " + info.time;
-		header += Strings.newline + info.summary;
-		header += Strings.newline + "Test number: " + Simulation.testNumber;
+		header += Strings.newline + "Test number, " + Simulation.testNumber + ", of, " + info.numberOfTests;;
+		header += Strings.newline + "Robot, " + info.robotName;
+		header += Strings.newline + "Navigation Assembly, " + info.navigationAssemblyName;
+		header += Strings.newline + "Environment, " + info.environmentName;
+		header += Strings.newline + "Randomize Origin, " + info.randomizeOrigin;
+		header += Strings.newline + "Randomize Destination, " + info.randomizeDestination;
+		header += Strings.newline + "Maximum Test Time, " + info.maximumTestTime;
+		header += Strings.newline + "Continue on NavObjectiveComplete, " + info.continueOnNavObjectiveComplete;
+		header += Strings.newline + "Continue on RobotIsStuck, " + info.continueOnRobotIsStuck;
 		logging = true;
 		Simulation.Instance.StartCoroutine(LogRoutine());
 	}
 	
+	// stop logging, save to file
 	public static void Stop(Simulation.StopCode stopcode) {
 		if (logging) {
 			logging = false;
@@ -36,9 +83,9 @@ public class Log  {
 			}
 			path += "\\" + System.DateTime.Now.ToString("yyyyMMdd-HHmmss-");
 			path += Simulation.settings.title + "_" + Simulation.testNumber;
-			path += ".dat";
-			header += " ran for: " + Simulation.time;
-			header += " and stopped with " + stopcode.ToString() + Strings.newline; 
+			path += ".csv";
+			header += Strings.newline + "Test ran for, " + Simulation.time + ",";
+			header += " and stopped with, " + stopcode.ToString() + Strings.newline; 
 			string data = header + Strings.newline;
 			while(log.Count > 0) {
 				data += log.Dequeue() + Strings.newline;
@@ -50,25 +97,41 @@ public class Log  {
 		log.Clear();
 	}
 	
+	// logging routine
 	private static IEnumerator LogRoutine() {
-		string headings = "\"Time\",\"";
-		headings += "TimeScale\",\"";
-		headings += "Robot Position\",\"";
-		headings += "Destination Position\",\"";
-		headings += "Path Found\",\"";
-		headings += "Navigation Vector\",\"";
-		headings += "Robot Stuck\",\"";
+		string headings = "";
+		foreach(Parameters p in selectedParams) {
+			headings += p.ToString() + ",";
+		}
 		log.Enqueue(headings);
 		while (logging) {
-			string line = "\"" + Simulation.time.ToString() + "\",\"";
-			line += Simulation.timeScale.ToString() + "\",\"";
-			line += Simulation.robot.transform.position.ToString() + "\",\"";
-			line += Simulation.destination.transform.position.ToString() + "\",\"";
-			line += Simulation.robot.navigation.pathFound + "\",\"";
-			line += Simulation.robot.moveCommand + "\",\"";
-			line += Simulation.robot.stuckpc + "\"";
+			string line = "";
+			foreach(Parameters p in selectedParams) {
+				line += "\"" + GetData(p) + "\",";
+			}
 			log.Enqueue(line);
 			yield return new WaitForSeconds(rate);
 		}
+	}
+	
+	// get data for parameter 
+	private static string GetData(Parameters parameter) {
+		switch (parameter) {
+		case Parameters.SimulationTime:
+			return Simulation.time.ToString();
+		case Parameters.SimulationTimeScale:
+			return Simulation.timeScale.ToString();
+		case Parameters.RobotPosition:
+			return Simulation.robot.transform.position.ToString();
+		case Parameters.RobotIsStuck:
+			return Simulation.robot.stuckpc.ToString();
+		case Parameters.DestinationPosition:
+			return Simulation.destination.transform.position.ToString();
+		case Parameters.NavigationPathFound:
+			return Simulation.robot.navigation.pathFound.ToString();
+		case Parameters.NavigationMoveDirection:
+			return Simulation.robot.moveCommand.ToString();
+		}
+		return null;
 	}
 }
