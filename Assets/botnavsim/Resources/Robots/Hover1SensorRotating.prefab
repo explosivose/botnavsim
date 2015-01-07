@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400004}
   - 108: {fileID: 10800002}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Spotlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 114: {fileID: 11400010}
   - 108: {fileID: 10800012}
   - 65: {fileID: 6500010}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ GameObject:
   - 114: {fileID: 11400014}
   - 54: {fileID: 5400000}
   - 135: {fileID: 13500000}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Hover1SensorRotating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -65,7 +65,7 @@ GameObject:
   - 33: {fileID: 3300018}
   - 23: {fileID: 2300018}
   - 114: {fileID: 11400000}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

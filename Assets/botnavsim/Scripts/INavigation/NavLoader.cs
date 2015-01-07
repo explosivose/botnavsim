@@ -27,5 +27,16 @@ public class NavLoader {
 		if (!name.Contains(".dll")) name += ".dll";
 		return _loader.CreatePlugin(_searchDirectory + "\\" + name);
 	}
-
+	
+	public static INavigation RandomPlugin() {
+		SearchForPlugins();
+		int index = UnityEngine.Random.Range(0, pluginsFound.Count-1);
+		return LoadPlugin(pluginsFound[index]);
+	}
+	
+	public static string RandomPluginName() {
+		SearchForPlugins();
+		int index = UnityEngine.Random.Range(0, pluginsFound.Count-1);
+		return pluginsFound[index];
+	}
 }

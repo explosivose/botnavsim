@@ -4,7 +4,7 @@ using System.Collections;
 public static class Strings  {
 
 	public const string projectTitle = "BotNavSim";
-	public const string projectVersion = "v0.2.0";
+	public const string projectVersion = "v0.3.0";
 	
 	public static char[] invalidFileNameChars {
 		get {

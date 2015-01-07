@@ -31,4 +31,16 @@ public class BotLoader {
 		Debug.LogError(name + " robot not found.");
 		return null;
 	}
+	
+	public static Robot RandomRobot() {
+		SearchForRobots();
+		int index = Random.Range(0, robotsFound.Count-1);
+		return LoadRobot(index);
+	}
+	
+	public static string RandomRobotName() {
+		SearchForRobots();
+		int index = Random.Range(0, robotsFound.Count-1);
+		return robotsFound[index].name;
+	}
 }
