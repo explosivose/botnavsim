@@ -28,13 +28,13 @@ public class EnvLoader : MonoBehaviour {
 	
 	public static GameObject RandomEnvironment() {
 		SearchForEnvironments();
-		int index = Random.Range(0, environmentsFound.Count-1);
+		int index = Random.Range(0, environmentsFound.Count);
 		return environmentsFound[index];
 	}
 	
 	public static string RandomEnvironmentName() {
 		SearchForEnvironments();
-		int index = Random.Range(0, environmentsFound.Count-1);
+		int index = Random.Range(0, environmentsFound.Count);
 		return environmentsFound[index].name;
 	}
 }
