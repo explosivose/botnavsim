@@ -133,6 +133,9 @@ public class CamController : Singleton<CamController> {
 	void Update() {
 		_robot = Simulation.robot;
 		
+		if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
+		if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
+		
 		if (Simulation.isRunning) {
 			PerspectiveUpdate();
 		}
