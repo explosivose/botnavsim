@@ -19,8 +19,8 @@ public class Log  {
 	
 	// static members
 	public static float rate = 0.05f;
-	public static HashSet<Parameters> availableParams = new HashSet<Parameters>();
-	public static HashSet<Parameters> selectedParams = new HashSet<Parameters>();
+	public static List<Parameters> availableParams = new List<Parameters>();
+	public static List<Parameters> selectedParams = new List<Parameters>();
 	
 	private static bool logging = false;
 	private static string header;
@@ -42,10 +42,14 @@ public class Log  {
 	public static void LogParameter(Parameters parameter, bool log) {
 		if (log) {
 			if (!availableParams.Contains(parameter)) {
-				Debug.LogWarning("Attempted to log unavailable parameter");
+				Debug.LogWarning("Attempted to log unavailable parameter.");
 				return;
 			}
 			availableParams.Remove(parameter);
+			if (selectedParams.Contains(parameter)) {
+				Debug.LogWarning("Attempted to log parameter twice.");
+				return;
+			}
 			selectedParams.Add(parameter);
 		}
 		else {
