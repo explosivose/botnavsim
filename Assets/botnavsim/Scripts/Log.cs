@@ -62,7 +62,8 @@ public class Log  {
 	public static void Start() {
 		Debug.Log("Log Started.");
 		Simulation.Settings info = Simulation.settings;
-		header = Strings.projectTitle + " " + Strings.projectVersion + " - Data Log";
+		header = Strings.projectTitle + " " + Strings.projectVersion + " - Data Log, " +
+		DateTime.Now.ToShortDateString() + "," + DateTime.Now.ToShortTimeString();
 		header += Strings.newline + info.title + ", " + info.date + " " + info.time;
 		header += Strings.newline + "Test number, " + Simulation.testNumber + ", of, " + info.numberOfTests;;
 		header += Strings.newline + "Robot, " + info.robotName;

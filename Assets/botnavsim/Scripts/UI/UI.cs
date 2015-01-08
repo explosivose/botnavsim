@@ -316,7 +316,9 @@ public class UI : MonoBehaviour {
 				Simulation.Begin();
 			}
 			if (GUILayout.Button("New Simulation...")) {
-				Simulation.state = Simulation.State.preSimulation;
+				Simulation.End();
+				_tempSim = new Simulation.Settings();
+				_window.Pop();
 			}
 		}
 		
