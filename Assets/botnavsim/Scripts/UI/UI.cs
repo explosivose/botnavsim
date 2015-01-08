@@ -254,8 +254,9 @@ public class UI : MonoBehaviour {
 		WindowHeader();
 		
 		GUILayout.BeginHorizontal();
-		GUILayout.Label(Simulation.settings.title + ", " + Simulation.settings.time, GUILayout.Width(lw));
-		GUILayout.Label(Simulation.testNumber + "/" + Simulation.settings.numberOfTests);
+		GUILayout.Label(Simulation.settings.title + "(" + Simulation.simulationNumber + "/" +
+			Simulation.batch.Count + ") " +  Simulation.settings.time, GUILayout.Width(lw));
+		GUILayout.Label("Test " + Simulation.testNumber + "/" + Simulation.settings.numberOfTests);
 		GUILayout.EndHorizontal();
 		
 		GUILayout.BeginHorizontal();
@@ -300,13 +301,13 @@ public class UI : MonoBehaviour {
 					Simulation.paused = true;
 			}
 			if (GUILayout.Button("Stop")) {
+				Simulation.exhibitionMode = false;
 				Simulation.End();
 				_window.Pop();
 			}
 			GUILayout.EndHorizontal();
 			if (GUILayout.Button("Next Test")) {
 				Simulation.NextTest(Simulation.StopCode.UserRequestNextTest);
-				_window.Pop();
 			}
 			
 		}

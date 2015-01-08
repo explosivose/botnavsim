@@ -271,8 +271,7 @@ public class Simulation : MonoBehaviour {
 	// Start the next simulation
 	public static void NextSimulation() {
 		Log.Stop(0);
-		if (++simulationNumber > batch.Count) {
-			simulationNumber--;
+		if (simulationNumber >= batch.Count) {
 			End();
 			return;
 		}
@@ -282,12 +281,10 @@ public class Simulation : MonoBehaviour {
 	// Start the next test in the simulation
 	public static void NextTest(StopCode code) {
 		Log.Stop(code);
-		if (++testNumber > settings.numberOfTests) {
-			testNumber--;
+		if (testNumber >= settings.numberOfTests) {
 			NextSimulation();
 			return;
 		}
-		
 		Instance.StartCoroutine(StartTestRoutine());
 	}
 	
@@ -351,6 +348,7 @@ public class Simulation : MonoBehaviour {
 		yield return new WaitForSeconds(1f);
 		CamController.Instance.OnTestStart();
 		state = State.simulating;
+		testNumber++;
 		yield return new WaitForSeconds(1f);
 		_startTime = Time.time;
 		if (loggingEnabled) Log.Start();
@@ -361,6 +359,7 @@ public class Simulation : MonoBehaviour {
 	// Routine for starting a new simulation
 	private static IEnumerator StartSimulationRoutine() {
 		StopSimulation();
+		simulationNumber++;
 		settings = batch[simulationNumber-1];
 		if (environment) environment.transform.Recycle();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
