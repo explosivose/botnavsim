@@ -34,14 +34,20 @@ public class PluginFactory<T> {
 		List<string> list = new List<string>();
 		// find .dll files
 		foreach (string file in Directory.GetFiles(path, "*.dll")) {
-			Assembly assembly = Assembly.LoadFrom(file);
+			Assembly assembly;
+			try {
+				assembly = Assembly.LoadFrom(file);
+			}
+			catch(Exception e) {
+				Debug.LogError(file + ": " + e + " " + e.Message + ")");
+				continue;
+			}
 			Type[] types;
 			try {
 				types = assembly.GetTypes();
 			}
-			catch {
-				Debug.LogError(file + " is not INavigation compatible!");
-				list.Add("INCOMPATIBLE: " + Path.GetFileName(file));
+			catch(Exception e) {
+				Debug.LogError(file + ": " + e + " " + e.Message + ")");
 				continue;
 			}
 			foreach (Type assemblyType in types) {
@@ -54,4 +60,5 @@ public class PluginFactory<T> {
 		
 		return list;
 	}
+	
 }
