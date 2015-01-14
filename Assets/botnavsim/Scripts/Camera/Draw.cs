@@ -69,10 +69,11 @@ Do GL.Lines instead...
 	}
 	
 	public void Line(Vector3 start, Vector3 end, Color color) {
+		/*
 		if (Simulation.robot.navigation.spaceRelativeTo == Space.Self) {
 			start = Simulation.robot.transform.TransformPoint(start);
 			end = Simulation.robot.transform.TransformPoint(end);
-		}
+		}*/
 		gl_lines.Add(new LineData(start, end, color));
 	}
 	

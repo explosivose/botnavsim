@@ -111,7 +111,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
@@ -183,7 +183,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 145
-  orthographic: 1
+  orthographic: 0
   orthographic size: 2
   m_Depth: -1
   m_CullingMask:
@@ -203,12 +203,12 @@ Transform:
   m_PrefabInternal: {fileID: 349332547}
   m_GameObject: {fileID: 77809484}
   m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
-  m_LocalPosition: {x: 27, y: 0, z: 66}
+  m_LocalPosition: {x: 27, y: 16, z: -13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 610891078}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &77809492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,11 +307,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 66
+      value: -13
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_LocalRotation.x
@@ -331,7 +331,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_Enabled
@@ -348,6 +348,10 @@ Prefab:
     - target: {fileID: 400002, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_LocalPosition.z
       value: 1.00000024
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: orthographic
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
@@ -570,7 +574,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!114 &1780533663
 MonoBehaviour:
   m_ObjectHideFlags: 0

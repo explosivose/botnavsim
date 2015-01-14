@@ -11,7 +11,7 @@ public class Robot : MonoBehaviour {
 	public bool 		faceMoveDirection = false;
 	public float 		maxSpeed = 10f;
 	public float		stopDistance;	// how close the robot will get to _destination before stopping
-	public Sensor[] 	sensors;
+	public ParamSensor[] 	sensors;
 	public Transform 	destination;	
 
 	
@@ -67,9 +67,9 @@ public class Robot : MonoBehaviour {
 	/// </summary>
 	/// <value>Depth data from the next sensor in a circular
 	/// indexed array of sensors</value>
-	public Sensor.ProximityData nextSensorData {
+	public ProximityData nextSensorData {
 		get {
-			Sensor.ProximityData data = sensors[_snsrIndex].data;
+			ProximityData data = sensors[_snsrIndex].GetData();
 			if (++_snsrIndex >= sensors.Length) _snsrIndex = 0;
 			return data;
 		}
@@ -147,7 +147,7 @@ public class Robot : MonoBehaviour {
 
 	
 	public void InitialiseSensors() {
-		sensors = GetComponentsInChildren<Sensor>();
+		sensors = GetComponentsInChildren<ParamSensor>();
 	}
 	
 	// private methods
@@ -163,8 +163,9 @@ public class Robot : MonoBehaviour {
 	}
 	
 	private void Update() {
+		ProximityData data = nextSensorData;
 		if (_navigation == null) return;
-
+		
 		
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
@@ -173,7 +174,7 @@ public class Robot : MonoBehaviour {
 			_manualMove.z = y * maxSpeed;
 		}
 		else if (Simulation.isRunning){
-			Sensor.ProximityData data = nextSensorData;
+			
 			if (_navigation.spaceRelativeTo == Space.Self) {
 				data.direction = transform.InverseTransformDirection(data.direction);
 				_navigation.Proximity(Vector3.zero, data.direction, data.obstructed);
