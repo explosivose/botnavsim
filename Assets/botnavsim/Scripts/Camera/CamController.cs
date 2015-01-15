@@ -125,6 +125,7 @@ public class CamController : Singleton<CamController> {
 	private RenderMode _r;
 	private Camera _camera;
 	private Robot _robot;
+	private float _birdseyeDist = 0f;
 	private float _3rdPersonDist = 10f;
 	private Vector3 _3rdPersonDir = Vector3.one;
 
@@ -165,8 +166,12 @@ public class CamController : Singleton<CamController> {
 
 	void BirdseyePerspective() {
 		
+		// scrollwheel zoom
+		_birdseyeDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
+		
 		// size orthographic camera to fit robot and destination in shot
 		float size = Simulation.robot.distanceToDestination * 0.75f;
+		size += _birdseyeDist;
 		size = Mathf.Max(size, 10f);
 		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
 		
