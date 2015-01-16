@@ -4,24 +4,62 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+/// <summary>
+/// Provides data logging capabilities. Data is logged in CSV format.
+/// </summary>
 public class Log  {
 
-	// list of parameters that can be logged
+	
 	public enum Parameters {
+		/// <summary>
+		/// The simulation time (float).
+		/// </summary>
 		SimulationTime,
+		/// <summary>
+		/// The simulation time scale (float).
+		/// </summary>
 		SimulationTimeScale,
+		/// <summary>
+		/// The robot current position (Vector3).
+		/// </summary>
 		RobotPosition,
+		/// <summary>
+		/// Indication of robot stuck detection as percentage (0 to 100).
+		/// </summary>
 		RobotIsStuck,
+		/// <summary>
+		/// The destination position (Vector3).
+		/// </summary>
 		DestinationPosition,
+		/// <summary>
+		/// Bool output from INavigation.pathFound
+		/// </summary>
 		NavigationPathFound,
+		/// <summary>
+		/// Vector3 output from INavigation.PathDirection
+		/// </summary>
 		NavigationMoveDirection
 	}
 	
-	// static members
-	public static float rate = 0.05f;
+	/// <summary>
+	/// The time between log entries.
+	/// </summary>
+	public static float timeStep = 0.05f;
+	
+	/// <summary>
+	/// List of parameters that haven't been selected for logging.
+	/// </summary>
 	public static List<Parameters> availableParams = new List<Parameters>();
+	
+	/// <summary>
+	/// List of parameters selected for logging.
+	/// </summary>
 	public static List<Parameters> selectedParams = new List<Parameters>();
 	
+	
+	/// <summary>
+	/// The logging.
+	/// </summary>
 	private static bool logging = false;
 	private static string header;
 	private static Queue<string> log = new Queue<string>();
@@ -115,7 +153,7 @@ public class Log  {
 				line += "\"" + GetData(p) + "\",";
 			}
 			log.Enqueue(line);
-			yield return new WaitForSeconds(rate);
+			yield return new WaitForSeconds(timeStep);
 		}
 	}
 	
