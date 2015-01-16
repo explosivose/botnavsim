@@ -1,0 +1,4 @@
+<map id="Robot" name="Robot">
+<area shape="rect" id="node3" href="$class_param_sensor.html" title="ParamSensor" alt="" coords="98,81,199,108"/>
+<area shape="rect" id="node4" href="$interface_i_sensor.html" title="ISensor" alt="" coords="141,5,207,32"/>
+</map>
