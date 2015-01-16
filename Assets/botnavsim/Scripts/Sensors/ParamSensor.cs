@@ -34,7 +34,8 @@ public class ParamSensor : MonoBehaviour, ISensor {
 			if (check < proximity) proximity = check;
 		}
 		_data.direction = transform.forward * proximity;
-		if (proximity + 1f < maxRange) _data.obstructed = true;
+		if (proximity < maxRange * 0.75f) _data.obstructed = true;
+		else _data.obstructed = false;
 	}
 	
 	private float Cast(Vector3 direction) {

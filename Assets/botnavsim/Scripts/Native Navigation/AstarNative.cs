@@ -55,7 +55,7 @@ public class AstarNative : MonoBehaviour, INavigation {
 	/// <param name="end">End of sensor range.</param>
 	/// <param name="obstructed"><c>true</c> indicates obstruction at
 	/// the end of the sensor range.</param>
-	public void Proximity(Vector3 from, Vector3 to, bool obstructed) {
+	public void Proximity(Vector3 from, Vector3 to, float fov, bool obstructed) {
 		
 		Vector3 mark = from;
 		float length = Vector3.Distance(from, to);

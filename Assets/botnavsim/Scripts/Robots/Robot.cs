@@ -177,11 +177,16 @@ public class Robot : MonoBehaviour {
 			
 			if (_navigation.spaceRelativeTo == Space.Self) {
 				data.direction = transform.InverseTransformDirection(data.direction);
-				_navigation.Proximity(Vector3.zero, data.direction, data.obstructed);
+				_navigation.Proximity(Vector3.zero, 
+										data.direction, 
+										20f,
+										data.obstructed);
 			}
 			else {
 				_navigation.Proximity(transform.position, 
-				                      transform.position + data.direction, data.obstructed);
+				                      transform.position + data.direction, 
+				                      20f,
+				                      data.obstructed);
 			}
 			
 			if (destination.hasChanged) {

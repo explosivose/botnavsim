@@ -53,7 +53,7 @@ public interface INavigation {
 	/// <param name="from">Sensor position.</param>
 	/// <param name="to">Sensor reading position.</param>
 	/// <param name="obstructed">If set to <c>true</c> position at <param name="to"/> is obstructed.</param>
-	void Proximity(Vector3 from, Vector3 to, bool obstructed);
+	void Proximity(Vector3 from, Vector3 to, float FOV, bool obstructed);
 	
 	/// <summary>
 	/// Indicates the frame of reference

@@ -565,8 +565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawDebug: 1
-  FOV: 40
-  maxRange: 20
+  FOV: 30
+  maxRange: 15
   maxUpdateRate: 10
 --- !u!114 &11400004
 MonoBehaviour:
@@ -580,8 +580,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawDebug: 1
-  FOV: 40
-  maxRange: 20
+  FOV: 30
+  maxRange: 15
   maxUpdateRate: 10
 --- !u!114 &11400006
 MonoBehaviour:
@@ -595,8 +595,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawDebug: 1
-  FOV: 40
-  maxRange: 20
+  FOV: 30
+  maxRange: 15
   maxUpdateRate: 10
 --- !u!114 &11400008
 MonoBehaviour:
@@ -610,8 +610,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawDebug: 1
-  FOV: 40
-  maxRange: 20
+  FOV: 30
+  maxRange: 15
   maxUpdateRate: 10
 --- !u!135 &13500000
 SphereCollider:

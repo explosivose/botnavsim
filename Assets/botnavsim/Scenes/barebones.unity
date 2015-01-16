@@ -111,7 +111,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
@@ -183,7 +183,7 @@ Camera:
   near clip plane: .300000012
   far clip plane: 1000
   field of view: 145
-  orthographic: 0
+  orthographic: 1
   orthographic size: 2
   m_Depth: -1
   m_CullingMask:
@@ -283,7 +283,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
       propertyPath: m_Name
@@ -331,7 +331,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 11400006, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: m_Enabled
@@ -351,7 +351,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: orthographic
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
