@@ -57,11 +57,11 @@ public class Log  {
 	public static List<Parameters> selectedParams = new List<Parameters>();
 	
 	
-	/// <summary>
-	/// The logging.
-	/// </summary>
+	// flag used for running log routine
 	private static bool logging = false;
+	// metadata to write to the top of the CSV file
 	private static string header;
+	// FIFO timeframe data buffer to be written to file 
 	private static Queue<string> log = new Queue<string>();
 	
 	// static constructor initialises static members
@@ -76,7 +76,11 @@ public class Log  {
 		LogParameter(Parameters.DestinationPosition, true);
 	}
 	
-	// move a parameter between available and selected
+	/// <summary>
+	/// Moves parameters between availableParams and selectedParams lists.
+	/// </summary>
+	/// <param name="parameter">Parameter.</param>
+	/// <param name="log">If set to <c>true</c> parameter is added to selectedParams for logging.</param>
 	public static void LogParameter(Parameters parameter, bool log) {
 		if (log) {
 			if (!availableParams.Contains(parameter)) {
@@ -96,7 +100,9 @@ public class Log  {
 		}
 	}
 	
-	// begin logging
+	/// <summary>
+	/// Start logging.
+	/// </summary>
 	public static void Start() {
 		Debug.Log("Log Started.");
 		Simulation.Settings info = Simulation.settings;
@@ -116,7 +122,10 @@ public class Log  {
 		Simulation.Instance.StartCoroutine(LogRoutine());
 	}
 	
-	// stop logging, save to file
+	/// <summary>
+	/// Stop logging with Simulation.Stopcode and write log to file.
+	/// </summary>
+	/// <param name="stopcode">Stopcode.</param>
 	public static void Stop(Simulation.StopCode stopcode) {
 		if (logging) {
 			logging = false;
