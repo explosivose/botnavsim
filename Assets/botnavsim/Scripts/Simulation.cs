@@ -382,9 +382,6 @@ public class Simulation : MonoBehaviour {
 	
 
 	
-	/** Instance Members **/
-	
-	public AstarNative astar;
 
 	/** Instance Methods **/
 
@@ -395,7 +392,6 @@ public class Simulation : MonoBehaviour {
 		else {
 			Instance = this;
 		}
-		astar = GetComponent<AstarNative>();
 		_settings = new Settings();
 	}
 	

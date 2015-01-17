@@ -113,7 +113,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11400002, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
   m_RootGameObject: {fileID: 1590369736}
   m_IsPrefabParent: 0
@@ -490,7 +491,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1590369738}
   - 114: {fileID: 1590369737}
-  - 114: {fileID: 1590369739}
   m_Layer: 0
   m_Name: Simulation
   m_TagString: Untagged
@@ -510,7 +510,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13a05817dcfc1445a95b70cb3125758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  astar: {fileID: 0}
 --- !u!4 &1590369738
 Transform:
   m_ObjectHideFlags: 0
@@ -523,30 +522,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
---- !u!114 &1590369739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11400002, guid: 789dde9025c152f4f8015e9c9b4c8894,
-    type: 2}
-  m_PrefabInternal: {fileID: 27252157}
-  m_GameObject: {fileID: 1590369736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45bfd662851fc64ca7d59aefdd36029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  showsteps: 0
-  steptime: 0
-  graphData:
-    drawDebug: 1
-    X: 50
-    Y: 50
-    spacing: 2
-    detectObstacles: 1
-    obstacleMask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    nodeRenderPrefab: {fileID: 0}
 --- !u!1 &1780533659
 GameObject:
   m_ObjectHideFlags: 0
