@@ -140,7 +140,7 @@ public class CamController : Singleton<CamController> {
 		if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
 		if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
 		
-		if (Simulation.isReady) {
+		if (Simulation.settings.isValid) {
 			PerspectiveUpdate();
 			RenderModeUpdate();
 		}
