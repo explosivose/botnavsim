@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class EnvLoader : MonoBehaviour {
+public class EnvLoader  {
 
 	public static List<GameObject> environmentsFound = new List<GameObject>();
 	

@@ -3,18 +3,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// All BotNavSim GUI functions.
+/// </summary>
 public class UI : MonoBehaviour {
 
-	private Stack<GUI.WindowFunction> _window;
-	private GUISkin _skin;
-	private Rect _rect;
-	private Simulation.Settings _tempSim;
-	private string 	_navListSelection;
-	private string 	_robotGallerySelection;
-	private string 	_environmentGallerySelection;
-	private int _batchIndex;
-	private bool _liveEditSettings;
+	private Stack<GUI.WindowFunction> _window; 	// Stack of window functions
+	private GUISkin _skin;						// GUISkin describes graphical behaviour of GUI elements
+	private Rect _rect;							// Rect holds size and position of window
+	private Simulation.Settings _tempSim;		// Stores temporary Simulation.Settings
+	private string _navListSelection;			// Stores temporary selection from NavListWindow
+	private string _robotGallerySelection;		// Stores temporary selection from RobotGalleryWindow
+	private string _environmentGallerySelection;// Stores temporary selection from EnvironmentGalleryWindow
+	private int _batchIndex;					// Stores index for Simulation.batch
+	private bool _liveEditSettings;				// Boolean for show/hide edit settings dialog
 
+	// Monobehaviour initialisation
 	void Awake() {
 		_skin = Resources.Load<GUISkin>("GUI_style");
 		_rect = new Rect();
@@ -22,6 +26,7 @@ public class UI : MonoBehaviour {
 		_window = new Stack<GUI.WindowFunction>();
 	}
 
+	// Monobehaviour initialisation (Awake is called after Start)
 	void Start() {
 		NavLoader.SearchForPlugins();
 		BotLoader.SearchForRobots();
@@ -32,13 +37,15 @@ public class UI : MonoBehaviour {
 		_window.Push(SetupWindow);
 	}
 
+	// Monobehaviour OnGUI (called every frame)
 	void OnGUI() {
+		// draw window on the top of the _window stack using _skin GUISkin
 		GUI.skin = _skin;
 		_rect.height = 0f;
 		_rect = GUILayout.Window(0, _rect, _window.Peek(), Strings.projectTitle + " " + Strings.projectVersion);
-
 	}
-
+	
+	// Header elements for window functions
 	void WindowHeader() {
 		if (GUILayout.Button("Exit Application")) {
 			Application.Quit();
@@ -46,6 +53,9 @@ public class UI : MonoBehaviour {
 		GUILayout.Space (10);
 	}
 
+	/// <summary>
+	/// Pre-Simulation window function.
+	/// </summary>
 	void SetupWindow(int windowID) {
 		
 		float lw = 200f;
