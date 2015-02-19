@@ -451,10 +451,14 @@ public class Simulation : MonoBehaviour {
 		CamController.Instance.OnTestEnd();
 		StopTest();
 		yield return new WaitForSeconds(1f);
-		if (settings.randomizeOrigin)
+		if (settings.randomizeOrigin) {
 			robot.transform.position = RandomInBounds();
+			robot.transform.rotation = Quaternion.identity;
+		}
+			
 		if (settings.randomizeDestination)
 			destination.transform.position = RandomInBounds();
+			
 		yield return new WaitForSeconds(1f);
 		CamController.Instance.OnTestStart();
 		state = State.simulating;

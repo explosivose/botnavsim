@@ -12,10 +12,8 @@ public class Robot : MonoBehaviour {
 
 	// public fields
 	// ~-~-~-~-~-~-~-~-
-	public bool 		manualControl = false;
+	public bool 		manualControl;
 	public bool 		moveEnabled;
-	public bool 		faceMoveDirection = false;
-	public float 		maxSpeed = 10f;
 	public float		stopDistance;	// how close the robot will get to _destination before stopping
 	public ParamSensor[] 	sensors;
 	public Transform 	destination;	
@@ -26,7 +24,6 @@ public class Robot : MonoBehaviour {
 	
 	private INavigation _navigation;
 	private Vector3 	_move;			// the move command applied to our rigidbody
-	private Vector3 	_manualMove;
 	private Vector3?	_destination;	// used to automatically stop when near a target location
 	private int 		_snsrIndex;		// circular index for sensor array
 	private int 		_stuckCounter;
@@ -99,34 +96,6 @@ public class Robot : MonoBehaviour {
 			return data;
 		}
 	}
-	
-	public string description {
-		get {
-			int distance = Mathf.RoundToInt(
-				Vector3.Distance(transform.position,destination.position));
-			string desc = "";
-
-			if (atDestination) desc += "Arrived at destination!" + "\n";
-
-			desc = "Number of sensors: " + sensors.Length.ToString() + "\n";
-			if (isStuck) {
-				desc += "\"I think I'm stuck!!\"\n";
-			}
-			if (_navigation == null) {
-				desc += "Navigation Algorithm not loaded...\n";
-			}
-			else {
-				if (!_navigation.pathFound) {
-					desc += "Waiting for path...\n";
-				}
-				else if (!atDestination)  {
-					desc += "Robot speed: " + (100f * speed01).ToString("0") + "%\n";
-					desc += "Distance remaining: " + distance.ToString() + "\n";
-				}
-			}
-			return desc;
-		}
-	}
 
 	public bool atDestination {
 		get {
@@ -141,12 +110,6 @@ public class Robot : MonoBehaviour {
 		get {
 			if (!destination) return 0f;
 			else return Vector3.Distance(transform.position, destination.position);
-		}
-	}
-
-	public float speed01 {
-		get {
-			return rigidbody.velocity.magnitude/maxSpeed;
 		}
 	}
 
@@ -165,18 +128,23 @@ public class Robot : MonoBehaviour {
 	// public methods
 	// ~-~-~-~-~-~-~-~-
 	
+	/// <summary>
+	/// Start moving toward destination.
+	/// </summary>
 	public void NavigateToDestination() {
 		if (_navigation == null) return;
 		StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
 	}
 
 	
-	public void InitialiseSensors() {
+	// private methods
+	// ~-~-~-~-~-~-~-~-
+	
+	// Populate sensor array
+	private void InitialiseSensors() {
 		sensors = GetComponentsInChildren<ParamSensor>();
 	}
 	
-	// private methods
-	// ~-~-~-~-~-~-~-~-
 	private void Awake() {
 		InitialiseSensors();
 		StartCoroutine(StuckDetector());
@@ -195,11 +163,12 @@ public class Robot : MonoBehaviour {
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
 			float y = Input.GetAxis ("Vertical");
-			_manualMove.x = x * maxSpeed;
-			_manualMove.z = y * maxSpeed;
+			_move.x = x;
+			_move.z = y;
 		}
 		else if (Simulation.isRunning){
 			
+			// Pass sensor data to INavigation
 			if (_navigation.spaceRelativeTo == Space.Self) {
 				data.direction = transform.InverseTransformDirection(data.direction);
 				_navigation.Proximity(Vector3.zero, 
@@ -214,6 +183,7 @@ public class Robot : MonoBehaviour {
 				                      data.obstructed);
 			}
 			
+			// Update INavigation.destination if it has changed.
 			if (destination.hasChanged) {
 				if (_navigation.spaceRelativeTo == Space.Self) {
 					Vector3 dest = transform.InverseTransformPoint(destination.position);
@@ -225,7 +195,9 @@ public class Robot : MonoBehaviour {
 				
 				destination.hasChanged = false;
 			}
-			if (_navigation.pathFound)
+			
+			// Read move direction if a path has been found.
+			if (_navigation.pathFound) {
 				if (navigation.spaceRelativeTo == Space.Self) {
 					_move = _navigation.PathDirection(Vector3.zero);
 					_move = transform.TransformDirection(_move);
@@ -233,36 +205,20 @@ public class Robot : MonoBehaviour {
 				else {
 					_move = _navigation.PathDirection(transform.position);
 				}
-			else
+				Debug.DrawRay(transform.position, _move, Color.green);
+			}
+			else {
 				_move = Vector3.zero;
+			}		
 		}
-
 	}
 	
-	private void FixedUpdate() {
-		bool canMove = moveEnabled || manualControl;
-		Vector3 move = manualControl ? _manualMove : _move;
-		if (_destination.HasValue) {
-			if (atDestination) {
-				canMove = false;
-			}
-		}
-		if (canMove) {
-			if (move != Vector3.zero) {
-				Quaternion rotation = Quaternion.LookRotation(move);
-				transform.rotation = rotation;//Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
-			}
-			Vector3 force = move.normalized * rigidbody.mass * rigidbody.drag * maxSpeed;
-			//rigidbody.AddForce(force);
-		}
-		Debug.DrawRay(transform.position, move, Color.green);
-	}
-	
-	void OnDrawGizmos() {
+	private void OnDrawGizmos() {
 		if (_navigation != null)
 			_navigation.DrawGizmos();
 	}
 	
+	// detects if robot appears to be stuck taking an average position over time
 	private IEnumerator StuckDetector() {
 		_positions = new Vector3[30];
 		int i = 0;

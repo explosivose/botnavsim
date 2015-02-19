@@ -5,7 +5,7 @@ using System.Collections;
 public class BoeBot : MonoBehaviour {
 
 	// public fields
-	public float torque;
+	public float maxTorque;
 	public float window = 0.1f;
 	
 	// References to robot topology
@@ -30,6 +30,13 @@ public class BoeBot : MonoBehaviour {
 		Vector3 right = transform.right;
 		_moveDirection = _robot.moveCommand;
 		
+		// do nothing if move command is small (expected length is 1f)
+		if (_moveDirection.magnitude < 0.5f) {
+			_rightWheel.motorTorque = 0f;
+			_leftWheel.motorTorque = 0f;
+			return;
+		}
+		
 		// Ignore y component
 		right.y = 0f;
 		_moveDirection.y = 0f;
@@ -38,18 +45,18 @@ public class BoeBot : MonoBehaviour {
 		float error = Vector3.Dot(right, _moveDirection);
 		if (error > window) {
 			// turn right
-			_rightWheel.motorTorque = torque;
-			_leftWheel.motorTorque = -torque;
+			_rightWheel.motorTorque = maxTorque * 0.5f;
+			_leftWheel.motorTorque = -maxTorque * 0.5f;
 		}
 		else if (error < -window) {
 			// turn left
-			_rightWheel.motorTorque = -torque;
-			_leftWheel.motorTorque = torque;
+			_rightWheel.motorTorque = -maxTorque * 0.5f;
+			_leftWheel.motorTorque = maxTorque * 0.5f;
 		}
 		else {
 			// go forwards
-			_rightWheel.motorTorque = torque;
-			_leftWheel.motorTorque = torque;
+			_rightWheel.motorTorque = maxTorque;
+			_leftWheel.motorTorque = maxTorque;
 		}
 		
 		
