@@ -2,6 +2,12 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody))]
+/// <summary>
+/// Robot class bridges the gap between sensors and INavigation. The navigation 
+/// direction is cached in Robot.moveCommand. This class does not implement
+/// any physics simulation. Robot locomotion models are implemented
+/// in other classes that require this component for communications and data. 
+/// </summary>
 public class Robot : MonoBehaviour {
 
 	// public fields
@@ -29,6 +35,13 @@ public class Robot : MonoBehaviour {
 	// public properties
 	// ~-~-~-~-~-~-~-~-
 	
+	/// <summary>
+	/// Interface to the navigation assembly. 
+	/// </summary>
+	/// <value>When set, the INavigation interface is initialised:
+	/// INavigation.searchBounds is set, 
+	/// INavigation.origin is set,
+	/// INavigation.destination is set.</value>
 	public INavigation 	navigation {
 		get {
 			return _navigation;
@@ -48,17 +61,29 @@ public class Robot : MonoBehaviour {
 		}
 	}
 	
+	/// <summary>
+	/// The normalized move command direction from INavigation. 
+	/// </summary>
+	/// <value>The move command.</value>
 	public Vector3 moveCommand {
 		get {
 			return _move.normalized;
 		}
 	}
 	
+	/// <summary>
+	/// Gets or sets the transform position.
+	/// </summary>
+	/// <value>The transform position.</value>
 	public Vector3 position {
 		get{ return transform.position; }
 		set{ transform.position = value; }
 	}
 	
+	/// <summary>
+	/// The first-person perspective camera position. 
+	/// </summary>
+	/// <value>The camera mount position.</value>
 	public Transform cameraMount { get; private set; }
 	
 	/// <summary>
@@ -228,7 +253,7 @@ public class Robot : MonoBehaviour {
 				transform.rotation = rotation;//Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 4f);
 			}
 			Vector3 force = move.normalized * rigidbody.mass * rigidbody.drag * maxSpeed;
-			rigidbody.AddForce(force);
+			//rigidbody.AddForce(force);
 		}
 		Debug.DrawRay(transform.position, move, Color.green);
 	}
