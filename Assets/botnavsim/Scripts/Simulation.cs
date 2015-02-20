@@ -135,23 +135,6 @@ public class Simulation : MonoBehaviour {
 				return robotName + "|" + navigationAssemblyName + "|" + environmentName;
 			}
 		}
-		public string summary {
-			get {
-				string s = "";
-				s += "Number of tests: " + numberOfTests;
-				s += "\nRobot: " + robotName;
-				s += "\nNavigation Assembly: " + navigationAssemblyName;
-				s += "\nEnvironment: " + environmentName;
-				if (randomizeDestination)
-					s += "\nRandom destination";
-				if (randomizeOrigin)
-					s += "\nRandom origin.";
-				if (continueOnRobotIsStuck)
-					s += "\nAuto repeat if robot gets stuck.";
-				
-				return s;
-			}
-		}
 		public System.DateTime datetime {get; private set;}
 		public string date {
 			get {
@@ -211,6 +194,7 @@ public class Simulation : MonoBehaviour {
 		get { return _settings; }
 		set {
 			_settings.active = false;
+			ObjectSerializer.SerializeObject(value, "SimulationSettings.xml");
 			_settings = value;
 			_settings.active = true;
 		}
