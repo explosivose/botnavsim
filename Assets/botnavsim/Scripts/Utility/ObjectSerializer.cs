@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 using System.Collections;
 using System.Xml;
 using System.Xml.Serialization;
@@ -66,5 +67,13 @@ public class ObjectSerializer {
 			Debug.LogException(e);
 		}
 		return objectOut;
+	}
+	
+	public static List<string> SearchForObjects(string path) {
+		List<string> objectsFound = new List<string>();
+		foreach (string file in Directory.GetFiles(path, "*.xml")) {
+			objectsFound.Add(Path.GetFileNameWithoutExtension(file));
+		}
+		return objectsFound;
 	}
 }

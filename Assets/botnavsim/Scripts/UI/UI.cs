@@ -17,13 +17,15 @@ public class UI : MonoBehaviour {
 	private string _environmentGallerySelection;// Stores temporary selection from EnvironmentGalleryWindow
 	private int _batchIndex;					// Stores index for Simulation.batch
 	private bool _liveEditSettings;				// Boolean for show/hide edit settings dialog
-
+	private List<string> _simulationFiles;		// List of simulation.setting XML files
+	
 	// Monobehaviour initialisation
 	void Awake() {
 		_skin = Resources.Load<GUISkin>("GUI_style");
 		_rect = new Rect();
 		_tempSim = new Simulation.Settings();
 		_window = new Stack<GUI.WindowFunction>();
+		_simulationFiles = new List<string>();
 	}
 
 	// Monobehaviour initialisation (Awake is called after Start)
@@ -66,7 +68,14 @@ public class UI : MonoBehaviour {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Simulation Setup");
 		GUILayout.EndHorizontal();
-
+		
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("Add to batch from file...")) {
+			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
+			_window.Push(SimulationListWindow);
+		}
+		GUILayout.EndHorizontal();
+		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Log to file: ", GUILayout.Width(lw));
 		Simulation.loggingEnabled = GUILayout.Toggle(Simulation.loggingEnabled, "");
@@ -459,6 +468,10 @@ public class UI : MonoBehaviour {
 			_window.Push(SimulationWindow);
 			Simulation.Begin();
 		}
+		if (GUILayout.Button("Add to batch from file...")) {
+			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
+			_window.Push(SimulationListWindow);
+		}
 		GUILayout.Space (20);
 		if (GUILayout.Button("Clear Batch")) {
 			Simulation.batch.Clear();
@@ -526,6 +539,32 @@ public class UI : MonoBehaviour {
 				GUILayout.Button("");
 			}
 			GUILayout.EndHorizontal();
+		}
+	}
+	
+	void SimulationListWindow(int windowID) {
+		WindowHeader();
+		// back button
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("<", GUILayout.Width(30f))) {
+			_window.Pop();
+		}
+		if (GUILayout.Button("R", GUILayout.Width(30f))) {
+			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
+		}
+		GUILayout.EndHorizontal();
+		
+		for (int i = 0; i < _simulationFiles.Count; i++) {
+			if (GUILayout.Button(_simulationFiles[i])) {
+				string path = Strings.simulationFileDirectory + "\\";
+				path += _simulationFiles[i] + ".xml";
+				Simulation.Settings settings = ObjectSerializer.DeSerializeObject<Simulation.Settings>(path);
+				if (settings != null) {
+					settings.active = false;
+					Simulation.batch.Add(settings);
+					_window.Pop();
+				}
+			}
 		}
 	}
 }

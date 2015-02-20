@@ -133,7 +133,7 @@ public class Log  {
 			if (!Directory.Exists(path)) {
 				Directory.CreateDirectory(path);
 			}
-			path += "\\" + System.DateTime.Now.ToString("yyyyMMdd-HHmmss-");
+			path += "\\" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss_");
 			path += Simulation.settings.title + "_" + Simulation.testNumber;
 			path += ".csv";
 			header += Strings.newline + "Test ran for, " + Simulation.time + ",";

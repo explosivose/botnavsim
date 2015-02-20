@@ -559,7 +559,7 @@ Rigidbody:
   m_GameObject: {fileID: 100014}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 2
+  m_Drag: .5
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1aa0ff293dac9469ed44d2319442bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTorque: 10
+  maxTorque: 6
   window: .100000001
 --- !u!114 &11400002
 MonoBehaviour:
@@ -652,9 +652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualControl: 0
   moveEnabled: 0
-  faceMoveDirection: 0
-  maxSpeed: 0
-  stopDistance: 0
+  stopDistance: 1
   sensors: []
   destination: {fileID: 0}
 --- !u!114 &11400004

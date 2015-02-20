@@ -45,13 +45,13 @@ public class BoeBot : MonoBehaviour {
 		float error = Vector3.Dot(right, _moveDirection);
 		if (error > window) {
 			// turn right
-			_rightWheel.motorTorque = maxTorque * 0.5f;
-			_leftWheel.motorTorque = -maxTorque * 0.5f;
+			_rightWheel.motorTorque = maxTorque;
+			_leftWheel.motorTorque = -maxTorque;
 		}
 		else if (error < -window) {
 			// turn left
-			_rightWheel.motorTorque = -maxTorque * 0.5f;
-			_leftWheel.motorTorque = maxTorque * 0.5f;
+			_rightWheel.motorTorque = -maxTorque;
+			_leftWheel.motorTorque = maxTorque;
 		}
 		else {
 			// go forwards

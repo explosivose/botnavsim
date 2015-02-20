@@ -132,7 +132,12 @@ public class Simulation : MonoBehaviour {
 		
 		public string name {
 			get {
-				return robotName + "|" + navigationAssemblyName + "|" + environmentName;
+				return robotName + "_" + navigationAssemblyName + "_" + environmentName;
+			}
+		}
+		public string fileName {
+			get {
+				return title + "_" + name + "_" + datetime.ToString("yyyyMMdd_HHmm") + ".xml";
 			}
 		}
 		public System.DateTime datetime {get; private set;}
@@ -194,7 +199,6 @@ public class Simulation : MonoBehaviour {
 		get { return _settings; }
 		set {
 			_settings.active = false;
-			ObjectSerializer.SerializeObject(value, "SimulationSettings.xml");
 			_settings = value;
 			_settings.active = true;
 		}
@@ -459,6 +463,13 @@ public class Simulation : MonoBehaviour {
 		StopSimulation();
 		simulationNumber++;
 		settings = batch[simulationNumber-1];
+		string path = Strings.simulationFileDirectory;
+		if (!System.IO.Directory.Exists(path)) {
+			System.IO.Directory.CreateDirectory(path);
+		}
+		path += "\\" + settings.fileName;
+		Debug.Log(path);
+		ObjectSerializer.SerializeObject(settings, path);
 		if (environment) environment.transform.Recycle();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
 		SetBounds();

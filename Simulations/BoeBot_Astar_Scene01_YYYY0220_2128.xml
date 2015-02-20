@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <title>Simulation</title>
+  <numberOfTests>1</numberOfTests>
+  <environmentName>Scene01</environmentName>
+  <navigationAssemblyName>Astar</navigationAssemblyName>
+  <robotName>BoeBot</robotName>
+  <randomizeOrigin>false</randomizeOrigin>
+  <randomizeDestination>false</randomizeDestination>
+  <maximumTestTime>60</maximumTestTime>
+  <continueOnNavObjectiveComplete>false</continueOnNavObjectiveComplete>
+  <continueOnRobotIsStuck>false</continueOnRobotIsStuck>
+  <active>true</active>
+  <datetime>2015-02-20T21:28:18.8022333+00:00</datetime>
+</Settings>

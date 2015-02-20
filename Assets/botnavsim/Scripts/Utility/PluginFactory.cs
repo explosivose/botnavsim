@@ -13,7 +13,9 @@ using System.Collections.Generic;
 public class PluginFactory<T> {
 
 	public T CreatePlugin(string file) {
-		
+		if (!file.EndsWith(".dll")) {
+			file += ".dll";
+		}
 		if (!File.Exists(file)) {
 			Debug.LogError("File not found (" + file + ")");
 			return default(T);
@@ -53,7 +55,7 @@ public class PluginFactory<T> {
 			foreach (Type assemblyType in types) {
 				Type interfaceType = assemblyType.GetInterface(typeof(T).FullName);
 				if (interfaceType != null) {
-					list.Add(Path.GetFileName(file));
+					list.Add(Path.GetFileNameWithoutExtension(file));
 				}
 			}
 		}
