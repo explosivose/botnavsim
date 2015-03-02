@@ -32,7 +32,7 @@ public class UI : MonoBehaviour {
 		_simulationFiles = new List<string>();
 	}
 
-	// Monobehaviour initialisation (Awake is called after Start)
+	// Monobehaviour initialisation (Start is called after Awake)
 	void Start() {
 		NavLoader.SearchForPlugins();
 		BotLoader.SearchForRobots();
@@ -587,7 +587,7 @@ public class UI : MonoBehaviour {
 		
 		// go up one directory
 		if (GUILayout.Button("..")) {
-			_logSubfolder = Directory.GetParent(_logSubfolder);
+			_logSubfolder = Directory.GetParent(_logSubfolder).Name;
 			_logFiles = LogLoader.SearchForCSV(Strings.logFileDirectory + _logSubfolder);
 			_logFolders = LogLoader.SearchForSubfolders(Strings.logFileDirectory + _logSubfolder);
 		}
