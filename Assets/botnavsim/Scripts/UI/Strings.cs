@@ -6,7 +6,7 @@ public static class Strings  {
 	public const string projectTitle = "BotNavSim";
 	public const string projectVersion = "v0.4.0-dev";
 	
-	public static string logFileDirectory;
+	public static string logFileDirectory = System.Environment.CurrentDirectory + "\\Logs";
 	public static string simulationFileDirectory = System.Environment.CurrentDirectory + "\\Simulations";
 	
 	public static char[] invalidFileNameChars {

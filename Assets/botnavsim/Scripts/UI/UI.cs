@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 
 /// <summary>
 /// All BotNavSim GUI functions.
@@ -18,6 +19,9 @@ public class UI : MonoBehaviour {
 	private int _batchIndex;					// Stores index for Simulation.batch
 	private bool _liveEditSettings;				// Boolean for show/hide edit settings dialog
 	private List<string> _simulationFiles;		// List of simulation.setting XML files
+	private List<string> _logFiles;
+	private List<string> _logFolders;
+	private string _logSubfolder;
 	
 	// Monobehaviour initialisation
 	void Awake() {
@@ -564,6 +568,39 @@ public class UI : MonoBehaviour {
 					Simulation.batch.Add(settings);
 					_window.Pop();
 				}
+			}
+		}
+	}
+	
+	void DataPlaybackWindow(int windowID) {
+		WindowHeader();
+		// back button
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("<", GUILayout.Width(30f))) {
+			_window.Pop();
+		}
+		if (GUILayout.Button("R", GUILayout.Width(30f))) {
+			_logFiles = LogLoader.SearchForCSV(Strings.logFileDirectory + _logSubfolder);
+			_logFolders = LogLoader.SearchForSubfolders(Strings.logFileDirectory + _logSubfolder);
+		}
+		GUILayout.EndHorizontal();
+		
+		// go up one directory
+		if (GUILayout.Button("..")) {
+			_logSubfolder = Directory.GetParent(_logSubfolder);
+			_logFiles = LogLoader.SearchForCSV(Strings.logFileDirectory + _logSubfolder);
+			_logFolders = LogLoader.SearchForSubfolders(Strings.logFileDirectory + _logSubfolder);
+		}
+		// list subdirectories
+		for (int i = 0; i < _logFolders.Count; i++) {
+			if (GUILayout.Button(_logFolders[i])) {
+				_logSubfolder += _logFolders[i];
+			}
+		}
+		// list files
+		for (int i = 0; i < _logFiles.Count; i++) {
+			if (GUILayout.Button(_logFiles[i])) {
+				
 			}
 		}
 	}

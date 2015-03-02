@@ -463,13 +463,7 @@ public class Simulation : MonoBehaviour {
 		StopSimulation();
 		simulationNumber++;
 		settings = batch[simulationNumber-1];
-		string path = Strings.simulationFileDirectory;
-		if (!System.IO.Directory.Exists(path)) {
-			System.IO.Directory.CreateDirectory(path);
-		}
-		path += "\\" + settings.fileName;
-		Debug.Log(path);
-		ObjectSerializer.SerializeObject(settings, path);
+		Log.Settings();
 		if (environment) environment.transform.Recycle();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
 		SetBounds();
