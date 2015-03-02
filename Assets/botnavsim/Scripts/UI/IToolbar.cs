@@ -5,8 +5,8 @@ public interface IToolbar {
 	
 	string toolbarName 	{ get; }
 	bool contextual 	{ get; }
-	bool hidden			{ get; }
+	bool hidden			{ get; set; }
 	Rect rect			{ get; set; }
-	GUI.WindowFunction 	ToolbarWindow(int windowID);
+	GUI.WindowFunction window { get; }
 	
 }

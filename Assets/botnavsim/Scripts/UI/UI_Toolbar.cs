@@ -9,12 +9,22 @@ using System.Collections.Generic;
 /// </summary>
 public class UI_Toolbar : MonoBehaviour {
 
+	public static UI_Toolbar I;
+	
 	public float height;
 	
 	private List<IToolbar> _tools = new List<IToolbar>();
 	private GUISkin _skin;
+	private int id;
 	
 	void Awake() {
+		// singleton pattern
+		if (I == null) {
+			I = this;
+		}
+		else {
+			Destroy(this);
+		}
 		// instantiate all classes that implement IToolbar
 		Type ti = typeof(IToolbar);
 		foreach(Assembly asm in AppDomain.CurrentDomain.GetAssemblies()) {
@@ -31,16 +41,23 @@ public class UI_Toolbar : MonoBehaviour {
 	void OnGUI() {
 		
 		Rect rect = new Rect(0f,0f,Screen.width,height);
-		int id = 1;
+		id = 1;
 		GUILayout.Window(id++, rect, ToolbarWindow, Strings.projectTitle);
+		
 	}
 	
 	void ToolbarWindow(int windowID) {
 		GUILayout.BeginHorizontal();
 		foreach(IToolbar t in _tools) {
+			// only handle windows that are contextual
 			if (t.contextual) {
+				// toggle window show/hide if button pressed
 				if (GUILayout.Button(t.toolbarName)) {
 					t.hidden = !t.hidden;
+				}
+				// display windows that aren't hidden
+				if (!t.hidden) {
+					GUILayout.Window(id++, t.rect, t.window, t.toolbarName);
 				}
 			}
 		}
