@@ -1,0 +1,3 @@
+[submodule "CsvHelper"]
+	path = CsvHelper
+	url = git://github.com/JoshClose/CsvHelper.git
