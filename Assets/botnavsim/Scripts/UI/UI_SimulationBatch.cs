@@ -2,11 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UI_SimulationBatch : IToolbar {
+public class UI_SimulationBatch : MonoBehaviour, IToolbar {
 
 	public UI_SimulationBatch() {
-		_editSettings = new UI_SimulationSettings(new Simulation.Settings());
+		_settings = new Simulation.Settings();
+		_editSettings = new UI_SimulationSettings(_settings);
 		_simulationFiles = new List<string>();
+		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(BatchListWindow);
 	}
 	
@@ -39,6 +41,8 @@ public class UI_SimulationBatch : IToolbar {
 	private Stack<GUI.WindowFunction> _windows;
 	private UI_SimulationSettings _editSettings;
 	private List<string> _simulationFiles;
+	private Simulation.Settings _settings;
+	private bool _showEditSettings;
 
 	void BatchListWindow(int windowID) {
 
@@ -52,7 +56,8 @@ public class UI_SimulationBatch : IToolbar {
 		
 		for(int i = 0; i < Simulation.batch.Count; i++) {
 			if (GUILayout.Button(Simulation.batch[i].title + ", " + Simulation.batch[i].time)) {
-				_editSettings = new UI_SimulationSettings(Simulation.batch[i]);
+				_settings = Simulation.batch[i];
+				_showEditSettings = true;
 			}
 		}
 		GUILayout.Space (10);
@@ -67,6 +72,17 @@ public class UI_SimulationBatch : IToolbar {
 		if (GUILayout.Button("Clear Batch")) {
 			Simulation.batch.Clear();
 		}
+		
+		// show or hide edit settings
+		if (_showEditSettings) {
+			if (_editSettings.completed) {
+				_showEditSettings = false;
+			}
+			else {
+				_editSettings.rect = GUILayout.Window(321, _editSettings.rect, _editSettings.window, "Edit Settings");
+			}
+		}
+		
 		GUI.DragWindow();
 	}
 	

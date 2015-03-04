@@ -12,10 +12,12 @@ public class UI_Toolbar : MonoBehaviour {
 	public static UI_Toolbar I;
 	
 	public float height;
-	
+
+	//private IToolbar[] _tools;
 	private List<IToolbar> _tools = new List<IToolbar>();
 	private GUISkin _skin;
 	private int id;
+
 	
 	void Awake() {
 		// singleton pattern
@@ -26,6 +28,17 @@ public class UI_Toolbar : MonoBehaviour {
 			Destroy(this);
 		}
 		// instantiate all classes that implement IToolbar
+		// get all IToolbar components on this GameObject
+		//_tools = gameObject.GetComponents(typeof(IToolbar)) as IToolbar[];
+		//Debug.Log(_tools.Length);
+		/*MonoBehaviour[] components = gameObject.GetComponents<MonoBehaviour>();
+		foreach(MonoBehaviour component in components) {
+			if (component is IToolbar) {
+				IToolbar toolbarItem = component as IToolbar;
+				_tools.Add(toolbarItem);
+			}
+		}*/
+		
 		Type ti = typeof(IToolbar);
 		foreach(Assembly asm in AppDomain.CurrentDomain.GetAssemblies()) {
 			foreach(Type t in asm.GetTypes()) {
@@ -34,6 +47,7 @@ public class UI_Toolbar : MonoBehaviour {
 				}
 			}
 		}
+		
 		// get GUISkin
 		_skin = Resources.Load<GUISkin>("GUI_style");
 	}

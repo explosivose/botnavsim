@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UI_Log : IToolbar {
+public class UI_Log : MonoBehaviour, IToolbar {
 
 	public string toolbarName {
 		get {

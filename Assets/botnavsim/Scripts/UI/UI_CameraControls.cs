@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UI_CameraControls : IToolbar {
+public class UI_CameraControls : MonoBehaviour, IToolbar {
 
 	public string toolbarName {
 		get {

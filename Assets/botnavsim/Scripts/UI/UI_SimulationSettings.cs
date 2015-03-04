@@ -10,7 +10,7 @@ public class UI_SimulationSettings {
 
 	private Stack<GUI.WindowFunction> _windows;
 	
-	public UI_SimulationSettings(ref Simulation.Settings simSettings) {
+	public UI_SimulationSettings(Simulation.Settings simSettings) {
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(SimulationSettingsWindow);
 		settings = simSettings;

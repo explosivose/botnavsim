@@ -8,10 +8,10 @@ using System.Collections.Generic;
 /// Provides a toggle for exhibition mode.
 /// Provides a slider for simulation timescale.
 /// </summary>
-public class UI_SimulationControl : IToolbar {
+public class UI_SimulationControl : MonoBehaviour, IToolbar {
 
 	public UI_SimulationControl() {
-		_editSettings = new UI_SimulationSettings(new Simulation.Settings());
+		_editSettings = new UI_SimulationSettings(Simulation.settings);
 	}
 
 	public string toolbarName {
@@ -125,11 +125,7 @@ public class UI_SimulationControl : IToolbar {
 				_editSettings.rect = GUILayout.Window(123, _editSettings.rect, _editSettings.window, "Edit Live Settings");
 			}
 		}
-		
-		// finish up
-		if (!Simulation.isRunning) contextual = false;
-		else contextual = true;
-		
+	
 		
 		GUI.DragWindow();
 	}
