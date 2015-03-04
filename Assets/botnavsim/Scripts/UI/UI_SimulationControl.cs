@@ -10,6 +10,9 @@ using System.Collections.Generic;
 /// </summary>
 public class UI_SimulationControl : IToolbar {
 
+	public UI_SimulationControl() {
+		_editSettings = new UI_SimulationSettings(new Simulation.Settings());
+	}
 
 	public string toolbarName {
 		get {
@@ -18,7 +21,9 @@ public class UI_SimulationControl : IToolbar {
 	}
 
 	public bool contextual {
-		get; private set;
+		get {
+			return !Simulation.preSimulation;
+		}
 	}
 
 	public bool hidden {
@@ -98,6 +103,7 @@ public class UI_SimulationControl : IToolbar {
 			}
 		}
 		
+		// show/hide button for edit settings
 		if (_liveEditSettings) {
 			if (GUILayout.Button("Hide Settings")) {
 				_liveEditSettings = false;
@@ -105,11 +111,12 @@ public class UI_SimulationControl : IToolbar {
 		}
 		else {
 			if (GUILayout.Button("Show Settings")) {
-				_editSettings = new UI_SimulationSettings(Simulation.settings);
+				_editSettings.settings = Simulation.settings;
 				_liveEditSettings = true;
 			}
 		}
 		
+		// edit the Simulation.settings 
 		if (_liveEditSettings) {
 			if (_editSettings.completed) {
 				_liveEditSettings = false;

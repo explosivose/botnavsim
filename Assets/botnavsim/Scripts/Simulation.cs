@@ -408,7 +408,9 @@ public class Simulation : MonoBehaviour {
 		state = State.finished;
 		Log.Stop(0);
 		if (exhibitionMode) {
-			batch.Clear();
+			if (batch.Count > 10) {
+				batch.RemoveAt(0);
+			}
 			settings = new Settings();
 			settings.Randomize();
 			batch.Add(settings);

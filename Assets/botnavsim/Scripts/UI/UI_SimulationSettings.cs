@@ -9,14 +9,16 @@ using System.Collections.Generic;
 public class UI_SimulationSettings {
 
 	private Stack<GUI.WindowFunction> _windows;
-	private Simulation.Settings _settings;
 	
-	public UI_SimulationSettings(Simulation.Settings settings) {
+	public UI_SimulationSettings(ref Simulation.Settings simSettings) {
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(SimulationSettingsWindow);
-		_settings = settings;
+		settings = simSettings;
 	}
 	
+	public Simulation.Settings settings {
+		get; set;
+	}
 	
 	/// <summary>
 	/// Edit Simulation.Settings window function.
@@ -54,7 +56,6 @@ public class UI_SimulationSettings {
 		// back button
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
-			_settings = null;
 			_windows.Pop();
 		}
 		GUILayout.EndHorizontal();
@@ -62,24 +63,24 @@ public class UI_SimulationSettings {
 		float lw = 200f;
 		
 		// copy settings for UI
-		string title = _settings.title;
-		string robotName = _settings.robotName;
-		string environmentName = _settings.environmentName;
-		string navigationAssemblyName = _settings.navigationAssemblyName;
-		string numberOfTests = _settings.numberOfTests.ToString();
-		string testTime = _settings.maximumTestTime.ToString();
-		bool randomDest = _settings.randomizeDestination;
-		bool randomStart = _settings.randomizeOrigin;
-		bool repeatOnComplete = _settings.continueOnNavObjectiveComplete;
-		bool repeatOnStuck = _settings.continueOnRobotIsStuck;
+		string title = settings.title;
+		string robotName = settings.robotName;
+		string environmentName = settings.environmentName;
+		string navigationAssemblyName = settings.navigationAssemblyName;
+		string numberOfTests = settings.numberOfTests.ToString();
+		string testTime = settings.maximumTestTime.ToString();
+		bool randomDest = settings.randomizeDestination;
+		bool randomStart = settings.randomizeOrigin;
+		bool repeatOnComplete = settings.continueOnNavObjectiveComplete;
+		bool repeatOnStuck = settings.continueOnRobotIsStuck;
 		
 		// if settings is in use by Simulation
-		if (_settings.active) {
+		if (settings.active) {
 			// display only
-			GUILayout.Label(_settings.title + "\n" + 
-			                _settings.robotName + "\n" +
-			                _settings.environmentName + "\n" + 
-			                _settings.navigationAssemblyName);
+			GUILayout.Label(settings.title + "\n" + 
+			                settings.robotName + "\n" +
+			                settings.environmentName + "\n" + 
+			                settings.navigationAssemblyName);
 		}
 		else {
 			// provide controls for editing
@@ -134,7 +135,7 @@ public class UI_SimulationSettings {
 		GUILayout.EndHorizontal();
 		
 		// if settings is in use by Simulation
-		if (_settings.active) {
+		if (settings.active) {
 			// display time remaining and edit maximum test time
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Time (s): " + Simulation.time.ToString("G2"), GUILayout.Width(lw));
@@ -166,11 +167,11 @@ public class UI_SimulationSettings {
 		foreach(char c in Strings.invalidFileNameChars) {
 			if (title.Contains(c.ToString())) valid = false;
 		}
-		if (valid) _settings.title = title;
+		if (valid) settings.title = title;
 		
 		if (Strings.IsDigitsOnly(numberOfTests)) {
 			try {
-				_settings.numberOfTests = Convert.ToInt32(numberOfTests);
+				settings.numberOfTests = Convert.ToInt32(numberOfTests);
 			}
 			catch {
 				Debug.Log("User should enter a number...");
@@ -179,7 +180,7 @@ public class UI_SimulationSettings {
 		
 		if (Strings.IsDigitsOnly(testTime)) {
 			try {
-				_settings.maximumTestTime = Convert.ToInt32(testTime);
+				settings.maximumTestTime = Convert.ToInt32(testTime);
 			}
 			catch {
 				Debug.Log("User should enter a number...");
@@ -187,13 +188,13 @@ public class UI_SimulationSettings {
 		}
 		
 		// copy valid data back to settings
-		_settings.robotName = robotName;
-		_settings.environmentName = environmentName;
-		_settings.navigationAssemblyName = navigationAssemblyName;
-		_settings.randomizeDestination = randomDest;
-		_settings.randomizeOrigin = randomStart;
-		_settings.continueOnNavObjectiveComplete = repeatOnComplete;
-		_settings.continueOnRobotIsStuck = repeatOnStuck;
+		settings.robotName = robotName;
+		settings.environmentName = environmentName;
+		settings.navigationAssemblyName = navigationAssemblyName;
+		settings.randomizeDestination = randomDest;
+		settings.randomizeOrigin = randomStart;
+		settings.continueOnNavObjectiveComplete = repeatOnComplete;
+		settings.continueOnRobotIsStuck = repeatOnStuck;
 		
 		GUI.DragWindow();
 	}
@@ -216,7 +217,7 @@ public class UI_SimulationSettings {
 		// gallery goes here...
 		for(int i = 0; i < EnvLoader.environmentsFound.Count; i++) {
 			if (GUILayout.Button(EnvLoader.environmentsFound[i].name)) {
-				_settings.environmentName = EnvLoader.environmentsFound[i].name;
+				settings.environmentName = EnvLoader.environmentsFound[i].name;
 				_windows.Pop();
 			}
 		}
@@ -247,7 +248,7 @@ public class UI_SimulationSettings {
 		// gallery goes here...
 		for(int i = 0; i < BotLoader.robotsFound.Count; i++) {
 			if (GUILayout.Button(BotLoader.robotsFound[i].name)) {
-				_settings.robotName = BotLoader.robotsFound[i].name;
+				settings.robotName = BotLoader.robotsFound[i].name;
 				_windows.Pop();
 			}
 		}
@@ -278,7 +279,7 @@ public class UI_SimulationSettings {
 		// gallery 
 		foreach(string s in NavLoader.pluginsFound) {
 			if (GUILayout.Button(s)) {
-				_settings.navigationAssemblyName = s;
+				settings.navigationAssemblyName = s;
 				_windows.Pop();
 			}
 		}
