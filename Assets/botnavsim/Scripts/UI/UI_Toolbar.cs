@@ -38,14 +38,21 @@ public class UI_Toolbar : MonoBehaviour {
 		_skin = Resources.Load<GUISkin>("GUI_style");
 	}
 	
+	/// <summary>
+	/// Draw GUI elements
+	/// </summary>
 	void OnGUI() {
-		
+		GUI.skin = _skin;
 		Rect rect = new Rect(0f,0f,Screen.width,height);
 		id = 1;
 		GUILayout.Window(id++, rect, ToolbarWindow, Strings.projectTitle);
 		
 	}
 	
+	/// <summary>
+	/// Toolbar window GUI.WindowFunction
+	/// </summary>
+	/// <param name="windowID">Window ID.</param>
 	void ToolbarWindow(int windowID) {
 		GUILayout.BeginHorizontal();
 		foreach(IToolbar t in _tools) {
