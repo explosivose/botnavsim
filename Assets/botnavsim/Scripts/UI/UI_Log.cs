@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UI_Log : MonoBehaviour, IToolbar {
+public class UI_Log : IToolbar  {
 
-	public string toolbarName {
-		get {
-			return "Log Settings";
-		}
+	public UI_Log() {
+		hidden = true;
 	}
-
+	
 	public bool contextual {
 		get {
 			return true;
@@ -19,11 +17,17 @@ public class UI_Log : MonoBehaviour, IToolbar {
 		get; set; 
 	}
 
-	public Rect rect {
+	public string windowTitle {
+		get {
+			return "Log Settings";
+		}
+	}
+
+	public Rect windowRect {
 		get; set;
 	}
 
-	public GUI.WindowFunction window {
+	public GUI.WindowFunction windowFunction {
 		get {
 			return LogSettingsWindow;
 		}
@@ -45,7 +49,7 @@ public class UI_Log : MonoBehaviour, IToolbar {
 		Simulation.loggingEnabled = GUILayout.Toggle(Simulation.loggingEnabled, "");
 		GUILayout.EndHorizontal();
 
-		lw = rect.width/2f;
+		lw = windowRect.width/2f;
 		
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Available Parameters", GUILayout.Width(lw));

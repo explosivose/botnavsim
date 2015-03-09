@@ -1,14 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class UI_CameraControls : MonoBehaviour, IToolbar {
+public class UI_CameraControls : IToolbar {
 
-	public string toolbarName {
-		get {
-			return "Camera Controls";
-		}
+	public UI_CameraControls() {
+		hidden = true;
 	}
-
+	
 	public bool contextual {
 		get {
 			return true;
@@ -19,11 +17,17 @@ public class UI_CameraControls : MonoBehaviour, IToolbar {
 		get; set;
 	}
 
-	public Rect rect {
+	public string windowTitle {
+		get {
+			return "Camera Controls";
+		}
+	}
+	
+	public Rect windowRect {
 		get; set;
 	}
 
-	public GUI.WindowFunction window {
+	public GUI.WindowFunction windowFunction {
 		get {
 			return CameraControlsWindow;
 		}
@@ -53,5 +57,7 @@ public class UI_CameraControls : MonoBehaviour, IToolbar {
 			CamController.Instance.CycleRenderMode();
 		}
 		GUILayout.EndHorizontal();
+		
+		GUI.DragWindow();
 	} 
 }

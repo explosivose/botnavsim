@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class UI_SimulationBatch : MonoBehaviour, IToolbar {
+public class UI_SimulationBatch : IToolbar  {
 
 	public UI_SimulationBatch() {
 		_settings = new Simulation.Settings();
@@ -10,12 +10,7 @@ public class UI_SimulationBatch : MonoBehaviour, IToolbar {
 		_simulationFiles = new List<string>();
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(BatchListWindow);
-	}
-	
-	public string toolbarName {
-		get {
-			return "Simulation Batch";
-		}
+		hidden = true;
 	}
 
 	public bool contextual {
@@ -27,12 +22,18 @@ public class UI_SimulationBatch : MonoBehaviour, IToolbar {
 	public bool hidden {
 		get; set;
 	}
+	
+	public string windowTitle {
+		get {
+			return "Simulation Batch";
+		}
+	}
 
-	public Rect rect {
+	public Rect windowRect {
 		get; set;
 	}
 
-	public GUI.WindowFunction window {
+	public GUI.WindowFunction windowFunction {
 		get {
 			return _windows.Peek();
 		}
@@ -46,6 +47,14 @@ public class UI_SimulationBatch : MonoBehaviour, IToolbar {
 
 	void BatchListWindow(int windowID) {
 
+		// remove editSettings window when completed
+		if (_showEditSettings) {
+			if (_editSettings.completed) {
+				_showEditSettings = false;
+				UI_Toolbar.I.additionalWindows.Remove((IWindowFunction)_editSettings);
+			}
+		}
+		
 		// controls and title
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
@@ -58,6 +67,7 @@ public class UI_SimulationBatch : MonoBehaviour, IToolbar {
 			if (GUILayout.Button(Simulation.batch[i].title + ", " + Simulation.batch[i].time)) {
 				_settings = Simulation.batch[i];
 				_showEditSettings = true;
+				UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 			}
 		}
 		GUILayout.Space (10);
@@ -73,15 +83,7 @@ public class UI_SimulationBatch : MonoBehaviour, IToolbar {
 			Simulation.batch.Clear();
 		}
 		
-		// show or hide edit settings
-		if (_showEditSettings) {
-			if (_editSettings.completed) {
-				_showEditSettings = false;
-			}
-			else {
-				_editSettings.rect = GUILayout.Window(321, _editSettings.rect, _editSettings.window, "Edit Settings");
-			}
-		}
+
 		
 		GUI.DragWindow();
 	}

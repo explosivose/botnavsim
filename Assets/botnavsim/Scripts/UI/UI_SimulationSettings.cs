@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// <summary>
 /// An instantiable class that provides a UI for editing a given Simulation.Settings object
 /// </summary>
-public class UI_SimulationSettings {
+public class UI_SimulationSettings : IWindowFunction {
 
 	private Stack<GUI.WindowFunction> _windows;
 	
@@ -20,6 +20,12 @@ public class UI_SimulationSettings {
 		get; set;
 	}
 	
+	public string windowTitle {
+		get {
+			return "Edit: " + settings.title;
+		}
+	}
+	
 	/// <summary>
 	/// Edit Simulation.Settings window function.
 	/// Note that when the back button is pressed on the main window
@@ -27,7 +33,7 @@ public class UI_SimulationSettings {
 	/// To check whether the stack is empty see completed flag property.
 	/// </summary>
 	/// <value>The window function.</value>
-	public GUI.WindowFunction window {
+	public GUI.WindowFunction windowFunction {
 		get {
 			return _windows.Peek();
 		}
@@ -37,7 +43,7 @@ public class UI_SimulationSettings {
 	/// Window size and position.
 	/// </summary>
 	/// <value>The rect.</value>
-	public Rect rect {
+	public Rect windowRect {
 		get; set;
 	}
 	

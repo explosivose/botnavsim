@@ -8,16 +8,11 @@ using System.Collections.Generic;
 /// Provides a toggle for exhibition mode.
 /// Provides a slider for simulation timescale.
 /// </summary>
-public class UI_SimulationControl : MonoBehaviour, IToolbar {
+public class UI_SimulationControl : IToolbar {
 
 	public UI_SimulationControl() {
 		_editSettings = new UI_SimulationSettings(Simulation.settings);
-	}
-
-	public string toolbarName {
-		get {
-			return "Simulation Control";
-		}
+		hidden = true;
 	}
 
 	public bool contextual {
@@ -30,11 +25,17 @@ public class UI_SimulationControl : MonoBehaviour, IToolbar {
 		get; set; 
 	}
 
-	public Rect rect {
+	public string windowTitle {
+		get {
+			return "Simulation Control";
+		}
+	}
+
+	public Rect windowRect {
 		get; set; 
 	}
 	
-	public GUI.WindowFunction window {
+	public GUI.WindowFunction windowFunction {
 		get {
 			return MainWindow;
 		}
@@ -51,6 +52,13 @@ public class UI_SimulationControl : MonoBehaviour, IToolbar {
 	/// <param name="windowID">Window ID.</param>
 	void MainWindow (int windowID) {
 		float lw = 200f;
+		
+		// close window button
+		GUILayout.BeginHorizontal();
+		if (GUILayout.Button("<", GUILayout.Width(30f))) {
+			hidden = true;
+		}
+		GUILayout.EndHorizontal();
 		
 		// simulation information
 		GUILayout.BeginHorizontal();
@@ -103,26 +111,26 @@ public class UI_SimulationControl : MonoBehaviour, IToolbar {
 			}
 		}
 		
-		// show/hide button for edit settings
+		// show/hide button for edit settings window
 		if (_liveEditSettings) {
 			if (GUILayout.Button("Hide Settings")) {
 				_liveEditSettings = false;
+				UI_Toolbar.I.additionalWindows.Remove((IWindowFunction)_editSettings);
 			}
 		}
 		else {
 			if (GUILayout.Button("Show Settings")) {
 				_editSettings.settings = Simulation.settings;
 				_liveEditSettings = true;
+				UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 			}
 		}
 		
-		// edit the Simulation.settings 
+		// close window when completed
 		if (_liveEditSettings) {
 			if (_editSettings.completed) {
 				_liveEditSettings = false;
-			}
-			else {
-				_editSettings.rect = GUILayout.Window(123, _editSettings.rect, _editSettings.window, "Edit Live Settings");
+				UI_Toolbar.I.additionalWindows.Remove((IWindowFunction)_editSettings);
 			}
 		}
 	
