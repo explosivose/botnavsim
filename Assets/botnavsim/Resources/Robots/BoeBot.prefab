@@ -50138,8 +50138,8 @@ Rigidbody:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100014}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: .5
+  m_Mass: 4
+  m_Drag: 0
   m_AngularDrag: .0500000007
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -50220,7 +50220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1aa0ff293dac9469ed44d2319442bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTorque: 6
+  maxTorque: 1.20000005
   window: .100000001
 --- !u!114 &11400002
 MonoBehaviour:
@@ -50238,6 +50238,7 @@ MonoBehaviour:
   stopDistance: 1
   sensors: []
   destination: {fileID: 0}
+  centerOfMass: {x: 0, y: .400000006, z: 0}
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -50289,7 +50290,7 @@ SphereCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 87b36fe6b209cc942a9458ff34dfab56, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -50308,7 +50309,7 @@ WheelCollider:
     spring: 1
     damper: 0
     targetPosition: 0
-  m_Mass: .25
+  m_Mass: .100000001
   m_ForwardFriction:
     extremumSlip: 1
     extremumValue: 20000
@@ -50335,7 +50336,7 @@ WheelCollider:
     spring: 1
     damper: 0
     targetPosition: 0
-  m_Mass: .25
+  m_Mass: .100000001
   m_ForwardFriction:
     extremumSlip: 1
     extremumValue: 20000

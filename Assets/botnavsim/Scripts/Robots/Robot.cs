@@ -17,7 +17,7 @@ public class Robot : MonoBehaviour {
 	public float		stopDistance;	// how close the robot will get to _destination before stopping
 	public ParamSensor[] 	sensors;
 	public Transform 	destination;	
-
+	public Vector3 		centerOfMass;
 	
 	// private members
 	// ~-~-~-~-~-~-~-~-
@@ -159,6 +159,8 @@ public class Robot : MonoBehaviour {
 		ProximityData data = nextSensorData;
 		if (_navigation == null) return;
 		
+		// update center of mass
+		rigidbody.centerOfMass = centerOfMass;
 		
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
@@ -203,9 +205,9 @@ public class Robot : MonoBehaviour {
 					_move = transform.TransformDirection(_move);
 				}
 				else {
-					_move = _navigation.PathDirection(transform.position);
+					_move = _navigation.PathDirection(transform.position + Vector3.up);
 				}
-				Debug.DrawRay(transform.position, _move, Color.green);
+				Debug.DrawRay(transform.position, _move * stopDistance, Color.green);
 			}
 			else {
 				_move = Vector3.zero;
@@ -216,6 +218,9 @@ public class Robot : MonoBehaviour {
 	private void OnDrawGizmos() {
 		if (_navigation != null)
 			_navigation.DrawGizmos();
+		// draw center of mass
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.1f);
 	}
 	
 	// detects if robot appears to be stuck taking an average position over time
