@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class UI_Log : IToolbar  {
 
 	public UI_Log() {

@@ -6,9 +6,11 @@ using System.Collections.Generic;
 /// <summary>
 /// An instantiable class that provides a UI for editing a given Simulation.Settings object
 /// </summary>
+[System.Serializable]
 public class UI_SimulationSettings : IWindowFunction {
 
 	private Stack<GUI.WindowFunction> _windows;
+	private Simulation.Settings _settings;
 	
 	public UI_SimulationSettings(Simulation.Settings simSettings) {
 		_windows = new Stack<GUI.WindowFunction>();
@@ -17,12 +19,24 @@ public class UI_SimulationSettings : IWindowFunction {
 	}
 	
 	public Simulation.Settings settings {
-		get; set;
+		get {
+			return _settings;
+		}
+		set {
+			if (_windows.Count < 1) {
+				_windows.Push(SimulationSettingsWindow);
+				_settings = value;
+			}
+		}
 	}
 	
 	public string windowTitle {
 		get {
-			return "Edit: " + settings.title;
+			string title = "<null>";
+			if (settings != null) 
+				title = settings.title;
+			
+			return "Edit: " + title;
 		}
 	}
 	
@@ -35,8 +49,11 @@ public class UI_SimulationSettings : IWindowFunction {
 	/// <value>The window function.</value>
 	public GUI.WindowFunction windowFunction {
 		get {
-			return _windows.Peek();
-		}
+			if (_windows.Count > 0)
+				return _windows.Peek();
+			else
+				return null;
+		}	
 	}
 	
 	/// <summary>
@@ -58,7 +75,7 @@ public class UI_SimulationSettings : IWindowFunction {
 	/// </summary>
 	/// <param name="windowID">Window ID.</param>
 	void SimulationSettingsWindow(int windowID) {
-		
+		Debug.Log(_windows.Count);
 		// back button
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
@@ -107,6 +124,7 @@ public class UI_SimulationSettings : IWindowFunction {
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Robot selection: ", GUILayout.Width(lw));
 			if (GUILayout.Button(robotName)) {
+				BotLoader.SearchForRobots();
 				_windows.Push(RobotGalleryWindow);
 			}
 			GUILayout.EndHorizontal();
@@ -115,6 +133,7 @@ public class UI_SimulationSettings : IWindowFunction {
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Environment selection: ", GUILayout.Width(lw));
 			if (GUILayout.Button(environmentName)) {
+				EnvLoader.SearchForEnvironments();
 				_windows.Push(EnvironmentGalleryWindow);
 			}
 			GUILayout.EndHorizontal();
@@ -123,6 +142,7 @@ public class UI_SimulationSettings : IWindowFunction {
 			GUILayout.BeginHorizontal();
 			GUILayout.Label("Algorithm selection: ", GUILayout.Width(lw));
 			if (GUILayout.Button(navigationAssemblyName)) {
+				NavLoader.SearchForPlugins();
 				_windows.Push(NavListWindow);
 			}
 			GUILayout.EndHorizontal();

@@ -1,0 +1,636 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FullSerializer</name>
+    </assembly>
+    <members>
+        <member name="T:FullSerializer.fsConverter">
+            <summary>
+            The serialization converter allows for customization of the serialization process.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsConverter.Serializer">
+            <summary>
+            The serializer that was owns this converter.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsConverter.CanProcess(System.Type)">
+            <summary>
+            Can this converter serialize and deserialize the given object type?
+            </summary>
+            <param name="type">The given object type.</param>
+            <returns>True if the converter can serialize it, false otherwise.</returns>
+        </member>
+        <member name="M:FullSerializer.fsConverter.RequestCycleSupport(System.Type)">
+            <summary>
+            If true, then the serializer will support cyclic references with the given converted
+            type.
+            </summary>
+            <param name="storageType">The field/property type that is currently storing the object
+            that is being serialized.</param>
+        </member>
+        <member name="M:FullSerializer.fsConverter.RequestInheritanceSupport(System.Type)">
+            <summary>
+            If true, then the serializer will include inheritance data for the given converter.
+            </summary>
+            <param name="storageType">The field/property type that is currently storing the object
+            that is being serialized.</param>
+        </member>
+        <member name="M:FullSerializer.fsConverter.TrySerialize(System.Object,FullSerializer.fsData@,System.Type)">
+            <summary>
+            Serialize the actual object into the given data storage.
+            </summary>
+            <param name="instance">The object instance to serialize. This will never be null.</param>
+            <param name="serialized">The serialized state.</param>
+            <param name="storageType">The field/property type that is storing this instance.</param>
+            <returns>If serialization was successful.</returns>
+        </member>
+        <member name="M:FullSerializer.fsConverter.TryDeserialize(FullSerializer.fsData,System.Object@,System.Type)">
+            <summary>
+            Deserialize data into the object instance.
+            </summary>
+            <param name="storage">Serialization data to deserialize from.</param>
+            <param name="instance">The object instance to deserialize into.</param>
+            <param name="storageType">The field/property type that is storing the instance.</param>
+            <returns>True if serialization was successful, false otherwise.</returns>
+        </member>
+        <member name="M:FullSerializer.fsConverter.CreateInstance(FullSerializer.fsData,System.Type)">
+            <summary>
+            Construct an object instance that will be passed to TryDeserialize. This should **not**
+            deserialize the object.
+            </summary>
+            <param name="data">The data the object was serialized with.</param>
+            <param name="storageType">The field/property type that is storing the instance.</param>
+            <returns>An object instance</returns>
+        </member>
+        <member name="T:FullSerializer.Internal.fsDateConverter">
+            <summary>
+            Supports serialization for DateTime, DateTimeOffset, and TimeSpan.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.Internal.fsEnumConverter">
+            <summary>
+            Serializes and deserializes enums by their current name.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsEnumConverter.ArrayContains``1(``0[],``0)">
+            <summary>
+            Returns true if the given value is contained within the specified array.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.Internal.fsGuidConverter">
+            <summary>
+            Serializes and deserializes guids.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.Internal.fsNullableConverter">
+            <summary>
+            The reflected converter will properly serialize nullable types. However, we do it here
+            instead as we can emit less serialization data.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsConfig">
+            <summary>
+            A serialization configuration class to chose custom attributes for [de]serialization
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsConfig.SerializeAttributes">
+            <summary>
+            The attributes to use to serialize members
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsConfig.DontSerializeAttributes">
+            <summary>
+            The attributes to use to ignore serialization on members
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsConfig.StrictMode">
+            <summary>
+            If true, we'd return from deserialization of IEnumerable objects if there was a failure,
+            otherwise we move on, ignoring the element that failed to deserialize
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsConfig.Log">
+            <summary>
+            Used by the serializer to log certain events
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsConfig.ShouldLog">
+            <summary>
+            Is logging turned on?
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsContext">
+            <summary>
+            fsContext stores global metadata that can be used to customize how fsConverters operate
+            during serialization.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsContext._contextObjects">
+            <summary>
+            All of the context objects.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsContext.Reset">
+            <summary>
+            Removes all context objects from the context.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsContext.Set``1(``0)">
+            <summary>
+            Sets the context object for the given type with the given value.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsContext.Has``1">
+            <summary>
+            Returns true if there is a context object for the given type.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsContext.Get``1">
+            <summary>
+            Fetches the context object for the given type.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsDataType">
+            <summary>
+            The actual type that a JsonData instance can store.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsData">
+            <summary>
+            A union type that stores a serialized value. The stored type can be one of six different
+            types: null, boolean, float, string, Dictionary, or List.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsData.value">
+            <summary>
+            The raw value that this serialized data stores. It can be one of six different types; a
+            boolean, a float, a string, a Dictionary, or a List.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.#ctor">
+            <summary>
+            Creates a SerializedData instance that holds null.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.#ctor(System.Boolean)">
+            <summary>
+            Creates a SerializedData instance that holds a boolean.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.#ctor(System.Single)">
+            <summary>
+            Creates a SerializedData instance that holds a float.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.#ctor(System.String)">
+            <summary>
+            Creates a SerializedData instance that holds a string.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.#ctor(System.Collections.Generic.Dictionary{System.String,FullSerializer.fsData})">
+            <summary>
+            Creates a SerializedData instance that holds a dictionary of values.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.#ctor(System.Collections.Generic.List{FullSerializer.fsData})">
+            <summary>
+            Creates a SerializedData instance that holds a list of values.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.CreateDictionary">
+            <summary>
+            Helper method to create a SerializedData instance that holds a dictionary.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.CreateList">
+            <summary>
+            Helper method to create a SerializedData instance that holds a list.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.Cast``1">
+            <summary>
+            Internal helper method to cast the underlying storage to the given type or throw a
+            pretty printed exception on failure.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.Equals(FullSerializer.fsData)">
+            <summary>
+            Determines whether the specified object is equal to the current object.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.op_Equality(FullSerializer.fsData,FullSerializer.fsData)">
+            <summary>
+            Returns true iff a == b.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.op_Inequality(FullSerializer.fsData,FullSerializer.fsData)">
+            <summary>
+            Returns true iff a != b.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsData.GetHashCode">
+            <summary>
+            Returns a hash code for this instance.
+            </summary>
+            <returns>A hash code for this instance, suitable for use in hashing algorithms and data
+            structures like a hash table.</returns>
+        </member>
+        <member name="P:FullSerializer.fsData.AsFloat">
+            <summary>
+            Casts this SerializedData to a float. Throws an exception if it is not a float.
+            </summary>
+        </member>
+        <member name="P:FullSerializer.fsData.AsBool">
+            <summary>
+            Casts this SerializedData to a boolean. Throws an exception if it is not a boolean.
+            </summary>
+        </member>
+        <member name="P:FullSerializer.fsData.AsString">
+            <summary>
+            Casts this SerializedData to a string. Throws an exception if it is not a string.
+            </summary>
+        </member>
+        <member name="P:FullSerializer.fsData.AsDictionary">
+            <summary>
+            Casts this SerializedData to a Dictionary. Throws an exception if it is not a
+            Dictionary.
+            </summary>
+        </member>
+        <member name="P:FullSerializer.fsData.AsList">
+            <summary>
+            Casts this SerializedData to a List. Throws an exception if it is not a List.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsIgnoreAttribute">
+            <summary>
+            The given property or field annotated with [JsonIgnore] will not be serialized.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsJsonParser">
+            <summary>
+            A simple recursive descent parser for JSON.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonParser.SkipSpace">
+            <summary>
+            Skips input such that Character() will return a non-whitespace character
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonParser.TryParseNumber(FullSerializer.fsData@)">
+            <summary>
+            Parses numbers that follow the regular expression [-+](\d+|\d*\.\d*)
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonParser.TryParseString(System.String@)">
+            <summary>
+            Parses a string
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonParser.TryParseArray(FullSerializer.fsData@)">
+            <summary>
+            Parses an array
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonParser.Parse(System.String,FullSerializer.fsData@)">
+            <summary>
+            Parses the specified input. Throws a ParseException if parsing failed.
+            </summary>
+            <param name="input">The input to parse.</param>
+            <returns>The parsed input.</returns>
+        </member>
+        <member name="M:FullSerializer.fsJsonPrinter.InsertSpacing(System.IO.StreamWriter,System.Int32)">
+            <summary>
+            Inserts the given number of indents into the builder.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonPrinter.EscapeString(System.String)">
+            <summary>
+            Escapes a string.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonPrinter.BuildPrettyString(FullSerializer.fsData,System.IO.StreamWriter,System.Int32)">
+            <summary>
+            Formats this data into the given builder.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonPrinter.PrettyJson(FullSerializer.fsData,System.IO.StreamWriter)">
+            <summary>
+            Writes the pretty JSON output data to the given stream.
+            </summary>
+            <param name="data">The data to print.</param>
+            <param name="outputStream">Where to write the printed data.</param>
+        </member>
+        <member name="M:FullSerializer.fsJsonPrinter.PrettyJson(FullSerializer.fsData)">
+            <summary>
+            Returns the data in a pretty printed JSON format.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsJsonPrinter.CompressedJson(FullSerializer.fsData,System.IO.StreamWriter)">
+            <summary>
+            Writes the compressed JSON output data to the given stream.
+            </summary>
+            <param name="data">The data to print.</param>
+            <param name="outputStream">Where to write the printed data.</param>
+        </member>
+        <member name="M:FullSerializer.fsJsonPrinter.CompressedJson(FullSerializer.fsData)">
+            <summary>
+            Returns the data in a relatively compressed JSON format.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsMemberSerialization">
+            <summary>
+            Controls how the reflected converter handles member serialization.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsMemberSerialization.OptIn">
+            <summary>
+            Only members with [SerializeField] or [fsProperty] attributes are serialized.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsMemberSerialization.Default">
+            <summary>
+            The default member serialization behavior is applied.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsObjectAttribute">
+            <summary>
+            This attribute controls some serialization behavior for a type. See the comments
+            on each of the fields for more information.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsObjectAttribute.PreviousModels">
+            <summary>
+            The previous model that should be used if an old version of this
+            object is encountered. Using this attribute also requires that the
+            type have a public constructor that takes only one parameter, an object
+            instance of the given type. Use of this parameter *requires* that
+            the VersionString parameter is also set.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsObjectAttribute.VersionString">
+            <summary>
+            The version string to use for this model. This should be unique among all
+            prior versions of this model that is supported for importation. If PreviousModel
+            is set, then this attribute must also be set. A good valid example for this
+            is "v1", "v2", "v3", ...
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsObjectAttribute.MemberSerialization">
+            <summary>
+            This controls the behavior for member serialization.
+            The default behavior is fsMemberSerialization.Default.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsPropertyAttribute">
+            <summary>
+            Explicitly mark a property to be serialized. This can also be used to give the name that the
+            property should use during serialization.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsPropertyAttribute.Name">
+            <summary>
+            The name of that the property will use in JSON serialization.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.Key_ObjectReference">
+            <summary>
+            This is an object reference in part of a cyclic graph.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.Key_ObjectDefinition">
+            <summary>
+            This is an object definition, as part of a cyclic graph.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.Key_InstanceType">
+            <summary>
+            This specifies the actual type of an object (the instance type was different from
+            the field type).
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.Key_Version">
+            <summary>
+            The version string for the serialized data.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.Key_Content">
+            <summary>
+            If we have to add metadata but the original serialized state was not a dictionary,
+            then this will contain the original data.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.ConvertLegacyData(FullSerializer.fsData@)">
+            <summary>
+            This function converts legacy serialization data into the new format, so that
+            the import process can be unified and ignore the old format.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.EnsureDictionary(FullSerializer.fsData@)">
+            <summary>
+            Ensures that the data is a dictionary. If it is not, then it is wrapped inside of one.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.cachedConverters">
+            <summary>
+            A cache from type to it's converter.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.converters">
+            <summary>
+            Converters that are available.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.references">
+            <summary>
+            Reference manager for cycle detection.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.fsSerializer.Context">
+            <summary>
+            A context object that fsConverters can use to customize how they operate.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.AddConverter(FullSerializer.fsConverter)">
+            <summary>
+            Adds a new converter that can be used to customize how an object is serialized and
+            deserialized.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.GetConverter(System.Type)">
+            <summary>
+            Fetches a converter that can serialize/deserialize the given type.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.TrySerialize``1(``0,FullSerializer.fsData@)">
+            <summary>
+            Helper method that simply forwards the call to TrySerialize(typeof(T), instance, out data);
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.TryDeserialize``1(FullSerializer.fsData,``0@)">
+            <summary>
+            Generic wrapper around TryDeserialize that simply forwards the call.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.TrySerialize(System.Type,System.Object,FullSerializer.fsData@)">
+            <summary>
+            Serialize the given value.
+            </summary>
+            <param name="storageType">The type of field/property that stores the object instance. This is
+            important particularly for inheritance, as a field storing an IInterface instance
+            should have type information included.</param>
+            <param name="instance">The actual object instance to serialize.</param>
+            <param name="data">The serialized state of the object.</param>
+            <returns>If serialization was successful.</returns>
+        </member>
+        <member name="M:FullSerializer.fsSerializer.TryDeserialize(FullSerializer.fsData,System.Type,System.Object@)">
+            <summary>
+            Attempts to deserialize a value from a serialized state.
+            </summary>
+            <param name="data"></param>
+            <param name="storageType"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="P:FullSerializer.fsSerializer.Config">
+            <summary>
+            Configuration object to use for custom serialization attributes
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsSerializer.fsLazyCycleDefinitionWriter">
+            <summary>
+            This manages instance writing so that we do not write unnecessary $id fields. We
+            only need to write out an $id field when there is a corresponding $ref field.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.Internal.fsOption`1">
+            <summary>
+            Simple option type. This is akin to nullable types.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.Internal.fsPortableReflection">
+            <summary>
+            This wraps reflection types so that it is portable across different Unity runtimes.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.Internal.fsVersionedType.Ancestors">
+            <summary>
+            The direct ancestors that this type can import.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.Internal.fsVersionedType.VersionString">
+            <summary>
+            The identifying string that is unique among all ancestors.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.Internal.fsVersionedType.ModelType">
+            <summary>
+            The modeling type that this versioned type maps back to.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsVersionedType.Migrate(System.Object)">
+            <summary>
+            Migrate from an instance of an ancestor.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsVersionManager.VerifyConstructors(FullSerializer.Internal.fsVersionedType)">
+            <summary>
+            Verifies that the given type has constructors to migrate from all ancestor types.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsVersionManager.VerifyUniqueVersionStrings(FullSerializer.Internal.fsVersionedType)">
+            <summary>
+            Verifies that the given version graph contains only unique versions.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.Internal.fsMetaProperty">
+            <summary>
+            A property or field on a MetaType.
+            </summary>
+        </member>
+        <member name="F:FullSerializer.Internal.fsMetaProperty._memberInfo">
+            <summary>
+            Internal handle to the reflected member.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsMetaProperty.Write(System.Object,System.Object)">
+            <summary>
+            Writes a value to the property that this MetaProperty represents, using given object
+            instance as the context.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsMetaProperty.Read(System.Object)">
+            <summary>
+            Reads a value from the property that this MetaProperty represents, using the given
+            object instance as the context.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsMetaProperty.GetName(System.Reflection.MemberInfo)">
+            <summary>
+            Returns the name the given member wants to use for JSON serialization.
+            </summary>
+        </member>
+        <member name="P:FullSerializer.Internal.fsMetaProperty.StorageType">
+            <summary>
+            The type of value that is stored inside of the property. For example, for an int field,
+            StorageType will be typeof(int).
+            </summary>
+        </member>
+        <member name="P:FullSerializer.Internal.fsMetaProperty.Name">
+            <summary>
+            The serialized name of the property, as it should appear in JSON.
+            </summary>
+        </member>
+        <member name="T:FullSerializer.fsMetaType">
+            <summary>
+            MetaType contains metadata about a type. This is used by the reflection serializer.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsMetaType.SetProperties(System.String[])">
+            <summary>
+            Override the default property names and use the given ones instead of serialization.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.fsMetaType.CreateInstance">
+            <summary>
+            Creates a new instance of the type that this metadata points back to. If this type has a
+            default constructor, then Activator.CreateInstance will be used to construct the type
+            (or Array.CreateInstance if it an array). Otherwise, an uninitialized object created via
+            FormatterServices.GetSafeUninitializedObject is used to construct the instance.
+            </summary>
+        </member>
+        <member name="P:FullSerializer.fsMetaType.HasDefaultConstructor">
+            <summary>
+            Returns true if the type represented by this metadata contains a default constructor.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsReflectionUtility.GetInterface(System.Type,System.Type)">
+            <summary>
+            Searches for a particular implementation of the given interface type inside of the type.
+            This is particularly useful if the interface type is an open type, ie, typeof(IFace{}),
+            because this method will then return IFace{} but with appropriate type parameters
+            inserted.
+            </summary>
+            <param name="type">The base type to search for interface</param>
+            <param name="interfaceType">The interface type to search for. Can be an open generic
+            type.</param>
+            <returns>The actual interface type that the type contains, or null if there is no
+            implementation of the given interfaceType on type.</returns>
+        </member>
+        <member name="T:FullSerializer.Internal.fsTypeLookup">
+            <summary>
+            Provides APIs for looking up types based on their name.
+            </summary>
+        </member>
+        <member name="M:FullSerializer.Internal.fsTypeLookup.GetType(System.String)">
+            <summary>
+            Attempts to lookup the given type. Returns null if the type lookup fails.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -3,21 +3,24 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
+using Vexe.Runtime.Types;
 
 /// <summary>
 /// UI Toolbar provides controls for choosing which UI windows to display
 /// </summary>
-public class UI_Toolbar : MonoBehaviour {
+[BasicView]
+public class UI_Toolbar : BetterBehaviour {
 
 	public static UI_Toolbar I;
 	
 	public float height;
+	
+	[Serialize]
 	public List<IWindowFunction> additionalWindows = new List<IWindowFunction>();
 
-	//private IToolbar[] _tools;
 	private List<IToolbar> _tools = new List<IToolbar>();
 	private GUISkin _skin;
-	private int id;
+	private int winId;
 	
 	void Awake() {
 		// singleton pattern
@@ -27,18 +30,8 @@ public class UI_Toolbar : MonoBehaviour {
 		else {
 			Destroy(this);
 		}
-		// instantiate all classes that implement IToolbar
-		// get all IToolbar components on this GameObject
-		//_tools = gameObject.GetComponents(typeof(IToolbar)) as IToolbar[];
-		//Debug.Log(_tools.Length);
-		/*MonoBehaviour[] components = gameObject.GetComponents<MonoBehaviour>();
-		foreach(MonoBehaviour component in components) {
-			if (component is IToolbar) {
-				IToolbar toolbarItem = component as IToolbar;
-				_tools.Add(toolbarItem);
-			}
-		}*/
 		
+		// instantiate all classes that implement IToolbar
 		Type ti = typeof(IToolbar);
 		foreach(Assembly asm in AppDomain.CurrentDomain.GetAssemblies()) {
 			Type[] types;
@@ -57,7 +50,6 @@ public class UI_Toolbar : MonoBehaviour {
 				if (toolbarType != null) {
 					_tools.Add((IToolbar)Activator.CreateInstance(t));
 				}
-				//if (ti.IsAssignableFrom(t)) 
 			}
 		}
 		
@@ -69,29 +61,37 @@ public class UI_Toolbar : MonoBehaviour {
 	/// Draw GUI elements
 	/// </summary>
 	void OnGUI() {
+		// set skin object
 		GUI.skin = _skin;
+		// set toolbar size and position
 		Rect rect = new Rect(0f,0f,Screen.width,height);
-		id = 1;
+		winId = 1;
 		// display toolbar window
-		GUILayout.Window(id++, rect, ToolbarWindow, Strings.projectTitle);
-		// display any visible tool windows
+		GUILayout.Window(winId++, rect, ToolbarWindow, Strings.projectTitle);
+		// display any visible toolbar windows
 		foreach(IToolbar t in _tools) {
 			// only handle windows that are contextual
 			if (t.contextual) {
 				// display windows that aren't hidden
 				if (!t.hidden) {
-					t.windowRect = GUILayout.Window(id++, t.windowRect, t.windowFunction, t.windowTitle);
+					t.windowRect = GUILayout.Window(winId++, t.windowRect, t.windowFunction, t.windowTitle);
 				}
 			}
 		}
-		
-		foreach(IWindowFunction w in additionalWindows) {
-			w.windowRect = GUILayout.Window(id++, w.windowRect, w.windowFunction, w.windowTitle);
+		// display any additional windows
+		for(int i = 0; i < additionalWindows.Count-1; i++) {
+			IWindowFunction w = additionalWindows[i];
+			if (w.windowFunction == null) {
+				Debug.LogWarning("Null window removed.");
+				additionalWindows.Remove(w);
+			} else {
+				w.windowRect = GUILayout.Window(winId++, w.windowRect, w.windowFunction, w.windowTitle);
+			}
 		}
 	}
 	
 	/// <summary>
-	/// Toolbar window GUI.WindowFunction
+	/// Toolbar window GUI.WindowFunction (a list of buttons for showing/hiding tools)
 	/// </summary>
 	/// <param name="windowID">Window ID.</param>
 	void ToolbarWindow(int windowID) {

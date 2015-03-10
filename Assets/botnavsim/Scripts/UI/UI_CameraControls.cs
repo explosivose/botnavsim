@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[System.Serializable]
 public class UI_CameraControls : IToolbar {
 
 	public UI_CameraControls() {

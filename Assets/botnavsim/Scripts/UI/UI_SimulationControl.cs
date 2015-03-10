@@ -8,6 +8,7 @@ using System.Collections.Generic;
 /// Provides a toggle for exhibition mode.
 /// Provides a slider for simulation timescale.
 /// </summary>
+[System.Serializable]
 public class UI_SimulationControl : IToolbar {
 
 	public UI_SimulationControl() {
