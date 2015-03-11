@@ -442,6 +442,7 @@ public class Simulation : MonoBehaviour {
 		StopTest();
 		yield return new WaitForSeconds(1f);
 		if (settings.randomizeOrigin) {
+			robot.Reset();
 			robot.transform.position = RandomInBounds();
 			robot.transform.rotation = Quaternion.identity;
 		}

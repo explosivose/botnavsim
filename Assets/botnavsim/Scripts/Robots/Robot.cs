@@ -28,6 +28,7 @@ public class Robot : MonoBehaviour {
 	private int 		_snsrIndex;		// circular index for sensor array
 	private int 		_stuckCounter;
 	private Vector3[]	_positions;
+	private BotPath 	_path;
 
 	// public properties
 	// ~-~-~-~-~-~-~-~-
@@ -135,7 +136,11 @@ public class Robot : MonoBehaviour {
 		if (_navigation == null) return;
 		StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
 	}
-
+	
+	public void Reset() {
+		_path = new BotPath();
+		_positions = new Vector3[30];
+	}
 	
 	// private methods
 	// ~-~-~-~-~-~-~-~-
@@ -153,6 +158,8 @@ public class Robot : MonoBehaviour {
 			cameraMount = transform;
 			Debug.LogWarning("CameraMount object not found on Robot.");
 		} 
+		_path = new BotPath();
+		StartCoroutine(RecordPath());
 	}
 	
 	private void Update() {
@@ -169,6 +176,9 @@ public class Robot : MonoBehaviour {
 			_move.z = y;
 		}
 		else if (Simulation.isRunning){
+			
+			// draw path
+			_path.DrawPath();
 			
 			// Pass sensor data to INavigation
 			if (_navigation.spaceRelativeTo == Space.Self) {
@@ -242,6 +252,19 @@ public class Robot : MonoBehaviour {
 				_stuckCounter = 0;
 			}
 			yield return new WaitForSeconds(0.3f);
+		}
+	}
+	
+	private IEnumerator RecordPath() {
+		Vector3 prev = rigidbody.worldCenterOfMass;;
+		_path.AddNode(prev, Simulation.time);
+		while (true) {
+			// only record a line when bot has moved far enough
+			if (Vector3.Distance(prev, rigidbody.worldCenterOfMass) > 0.25f) {
+				prev = rigidbody.worldCenterOfMass;
+				_path.AddNode(rigidbody.worldCenterOfMass, Simulation.time);
+			}
+			yield return new WaitForSeconds(Log.timeStep);
 		}
 	}
 }

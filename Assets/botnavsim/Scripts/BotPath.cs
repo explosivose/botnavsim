@@ -5,9 +5,14 @@ using System.Collections.Generic;
 /// <summary>
 /// BotPath displays information about a recorded path taken or calculated.
 /// </summary>
-public class BotPath : MonoBehaviour {
+[System.Serializable]
+public class BotPath  {
 	
-	
+	public BotPath() {
+		_nodes = new List<Vector3>();
+		_times = new List<float>();
+		color = Color.blue;
+	}
 	
 	/// <summary>
 	/// Gets or sets a value indicating whether this <see cref="BotPath"/> is visible.
@@ -70,8 +75,9 @@ public class BotPath : MonoBehaviour {
 	/// <param name="node">Node.</param>
 	/// <param name="time">Time.</param>
 	public void AddNode(Vector3 node, float time) {
-
-		distance += Vector3.Distance(_nodes[_nodes.Count-1], node);
+		if (_nodes.Count > 1)
+			distance += Vector3.Distance(_nodes[_nodes.Count-1], node);
+		
 		_nodes.Add(node);
 		_times.Add(time);
 		
