@@ -108,16 +108,16 @@ public class Log  {
 		Simulation.Settings info = Simulation.settings;
 		header = "# " + Strings.projectTitle + " " + Strings.projectVersion + " - Data Log, " +
 		DateTime.Now.ToShortDateString() + "," + DateTime.Now.ToShortTimeString();
-		header += "# " + Strings.newline + info.title + ", " + info.date + " " + info.time;
-		header += "# " + Strings.newline + "Test number, " + Simulation.testNumber + ", of, " + info.numberOfTests;;
-		header += "# " + Strings.newline + "Robot, " + info.robotName;
-		header += "# " + Strings.newline + "Navigation Assembly, " + info.navigationAssemblyName;
-		header += "# " + Strings.newline + "Environment, " + info.environmentName;
-		header += "# " + Strings.newline + "Randomize Origin, " + info.randomizeOrigin;
-		header += "# " + Strings.newline + "Randomize Destination, " + info.randomizeDestination;
-		header += "# " + Strings.newline + "Maximum Test Time, " + info.maximumTestTime;
-		header += "# " + Strings.newline + "Continue on NavObjectiveComplete, " + info.continueOnNavObjectiveComplete;
-		header += "# " + Strings.newline + "Continue on RobotIsStuck, " + info.continueOnRobotIsStuck;
+		header += Strings.newline + "# " + info.title + ", " + info.date + " " + info.time;
+		header += Strings.newline + "# Test number, " + Simulation.testNumber + ", of, " + info.numberOfTests;;
+		header += Strings.newline + "# Robot, " + info.robotName;
+		header += Strings.newline + "# Navigation Assembly, " + info.navigationAssemblyName;
+		header += Strings.newline + "# Environment, " + info.environmentName;
+		header += Strings.newline + "# Randomize Origin, " + info.randomizeOrigin;
+		header += Strings.newline + "# Randomize Destination, " + info.randomizeDestination;
+		header += Strings.newline + "# Maximum Test Time, " + info.maximumTestTime;
+		header += Strings.newline + "# Continue on NavObjectiveComplete, " + info.continueOnNavObjectiveComplete;
+		header += Strings.newline + "# Continue on RobotIsStuck, " + info.continueOnRobotIsStuck;
 		logging = true;
 		Simulation.Instance.StartCoroutine(LogRoutine());
 	}
@@ -153,8 +153,8 @@ public class Log  {
 			path += "\\" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss_");
 			path += Simulation.settings.title + "_" + Simulation.testNumber;
 			path += ".csv";
-			header += "# " + Strings.newline + "Test ran for, " + Simulation.time + ",";
-			header += "# " + " and stopped with, " + stopcode.ToString() + Strings.newline; 
+			header += Strings.newline + "# Test ran for, " + Simulation.time + ",";
+			header += " and stopped with, " + stopcode.ToString() + Strings.newline; 
 			string data = header + Strings.newline;
 			while(log.Count > 0) {
 				data += log.Dequeue() + Strings.newline;
