@@ -137,7 +137,8 @@ public class Simulation : MonoBehaviour {
 		}
 		public string fileName {
 			get {
-				return title + "_" + name + "_" + datetime.ToString("yyyyMMdd_HHmm") + ".xml";
+				return datetime.ToString("yyyyMMdd_HHmmss_") +
+					Simulation.settings.title + ".xml";
 			}
 		}
 		public System.DateTime datetime {get; private set;}
@@ -240,11 +241,19 @@ public class Simulation : MonoBehaviour {
 	
 	// Reference to the environment
 	/// <summary>
-	/// Gets reference to the environment in the current simulation.
+	/// Gets or sets reference to the environment in the current simulation.
 	/// </summary>
 	/// <value>The environment.</value>
 	public static GameObject environment {
-		get; private set;
+		get {
+			return _environment;
+		}
+		set {
+			if (isRunning) StopSimulation();
+			if (_environment) _environment.transform.Recycle();
+			_environment = value;
+			SetBounds();
+		}
 	}
 	
 	// Reference to the destination
@@ -340,6 +349,7 @@ public class Simulation : MonoBehaviour {
 	
 	private static Settings _settings;
 	private static Robot _robot;
+	private static GameObject _environment;
 	private static bool _paused;
 	private static float _timeScale = 1f;
 	
@@ -467,9 +477,7 @@ public class Simulation : MonoBehaviour {
 		simulationNumber++;
 		settings = batch[simulationNumber-1];
 		Log.Settings();
-		if (environment) environment.transform.Recycle();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
-		SetBounds();
 		destination.transform.position = RandomInBounds();
 		Camera.main.transform.parent = null;
 		robot = BotLoader.LoadRobot(settings.robotName);

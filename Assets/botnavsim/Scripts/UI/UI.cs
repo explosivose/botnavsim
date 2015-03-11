@@ -580,16 +580,16 @@ public class UI : MonoBehaviour {
 			_window.Pop();
 		}
 		if (GUILayout.Button("R", GUILayout.Width(30f))) {
-			_logFiles = LogLoader.SearchForCSV(Strings.logFileDirectory + _logSubfolder);
-			_logFolders = LogLoader.SearchForSubfolders(Strings.logFileDirectory + _logSubfolder);
+			_logFiles = FileBrowser.ListFiles(Strings.logFileDirectory + _logSubfolder, "*.csv");
+			_logFolders = FileBrowser.ListFolders(Strings.logFileDirectory + _logSubfolder);
 		}
 		GUILayout.EndHorizontal();
 		
 		// go up one directory
 		if (GUILayout.Button("..")) {
 			_logSubfolder = Directory.GetParent(_logSubfolder).Name;
-			_logFiles = LogLoader.SearchForCSV(Strings.logFileDirectory + _logSubfolder);
-			_logFolders = LogLoader.SearchForSubfolders(Strings.logFileDirectory + _logSubfolder);
+			_logFiles = FileBrowser.ListFiles(Strings.logFileDirectory + _logSubfolder, "*.csv");
+			_logFolders = FileBrowser.ListFolders(Strings.logFileDirectory + _logSubfolder);
 		}
 		// list subdirectories
 		for (int i = 0; i < _logFolders.Count; i++) {

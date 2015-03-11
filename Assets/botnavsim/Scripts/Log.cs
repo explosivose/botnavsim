@@ -105,19 +105,22 @@ public class Log  {
 	/// </summary>
 	public static void Start() {
 		Debug.Log("Log Started.");
+		string br = Strings.newline + Strings.csvComment;
+		char d = Strings.csvDelimiter;
 		Simulation.Settings info = Simulation.settings;
-		header = "# " + Strings.projectTitle + " " + Strings.projectVersion + " - Data Log, " +
-		DateTime.Now.ToShortDateString() + "," + DateTime.Now.ToShortTimeString();
-		header += Strings.newline + "# " + info.title + ", " + info.date + " " + info.time;
-		header += Strings.newline + "# Test number, " + Simulation.testNumber + ", of, " + info.numberOfTests;;
-		header += Strings.newline + "# Robot, " + info.robotName;
-		header += Strings.newline + "# Navigation Assembly, " + info.navigationAssemblyName;
-		header += Strings.newline + "# Environment, " + info.environmentName;
-		header += Strings.newline + "# Randomize Origin, " + info.randomizeOrigin;
-		header += Strings.newline + "# Randomize Destination, " + info.randomizeDestination;
-		header += Strings.newline + "# Maximum Test Time, " + info.maximumTestTime;
-		header += Strings.newline + "# Continue on NavObjectiveComplete, " + info.continueOnNavObjectiveComplete;
-		header += Strings.newline + "# Continue on RobotIsStuck, " + info.continueOnRobotIsStuck;
+		header = Strings.csvComment + Strings.projectTitle + " " + Strings.projectVersion + " - Data Log " + d +
+			DateTime.Now.ToShortDateString() + d + DateTime.Now.ToShortTimeString();
+		header += br + info.title + d + info.date + " " + info.time;
+		header += br + Strings.csvXmlCommentTag + info.fileName;
+		header += br + "Test number" + d + Simulation.testNumber + d + "of" + d + info.numberOfTests;
+		header += br + "Robot" + d + info.robotName;
+		header += br + "Navigation Assembly" + d + info.navigationAssemblyName;
+		header += br + "Environment" + d + info.environmentName;
+		header += br + "Randomize Origin" + d + info.randomizeOrigin;
+		header += br + "Randomize Destination" + d + info.randomizeDestination;
+		header += br + "Maximum Test Time" + d + info.maximumTestTime;
+		header += br + "Continue on NavObjectiveComplete" + d + info.continueOnNavObjectiveComplete;
+		header += br + "Continue on RobotIsStuck" + d + info.continueOnRobotIsStuck;
 		logging = true;
 		Simulation.Instance.StartCoroutine(LogRoutine());
 	}
@@ -131,9 +134,7 @@ public class Log  {
 		if (!System.IO.Directory.Exists(path)) {
 			System.IO.Directory.CreateDirectory(path);
 		}
-		path += "\\" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss_");
-		path += Simulation.settings.title;
-		path += ".xml";
+		path += "\\" + Simulation.settings.fileName;
 		Debug.Log(path);
 		ObjectSerializer.SerializeObject(Simulation.settings, path);
 	}
@@ -153,8 +154,8 @@ public class Log  {
 			path += "\\" + System.DateTime.Now.ToString("yyyyMMdd_HHmmss_");
 			path += Simulation.settings.title + "_" + Simulation.testNumber;
 			path += ".csv";
-			header += Strings.newline + "# Test ran for, " + Simulation.time + ",";
-			header += " and stopped with, " + stopcode.ToString() + Strings.newline; 
+			header += Strings.newline + Strings.csvComment + "Test ran for" + Strings.csvDelimiter + Simulation.time;
+			header += Strings.csvDelimiter + "and stopped with" + Strings.csvDelimiter + stopcode.ToString() + Strings.newline; 
 			string data = header + Strings.newline;
 			while(log.Count > 0) {
 				data += log.Dequeue() + Strings.newline;
@@ -170,13 +171,13 @@ public class Log  {
 	private static IEnumerator LogRoutine() {
 		string headings = "";
 		foreach(Parameters p in selectedParams) {
-			headings += p.ToString() + ",";
+			headings += p.ToString() + Strings.csvDelimiter;
 		}
 		log.Enqueue(headings);
 		while (logging) {
 			string line = "";
 			foreach(Parameters p in selectedParams) {
-				line += "\"" + GetData(p) + "\",";
+				line += "\"" + GetData(p) + "\"" + Strings.csvDelimiter;
 			}
 			log.Enqueue(line);
 			yield return new WaitForSeconds(timeStep);
