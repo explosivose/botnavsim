@@ -55,6 +55,7 @@ public class LogLoader {
 		else {
 			// try loading environment
 			settings = ObjectSerializer.DeSerializeObject<Simulation.Settings>(csvPath + "\\" + xmlFileName);
+			EnvLoader.SearchForEnvironments();
 			Simulation.environment = EnvLoader.LoadEnvironment(settings.environmentName);
 			// prompt user about browsing for an environment if one couldn't be loaded
 		}
@@ -89,7 +90,8 @@ public class LogLoader {
 			}
 			// try deserializing this vector3 data
 			Vector3 pos = ParseVector3(row[robotPositionIndex]);
-			float time = float.Parse(row[0]);
+			// remove " chars from "12.3", for example
+			float time = float.Parse(row[0].Substring(1,row[0].Length-2));
 			botpos.AddNode(pos, time);
 		}
 		
@@ -98,7 +100,8 @@ public class LogLoader {
 	
 	// parse a vector3 object from a string like "(1.0,2.0,3.0)"
 	private static Vector3 ParseVector3(string strv) {
-		string[] split = strv.Substring(1,strv.Length-2).Split(',');
+		// remove " and bracket chars then split by commas
+		string[] split = strv.Substring(2,strv.Length-4).Split(',');
 		float x = float.Parse(split[0]);
 		float y = float.Parse(split[1]);
 		float z = float.Parse(split[2]);

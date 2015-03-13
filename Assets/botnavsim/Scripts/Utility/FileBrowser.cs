@@ -13,7 +13,7 @@ public class FileBrowser {
 	public static List<string> ListFolders(string path) {
 		List<string> subfolders = new List<string>();
 		foreach(string folder in Directory.GetDirectories(path)) {
-			subfolders.Add(Path.GetDirectoryName(folder));
+			subfolders.Add(folder);
 		}
 		return subfolders;
 	}
