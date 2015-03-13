@@ -192,7 +192,7 @@ public class Log  {
 		case Parameters.SimulationTimeScale:
 			return Simulation.timeScale.ToString();
 		case Parameters.RobotPosition:
-			return Simulation.robot.transform.position.ToString();
+			return Simulation.robot.rigidbody.worldCenterOfMass.ToString();
 		case Parameters.RobotIsStuck:
 			return Simulation.robot.stuckpc.ToString();
 		case Parameters.DestinationPosition:

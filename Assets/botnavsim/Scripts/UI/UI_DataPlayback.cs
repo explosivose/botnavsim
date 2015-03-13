@@ -116,6 +116,8 @@ public class UI_DataPlayback : IToolbar {
 				_paths.AddRange(newPaths);
 			}
 		}
+		
+		GUI.DragWindow();
 	}
 	
 	private void Legend(int windowID) {
@@ -125,6 +127,10 @@ public class UI_DataPlayback : IToolbar {
 			_windows.Pop();
 		}
 		GUILayout.EndHorizontal();
+		
+		// Hacky, temporary camera placement
+		Camera.main.orthographicSize = 50f;
+		Camera.main.transform.position = Simulation.bounds.center + Vector3.up * 100f;
 		
 		// list botpaths
 		for(int i = 0; i < _paths.Count; i++) {
@@ -141,5 +147,9 @@ public class UI_DataPlayback : IToolbar {
 				_paths[i].DrawPath();
 			}
 		}
-	} 
+		
+		GUI.DragWindow();
+	}
+	
+	
 }

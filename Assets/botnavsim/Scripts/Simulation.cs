@@ -353,6 +353,9 @@ public class Simulation : MonoBehaviour {
 	private static bool _paused;
 	private static float _timeScale = 1f;
 	
+	// bool flag indicates whether StartTestRoutine is running
+	private static bool _startingTest;
+	
 	/* ### Static Methods ### */
 	
 	/// <summary>
@@ -385,22 +388,28 @@ public class Simulation : MonoBehaviour {
 			NextSimulation();
 			return;
 		}
-		Instance.StartCoroutine(StartTestRoutine());
+		if (!_startingTest) Instance.StartCoroutine(StartTestRoutine());
 	}
 	
-
+	/// <summary>
+	/// Stops the test. Sets simulation state to State.stopped and holds the robot still.
+	/// </summary>
 	private static void StopTest() {
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
+			robot.rigidbody.angularVelocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
 		state = State.stopped;
 	}
 	
-	// Stop the current simulation
+	/// <summary>
+	/// Stops the simulation.
+	/// </summary>
 	private static void StopSimulation() {
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
+			robot.rigidbody.angularVelocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
 		state = State.stopped;
@@ -448,15 +457,18 @@ public class Simulation : MonoBehaviour {
 	
 	// Routine for starting a new test
 	private static IEnumerator StartTestRoutine() {
+		_startingTest = true;
 		CamController.Instance.OnTestEnd();
 		StopTest();
 		yield return new WaitForSeconds(1f);
+		// randomly place the robot
 		if (settings.randomizeOrigin) {
 			robot.Reset();
 			robot.transform.position = RandomInBounds();
 			robot.transform.rotation = Quaternion.identity;
 		}
 			
+		// randomly place the destination
 		if (settings.randomizeDestination)
 			destination.transform.position = RandomInBounds();
 			
@@ -469,6 +481,7 @@ public class Simulation : MonoBehaviour {
 		if (loggingEnabled) Log.Start();
 		robot.moveEnabled = true;
 		robot.NavigateToDestination();
+		_startingTest = false;
 	}
 	
 	// Routine for starting a new simulation
@@ -477,9 +490,11 @@ public class Simulation : MonoBehaviour {
 		simulationNumber++;
 		settings = batch[simulationNumber-1];
 		Log.Settings();
+		EnvLoader.SearchForEnvironments();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
 		destination.transform.position = RandomInBounds();
 		Camera.main.transform.parent = null;
+		BotLoader.SearchForRobots();
 		robot = BotLoader.LoadRobot(settings.robotName);
 		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
 		testNumber = 0;
@@ -521,11 +536,11 @@ public class Simulation : MonoBehaviour {
 				Debug.Log("Simulation: nav objective complete!");
 				NextTest(StopCode.RobotReachedDestination);
 			}
-			if (robot.isStuck && settings.continueOnRobotIsStuck) {
+			else if (robot.isStuck && settings.continueOnRobotIsStuck) {
 				Debug.LogWarning("Simulation: Robot appears to be stuck! Skipping test.");
 				NextTest(StopCode.RobotIsStuck);
 			}
-			if (settings.maximumTestTime > 0 && time > settings.maximumTestTime) {
+			else if (settings.maximumTestTime > 0 && time > settings.maximumTestTime) {
 				Debug.LogWarning("Simulation: Max test time exceeded! Skipping test.");
 				NextTest(StopCode.MaxTimeExceeded);
 			}

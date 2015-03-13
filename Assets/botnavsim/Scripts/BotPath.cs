@@ -12,6 +12,7 @@ public class BotPath  {
 		_nodes = new List<Vector3>();
 		_times = new List<float>();
 		color = Color.blue;
+		visible = true;
 	}
 	
 	/// <summary>

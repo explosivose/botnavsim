@@ -84,6 +84,9 @@ public class CamController : Singleton<CamController> {
 		}
 	}
 	
+	/// <summary>
+	/// Raises the test start event. (handles camera exhibitionMode behaviour)
+	/// </summary>
 	public void OnTestStart() {
 		if (Simulation.exhibitionMode) {
 			RandomPerspective();
@@ -91,6 +94,9 @@ public class CamController : Singleton<CamController> {
 		}
 	}
 	
+	/// <summary>
+	/// Raises the test end event. (handles camera exhibitionMode behaviour)
+	/// </summary>
 	public void OnTestEnd() {
 		if (Simulation.exhibitionMode) {
 			perspective = Perspective.Landscape;
@@ -144,7 +150,7 @@ public class CamController : Singleton<CamController> {
 			PerspectiveUpdate();
 			RenderModeUpdate();
 		}
-
+		
 	}
 	
 	void RenderModeUpdate() {
