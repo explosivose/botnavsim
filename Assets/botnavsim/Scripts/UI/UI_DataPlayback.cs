@@ -6,6 +6,8 @@ using System.IO;
 public class UI_DataPlayback : IToolbar {
 
 	public UI_DataPlayback() {
+		if (!Directory.Exists(Strings.logFileDirectory))
+			Directory.CreateDirectory(Strings.logFileDirectory);
 		// initialise file browsing
 		_files = FileBrowser.ListFiles(Strings.logFileDirectory);
 		_folders = FileBrowser.ListFolders(Strings.logFileDirectory);
