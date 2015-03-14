@@ -4,7 +4,26 @@ using System.Collections;
 public static class Strings  {
 
 	public const string projectTitle = "BotNavSim";
-	public const string projectVersion = "v0.3.0";
+	public const string projectVersion = "v0.4.0";
+	
+	/// <summary>
+	/// The csv delimiter character. Avoid using comma because some
+	/// data is serialized to include commas, and LogLoader cannot yet
+	/// handle cases where commas are not just a delimiter character.
+	/// </summary>
+	public const char csvDelimiter = '\t';
+	/// <summary>
+	/// The csv comment character denotes lines which are not CSV data. 
+	/// </summary>
+	public const string csvComment = "#";
+	/// <summary>
+	/// The csv xml comment tag identifies which line the associated XML
+	/// settings file name is stored. 
+	/// </summary>
+	public const string csvXmlCommentTag = " XML:";
+	
+	public static string logFileDirectory = System.Environment.CurrentDirectory + "\\Logs";
+	public static string navigationPluginDirectory = System.Environment.CurrentDirectory + "\\INavigation";
 	
 	public static char[] invalidFileNameChars {
 		get {

@@ -1,0 +1,1277 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>vRuntime</name>
+    </assembly>
+    <members>
+        <member name="M:Vexe.Runtime.Extensions.BinaryFormatterExtensions.SerializeToString``1(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter,``0)">
+            <summary>
+            Serializes 'value' to a string, using BinaryFormatter
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.BinaryFormatterExtensions.DeserializeFromString``1(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter,System.String)">
+            <summary>
+            Deserializes an object of type T from the string 'data'
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.BinaryFormatterExtensions.DeserializeFromString(System.Runtime.Serialization.Formatters.Binary.BinaryFormatter,System.String)">
+            <summary>
+            Deserializes an object of type T from the string 'data'
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.ComponentExtensions.ChangeState(UnityEngine.Component,System.Boolean)">
+            <summary>
+            Changes the component's state to the specified state
+            Returns true on success
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.ComponentExtensions.ChangeState(UnityEngine.Component,System.Boolean,System.Reflection.PropertyInfo)">
+            <summary>
+            Changes the specified component's state to 'newState' using the passed enabled PropertyInfo
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.ComponentExtensions.GetState(UnityEngine.Component)">
+            <summary>
+            Returns the current state of the component if it 'has' a state
+            otherwise a InvalidOperationException is thrown
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.ComponentExtensions.GetState(UnityEngine.Component,System.Reflection.PropertyInfo)">
+            <summary>
+            Returns the current state of the component using the passed enabled PropertyInfo
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.ComponentExtensions.ToggleState(UnityEngine.Component)">
+            <summary>
+            Toggles the component's state
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.Memoize``1(System.Func{``0})">
+            <summary>
+            Memoizes the specified func - returns the memoized version
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.Memoize``2(System.Func{``0,``1})">
+            <summary>
+            Memoizes the specified func - returns the memoized version
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke(System.Action)">
+            <summary>
+            Invokes the delegate if it's not null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke``1(System.Action{``0},``0)">
+            <summary>
+            Invokes the delegate if it's not null with the specified argument
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke``2(System.Action{``0,``1},``0,``1)">
+            <summary>
+            Invokes the delegate if it's not null with the specified arguments
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke``3(System.Action{``0,``1,``2},``0,``1,``2)">
+            <summary>
+            Invokes the delegate if it's not null with the specified arguments
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke``1(System.Func{``0})">
+            <summary>
+            Invokes the delegate if it's not null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke``2(System.Func{``1,``0},``1)">
+            <summary>
+            Invokes the delegate if it's not null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke``3(System.Func{``1,``2,``0},``1,``2)">
+            <summary>
+            Invokes the delegate if it's not null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.DelegateExtensions.SafeInvoke``4(System.Func{``1,``2,``3,``0},``1,``2,``3)">
+            <summary>
+            Invokes the delegate if it's not null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetChildren(UnityEngine.GameObject)">
+            <summary>
+            Recursively returns children gameObjects excluding inactive ones
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetChildren(UnityEngine.GameObject,System.Boolean)">
+            <summary>
+            Recursively returns children gameObjects
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetLongName(UnityEngine.GameObject)">
+            <summary>
+            Considers the gameObject's parents in the name
+            ex: if 'Child' had a parent "Parent1" and "Parent1" had a parent "Parent2"
+            the result is "Parent2.Parent1.Child"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.Deactivate(UnityEngine.GameObject)">
+            <summary>
+            Deactivates (calls SetActive(false)) this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.Activate(UnityEngine.GameObject)">
+            <summary>
+            Activates (calls SetActive(true)) this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetAllComponentsIncludingSelf(UnityEngine.GameObject)">
+            <summary>
+            Returns an array of all the components attached to this gameObject with the gameObject included
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.ClearChildren(UnityEngine.GameObject)">
+            <summary>
+            Destroys all children objects under this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.ClearChildren(UnityEngine.GameObject,System.Predicate{UnityEngine.GameObject})">
+            <summary>
+            Destroys children objects under this gameObject meeting the specified predicate condition
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.ClearComponents(UnityEngine.GameObject)">
+            <summary>
+            Destroys all components in this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.ClearComponents(UnityEngine.GameObject,System.Predicate{UnityEngine.Component})">
+            <summary>
+            Destroys any component in this gameObject meeting the specified predicate
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetAllComponents(UnityEngine.GameObject)">
+            <summary>
+            Returns an array of all the components attached to this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetComponentsNames(UnityEngine.GameObject)">
+            <summary>
+            Returns the names of all the components attached to this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetParents(UnityEngine.GameObject)">
+            <summary>
+            Returns an array of the parent gameObjects above this gameObject
+            Ex: say we had the following hierarchy:
+            GO 1
+            --- GO 1.1
+            --- GO 1.2
+            ----- GO 1.2.1
+            Then the parents of GO 1.2.1 are GO 1.2 and GO 1
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.EnumerateParentObjects(UnityEngine.GameObject)">
+            <summary>
+            Returns a lazy enumerable of the parent gameObjects above this gameObject
+            Ex: say we had the following hierarchy:
+            GO 1
+            --- GO 1.1
+            --- GO 1.2
+            ----- GO 1.2.1
+            Then the parents of GO 1.2.1 are GO 1.2 and GO 1
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetChild(UnityEngine.GameObject,System.String,System.Boolean)">
+            <summary>
+            Gets the child gameObject whose name is specified by 'wanted'
+            The search is non-recursive by default unless true is passed to 'recursive'
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.AddChild(UnityEngine.GameObject,System.String,UnityEngine.HideFlags)">
+            <summary>
+            Adds and returns a child gameObject to this gameObject with the specified name and HideFlags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetOrAddChild(UnityEngine.GameObject,System.String,System.Boolean,UnityEngine.HideFlags)">
+            <summary>
+            Gets or adds the child gameObject whose name is 'name'
+            Pass true to 'recursive' if you want the search to be recursive
+            Specify HideFlags if you want to add the child using those flags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetChildAtPath(UnityEngine.GameObject,System.String,System.Boolean)">
+            <summary>
+            Gets the gameObject child under this gameObject whose path is specified by childPath
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetChildAtPath(UnityEngine.GameObject,System.String)">
+            <summary>
+            Gets the gameObject child under this gameObject whose path is specified by childPath
+            Throws an InvalidOperationException is not found
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetOrAddChildAtPath(UnityEngine.GameObject,System.String)">
+            <summary>
+            Gets or adds if not found the gameObject child under this gameObject whose path is specified by childPath
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.AddParent(UnityEngine.GameObject,System.String,UnityEngine.HideFlags)">
+            <summary>
+            Adds and returns a parent gameObject to this gameObject with the specified name and HideFlags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetParent(UnityEngine.GameObject,System.String)">
+            <summary>
+            Gets the parent whose name is wanted above this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetOrAddParent(UnityEngine.GameObject,System.String,UnityEngine.HideFlags)">
+            <summary>
+            Gets or add the specified parent to this gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetParentAtPath(UnityEngine.GameObject,System.String,System.Boolean)">
+            <summary>
+            Gets the parent of this gameObject whose path is specified by parentPath
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetParentAtPath(UnityEngine.GameObject,System.String)">
+            <summary>
+            Gets the parent of this gameObject whose path is specified by parentPath
+            Throws an InvalidOperationException if not found
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GameObjectExtensions.GetOrAddParentAtPath(UnityEngine.GameObject,System.String)">
+            <summary>
+            Gets or adds the parent to this gameObject whose path is specifeid by parentPath
+            </summary>
+            <param name="from"></param>
+            <param name="parentPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.AddIfNotExists``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Adds the speicfied value to the list if it wasn't already contained
+            Returns true if the item was added
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.AddIfNotNull``1(System.Collections.Generic.IList{``0},``0,System.Boolean,System.String)">
+            <summary>
+            Adds the specified value to this list if the value wasn't null
+            Throws a NullReferenceException with the specified msg if throwNull is true with the
+            Returns true if the value is added
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.AddIfNotNull``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Adds the specified value to this list if the value wasn't null
+            Doesn't throw exception if the value was null
+            Returns true if the value is added
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.Uniqify(System.Collections.Generic.IList{System.String},System.String)">
+            <summary>
+            Given a list of { "X", "Y", "Y", "Z", "X" } and postfix of "_$" returns { "X_1", "Y_1", "Y_2", "Z", "X_2"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.Uniqify(System.Collections.Generic.IList{System.String})">
+            <summary>
+            Given a list of { "X", "Y", "Y", "Z", "X" }, returns { "X (1)", "Y (1)", "Y (2)", "Z", "X (2)"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.Populate``1(System.Collections.Generic.IList{``0},System.Func{System.Int32,``0})">
+            <summary>
+            Populates the list using the specified getter func
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.JoinString``1(System.Collections.Generic.IEnumerable{``0},System.String,System.Func{``0,System.String})">
+            <summary>
+            Concatenates the specified elements of a string sequence, using the specified separator between each element.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.JoinString(System.Collections.Generic.IEnumerable{System.String},System.String)">
+            <summary>
+            Concatenates the specified elements of a string sequence, using the specified separator between each element.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.JoinString(System.String[],System.String)">
+            <summary>
+            Concatenates the specified elements of a string array, using the specified separator between each element.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.JoinString(System.String[],System.String,System.Int32,System.Int32)">
+            <summary>
+            Concatenates the specified elements of a string array, using the specified separator between each element
+            starting from 'start' counting up 'count'
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.Insert``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Inserts the specified item to the beginning of this list
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.For``1(System.Collections.Generic.IList{``0},System.Action{System.Int32})">
+            <summary>
+            A for loop extension for sequences
+            Starts from 0, to sequence.Count with an increment of 1
+            Specify an act delegate that gets passed the current iterating index
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.For``1(System.Collections.Generic.IList{``0},System.Int32,System.Func{System.Int32,System.Boolean},System.Int32,System.Action{System.Int32})">
+            <summary>
+            A for loop extension for sequences
+            Specify the start, continuation predicate, the increment
+            and an act delegate that gets passed the current iterating index
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.ClearAndAdd``1(System.Collections.Generic.IList{``0},``0)">
+            <summary>
+            Clears the list then adds the specified value
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.UnionAll``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Returns the union (combines + gets rid of duplicate elements) of the input lists using the default EqualityComparer
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.UnionAll``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Returns the union (combines + gets rid of duplicate elements) of the input lists using the specified EqualityComparer
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.IntersectAll``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}})">
+            <summary>
+            Returns the intersection of the input lists using the default EqualityComparer
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.IntersectAll``1(System.Collections.Generic.IEnumerable{System.Collections.Generic.IEnumerable{``0}},System.Collections.Generic.IEqualityComparer{``0})">
+            <summary>
+            Returns the intersection of the input lists using the specified EqualityComparer
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.ClearNulls``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Returns a new version of this list with nulls removed
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.RandomElement``1(System.Collections.Generic.IList{``0})">
+            <summary>
+            Returns a random element from this list
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.RandomElement``1(System.Collections.Generic.IList{``0},System.Random)">
+            <summary>
+            Returns a random element from this list using the specified Random object
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.RandomElement``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Returns a random element from this enumerable
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.RandomElement``1(System.Collections.Generic.IEnumerable{``0},System.Random)">
+            <summary>
+            Returns a random element from this enumerable using the specified Random object
+            Credits to Jon Skeet: http://stackoverflow.com/questions/648196/random-row-from-linq-to-sql/648240#648240
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.BatchRemove``1(System.Collections.Generic.IList{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Removes the specified items from this list
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.AddMultiple``1(System.Collections.Generic.IList{``0},``0[])">
+            <summary>
+            Adds a variable number of items to this list
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.GenericEnumerableExtensions.Disinclude``1(System.Collections.Generic.IEnumerable{``0},``0)">
+            <summary>
+            Returns a new version of the list that doesn't include the specified value
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.OtherExtensions.ValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0)">
+            <summary>
+            Returns the value at the specified key in the dictionary if the key exists,
+            otherwise the default value of the type 'V'
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.OtherExtensions.ValueOrDefault``2(System.Collections.Generic.Dictionary{``0,``1},``0,``1)">
+            <summary>
+            Returns the value at the specified key in the dictionary if the key exists,
+            otherwise the specified default value
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.OtherExtensions.ToInt(System.Collections.Generic.IEnumerable{System.Boolean})">
+            <summary>
+            Ex: [true, true, false, false] ->
+              [1, 1, 0, 0] ->
+              12 (in decimal)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.OtherExtensions.ToBooleanArray(System.Int32)">
+            <summary>
+            Credits: http://stackoverflow.com/questions/4448063/how-can-i-convert-an-int-to-an-array-of-bool
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.OtherExtensions.IsNullable``1(``0)">
+            <summary>
+            Returns true if this object is nullable
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.OtherExtensions.Between``1(``0,``0,``0)">
+            <summary>
+            Returns true if this object's current value is between (greater or equal to) 'from' and (less than or equal to) 'to'
+            Credits: http://extensionmethod.net/csharp/type/between
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.OtherExtensions.Clear(System.Text.StringBuilder)">
+            <summary>
+            Sets the builder's length to zero and returns it
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.RendererExtensions.IsVisibleFrom(UnityEngine.Renderer,UnityEngine.Camera)">
+            <summary>
+            Credits: http://wiki.unity3d.com/index.php?title=IsVisibleFrom
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.ParseEnum``1(System.String)">
+            <summary>
+            Parses the specified string to the enum value of type T
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.ParseEnum(System.String,System.Type)">
+            <summary>
+            Parses the specified string to the enum whose type is specified by enumType
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.IndexOfNth(System.String,System.Char,System.Int32)">
+            <summary>
+            Returns the Nth index of the specified character in this string
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.Remove(System.String,System.String)">
+            <summary>
+            Removes the last occurance of the specified string from this string.
+            Returns the modified version.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.RemoveExtension(System.String)">
+            <summary>
+            Removes the type extension. ex "Medusa.mp3" => "Medusa"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.Contains(System.String,System.String,System.StringComparison)">
+            <summary>
+            Returns whether or not the specified string is contained with this string
+            Credits to JaredPar http://stackoverflow.com/questions/444798/case-insensitive-containsstring/444818#444818
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.ToProperCase(System.String)">
+            <summary>
+            "tHiS is a sTring TesT" -> "This Is A String Test"
+            Credits: http://extensionmethod.net/csharp/string/topropercase 
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.SplitCamelCase(System.String)">
+            <summary>
+            Ex: "thisIsCamelCase" -> "this Is Camel Case"
+            Credits: http://stackoverflow.com/questions/155303/net-how-can-you-split-a-caps-delimited-string-into-an-array
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.SplitPascalCase(System.String)">
+            <summary>
+            Ex: "thisIsCamelCase" -> "This Is Camel Case"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.NormalizePath(System.String)">
+            <summary>
+            Nomalizes this string by replacing all '/' with '\' and returns the normalized string instance
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.NormalizePath(System.String,System.Char,System.Char)">
+            <summary>
+            Normalizes this string by replacing all 'from's by 'to's and returns the normalized instance
+            Ex: "path/to\dir".NormalizePath('/', '\\') => "path\\to\\dir"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.ReplaceAt(System.String,System.Int32,System.Char)">
+            <summary>
+            Replaces the character specified by the passed index with newChar and returns the new string instance
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.ToUpperAt(System.String,System.Int32)">
+            <summary>
+            Uppers the character specified by the passed index and returns the new string instance
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.StringExtensions.IsNullOrEmpty(System.String)">
+            <summary>
+            Returns true if this string is null or empty
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.SystemObjectExtensions.IsObjectNull(System.Object)">
+            <summary>
+            returns `obj == null || obj.Equals(null)` which is safer to use in generic methods
+            if the object has an overriden == operator (es useful when working with Unity)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.Deactivate(UnityEngine.Transform)">
+            <summary>
+            Deactivates (calls SetActive(false)) this transform's gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.Activate(UnityEngine.Transform)">
+            <summary>
+            Activates (calls SetActive(true)) this transform's gameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.Reset(UnityEngine.Transform)">
+            <summary>
+            Sets localPosition to Vector3.zero
+            localRotation to Quaternion.identity
+            and localScale to Vector3.one
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetChild(UnityEngine.Transform,System.String,System.Boolean)">
+            <summary>
+            Gets the child transform whose name is specified by 'wanted'
+            The search is non-recursive by default unless true is passed to 'recursive'
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.AddChild(UnityEngine.Transform,System.String,UnityEngine.HideFlags)">
+            <summary>
+            Adds and returns a child transform to this transform with the specified name and HideFlags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetOrAddChild(UnityEngine.Transform,System.String,System.Boolean,UnityEngine.HideFlags)">
+            <summary>
+            Gets or adds the child transform whose name is 'name'
+            Pass true to 'recursive' if you want the search to be recursive
+            Specify HideFlags if you want to add the child using those flags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetChildAtPath(UnityEngine.Transform,System.String,System.Boolean)">
+            <summary>
+            Gets the transform child under this transform whose path is specified by childPath
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetOrAddChildAtPath(UnityEngine.Transform,System.String)">
+            <summary>
+            Gets or adds if not found the transform child under this transform whose path is specified by childPath
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.AddParent(UnityEngine.Transform,System.String,UnityEngine.HideFlags)">
+            <summary>
+            Adds and returns a parent transform to this transform with the specified name and HideFlags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetParent(UnityEngine.Transform,System.String)">
+            <summary>
+            Gets the parent whose name is wanted above this transform
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetOrAddParent(UnityEngine.Transform,System.String,UnityEngine.HideFlags)">
+            <summary>
+            Gets or add the specified parent to this transform
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetParentAtPath(UnityEngine.Transform,System.String,System.Boolean)">
+            <summary>
+            Gets the parent of this transform whose path is specified by parentPath
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.TransformExtensions.GetOrAddParentAtPath(UnityEngine.Transform,System.String)">
+            <summary>
+            Gets or adds the parent to this transform whose path is specifeid by parentPath
+            </summary>
+            <param name="from"></param>
+            <param name="parentPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetAllMembers(System.Type,System.Type,System.Reflection.BindingFlags)">
+            <summary>
+            Returns all members (including private ones) from this type till peak
+            http://stackoverflow.com/questions/1155529/not-getting-fields-from-gettype-getfields-with-bindingflag-default/1155549#1155549
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetNiceName(System.Reflection.MemberInfo)">
+            <summary>
+            If this member is a method, returns the full method name (name + params) otherwise the member name paskal splitted
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetParentGenericArguments(System.Type,System.Type)">
+            <summary>
+            Returns the generic arguments of the specified parent type def
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsCollection(System.Type)">
+            <summary>
+            Returns true if this type implements ICollection
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.FirstBaseGenArgs(System.Type)">
+            <summary>
+            Returns the generic arguments of the first generic base type of this type
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetBaseTypes(System.Type)">
+            <summary>
+            Returns a lazy enumerable of all the base types of this type including interfaces and classes
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetBaseClasses(System.Type)">
+            <summary>
+            Returns a lazy enumerable of all the base classes of this type
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsAbstractNotInterface(System.Type)">
+            <summary>
+            Returns true if this type is abstract but not an interface
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.TypeNameGauntlet(System.Type)">
+            <summary>
+            Used to filter out unwanted type names. Ex "int" instead of "Int32"
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetNiceName(System.Type)" -->
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsStruct(System.Type)">
+            <summary>
+            Returns true if this type is a sturct
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetEmptyConstructor(System.Type)">
+            <summary>
+            Returns the empty constructor of this type object
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsSubclassOf``1(System.Type)">
+            <summary>
+            Generic version of IsSubclassOf(Type)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetMembersBeneath``1(System.Type,System.Reflection.BindingFlags,System.Boolean)">
+            <summary>
+            Returns all members declared in T and all of its derivatives if includeGenArgMembers was true
+            otherwise just the derivatives of T using the specified bindings
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetMembersBeneath``1(System.Type,System.Boolean)">
+            <summary>
+            Returns all members declared in T and all of its derivatives if includeGenArgMembers was true
+            otherwise just the derivatives of T
+            Uses the following BindingFlags: Instance | NonPublic | Public
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetMembersBeneath(System.Type,System.Type,System.Reflection.BindingFlags,System.Boolean)">
+            <summary>
+            Returns all members declared in T and all of its derivatives if includeGenArgMembers was true
+            otherwise just the derivatives of T using the specified bindings
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetMembersBeneath(System.Type,System.Type,System.Boolean)">
+            <summary>
+            Returns all members declared in T and all of its derivatives if includeGenArgMembers was true
+            otherwise just the derivatives of T
+            Uses the following BindingFlags: Instance | NonPublic | Public
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsA``1(System.Type)">
+            <summary>
+            Returns true if the type exists within the hierarchy chain of the specified generic type
+            (is equal to it or a subclass of it)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsA(System.Type,System.Type)">
+            <summary>
+            Returns true if the type exists within the hierarchy chain of the specified type
+            (is equal to it or a subclass of it)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetCustomAttribute``1(System.Type,System.Boolean)">
+            <summary>
+            Returns the first found custom attribute of type T on this type
+            Returns null if none was found
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetCustomAttribute``1(System.Type)">
+            <summary>
+            Returns the first found non-inherited custom attribute of type T on this type
+            Returns null if none was found
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetDataType(System.Reflection.MemberInfo,System.Func{System.Reflection.MemberInfo,System.Type})">
+            <summary>
+            Returns PropertyInfo.PropertyType if the info was a PropertyInfo,
+            FieldInfo.FieldType if FieldInfo, otherwise MethodInfo.ReturnType
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetCustomAttribute``1(System.Reflection.MemberInfo,System.Boolean)">
+            <summary>
+            Returns the first found custom attribute of type T on this member
+            Returns null if none was found
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetCustomAttribute``1(System.Reflection.MemberInfo)">
+            <summary>
+            Returns the first found non-inherited custom attribute of type T on this member
+            Returns null if none was found
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsDefined``1(System.Reflection.MemberInfo,System.Boolean)">
+            <summary>
+            Returns true if the attribute whose type is specified by the generic argument is defined on this member
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsDefined``1(System.Reflection.MemberInfo)">
+            <summary>
+            Returns true if the attribute whose type is specified by the generic argument is defined on this member
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsDefined``1(System.Type)">
+            <summary>
+            Returns true if the attribute whose type is specified by the generic argument is defined on this type
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsSubclassOfRawGeneric(System.Type,System.Type)">
+            <summary>
+            Alternative version of <see cref="M:System.Type.IsSubclassOf(System.Type)"/> that supports raw generic types (generic types without
+            any type parameters).
+            </summary>
+            <param name="baseType">The base type class for which the check is made.</param>
+            <param name="toCheck">To type to determine for whether it derives from <paramref name="baseType"/>.</param>
+            Credits to JaredPar: http://stackoverflow.com/questions/457676/check-if-a-class-is-derived-from-a-generic-class
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsImplementerOfRawGeneric(System.Type,System.Type)" -->
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.IsSubTypeOfRawGeneric(System.Type,System.Type)">
+            <summary>
+            Returns true if 'type' is an implementer or subclass of raw generic of 'baseType'
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.Invoke(System.Reflection.MethodInfo,System.Object)">
+            <summary>
+            Invokes this method on the specified target with no arguments
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetActualParams(System.Reflection.MethodInfo)">
+            <summary>
+            Skips the first parameter if this was an extension method then returns the remaining parameters
+            returns the whole parameters otherwise
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetFullName(System.Reflection.MethodInfo,System.String)">
+            <summary>
+            Returns the specified method's full name "methodName(argType1 arg1, argType2 arg2, etc)"
+            Uses the specified gauntlet to replaces type names, ex: "int" instead of "Int32"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetParamsNames(System.Reflection.MethodInfo)">
+            <summary>
+            Returns a string representing the passed method parameters names. Ex "int num, float damage, Transform target"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetChildren(System.Type,System.Reflection.Assembly,System.Boolean)">
+            <summary>
+            Gets all the children types (abstract/concrete) of this type from the specified assembly
+            Pass true to directlyUnder to only get the children that are directly under this type (i.e. no grandchildren)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetChildren(System.Type,System.Boolean)">
+            <summary>
+            Gets all the children types (abstract/concrete) of this type from the specified assembly
+            Pass true to directlyUnder to only get the children that are directly under this type (i.e. no grandchildren)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetConcreteChildren(System.Type,System.Reflection.Assembly,System.Boolean)">
+            <summary>
+            Gets all the concrete (non-abstract) children of this type from the specified assembly
+            Pass true to directlyUnder to only get the children that are directly under this type (i.e. no grandchildren)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.VexeTypeExtensions.GetConcreteChildren(System.Type,System.Boolean)">
+            <summary>
+            Gets all the concrete (non-abstract) children of this type from its own assembly
+            Pass true to directlyUnder to only get the children that are directly under this type (i.e. no grandchildren)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.UEObjectExtensions.Hide(UnityEngine.Object)">
+            <summary>
+            Sets this object's hide flags to HideInInsepctor If it is a Component
+            If not, it gets casted to a GameObject and have its flags set to HideInHierarchy if the cast succeeds
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.UEObjectExtensions.Show(UnityEngine.Object)">
+            <summary>
+            Sets this object's hide flags to HideFlags.None
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.UEObjectExtensions.SetVisibility(UnityEngine.Object,System.Boolean)">
+            <summary>
+            Sets this object's visibility to the specified value
+            If true is passed, the hideFlags are set to HideFlags.None
+            otherwise HideInInspector if this is a component, otherwise HideInHierarchy if this is a GameObject
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.UEObjectExtensions.Destroy(UnityEngine.Object,System.Boolean)">
+            <summary>
+            Calls Destroy on this object if we're in playmode, otherwise (edit-time) DestroyImmediate
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Extensions.UEObjectExtensions.Refresh(UnityEngine.Object)">
+            <summary>
+            Attempts to double-toggle the state of this object
+            Doesn't do anything if this object isn't a GameObject or a Component that supports the change of state
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.Assert.NotNullAfterAssignment``1(``0@,System.Func{``0},System.String)">
+            <summary>
+            If the value is null, it gets assigned to the specified getter
+            If it's still null afterwards, a NullReferenceException is thrown with the specified msg
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.Assert.NotNull(System.Object,System.String)">
+            <summary>
+            Throws a NullReferenceException if obj was null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.Assert.ArgumentNotNull(System.Object,System.String)">
+            <summary>
+            Throws an ArgumentNullException if arg was null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.Assert.InBounds``1(System.Collections.Generic.IList{``0},System.Int32,System.String)">
+            <summary>
+            Throws an IndexOutOfRangeException if the specified index was out of the specified list's bounds
+            (less than 0 or greater than or equal to its length)
+            </summary>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.DirectoryHelper">
+            <summary>
+            Credits: http://www.codeproject.com/Articles/38959/A-Faster-Directory-Enumerator?msg=4824093#xx4824093xx
+            A fast enumerator of files in a directory. Use this if you need to get attributes for 
+            all files in a directory.
+            </summary>
+            <remarks>
+            This enumerator is substantially faster than using <see cref="M:System.IO.Directory.GetFiles(System.String)"/>
+            and then creating a new FileInfo object for each path.  Use this version when you 
+            will need to look at the attibutes of each file returned (for example, you need
+            to check each file in a directory to see if it was modified after a specific date).
+            </remarks>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.LazyGetDirectoryPath(System.String@,System.String)">
+            <summary>
+            Lazy-gets a directory path to a directory named 'dir'
+            If 'current' exists it is returned otherwise it gets assigned to GetDirectoryPath(dir)
+            and then returned
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.GetDirectoryPath(System.String)">
+            <summary>
+            Searches the project's hierarchy (starting from "Assets") searching for the specified directory name
+            Returns the directory's full path relative to the project if found
+            Throwns a DirectoryNotFoundException otherwise
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.EnumerateFiles(System.String)">
+            <summary>
+            Gets <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.FileData"/> for all the files in a directory.
+            </summary>
+            <param name="path">The path to search.</param>
+            <returns>An object that implements <see cref="T:System.Collections.Generic.IEnumerable`1"/> and 
+            allows you to enumerate the files in the given directory.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="path"/> is a null reference (Nothing in VB)
+            </exception>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.EnumerateFiles(System.String,System.String)">
+            <summary>
+            Gets <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.FileData"/> for all the files in a directory that match a 
+            specific filter.
+            </summary>
+            <param name="path">The path to search.</param>
+            <param name="searchPattern">The search string to match against files in the path.</param>
+            <returns>An object that implements <see cref="T:System.Collections.Generic.IEnumerable`1"/> and 
+            allows you to enumerate the files in the given directory.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="path"/> is a null reference (Nothing in VB)
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="filter"/> is a null reference (Nothing in VB)
+            </exception>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.EnumerateFiles(System.String,System.String,System.IO.SearchOption)">
+            <summary>
+            Gets <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.FileData"/> for all the files in a directory that 
+            match a specific filter, optionally including all sub directories.
+            </summary>
+            <param name="path">The path to search.</param>
+            <param name="searchPattern">The search string to match against files in the path.</param>
+            <param name="searchOption">
+            One of the SearchOption values that specifies whether the search 
+            operation should include all subdirectories or only the current directory.
+            </param>
+            <returns>An object that implements <see cref="T:System.Collections.Generic.IEnumerable`1"/> and 
+            allows you to enumerate the files in the given directory.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="path"/> is a null reference (Nothing in VB)
+            </exception>
+            <exception cref="T:System.ArgumentNullException">
+            <paramref name="filter"/> is a null reference (Nothing in VB)
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            <paramref name="searchOption"/> is not one of the valid values of the
+            <see cref="T:System.IO.SearchOption"/> enumeration.
+            </exception>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.GetFiles(System.String,System.String,System.IO.SearchOption)">
+            <summary>
+            Gets <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.FileData"/> for all the files in a directory that match a 
+            specific filter.
+            </summary>
+            <param name="path">The path to search.</param>
+            <param name="searchPattern">The search string to match against files in the path.</param>
+            <returns>An object that implements <see cref="T:System.Collections.Generic.IEnumerable`1"/> and 
+            allows you to enumerate the files in the given directory.</returns>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerable">
+            <summary>
+            Provides the implementation of the 
+            <see cref="T:System.Collections.Generic.IEnumerable`1"/> interface
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerable.#ctor(System.String,System.String,System.IO.SearchOption)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerable"/> class.
+            </summary>
+            <param name="path">The path to search.</param>
+            <param name="filter">The search string to match against files in the path.</param>
+            <param name="searchOption">
+            One of the SearchOption values that specifies whether the search 
+            operation should include all subdirectories or only the current directory.
+            </param>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerable.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>
+            A <see cref="T:System.Collections.Generic.IEnumerator`1"/> that can 
+            be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerable.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be 
+            used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.DirectoryHelper.SafeFindHandle">
+            <summary>
+            Wraps a FindFirstFile handle.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.SafeFindHandle.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.SafeFindHandle"/> class.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.SafeFindHandle.ReleaseHandle">
+            <summary>
+            When overridden in a derived class, executes the code required to free the handle.
+            </summary>
+            <returns>
+            true if the handle is released successfully; otherwise, in the 
+            event of a catastrophic failure, false. In this case, it 
+            generates a releaseHandleFailed MDA Managed Debugging Assistant.
+            </returns>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator">
+            <summary>
+            Provides the implementation of the 
+            <see cref="T:System.Collections.Generic.IEnumerator`1"/> interface
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator.#ctor(System.String,System.String,System.IO.SearchOption)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator"/> class.
+            </summary>
+            <param name="path">The path to search.</param>
+            <param name="filter">The search string to match against files in the path.</param>
+            <param name="searchOption">
+            One of the SearchOption values that specifies whether the search 
+            operation should include all subdirectories or only the current directory.
+            </param>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator.Dispose">
+            <summary>
+            Performs application-defined tasks associated with freeing, releasing, 
+            or resetting unmanaged resources.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator.MoveNext">
+            <summary>
+            Advances the enumerator to the next element of the collection.
+            </summary>
+            <returns>
+            true if the enumerator was successfully advanced to the next element; 
+            false if the enumerator has passed the end of the collection.
+            </returns>
+            <exception cref="T:System.InvalidOperationException">
+            The collection was modified after the enumerator was created.
+            </exception>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator.Reset">
+            <summary>
+            Sets the enumerator to its initial position, which is before the first element in the collection.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">
+            The collection was modified after the enumerator was created.
+            </exception>
+        </member>
+        <member name="P:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator.Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <value></value>
+            <returns>
+            The element in the collection at the current position of the enumerator.
+            </returns>
+        </member>
+        <member name="P:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator.System#Collections#IEnumerator#Current">
+            <summary>
+            Gets the element in the collection at the current position of the enumerator.
+            </summary>
+            <value></value>
+            <returns>
+            The element in the collection at the current position of the enumerator.
+            </returns>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.DirectoryHelper.FileEnumerator.SearchContext">
+            <summary>
+            Hold context information about where we current are in the directory search.
+            </summary>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.DirectoryHelper.FileData">
+            <summary>
+            Contains information about a file returned by the 
+            <see cref="!:FastDirectoryEnumerator"/> class.
+            </summary>
+        </member>
+        <member name="F:Vexe.Runtime.Helpers.DirectoryHelper.FileData.Attributes">
+            <summary>
+            Attributes of the file.
+            </summary>
+        </member>
+        <member name="F:Vexe.Runtime.Helpers.DirectoryHelper.FileData.CreationTimeUtc">
+            <summary>
+            File creation time in UTC
+            </summary>
+        </member>
+        <member name="F:Vexe.Runtime.Helpers.DirectoryHelper.FileData.LastAccessTimeUtc">
+            <summary>
+            File last access time in UTC
+            </summary>
+        </member>
+        <member name="F:Vexe.Runtime.Helpers.DirectoryHelper.FileData.LastWriteTimeUtc">
+            <summary>
+            File last write time in UTC
+            </summary>
+        </member>
+        <member name="F:Vexe.Runtime.Helpers.DirectoryHelper.FileData.Size">
+            <summary>
+            Size of the file in bytes
+            </summary>
+        </member>
+        <member name="F:Vexe.Runtime.Helpers.DirectoryHelper.FileData.Name">
+            <summary>
+            Name of the file
+            </summary>
+        </member>
+        <member name="F:Vexe.Runtime.Helpers.DirectoryHelper.FileData.Path">
+            <summary>
+            Full path to the file.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileData.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.FileData.#ctor(System.String,Vexe.Runtime.Helpers.DirectoryHelper.WIN32_FIND_DATA)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Vexe.Runtime.Helpers.DirectoryHelper.FileData"/> class.
+            </summary>
+            <param name="dir">The directory that the file is stored at</param>
+            <param name="findData">WIN32_FIND_DATA structure that this
+            object wraps.</param>
+        </member>
+        <member name="P:Vexe.Runtime.Helpers.DirectoryHelper.FileData.CreationTime">
+            <summary>
+            Time the file created
+            </summary>
+        </member>
+        <member name="P:Vexe.Runtime.Helpers.DirectoryHelper.FileData.LastAccesTime">
+            <summary>
+            Gets the last access time in local time.
+            </summary>
+        </member>
+        <member name="P:Vexe.Runtime.Helpers.DirectoryHelper.FileData.LastWriteTime">
+            <summary>
+            Gets the last access time in local time.
+            </summary>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.DirectoryHelper.WIN32_FIND_DATA">
+            <summary>
+            Contains information about the file that is found 
+            by the FindFirstFile or FindNextFile functions.
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.DirectoryHelper.WIN32_FIND_DATA.ToString">
+            <summary>
+            Returns a <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.EventsHelper.OnUndoRedoPerformed(System.Action)">
+            <summary>
+            Performs the specified action when a Unity Undo/Redo has been performed
+            </summary>
+            <param name="action"></param>
+        </member>
+        <member name="P:Vexe.Runtime.Helpers.EventsHelper.Rename">
+            <summary>
+            Returns a Rename event (keyCode as F2 and a KeyDown event type)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.GOHelper.CreateGo(System.String,UnityEngine.Transform,UnityEngine.HideFlags)">
+            <summary>
+            Creates and returns a GameObject with the passed name, parent and HideFlags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.GOHelper.CreateGoWithMb``1(System.String,UnityEngine.GameObject@,UnityEngine.Transform,UnityEngine.HideFlags)">
+            <summary>
+            Creates a GameObject with a MonoBehaviour specified by the generic T arg - returns the MB added
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.GOHelper.CreateGoWithMb``1(System.String,UnityEngine.Transform,UnityEngine.HideFlags)">
+            <summary>
+            Creates a GameObject with a MonoBehaviour specified by the generic T arg - returns the MB added
+            </summary>
+        </member>
+        <member name="P:Vexe.Runtime.Helpers.GOHelper.EmptyGO">
+            <summary>
+            Returns a cached reference to an empty GO (think NullObject)
+            If none is found, a new one is created
+            </summary>
+        </member>
+        <member name="T:Vexe.Runtime.Helpers.RTHelper">
+            <summary>
+            A helper Utils class for miscellaneous static methods
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.RTHelper.GetTargetID(System.Object)">
+            <summary>
+            Attempts to cast 'target' to IUniquelyIdentifiedObject, if the cast succeeds, it returns the unique id
+            otherwise the object's hash code
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.RTHelper.CreateDictionary``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IList{``1})">
+            <summary>
+            Creates a dictionary out of the passed keys and values
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.RTHelper.AssignIfNull``1(``0@,System.Func{``0})">
+            <summary>
+            Assigns the specified ref value to the assginment func if the value was null
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.RTHelper.GetTexture(System.Byte,System.Byte,System.Byte,System.Byte,UnityEngine.HideFlags)">
+            <summary>
+            Creates and returns a texture whose color components are r, g, b and a with the specifed HideFlags
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.RTHelper.HexToColor(System.String)">
+            <summary>
+            Credits to Unitywiki: http://wiki.unity3d.com/index.php?title=HexConverter
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.TypeNameGauntlet(System.Type)">
+            <summary>
+            Used to filter out unwanted type names. Ex "int" instead of "Int32"
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.IsValidTypeName(System.String,System.Type@)">
+            <summary>
+            Returns true if the specified type name is valid (exists)
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetType(System.String)">
+            <summary>
+            Returns the type of the specified type name
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetUnityEngineAssembly">
+            <summary>
+            Returns a reference to the unity engine assembly
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetAllUnityEngineTypes">
+            <summary>
+            Returns all runtime UnityEngine types
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetAllUnityEngineTypesOf``1">
+            <summary>
+            Retruns all UnityEngine types of the specified wantedType
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetAllUnityEngineTypesOf(System.Type)">
+            <summary>
+            Retruns all UnityEngine types of the specified wantedType
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetAllUserTypesOf``1">
+            <summary>
+            Returns all user-types of the specified wantedType
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetAllUserTypesOf(System.Type)">
+            <summary>
+            Returns all user-types of the specified wantedType
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetAllTypesOf``1">
+            <summary>
+            Returns all types (user (and/or) UnityEngine types) of the specified wantedType
+            </summary>
+        </member>
+        <member name="M:Vexe.Runtime.Helpers.ReflectionHelper.GetAllTypesOf(System.Type)">
+            <summary>
+            Returns all types (user (and/or) UnityEngine types) of the specified wantedType
+            </summary>
+        </member>
+        <member name="T:Vexe.Runtime.Types.Lazy`1">
+            <summary>
+            A lazy memoized object
+            </summary>
+        </member>
+        <member name="P:Vexe.Runtime.Types.Lazy`1.GetValue">
+            <summary>
+            [S|G]ets the value getter
+            </summary>
+        </member>
+        <member name="P:Vexe.Runtime.Types.Lazy`1.Value">
+            <summary>
+            Returns the value - computed only the first time
+            </summary>
+        </member>
+    </members>
+</doc>

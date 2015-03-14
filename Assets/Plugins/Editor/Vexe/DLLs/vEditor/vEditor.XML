@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>vEditor</name>
+    </assembly>
+    <members>
+        <member name="T:Vexe.Editor.Helpers.EditorHelper">
+            <summary>
+            A bunch of misc editor helper methods
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.GetAnimatorVariableNames(UnityEngine.Animator)">
+            <summary>
+            Returns the specified animator's variables names
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.GetInputAxes">
+            <summary>
+            Gets all the input axis defined in the project's Input manager
+            Credits: http://www.plyoung.com/blog/manipulating-input-manager-in-script.html
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.SetDirty(UnityEngine.Object)">
+            <summary>
+            Marks the target as dirty for the editor to save it
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.IsSceneObject(UnityEngine.Object)">
+            <summary>
+            Returns true if the specified Object is a scene object
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.RepaintAllInspectors">
+            <summary>
+            Repaints all inspectors. This is what essentially ends up getting called in EditorWindow.Repaint
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.GetFocusedWindow(System.String)">
+            <summary>
+            Focuses on the specified window, and returns a reference to it
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.FocusOnWindow(System.String)">
+            <summary>
+            Focuses on the specified window. Ex "Hierarchy", "Inspector" - pretty much any window under the "Window" tab
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.CreateScriptableObjectAsset``1(System.String)">
+            <summary>
+            Creates a ScriptableObject asset at the specified path. ".asset" is postfixed if it doesn't exist
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.LoadAssetAt``1(System.String)">
+            <summary>
+            Loads and returns the asset type specified by the passed generic argument at the specified type
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.LazyLoadScriptableAsset``1(``0@,System.String)">
+            <summary>
+            Lazy-Loads and returns the asset type specified by the passed generic argument at the specified type
+            That is, if 'value' was not null it gets returned, otherwise we assign it an asset of type T at 'path'
+            if 'value' is still null, we create an asset of type T at path and return it
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.LazyLoadScriptableAsset``1(``0@,System.String,System.Boolean)">
+            <summary>
+            Lazy-Loads and returns the asset type specified by the passed generic argument at the specified type
+            That is, if 'value' was not null it gets returned, otherwise we assign it an asset of type T at 'path'
+            if 'value' is still null, we create an asset of type T at path and return it.
+            Pass in true to 'log' to get feedback if no asset of type T was found.
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.PingObject(UnityEngine.Object)">
+            <summary>
+            Pings the specified object
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.SelectObjects(UnityEngine.Object[])">
+            <summary>
+            Selects the specified objects
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.SelectObject(UnityEngine.Object)">
+            <summary>
+            Selects the specified object
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.EditorHelper.InspectTarget(UnityEngine.GameObject)">
+            <summary>
+            Creates a new inspector window instance and locks it to inspect the specified target
+            </summary>
+        </member>
+        <member name="P:Vexe.Editor.Helpers.EditorHelper.Tags">
+            <summary>
+            Returns all the tags used in the project
+            </summary>
+        </member>
+        <member name="P:Vexe.Editor.Helpers.EditorHelper.Layers">
+            <summary>
+            Returns all the layers used in the project
+            </summary>
+        </member>
+        <member name="P:Vexe.Editor.Helpers.EditorHelper.InspectorWindowType">
+            <summary>
+            Gets a Type object for the type 'InspectorWindow'
+            </summary>
+        </member>
+        <member name="P:Vexe.Editor.Helpers.EditorHelper.CachedInspectorWindowType">
+            <summary>
+            Returns a cached value for the Type object of the type 'InspectorWindow'
+            </summary>
+        </member>
+        <member name="P:Vexe.Editor.Helpers.EditorHelper.ScriptableAssetsPath">
+            <summary>
+            Returns the full path of the "ScriptableAssets" directory
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Extensions.GOExtensions.UndoGetOrAddComponent``1(UnityEngine.GameObject)">
+            <summary>
+            Gets the component of the specific generic type
+            if not found, we add it and register an undo for it
+            at the end it gets returned
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Extensions.SerializedPropertyExtensions.GetRefValue``1(UnityEditor.SerializedProperty)">
+            <summary>
+            Gets the property value by performing a safe cast
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Extensions.SerializedPropertyExtensions.GetValue``1(UnityEditor.SerializedProperty)">
+            <summary>
+            Gets the property value by performing an un-safe cast
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Extensions.UnityEngineObjectExtensions.SetDirty(UnityEngine.Object)">
+            <summary>
+            Marks the target as dirty for the editor to save it
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.PrefabHelper.IsPrefabInstance(UnityEngine.GameObject)">
+            <summary>
+            Returns true if the specified gameObject is a prefab instance (connected to a prefab)
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.PrefabHelper.IsPrefab(UnityEngine.GameObject)">
+            <summary>
+            Returns true if the speicified gameObject is a prefab
+            </summary>
+        </member>
+        <member name="M:Vexe.Editor.Helpers.PrefabHelper.UpdatePrefab(UnityEngine.GameObject)">
+            <summary>
+            Connects the specified prefab instance to the prefab (equivalent of pressing apply from the prefab instance)
+            </summary>
+        </member>
+    </members>
+</doc>

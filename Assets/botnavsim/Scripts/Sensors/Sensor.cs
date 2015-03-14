@@ -5,11 +5,6 @@ using System.Collections;
 
 public class Sensor : MonoBehaviour {
 
-	public struct ProximityData {
-		public Vector3 direction;
-		public bool obstructed;
-	}
-	
 	public enum Type {
 		Raycast,
 		Spherecast
