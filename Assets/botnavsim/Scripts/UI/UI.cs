@@ -75,7 +75,7 @@ public class UI : MonoBehaviour {
 		
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("Add to batch from file...")) {
-			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
+			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.logFileDirectory);
 			_window.Push(SimulationListWindow);
 		}
 		GUILayout.EndHorizontal();
@@ -473,7 +473,7 @@ public class UI : MonoBehaviour {
 			Simulation.Begin();
 		}
 		if (GUILayout.Button("Add to batch from file...")) {
-			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
+			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.logFileDirectory);
 			_window.Push(SimulationListWindow);
 		}
 		GUILayout.Space (20);
@@ -554,13 +554,13 @@ public class UI : MonoBehaviour {
 			_window.Pop();
 		}
 		if (GUILayout.Button("R", GUILayout.Width(30f))) {
-			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
+			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.logFileDirectory);
 		}
 		GUILayout.EndHorizontal();
 		
 		for (int i = 0; i < _simulationFiles.Count; i++) {
 			if (GUILayout.Button(_simulationFiles[i])) {
-				string path = Strings.simulationFileDirectory + "\\";
+				string path = Strings.logFileDirectory + "\\";
 				path += _simulationFiles[i] + ".xml";
 				Simulation.Settings settings = ObjectSerializer.DeSerializeObject<Simulation.Settings>(path);
 				if (settings != null) {

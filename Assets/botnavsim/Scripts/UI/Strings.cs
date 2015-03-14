@@ -23,7 +23,7 @@ public static class Strings  {
 	public const string csvXmlCommentTag = " XML:";
 	
 	public static string logFileDirectory = System.Environment.CurrentDirectory + "\\Logs";
-	public static string simulationFileDirectory = System.Environment.CurrentDirectory + "\\Simulations";
+	public static string navigationPluginDirectory = System.Environment.CurrentDirectory + "\\INavigation";
 	
 	public static char[] invalidFileNameChars {
 		get {
