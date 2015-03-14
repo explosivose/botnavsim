@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['inavigation',['INavigation',['../interface_i_navigation.html',1,'']]],
-  ['isensor',['ISensor',['../interface_i_sensor.html',1,'']]]
+  ['log',['Log',['../class_log.html',1,'']]],
+  ['logloader',['LogLoader',['../class_log_loader.html',1,'']]]
 ];

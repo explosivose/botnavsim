@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['astarnative',['AstarNative',['../class_astar_native.html',1,'']]],
-  ['astarnoderender',['AstarNodeRender',['../class_astar_node_render.html',1,'']]]
+  ['boebot',['BoeBot',['../class_boe_bot.html',1,'']]],
+  ['botloader',['BotLoader',['../class_bot_loader.html',1,'']]],
+  ['botpath',['BotPath',['../class_bot_path.html',1,'']]]
 ];

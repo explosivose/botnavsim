@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['envloader',['EnvLoader',['../class_env_loader.html',1,'']]]
+  ['filebrowser',['FileBrowser',['../class_file_browser.html',1,'']]]
 ];

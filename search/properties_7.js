@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['searchbounds',['searchBounds',['../interface_i_navigation.html#a18aeff374e238256f2036efbacd12417',1,'INavigation']]],
-  ['spacerelativeto',['spaceRelativeTo',['../interface_i_navigation.html#ad4071c73bbb9b22fd0b5b715da30c7e9',1,'INavigation']]],
-  ['state',['state',['../class_simulation.html#a2d17f78a5c69159f6812b3ae05ad7289',1,'Simulation']]]
+  ['navigation',['navigation',['../class_robot.html#afbccea715a85421212ceb044d738c9b6',1,'Robot']]],
+  ['nextsensordata',['nextSensorData',['../class_robot.html#a102f39082cd2eb0a51a4680dffaef5f7',1,'Robot']]]
 ];

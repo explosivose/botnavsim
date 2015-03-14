@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['pathdirection',['PathDirection',['../interface_i_navigation.html#affcf964d42b72e86ac5611256de427db',1,'INavigation.PathDirection()'],['../class_astar_native.html#a9f775ea8ad3609617759a201125aedbd',1,'AstarNative.PathDirection()']]],
-  ['proximity',['Proximity',['../interface_i_navigation.html#a4f5842fd8571a60c80a4c21a177853e6',1,'INavigation.Proximity()'],['../class_astar_native.html#a81463315c322cecd7597fd852bf40f3f',1,'AstarNative.Proximity()']]]
+  ['deserializeobject_3c_20t_20_3e',['DeSerializeObject&lt; T &gt;',['../class_object_serializer.html#ad0f1cd47bb6ef1f028075dc590939399',1,'ObjectSerializer']]],
+  ['drawgizmos',['DrawGizmos',['../interface_i_navigation.html#a486e784fac8e43035fd1f99760a32eb0',1,'INavigation']]],
+  ['drawpath',['DrawPath',['../class_bot_path.html#a29e70d7d903adc0761fb6c03bc2a6ae9',1,'BotPath']]]
 ];

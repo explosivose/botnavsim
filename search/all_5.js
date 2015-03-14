@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['graphdata',['GraphData',['../class_astar_native_1_1_graph_data.html',1,'AstarNative']]]
+  ['filebrowser',['FileBrowser',['../class_file_browser.html',1,'']]],
+  ['finished',['finished',['../class_simulation.html#ae78a9ea9fcee1463856ddc068221317daa5d7ceb2c59b8cee46c2953fec9abc19',1,'Simulation']]]
 ];

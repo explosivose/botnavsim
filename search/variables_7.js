@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['timestep',['timeStep',['../class_log.html#a3980497df1505348b58cb232bce0ae78',1,'Log']]],
-  ['title',['title',['../class_simulation_1_1_settings.html#a1652fc3e24e9b2443d6166f360408ff0',1,'Simulation::Settings']]]
+  ['navigationassemblyname',['navigationAssemblyName',['../class_simulation_1_1_settings.html#a2048fe4e5173aef742c27579d1822a34',1,'Simulation::Settings']]],
+  ['numberoftests',['numberOfTests',['../class_simulation_1_1_settings.html#ae4791094892b6ee261c26479bad13acd',1,'Simulation::Settings']]]
 ];

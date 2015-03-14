@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['botloader',['BotLoader',['../class_bot_loader.html',1,'']]]
+  ['camcontroller',['CamController',['../class_cam_controller.html',1,'']]]
 ];

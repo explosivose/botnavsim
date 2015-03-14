@@ -1,0 +1,6 @@
+<map id="Simulation.Begin" name="Simulation.Begin">
+<area shape="rect" id="node2" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="173,5,348,32"/>
+<area shape="rect" id="node3" href="$class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="619,5,694,32"/>
+<area shape="rect" id="node4" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="396,56,507,83"/>
+<area shape="rect" id="node5" href="$class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="555,56,759,83"/>
+</map>

@@ -1,0 +1,3 @@
+<map id="Robot.NavigateToDestination" name="Robot.NavigateToDestination">
+<area shape="rect" id="node2" href="$interface_i_navigation.html#a27acb501951d73246becb995085816a2" title="Start the search algorithm to find a path from origin to destination. " alt="" coords="241,5,416,32"/>
+</map>

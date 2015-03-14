@@ -86,7 +86,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
 <a href="class_simulation-members.html">List of all members</a>  </div>
@@ -94,19 +93,18 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Simulation Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>This is a manager class used to overlook the running of a simulation.  
+ <a href="class_simulation.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Simulation:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation__inherit__graph.png" border="0" usemap="#_simulation_inherit__map" alt="Inheritance graph"/></div>
-<map name="_simulation_inherit__map" id="_simulation_inherit__map">
-</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Simulation:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation__coll__graph.png" border="0" usemap="#_simulation_coll__map" alt="Collaboration graph"/></div>
-<map name="_simulation_coll__map" id="_simulation_coll__map">
-<area shape="rect" id="node3" href="class_astar_native.html" title="AstarNative" alt="" coords="126,95,214,121"/><area shape="rect" id="node4" href="interface_i_navigation.html" title="INavigation" alt="" coords="140,5,224,32"/><area shape="rect" id="node5" href="class_astar_native_1_1_graph_data.html" title="AstarNative.GraphData" alt="" coords="249,5,403,32"/></map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -116,19 +114,19 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae78a9ea9fcee1463856ddc068221317d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317d"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> { <b>preSimulation</b>, 
-<b>simulating</b>, 
-<b>stopped</b>, 
-<b>finished</b>
+<tr class="memitem:ae78a9ea9fcee1463856ddc068221317d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317d">State</a> { <a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317da420117b3909bdd046c5f3d84d1d0faf6">State.preSimulation</a>, 
+<a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317dad9c18bd5b6838696a3fd358d75b9c34b">State.simulating</a>, 
+<a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317daf0a0bfe6bc7d2c58d2989034f83183e0">State.stopped</a>, 
+<a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317daa5d7ceb2c59b8cee46c2953fec9abc19">State.finished</a>
  }</td></tr>
 <tr class="separator:ae78a9ea9fcee1463856ddc068221317d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8665329fffe0f8c6302c51f78ed9a3a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8665329fffe0f8c6302c51f78ed9a3a6"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><b>StopCode</b> { <br />
-&#160;&#160;<b>Unspecified</b>, 
-<b>UserRequestNextTest</b>, 
-<b>RobotReachedDestination</b>, 
-<b>MaxTimeExceeded</b>, 
+<tr class="memitem:a8665329fffe0f8c6302c51f78ed9a3a6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a> { <br />
+&#160;&#160;<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6a6fcdc090caeade09d0efd6253932b6f5">StopCode.Unspecified</a>, 
+<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6a40d9632d212fc464b74b6eeca433d075">StopCode.UserRequestNextTest</a>, 
+<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6ad440955209ed5bdde13196d7cc0953c3">StopCode.RobotReachedDestination</a>, 
+<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6aeb8f530585744a4843050f7fb5b7ca33">StopCode.MaxTimeExceeded</a>, 
 <br />
-&#160;&#160;<b>RobotIsStuck</b>
+&#160;&#160;<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6a69a1c7293807bb97ea17f5c9eeaafcf1">StopCode.RobotIsStuck</a>
 <br />
  }</td></tr>
 <tr class="separator:a8665329fffe0f8c6302c51f78ed9a3a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,96 +134,142 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:aced98f22a509ee955a4d1d50712c6643"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643">Begin</a> ()</td></tr>
+<tr class="memdesc:aced98f22a509ee955a4d1d50712c6643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin simulating.  <a href="#aced98f22a509ee955a4d1d50712c6643">More...</a><br /></td></tr>
 <tr class="separator:aced98f22a509ee955a4d1d50712c6643"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad08bc6a93c41913a29635d4bc4d92370"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad08bc6a93c41913a29635d4bc4d92370"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>NextSimulation</b> ()</td></tr>
+<tr class="memitem:ad08bc6a93c41913a29635d4bc4d92370"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370">NextSimulation</a> ()</td></tr>
+<tr class="memdesc:ad08bc6a93c41913a29635d4bc4d92370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the next simulation in batch.  <a href="#ad08bc6a93c41913a29635d4bc4d92370">More...</a><br /></td></tr>
 <tr class="separator:ad08bc6a93c41913a29635d4bc4d92370"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da6160493a1b321673e1f583497a844"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3da6160493a1b321673e1f583497a844"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>NextTest</b> (StopCode code)</td></tr>
+<tr class="memitem:a3da6160493a1b321673e1f583497a844"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a3da6160493a1b321673e1f583497a844">NextTest</a> (<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a> code)</td></tr>
+<tr class="memdesc:a3da6160493a1b321673e1f583497a844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the current test and starts the next test in current simulation.  <a href="#a3da6160493a1b321673e1f583497a844">More...</a><br /></td></tr>
 <tr class="separator:a3da6160493a1b321673e1f583497a844"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10c2fa8d9961a92585d364ec35bc535d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10c2fa8d9961a92585d364ec35bc535d"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>StopTest</b> ()</td></tr>
-<tr class="separator:a10c2fa8d9961a92585d364ec35bc535d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af58f01c669c7da6ed135059902bc9165"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af58f01c669c7da6ed135059902bc9165"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>StopSimulation</b> ()</td></tr>
-<tr class="separator:af58f01c669c7da6ed135059902bc9165"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abef1fed7499d589fd7df2ff02c09710c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abef1fed7499d589fd7df2ff02c09710c"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>End</b> ()</td></tr>
+<tr class="memitem:abef1fed7499d589fd7df2ff02c09710c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c">End</a> ()</td></tr>
+<tr class="memdesc:abef1fed7499d589fd7df2ff02c09710c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop all simulations.  <a href="#abef1fed7499d589fd7df2ff02c09710c">More...</a><br /></td></tr>
 <tr class="separator:abef1fed7499d589fd7df2ff02c09710c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac152dc9a1a62316abc773b64035f6cb9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac152dc9a1a62316abc773b64035f6cb9"></a>
-static Vector3&#160;</td><td class="memItemRight" valign="bottom"><b>RandomInBounds</b> ()</td></tr>
+<tr class="memitem:ac152dc9a1a62316abc773b64035f6cb9"><td class="memItemLeft" align="right" valign="top">static Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9">RandomInBounds</a> ()</td></tr>
+<tr class="memdesc:ac152dc9a1a62316abc773b64035f6cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a random position inside the simulation bounds, but not inside any physical objects.  <a href="#ac152dc9a1a62316abc773b64035f6cb9">More...</a><br /></td></tr>
 <tr class="separator:ac152dc9a1a62316abc773b64035f6cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a852ddfd8dfc19f9c22c346c035a4f503"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_astar_native.html">AstarNative</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a852ddfd8dfc19f9c22c346c035a4f503">astar</a></td></tr>
-<tr class="separator:a852ddfd8dfc19f9c22c346c035a4f503"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a37caf1e823ec85202677212a905ea21c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37caf1e823ec85202677212a905ea21c"></a>
-static <a class="el" href="class_simulation.html">Simulation</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Instance</b></td></tr>
+<tr class="memitem:a37caf1e823ec85202677212a905ea21c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_simulation.html">Simulation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a37caf1e823ec85202677212a905ea21c">Instance</a></td></tr>
+<tr class="memdesc:a37caf1e823ec85202677212a905ea21c"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_singleton.html">Singleton</a> pattern.  <a href="#a37caf1e823ec85202677212a905ea21c">More...</a><br /></td></tr>
 <tr class="separator:a37caf1e823ec85202677212a905ea21c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66c9a669b2aa79149d5e31a1594bb3e4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a66c9a669b2aa79149d5e31a1594bb3e4"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>exhibitionMode</b></td></tr>
+<tr class="memitem:a66c9a669b2aa79149d5e31a1594bb3e4"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a66c9a669b2aa79149d5e31a1594bb3e4">exhibitionMode</a></td></tr>
+<tr class="memdesc:a66c9a669b2aa79149d5e31a1594bb3e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exhibition mode will run continually and randomly choose camera perspectives and simulation settings.  <a href="#a66c9a669b2aa79149d5e31a1594bb3e4">More...</a><br /></td></tr>
 <tr class="separator:a66c9a669b2aa79149d5e31a1594bb3e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdc6f3fbb89fd31b518919f968664d60"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdc6f3fbb89fd31b518919f968664d60"></a>
-static List&lt; <a class="el" href="class_simulation_1_1_settings.html">Settings</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>batch</b> = new List&lt;<a class="el" href="class_simulation_1_1_settings.html">Settings</a>&gt;()</td></tr>
+<tr class="memitem:acdc6f3fbb89fd31b518919f968664d60"><td class="memItemLeft" align="right" valign="top">static List&lt; <a class="el" href="class_simulation_1_1_settings.html">Settings</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#acdc6f3fbb89fd31b518919f968664d60">batch</a> = new List&lt;<a class="el" href="class_simulation_1_1_settings.html">Settings</a>&gt;()</td></tr>
+<tr class="memdesc:acdc6f3fbb89fd31b518919f968664d60"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of settings to iterate through in batch mode.  <a href="#acdc6f3fbb89fd31b518919f968664d60">More...</a><br /></td></tr>
 <tr class="separator:acdc6f3fbb89fd31b518919f968664d60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7518eb936a84fc617a4eadd925014d9c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7518eb936a84fc617a4eadd925014d9c"></a>
-static Bounds&#160;</td><td class="memItemRight" valign="bottom"><b>bounds</b></td></tr>
+<tr class="memitem:a7518eb936a84fc617a4eadd925014d9c"><td class="memItemLeft" align="right" valign="top">static Bounds&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a7518eb936a84fc617a4eadd925014d9c">bounds</a></td></tr>
+<tr class="memdesc:a7518eb936a84fc617a4eadd925014d9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The simulation bounds described as a cube. This is the search space indicated to <a class="el" href="interface_i_navigation.html">INavigation</a>.  <a href="#a7518eb936a84fc617a4eadd925014d9c">More...</a><br /></td></tr>
 <tr class="separator:a7518eb936a84fc617a4eadd925014d9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2214921f8d18853905bc57a6d3364e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2214921f8d18853905bc57a6d3364e6"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>loggingEnabled</b> = true</td></tr>
+<tr class="memitem:ab2214921f8d18853905bc57a6d3364e6"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ab2214921f8d18853905bc57a6d3364e6">loggingEnabled</a> = true</td></tr>
+<tr class="memdesc:ab2214921f8d18853905bc57a6d3364e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">If true, simulation will be logged to a file via <a class="el" href="class_log.html" title="Provides data logging capabilities. Data is logged in CSV format. ">Log</a> class.  <a href="#ab2214921f8d18853905bc57a6d3364e6">More...</a><br /></td></tr>
 <tr class="separator:ab2214921f8d18853905bc57a6d3364e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a2d17f78a5c69159f6812b3ae05ad7289"><td class="memItemLeft" align="right" valign="top">static State&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a2d17f78a5c69159f6812b3ae05ad7289">state</a><code> [get, set]</code></td></tr>
+<tr class="memitem:a2d17f78a5c69159f6812b3ae05ad7289"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317d">State</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a2d17f78a5c69159f6812b3ae05ad7289">state</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2d17f78a5c69159f6812b3ae05ad7289"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the simulation state.  <a href="#a2d17f78a5c69159f6812b3ae05ad7289">More...</a><br /></td></tr>
 <tr class="separator:a2d17f78a5c69159f6812b3ae05ad7289"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ece5fb43b12fc91710bc6d6d8676b55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6ece5fb43b12fc91710bc6d6d8676b55"></a>
-static <a class="el" href="class_simulation_1_1_settings.html">Settings</a>&#160;</td><td class="memItemRight" valign="bottom"><b>settings</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a6ece5fb43b12fc91710bc6d6d8676b55"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_simulation_1_1_settings.html">Settings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a6ece5fb43b12fc91710bc6d6d8676b55">settings</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6ece5fb43b12fc91710bc6d6d8676b55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the settings for the current simulation.  <a href="#a6ece5fb43b12fc91710bc6d6d8676b55">More...</a><br /></td></tr>
 <tr class="separator:a6ece5fb43b12fc91710bc6d6d8676b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af132a5d8895d0b4d9607fc3a2ecc0cb5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af132a5d8895d0b4d9607fc3a2ecc0cb5"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>simulationNumber</b><code> [get, set]</code></td></tr>
+<tr class="memitem:af132a5d8895d0b4d9607fc3a2ecc0cb5"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#af132a5d8895d0b4d9607fc3a2ecc0cb5">simulationNumber</a><code> [get]</code></td></tr>
+<tr class="memdesc:af132a5d8895d0b4d9607fc3a2ecc0cb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the simulation number (index in batch list, 1 to batch.Count).  <a href="#af132a5d8895d0b4d9607fc3a2ecc0cb5">More...</a><br /></td></tr>
 <tr class="separator:af132a5d8895d0b4d9607fc3a2ecc0cb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c7026aa7aba1452c66cbd91d26f1719"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c7026aa7aba1452c66cbd91d26f1719"></a>
-static int&#160;</td><td class="memItemRight" valign="bottom"><b>testNumber</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a4c7026aa7aba1452c66cbd91d26f1719"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a4c7026aa7aba1452c66cbd91d26f1719">testNumber</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4c7026aa7aba1452c66cbd91d26f1719"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current test number (1 to settings.numberOfTests).  <a href="#a4c7026aa7aba1452c66cbd91d26f1719">More...</a><br /></td></tr>
 <tr class="separator:a4c7026aa7aba1452c66cbd91d26f1719"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a835d6e2a07339f1d5a71d54524c16e2c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a835d6e2a07339f1d5a71d54524c16e2c"></a>
-static <a class="el" href="class_robot.html">Robot</a>&#160;</td><td class="memItemRight" valign="bottom"><b>robot</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a835d6e2a07339f1d5a71d54524c16e2c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="class_robot.html">Robot</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a835d6e2a07339f1d5a71d54524c16e2c">robot</a><code> [get]</code></td></tr>
+<tr class="memdesc:a835d6e2a07339f1d5a71d54524c16e2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets reference to the robot in the current simulation.  <a href="#a835d6e2a07339f1d5a71d54524c16e2c">More...</a><br /></td></tr>
 <tr class="separator:a835d6e2a07339f1d5a71d54524c16e2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71b6f1eb2f8c8893c9daf19cc36d5456"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71b6f1eb2f8c8893c9daf19cc36d5456"></a>
-static GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>environment</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a71b6f1eb2f8c8893c9daf19cc36d5456"><td class="memItemLeft" align="right" valign="top">static GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a71b6f1eb2f8c8893c9daf19cc36d5456">environment</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a71b6f1eb2f8c8893c9daf19cc36d5456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets reference to the environment in the current simulation.  <a href="#a71b6f1eb2f8c8893c9daf19cc36d5456">More...</a><br /></td></tr>
 <tr class="separator:a71b6f1eb2f8c8893c9daf19cc36d5456"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca18e644c6b222ab038732d6cbc040f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca18e644c6b222ab038732d6cbc040f5"></a>
-static GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>destination</b><code> [get, set]</code></td></tr>
+<tr class="memitem:aca18e644c6b222ab038732d6cbc040f5"><td class="memItemLeft" align="right" valign="top">static GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#aca18e644c6b222ab038732d6cbc040f5">destination</a><code> [get]</code></td></tr>
+<tr class="memdesc:aca18e644c6b222ab038732d6cbc040f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets reference to the destination.  <a href="#aca18e644c6b222ab038732d6cbc040f5">More...</a><br /></td></tr>
 <tr class="separator:aca18e644c6b222ab038732d6cbc040f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab007c3ca1ba6373d9c45b5e3ce23d18a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab007c3ca1ba6373d9c45b5e3ce23d18a"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>preSimulation</b><code> [get]</code></td></tr>
+<tr class="memitem:ab007c3ca1ba6373d9c45b5e3ce23d18a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ab007c3ca1ba6373d9c45b5e3ce23d18a">preSimulation</a><code> [get]</code></td></tr>
+<tr class="memdesc:ab007c3ca1ba6373d9c45b5e3ce23d18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has not yet started.  <a href="#ab007c3ca1ba6373d9c45b5e3ce23d18a">More...</a><br /></td></tr>
 <tr class="separator:ab007c3ca1ba6373d9c45b5e3ce23d18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69e1c97b9c85cf42e06cb0012884e5f1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69e1c97b9c85cf42e06cb0012884e5f1"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isRunning</b><code> [get]</code></td></tr>
+<tr class="memitem:a69e1c97b9c85cf42e06cb0012884e5f1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a69e1c97b9c85cf42e06cb0012884e5f1">isRunning</a><code> [get]</code></td></tr>
+<tr class="memdesc:a69e1c97b9c85cf42e06cb0012884e5f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is running.  <a href="#a69e1c97b9c85cf42e06cb0012884e5f1">More...</a><br /></td></tr>
 <tr class="separator:a69e1c97b9c85cf42e06cb0012884e5f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcb4ac10ed85ed55615886dd39183a07"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afcb4ac10ed85ed55615886dd39183a07"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isStopped</b><code> [get]</code></td></tr>
+<tr class="memitem:afcb4ac10ed85ed55615886dd39183a07"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#afcb4ac10ed85ed55615886dd39183a07">isStopped</a><code> [get]</code></td></tr>
+<tr class="memdesc:afcb4ac10ed85ed55615886dd39183a07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is stopped.  <a href="#afcb4ac10ed85ed55615886dd39183a07">More...</a><br /></td></tr>
 <tr class="separator:afcb4ac10ed85ed55615886dd39183a07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a448d1ffd31b30406d8e7c149a3894fc1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a448d1ffd31b30406d8e7c149a3894fc1"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isFinished</b><code> [get]</code></td></tr>
+<tr class="memitem:a448d1ffd31b30406d8e7c149a3894fc1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a448d1ffd31b30406d8e7c149a3894fc1">isFinished</a><code> [get]</code></td></tr>
+<tr class="memdesc:a448d1ffd31b30406d8e7c149a3894fc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is finished.  <a href="#a448d1ffd31b30406d8e7c149a3894fc1">More...</a><br /></td></tr>
 <tr class="separator:a448d1ffd31b30406d8e7c149a3894fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80de80fa40d6ccf0eb13c60977da0eef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a80de80fa40d6ccf0eb13c60977da0eef"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>isReady</b><code> [get]</code></td></tr>
-<tr class="separator:a80de80fa40d6ccf0eb13c60977da0eef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afec7a31755ea6773a4dd9fb431b6142f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afec7a31755ea6773a4dd9fb431b6142f"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><b>paused</b><code> [get, set]</code></td></tr>
+<tr class="memitem:afec7a31755ea6773a4dd9fb431b6142f"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#afec7a31755ea6773a4dd9fb431b6142f">paused</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:afec7a31755ea6773a4dd9fb431b6142f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is paused.  <a href="#afec7a31755ea6773a4dd9fb431b6142f">More...</a><br /></td></tr>
 <tr class="separator:afec7a31755ea6773a4dd9fb431b6142f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f12e1a61d287f0c8875a64429ff8507"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7f12e1a61d287f0c8875a64429ff8507"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>time</b><code> [get]</code></td></tr>
+<tr class="memitem:a7f12e1a61d287f0c8875a64429ff8507"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a7f12e1a61d287f0c8875a64429ff8507">time</a><code> [get]</code></td></tr>
+<tr class="memdesc:a7f12e1a61d287f0c8875a64429ff8507"><td class="mdescLeft">&#160;</td><td class="mdescRight">Time (in seconds) since robot started searching for destination.  <a href="#a7f12e1a61d287f0c8875a64429ff8507">More...</a><br /></td></tr>
 <tr class="separator:a7f12e1a61d287f0c8875a64429ff8507"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6491a96e6ef68b0a7e2063fcec208842"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6491a96e6ef68b0a7e2063fcec208842"></a>
-static float&#160;</td><td class="memItemRight" valign="bottom"><b>timeScale</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a6491a96e6ef68b0a7e2063fcec208842"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a6491a96e6ef68b0a7e2063fcec208842">timeScale</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a6491a96e6ef68b0a7e2063fcec208842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets or sets the time scale.  <a href="#a6491a96e6ef68b0a7e2063fcec208842">More...</a><br /></td></tr>
 <tr class="separator:a6491a96e6ef68b0a7e2063fcec208842"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This is a manager class used to overlook the running of a simulation. </p>
+</div><h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="ae78a9ea9fcee1463856ddc068221317d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317d">Simulation.State</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317da420117b3909bdd046c5f3d84d1d0faf6"></a>preSimulation&#160;</td><td class="fielddoc">
+<p>Simulations have not yet started. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317dad9c18bd5b6838696a3fd358d75b9c34b"></a>simulating&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is running. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317daf0a0bfe6bc7d2c58d2989034f83183e0"></a>stopped&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is stopped. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317daa5d7ceb2c59b8cee46c2953fec9abc19"></a>finished&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has finished. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a class="anchor" id="a8665329fffe0f8c6302c51f78ed9a3a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">Simulation.StopCode</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="a8665329fffe0f8c6302c51f78ed9a3a6a6fcdc090caeade09d0efd6253932b6f5"></a>Unspecified&#160;</td><td class="fielddoc">
+<p>Reason for simulation stopping is not given. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a8665329fffe0f8c6302c51f78ed9a3a6a40d9632d212fc464b74b6eeca433d075"></a>UserRequestNextTest&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> stopped because user requested next test. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a8665329fffe0f8c6302c51f78ed9a3a6ad440955209ed5bdde13196d7cc0953c3"></a>RobotReachedDestination&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> stopped because the robot reached the destination. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a8665329fffe0f8c6302c51f78ed9a3a6aeb8f530585744a4843050f7fb5b7ca33"></a>MaxTimeExceeded&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> stopped because the maximum test time was exceeded. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="a8665329fffe0f8c6302c51f78ed9a3a6a69a1c7293807bb97ea17f5c9eeaafcf1"></a>RobotIsStuck&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> stopped because the robot appears to be stuck. i.e. the robot position has not changed for some time. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="aced98f22a509ee955a4d1d50712c6643"></a>
 <div class="memitem">
@@ -247,26 +291,30 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>timeScale</b>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Static Methods </p>
+
+<p>Begin simulating. </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph.png" border="0" usemap="#class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph" alt=""/></div>
+<map name="class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph" id="class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph">
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="173,5,348,32"/><area shape="rect" id="node3" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="619,5,694,32"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="396,56,507,83"/><area shape="rect" id="node5" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="555,56,759,83"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph.png" border="0" usemap="#class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph" alt=""/></div>
+<map name="class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph" id="class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph">
+<area shape="rect" id="node2" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="173,5,284,32"/><area shape="rect" id="node3" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="332,31,507,57"/><area shape="rect" id="node4" href="class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="555,31,693,57"/></map>
+</div>
+</p>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a852ddfd8dfc19f9c22c346c035a4f503"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_astar_native.html">AstarNative</a> Simulation.astar</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Instance Members </p>
-
-</div>
-</div>
-<h2 class="groupheader">Property Documentation</h2>
-<a class="anchor" id="a2d17f78a5c69159f6812b3ae05ad7289"></a>
+<a class="anchor" id="abef1fed7499d589fd7df2ff02c09710c"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -274,7 +322,295 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>timeScale</b>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">State Simulation.state</td>
+          <td class="memname">static void Simulation.End </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stop all simulations. </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph.png" border="0" usemap="#class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph" alt=""/></div>
+<map name="class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph" id="class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph">
+<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="639,35,713,62"/><area shape="rect" id="node3" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="164,35,368,62"/><area shape="rect" id="node4" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="206,86,326,113"/><area shape="rect" id="node5" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="416,86,591,113"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph.png" border="0" usemap="#class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph" alt=""/></div>
+<map name="class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph" id="class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph">
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="164,56,339,83"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="396,5,516,32"/><area shape="rect" id="node4" href="class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="387,56,525,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad08bc6a93c41913a29635d4bc4d92370"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Simulation.NextSimulation </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Run the next simulation in batch. </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph.png" border="0" usemap="#class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph" alt=""/></div>
+<map name="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph" id="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph">
+<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="451,5,526,32"/><area shape="rect" id="node3" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="228,56,339,83"/><area shape="rect" id="node4" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="387,56,591,83"/><area shape="rect" id="node5" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="429,107,549,133"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph.png" border="0" usemap="#class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph" alt=""/></div>
+<map name="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph" id="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph">
+<area shape="rect" id="node2" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="237,5,357,32"/><area shape="rect" id="node4" href="class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="228,56,367,83"/><area shape="rect" id="node3" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="415,56,525,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a3da6160493a1b321673e1f583497a844"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Simulation.NextTest </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a>&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stops the current test and starts the next test in current simulation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>Code.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_a3da6160493a1b321673e1f583497a844_cgraph.png" border="0" usemap="#class_simulation_a3da6160493a1b321673e1f583497a844_cgraph" alt=""/></div>
+<map name="class_simulation_a3da6160493a1b321673e1f583497a844_cgraph" id="class_simulation_a3da6160493a1b321673e1f583497a844_cgraph">
+<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="638,31,713,57"/><area shape="rect" id="node3" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="192,56,367,83"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="415,81,525,108"/><area shape="rect" id="node5" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="573,81,777,108"/><area shape="rect" id="node6" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="615,132,735,159"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ac152dc9a1a62316abc773b64035f6cb9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Vector3 Simulation.RandomInBounds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return a random position inside the simulation bounds, but not inside any physical objects. </p>
+<dl class="section return"><dt>Returns</dt><dd>Random position inside simulation bounds.</dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="acdc6f3fbb89fd31b518919f968664d60"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">List&lt;<a class="el" href="class_simulation_1_1_settings.html">Settings</a>&gt; Simulation.batch = new List&lt;<a class="el" href="class_simulation_1_1_settings.html">Settings</a>&gt;()</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>List of settings to iterate through in batch mode. </p>
+
+</div>
+</div>
+<a class="anchor" id="a7518eb936a84fc617a4eadd925014d9c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Bounds Simulation.bounds</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The simulation bounds described as a cube. This is the search space indicated to <a class="el" href="interface_i_navigation.html">INavigation</a>. </p>
+
+</div>
+</div>
+<a class="anchor" id="a66c9a669b2aa79149d5e31a1594bb3e4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.exhibitionMode</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exhibition mode will run continually and randomly choose camera perspectives and simulation settings. </p>
+
+</div>
+</div>
+<a class="anchor" id="a37caf1e823ec85202677212a905ea21c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_simulation.html">Simulation</a> Simulation.Instance</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p><a class="el" href="class_singleton.html">Singleton</a> pattern. </p>
+
+</div>
+</div>
+<a class="anchor" id="ab2214921f8d18853905bc57a6d3364e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.loggingEnabled = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>If true, simulation will be logged to a file via <a class="el" href="class_log.html" title="Provides data logging capabilities. Data is logged in CSV format. ">Log</a> class. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a class="anchor" id="aca18e644c6b222ab038732d6cbc040f5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject Simulation.destination</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets reference to the destination. </p>
+<p>The destination.</p>
+
+</div>
+</div>
+<a class="anchor" id="a71b6f1eb2f8c8893c9daf19cc36d5456"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">GameObject Simulation.environment</td>
         </tr>
       </table>
   </td>
@@ -283,7 +619,285 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>timeScale</b>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Static Properties </p>
+
+<p>Gets or sets reference to the environment in the current simulation. </p>
+<p>The environment.</p>
+
+</div>
+</div>
+<a class="anchor" id="a448d1ffd31b30406d8e7c149a3894fc1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.isFinished</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is finished. </p>
+<p><code>true</code> if is finished; otherwise, <code>false</code>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a69e1c97b9c85cf42e06cb0012884e5f1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.isRunning</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is running. </p>
+<p><code>true</code> if is running; otherwise, <code>false</code>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afcb4ac10ed85ed55615886dd39183a07"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.isStopped</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is stopped. </p>
+<p><code>true</code> if is stopped; otherwise, <code>false</code>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afec7a31755ea6773a4dd9fb431b6142f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.paused</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is paused. </p>
+<p><code>true</code> if paused; otherwise, <code>false</code>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab007c3ca1ba6373d9c45b5e3ce23d18a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.preSimulation</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has not yet started. </p>
+<p><code>true</code> if pre simulation; otherwise, <code>false</code>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a835d6e2a07339f1d5a71d54524c16e2c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_robot.html">Robot</a> Simulation.robot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets reference to the robot in the current simulation. </p>
+<p>The robot.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6ece5fb43b12fc91710bc6d6d8676b55"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_simulation_1_1_settings.html">Settings</a> Simulation.settings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the settings for the current simulation. </p>
+<p>The settings for the current (active) simulation.</p>
+
+</div>
+</div>
+<a class="anchor" id="af132a5d8895d0b4d9607fc3a2ecc0cb5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Simulation.simulationNumber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the simulation number (index in batch list, 1 to batch.Count). </p>
+<p>The simulation number.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2d17f78a5c69159f6812b3ae05ad7289"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317d">State</a> Simulation.state</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the simulation state. </p>
+<p>The current simulation state.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4c7026aa7aba1452c66cbd91d26f1719"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Simulation.testNumber</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the current test number (1 to settings.numberOfTests). </p>
+<p>The current test number.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7f12e1a61d287f0c8875a64429ff8507"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Simulation.time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Time (in seconds) since robot started searching for destination. </p>
+<p>The simulation time.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6491a96e6ef68b0a7e2063fcec208842"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Simulation.timeScale</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets or sets the time scale. </p>
+<p>The time scale.</p>
 
 </div>
 </div>
@@ -293,7 +907,7 @@ static float&#160;</td><td class="memItemRight" valign="bottom"><b>timeScale</b>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2015 23:19:31 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 15:37:18 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

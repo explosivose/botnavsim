@@ -1,0 +1,9 @@
+<map id="BotLoader.SearchForRobots" name="BotLoader.SearchForRobots">
+<area shape="rect" id="node2" href="$class_bot_loader.html#ab3034713abb9c56628f710c77f11411f" title="BotLoader.RandomRobot" alt="" coords="257,5,424,32"/>
+<area shape="rect" id="node3" href="$class_bot_loader.html#a8fccb4b234dbde2f5f9ede7f2954d6fe" title="BotLoader.RandomRobotName" alt="" coords="240,56,441,83"/>
+<area shape="rect" id="node4" href="$class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="489,56,693,83"/>
+<area shape="rect" id="node5" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="741,56,852,83"/>
+<area shape="rect" id="node6" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="900,81,1075,108"/>
+<area shape="rect" id="node7" href="$class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="1132,31,1252,57"/>
+<area shape="rect" id="node8" href="$class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="1123,81,1261,108"/>
+</map>

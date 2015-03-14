@@ -1,11 +1,15 @@
 var searchData=
 [
   ['searchbounds',['searchBounds',['../interface_i_navigation.html#a18aeff374e238256f2036efbacd12417',1,'INavigation']]],
-  ['searchforpath',['SearchForPath',['../interface_i_navigation.html#a27acb501951d73246becb995085816a2',1,'INavigation.SearchForPath()'],['../class_astar_native.html#a8b4ba5b676fd80943e2af546dceaf990',1,'AstarNative.SearchForPath()']]],
+  ['searchforpath',['SearchForPath',['../interface_i_navigation.html#a27acb501951d73246becb995085816a2',1,'INavigation']]],
   ['selectedparams',['selectedParams',['../class_log.html#aacfeb0e2f7ac219f54a43f4fa6ef3324',1,'Log']]],
   ['sensor',['Sensor',['../class_sensor.html',1,'']]],
+  ['serializeobject_3c_20t_20_3e',['SerializeObject&lt; T &gt;',['../class_object_serializer.html#a368a72c42f3d46942e8563e017ec9922',1,'ObjectSerializer']]],
   ['settings',['Settings',['../class_simulation_1_1_settings.html',1,'Simulation']]],
+  ['settings',['settings',['../class_simulation.html#a6ece5fb43b12fc91710bc6d6d8676b55',1,'Simulation.settings()'],['../class_log.html#aba2c46c870c74e4822034595d2448a56',1,'Log.Settings()']]],
+  ['simulating',['simulating',['../class_simulation.html#ae78a9ea9fcee1463856ddc068221317dad9c18bd5b6838696a3fd358d75b9c34b',1,'Simulation']]],
   ['simulation',['Simulation',['../class_simulation.html',1,'']]],
+  ['simulationnumber',['simulationNumber',['../class_simulation.html#af132a5d8895d0b4d9607fc3a2ecc0cb5',1,'Simulation']]],
   ['simulationtime',['SimulationTime',['../class_log.html#ac5d19dd314e64a9865f7b117ade04e76a66062220d327f9653836d7d4a0f8afaa',1,'Log']]],
   ['simulationtimescale',['SimulationTimeScale',['../class_log.html#ac5d19dd314e64a9865f7b117ade04e76af84b5ff2b5b4181486ba15a8d055ca53',1,'Log']]],
   ['singleton',['Singleton',['../class_singleton.html',1,'']]],
@@ -13,5 +17,9 @@ var searchData=
   ['singleton_3c_20draw_20_3e',['Singleton&lt; Draw &gt;',['../class_singleton.html',1,'']]],
   ['spacerelativeto',['spaceRelativeTo',['../interface_i_navigation.html#ad4071c73bbb9b22fd0b5b715da30c7e9',1,'INavigation']]],
   ['spritefade',['SpriteFade',['../class_sprite_fade.html',1,'']]],
-  ['state',['state',['../class_simulation.html#a2d17f78a5c69159f6812b3ae05ad7289',1,'Simulation']]]
+  ['start',['start',['../class_bot_path.html#af174c2b11e2cda6a4b18baf68f5f077f',1,'BotPath.start()'],['../class_log.html#a811f811c78bb482ac889945a9fbe5330',1,'Log.Start()']]],
+  ['state',['State',['../class_simulation.html#ae78a9ea9fcee1463856ddc068221317d',1,'Simulation.State()'],['../class_simulation.html#a2d17f78a5c69159f6812b3ae05ad7289',1,'Simulation.state()']]],
+  ['stop',['Stop',['../class_log.html#a77c4f25d268a02c63a196a6ef336b602',1,'Log']]],
+  ['stopcode',['StopCode',['../class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6',1,'Simulation']]],
+  ['stopped',['stopped',['../class_simulation.html#ae78a9ea9fcee1463856ddc068221317daf0a0bfe6bc7d2c58d2989034f83183e0',1,'Simulation']]]
 ];

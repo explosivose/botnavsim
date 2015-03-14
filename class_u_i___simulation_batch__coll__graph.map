@@ -1,0 +1,4 @@
+<map id="UI_SimulationBatch" name="UI_SimulationBatch">
+<area shape="rect" id="node2" href="$interface_i_toolbar.html" title="Interface for classes that implement a toolbar item " alt="" coords="40,80,107,107"/>
+<area shape="rect" id="node3" href="$interface_i_window_function.html" title="Interface for classes that implement a GUI.WindowFunction " alt="" coords="13,5,134,32"/>
+</map>

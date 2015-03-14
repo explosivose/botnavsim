@@ -1,0 +1,9 @@
+<map id="IWindowFunction" name="IWindowFunction">
+<area shape="rect" id="node2" href="$interface_i_toolbar.html" title="Interface for classes that implement a toolbar item " alt="" coords="310,80,377,107"/>
+<area shape="rect" id="node8" href="$class_u_i___simulation_settings.html" title="An instantiable class that provides a UI for editing a given Simulation.Settings object ..." alt="" coords="401,80,552,107"/>
+<area shape="rect" id="node3" href="$class_u_i___camera_controls.html" title="UI_CameraControls" alt="" coords="5,155,140,181"/>
+<area shape="rect" id="node4" href="$class_u_i___data_playback.html" title="UI_DataPlayback" alt="" coords="165,155,287,181"/>
+<area shape="rect" id="node5" href="$class_u_i___log.html" title="UI_Log" alt="" coords="312,155,375,181"/>
+<area shape="rect" id="node6" href="$class_u_i___simulation_batch.html" title="UI for displaying and editing the simulation batch list " alt="" coords="399,155,535,181"/>
+<area shape="rect" id="node7" href="$class_u_i___simulation_control.html" title="UI window for simulation control. Provides controls for pausing, stopping or skipping the current tes..." alt="" coords="560,155,703,181"/>
+</map>

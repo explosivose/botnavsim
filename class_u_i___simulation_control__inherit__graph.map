@@ -1,0 +1,4 @@
+<map id="UI_SimulationControl" name="UI_SimulationControl">
+<area shape="rect" id="node2" href="$interface_i_toolbar.html" title="Interface for classes that implement a toolbar item " alt="" coords="43,80,110,107"/>
+<area shape="rect" id="node3" href="$interface_i_window_function.html" title="Interface for classes that implement a GUI.WindowFunction " alt="" coords="16,5,137,32"/>
+</map>

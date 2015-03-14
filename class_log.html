@@ -112,14 +112,17 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a242879169fcd3a93350846e0ecf1a1a5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a242879169fcd3a93350846e0ecf1a1a5"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>LogParameter</b> (<a class="el" href="class_log.html#ac5d19dd314e64a9865f7b117ade04e76">Parameters</a> parameter, bool log)</td></tr>
+<tr class="memitem:a242879169fcd3a93350846e0ecf1a1a5"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log.html#a242879169fcd3a93350846e0ecf1a1a5">LogParameter</a> (<a class="el" href="class_log.html#ac5d19dd314e64a9865f7b117ade04e76">Parameters</a> parameter, bool log)</td></tr>
+<tr class="memdesc:a242879169fcd3a93350846e0ecf1a1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves parameters between availableParams and selectedParams lists.  <a href="#a242879169fcd3a93350846e0ecf1a1a5">More...</a><br /></td></tr>
 <tr class="separator:a242879169fcd3a93350846e0ecf1a1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a811f811c78bb482ac889945a9fbe5330"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a811f811c78bb482ac889945a9fbe5330"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> ()</td></tr>
+<tr class="memitem:a811f811c78bb482ac889945a9fbe5330"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log.html#a811f811c78bb482ac889945a9fbe5330">Start</a> ()</td></tr>
+<tr class="memdesc:a811f811c78bb482ac889945a9fbe5330"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start logging.  <a href="#a811f811c78bb482ac889945a9fbe5330">More...</a><br /></td></tr>
 <tr class="separator:a811f811c78bb482ac889945a9fbe5330"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77c4f25d268a02c63a196a6ef336b602"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77c4f25d268a02c63a196a6ef336b602"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>Stop</b> (Simulation.StopCode stopcode)</td></tr>
+<tr class="memitem:aba2c46c870c74e4822034595d2448a56"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log.html#aba2c46c870c74e4822034595d2448a56">Settings</a> ()</td></tr>
+<tr class="memdesc:aba2c46c870c74e4822034595d2448a56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize the current simulation settings and write to XML file.  <a href="#aba2c46c870c74e4822034595d2448a56">More...</a><br /></td></tr>
+<tr class="separator:aba2c46c870c74e4822034595d2448a56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77c4f25d268a02c63a196a6ef336b602"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602">Stop</a> (<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">Simulation.StopCode</a> stopcode)</td></tr>
+<tr class="memdesc:a77c4f25d268a02c63a196a6ef336b602"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop logging with Simulation.Stopcode and write log to CSV file.  <a href="#a77c4f25d268a02c63a196a6ef336b602">More...</a><br /></td></tr>
 <tr class="separator:a77c4f25d268a02c63a196a6ef336b602"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
@@ -169,6 +172,141 @@ Static Public Attributes</h2></td></tr>
 <p>Vector3 output from <a class="el" href="interface_i_navigation.html#affcf964d42b72e86ac5611256de427db" title="Gives a direction to follow the path given your location. ">INavigation.PathDirection</a> </p>
 </td></tr>
 </table>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a242879169fcd3a93350846e0ecf1a1a5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Log.LogParameter </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_log.html#ac5d19dd314e64a9865f7b117ade04e76">Parameters</a>&#160;</td>
+          <td class="paramname"><em>parameter</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>log</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Moves parameters between availableParams and selectedParams lists. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parameter</td><td>Parameter.</td></tr>
+    <tr><td class="paramname">log</td><td>If set to <code>true</code> parameter is added to selectedParams for logging.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aba2c46c870c74e4822034595d2448a56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Log.Settings </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Serialize the current simulation settings and write to XML file. </p>
+
+</div>
+</div>
+<a class="anchor" id="a811f811c78bb482ac889945a9fbe5330"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Log.Start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Start logging. </p>
+
+</div>
+</div>
+<a class="anchor" id="a77c4f25d268a02c63a196a6ef336b602"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Log.Stop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">Simulation.StopCode</a>&#160;</td>
+          <td class="paramname"><em>stopcode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Stop logging with Simulation.Stopcode and write log to CSV file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stopcode</td><td>Stopcode.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_log_a77c4f25d268a02c63a196a6ef336b602_icgraph.png" border="0" usemap="#class_log_a77c4f25d268a02c63a196a6ef336b602_icgraph" alt=""/></div>
+<map name="class_log_a77c4f25d268a02c63a196a6ef336b602_icgraph" id="class_log_a77c4f25d268a02c63a196a6ef336b602_icgraph">
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="128,56,303,83"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="537,56,648,83"/><area shape="rect" id="node5" href="class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="351,107,489,133"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="360,5,480,32"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -245,7 +383,7 @@ Static Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jan 16 2015 23:19:31 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 14 2015 15:37:18 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
