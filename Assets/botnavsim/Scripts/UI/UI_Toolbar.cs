@@ -67,7 +67,7 @@ public class UI_Toolbar : BetterBehaviour {
 		Rect rect = new Rect(0f,0f,Screen.width,height);
 		winId = 1;
 		// display toolbar window
-		GUILayout.Window(winId++, rect, ToolbarWindow, Strings.projectTitle);
+		GUILayout.Window(winId++, rect, ToolbarWindow, Strings.projectTitle + "-" + Strings.projectVersion);
 		// display any visible toolbar windows
 		foreach(IToolbar t in _tools) {
 			// only handle windows that are contextual
