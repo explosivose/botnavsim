@@ -57,7 +57,6 @@ public class UI_SimulationBatch : IToolbar  {
 	private List<string> _folders;
 	private string _subPath;
 	private Simulation.Settings _settings;
-	private bool _showEditSettings;
 
 	/// <summary>
 	/// Refresh this the files and folders in current directory
@@ -74,28 +73,6 @@ public class UI_SimulationBatch : IToolbar  {
 	/// </summary>
 	/// <param name="windowID">Window ID.</param>
 	void BatchListWindow(int windowID) {
-
-		// handle _settings when _editSettings is closed
-		if (_showEditSettings) {
-			if (_editSettings.windowFunction == null) {
-				_showEditSettings = false;
-				/*
-				if (Simulation.batch.Contains(_settings)) {
-					if (!_settings.isValid) {
-						Debug.Log("UI_SimulationSettings made settings in batch invalid. Removing from batch.");
-						Simulation.batch.Remove(_settings);
-					}
-				}
-				else if (_settings.isValid) {
-					Debug.Log("UI_SimulationSettings produced valid settings, added to batch.");
-					Simulation.batch.Add(_settings);
-				}
-				else {
-					Debug.Log("Invalid settings via UI_SimulationSettings were not batched.");
-				}
-				*/
-			}
-		}
 		
 		// controls and title
 		GUILayout.BeginHorizontal();
@@ -108,7 +85,6 @@ public class UI_SimulationBatch : IToolbar  {
 		if (GUILayout.Button("Add new simulation")) {
 			_settings = new Simulation.Settings();
 			_editSettings = new UI_SimulationSettings(_settings);
-			_showEditSettings = true;
 			UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 		}
 		// load a simulation from xml file
@@ -126,7 +102,6 @@ public class UI_SimulationBatch : IToolbar  {
 			if (GUILayout.Button(Simulation.batch[i].title + ", " + Simulation.batch[i].time)) {
 				_settings = Simulation.batch[i];
 				_editSettings = new UI_SimulationSettings(_settings);
-				_showEditSettings = true;
 				UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 			}
 		}
