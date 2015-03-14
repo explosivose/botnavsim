@@ -79,7 +79,7 @@ public class UI_Toolbar : BetterBehaviour {
 			}
 		}
 		// display any additional windows
-		for(int i = 0; i < additionalWindows.Count-1; i++) {
+		for(int i = 0; i < additionalWindows.Count; i++) {
 			IWindowFunction w = additionalWindows[i];
 			if (w.windowFunction == null) {
 				Debug.LogWarning("Null window removed.");

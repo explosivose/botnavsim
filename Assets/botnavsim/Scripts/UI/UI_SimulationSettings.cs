@@ -15,18 +15,12 @@ public class UI_SimulationSettings : IWindowFunction {
 	public UI_SimulationSettings(Simulation.Settings simSettings) {
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(SimulationSettingsWindow);
-		settings = simSettings;
+		_settings = simSettings;
 	}
 	
 	public Simulation.Settings settings {
 		get {
 			return _settings;
-		}
-		set {
-			if (_windows.Count < 1) {
-				_windows.Push(SimulationSettingsWindow);
-				_settings = value;
-			}
 		}
 	}
 	
@@ -64,23 +58,56 @@ public class UI_SimulationSettings : IWindowFunction {
 		get; set;
 	}
 	
-	public bool completed {
-		get {
-			return _windows.Count == 0;
-		}
-	}
 	
 	/// <summary>
 	/// Edit Simulation.Settings window function (always top of _windows stack)
 	/// </summary>
 	/// <param name="windowID">Window ID.</param>
 	void SimulationSettingsWindow(int windowID) {
-		Debug.Log(_windows.Count);
-		// back button
+
+
 		GUILayout.BeginHorizontal();
-		if (GUILayout.Button("<", GUILayout.Width(30f))) {
-			_windows.Pop();
+
+		if (!_settings.active) {
+			// if this settings is already batched
+			if (Simulation.batch.Contains(_settings)) {
+				// button to remove from batch
+				if (GUILayout.Button("Remove from batch")) {
+					Simulation.batch.Remove(_settings);
+					_windows.Pop();
+					return;
+				}
+				// cancel button
+				if (GUILayout.Button("Close window")) {
+					_windows.Pop();
+					return;
+				}
+			}
+			// this settings isn't in the batch
+			else {
+				// button to add valid settings to batch
+				if (_settings.isValid) {
+					if (GUILayout.Button("Add to batch")) {
+						Simulation.batch.Add(_settings);
+						_windows.Pop();
+						return;
+					}
+				}
+				// cancel button
+				if (GUILayout.Button("Cancel")) {
+					_windows.Pop();
+					return;
+				}
+			}
 		}
+		else {
+			GUILayout.Button("Simulation running!");
+			if (GUILayout.Button("Close")) {
+				_windows.Pop();
+				return;
+			}
+		}
+
 		GUILayout.EndHorizontal();
 		
 		float lw = 200f;

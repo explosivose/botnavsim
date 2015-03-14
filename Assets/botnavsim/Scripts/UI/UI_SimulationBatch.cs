@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using Vexe.Runtime.Types;
-using Vexe;
+using System.IO;
 
 /// <summary>
 /// UI for displaying and editing the simulation batch list
 /// </summary>
-[System.Serializable]
 public class UI_SimulationBatch : IToolbar  {
 
 	public UI_SimulationBatch() {
 		_settings = new Simulation.Settings();
 		_editSettings = new UI_SimulationSettings(_settings);
-		_simulationFiles = new List<string>();
+		_files = new List<string>();
+		_folders = new List<string>();
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(BatchListWindow);
+		// hide window initially
 		hidden = true;
 	}
 
@@ -44,25 +44,56 @@ public class UI_SimulationBatch : IToolbar  {
 			return _windows.Peek();
 		}
 	}
-	
+
+	public string currentDir {
+		get {
+			return Strings.logFileDirectory + _subPath;
+		}
+	}
+			
 	private Stack<GUI.WindowFunction> _windows;
 	private UI_SimulationSettings _editSettings;
-	private List<string> _simulationFiles;
+	private List<string> _files;
+	private List<string> _folders;
+	private string _subPath;
 	private Simulation.Settings _settings;
 	private bool _showEditSettings;
 
+	/// <summary>
+	/// Refresh this the files and folders in current directory
+	/// </summary>
+	private void Refresh() {
+		Debug.Log(currentDir);
+		_files = FileBrowser.ListFiles(currentDir, "*.xml");
+		_folders = FileBrowser.ListFolders(currentDir);
+	}
+	
+	
+	/// <summary>
+	/// List Simulation.Settings in Simulation.batch and provide controls and editing the Simulation.batch
+	/// </summary>
+	/// <param name="windowID">Window ID.</param>
 	void BatchListWindow(int windowID) {
 
-		// remove editSettings window when completed
+		// handle _settings when _editSettings is closed
 		if (_showEditSettings) {
-			Debug.Log("showEditSettings");
 			if (_editSettings.windowFunction == null) {
 				_showEditSettings = false;
-				UI_Toolbar.I.additionalWindows.Remove((IWindowFunction)_editSettings);
-				if (_settings.isValid) {
+				/*
+				if (Simulation.batch.Contains(_settings)) {
+					if (!_settings.isValid) {
+						Debug.Log("UI_SimulationSettings made settings in batch invalid. Removing from batch.");
+						Simulation.batch.Remove(_settings);
+					}
+				}
+				else if (_settings.isValid) {
+					Debug.Log("UI_SimulationSettings produced valid settings, added to batch.");
 					Simulation.batch.Add(_settings);
 				}
-				Debug.Log("Edit settings completed. Remove window");
+				else {
+					Debug.Log("Invalid settings via UI_SimulationSettings were not batched.");
+				}
+				*/
 			}
 		}
 		
@@ -73,9 +104,28 @@ public class UI_SimulationBatch : IToolbar  {
 		}
 		GUILayout.EndHorizontal();
 		
+		// add a new simulation to batch
+		if (GUILayout.Button("Add new simulation")) {
+			_settings = new Simulation.Settings();
+			_editSettings = new UI_SimulationSettings(_settings);
+			_showEditSettings = true;
+			UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
+		}
+		// load a simulation from xml file
+		if (GUILayout.Button("Add to batch from file...")) {
+			Refresh();
+			_windows.Push(XmlBrowser);
+		}
+		
+		// list batch
+		GUILayout.Label("Currently in batch:");
+		if (Simulation.batch.Count < 1) {
+			GUILayout.Label("None");
+		}
 		for(int i = 0; i < Simulation.batch.Count; i++) {
 			if (GUILayout.Button(Simulation.batch[i].title + ", " + Simulation.batch[i].time)) {
 				_settings = Simulation.batch[i];
+				_editSettings = new UI_SimulationSettings(_settings);
 				_showEditSettings = true;
 				UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 			}
@@ -86,18 +136,7 @@ public class UI_SimulationBatch : IToolbar  {
 			Simulation.Begin();
 		}
 		GUILayout.Space(20);
-		// add a new simulation to batch
-		if (GUILayout.Button("Add new simulation")) {
-			_settings = new Simulation.Settings();
-			_editSettings.settings = _settings;
-			_showEditSettings = true;
-			UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
-		}
-		// load a simulation from xml file
-		if (GUILayout.Button("Add to batch from file...")) {
-			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
-			_windows.Push(SimulationListWindow);
-		}
+
 		// remove all simulations from batch
 		GUILayout.Space (20);
 		if (GUILayout.Button("Clear Batch")) {
@@ -109,21 +148,42 @@ public class UI_SimulationBatch : IToolbar  {
 		GUI.DragWindow();
 	}
 	
-	void SimulationListWindow(int windowID) {
+	/// <summary>
+	/// Browse for XML files to deserialize into Simulation.Settings
+	/// </summary>
+	/// <param name="windowID">Window ID.</param>
+	void XmlBrowser(int windowID) {
 		// back button
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
 			_windows.Pop();
 		}
+		// refresh files and folders
 		if (GUILayout.Button("R", GUILayout.Width(30f))) {
-			_simulationFiles = ObjectSerializer.SearchForObjects(Strings.simulationFileDirectory);
+			Refresh();
 		}
 		GUILayout.EndHorizontal();
 		
-		for (int i = 0; i < _simulationFiles.Count; i++) {
-			if (GUILayout.Button(_simulationFiles[i])) {
-				string path = Strings.simulationFileDirectory + "\\";
-				path += _simulationFiles[i] + ".xml";
+		// go up one directory
+		if (_subPath != "") {
+			if (GUILayout.Button("..")) {
+				_subPath = Directory.GetParent(_subPath).Name;
+				Refresh();
+			}
+		}
+		// list subdirectories
+		for (int i = 0; i < _folders.Count; i++) {
+			// enter subdirectory
+			if (GUILayout.Button(_folders[i])) {
+				_subPath += "\\" + new DirectoryInfo(_folders[i]).Name;
+				Refresh();
+			}
+		}
+		// list files
+		for (int i = 0; i < _files.Count; i++) {
+			// try paths from file
+			if (GUILayout.Button(_files[i])) {
+				string path = currentDir + "\\" + _files[i];
 				Simulation.Settings settings = ObjectSerializer.DeSerializeObject<Simulation.Settings>(path);
 				if (settings != null) {
 					settings.active = false;
@@ -132,5 +192,8 @@ public class UI_SimulationBatch : IToolbar  {
 				}
 			}
 		}
+		
+		GUI.DragWindow();
 	}
+
 }

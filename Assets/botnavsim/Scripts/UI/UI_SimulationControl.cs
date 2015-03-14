@@ -121,17 +121,16 @@ public class UI_SimulationControl : IToolbar {
 		}
 		else {
 			if (GUILayout.Button("Show Settings")) {
-				_editSettings.settings = Simulation.settings;
+				_editSettings = new UI_SimulationSettings(Simulation.settings);
 				_liveEditSettings = true;
 				UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 			}
 		}
 		
-		// close window when completed
+		// update controls when _editSettings is completed
 		if (_liveEditSettings) {
-			if (_editSettings.completed) {
+			if (_editSettings.windowFunction == null) {
 				_liveEditSettings = false;
-				UI_Toolbar.I.additionalWindows.Remove((IWindowFunction)_editSettings);
 			}
 		}
 	
