@@ -2,6 +2,8 @@
 
 Botnavsim is Matt Blickem's final year MEng project at Loughborough University. When completed, Botnavsim will be a mobile robot simulation built in Unity3D. 
 
+API documentation here: http://explosivose.github.io/botnavsim/annotated.html
+
 ## Aim
 
 Create engaging demonstrations of a variety of navigational algorithms in a three dimensional space using simulated mobile robots, sensors and environments. 
