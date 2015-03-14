@@ -15,6 +15,7 @@ public class UI_DataPlayback : IToolbar {
 		// initialise window stack
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(CsvBrowser);
+		hidden = true;
 	}
 	
 	public bool contextual {
