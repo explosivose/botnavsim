@@ -10,7 +10,8 @@ public class UI_Log : IToolbar  {
 	
 	public bool contextual {
 		get {
-			return true;
+			return BotNavSim.isIdle || 
+				BotNavSim.isSimulating;
 		}
 	}
 

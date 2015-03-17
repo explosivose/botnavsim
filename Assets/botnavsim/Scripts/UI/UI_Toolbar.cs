@@ -8,12 +8,11 @@ using Vexe.Runtime.Types;
 /// <summary>
 /// UI Toolbar provides controls for choosing which UI windows to display
 /// </summary>
-[BasicView]
-public class UI_Toolbar : BetterBehaviour {
+public class UI_Toolbar : MonoBehaviour {
 
 	public static UI_Toolbar I;
 	
-	public float height;
+	public float width;
 	
 	[Serialize]
 	public List<IWindowFunction> additionalWindows = new List<IWindowFunction>();
@@ -64,7 +63,7 @@ public class UI_Toolbar : BetterBehaviour {
 		// set skin object
 		GUI.skin = _skin;
 		// set toolbar size and position
-		Rect rect = new Rect(0f,0f,Screen.width,height);
+		Rect rect = new Rect(0,0,width,Screen.height);
 		winId = 1;
 		// display toolbar window
 		GUILayout.Window(winId++, rect, ToolbarWindow, Strings.projectTitle + "-" + Strings.projectVersion);
@@ -95,7 +94,7 @@ public class UI_Toolbar : BetterBehaviour {
 	/// </summary>
 	/// <param name="windowID">Window ID.</param>
 	void ToolbarWindow(int windowID) {
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginVertical();
 		foreach(IToolbar t in _tools) {
 			// only handle windows that are contextual
 			if (t.contextual) {
@@ -105,6 +104,6 @@ public class UI_Toolbar : BetterBehaviour {
 				}
 			}
 		}
-		GUILayout.EndHorizontal();
+		GUILayout.EndVertical();
 	}
 }

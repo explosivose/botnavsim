@@ -18,7 +18,7 @@ public class UI_SimulationControl : IToolbar {
 
 	public bool contextual {
 		get {
-			return !Simulation.preSimulation;
+			return BotNavSim.isSimulating;
 		}
 	}
 

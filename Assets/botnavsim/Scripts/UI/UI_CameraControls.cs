@@ -10,7 +10,7 @@ public class UI_CameraControls : IToolbar {
 	
 	public bool contextual {
 		get {
-			return true;
+			return !BotNavSim.isIdle;
 		}
 	}
 

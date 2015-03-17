@@ -21,7 +21,9 @@ public class UI_SimulationBatch : IToolbar  {
 
 	public bool contextual {
 		get {
-			return true;
+			return BotNavSim.isIdle || 
+				BotNavSim.isSimulating || 
+				BotNavSim.isViewingData;
 		}
 	}
 

@@ -3,26 +3,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
-public class UI_DataPlayback : IToolbar {
+public class UI_LogLoader : IToolbar {
 
-	public UI_DataPlayback() {
+	public UI_LogLoader() {
 		if (!Directory.Exists(Strings.logFileDirectory))
 			Directory.CreateDirectory(Strings.logFileDirectory);
 		// initialise file browsing
 		_files = FileBrowser.ListFiles(Strings.logFileDirectory);
 		_folders = FileBrowser.ListFolders(Strings.logFileDirectory);
 		_subPath = "";
-		// initialise path list
-		_paths = new List<BotPath>();
 		// initialise window stack
 		_windows = new Stack<GUI.WindowFunction>();
-		_windows.Push(CsvBrowser);
+		_windows.Push(Legend);
 		hidden = true;
 	}
 	
 	public bool contextual {
 		get {
-			return true;
+			return BotNavSim.isIdle || 
+				BotNavSim.isViewingData;
 		}
 	}
 
@@ -56,7 +55,6 @@ public class UI_DataPlayback : IToolbar {
 	private List<string> _files;
 	private List<string> _folders;
 	private string _subPath;
-	private List<BotPath> _paths;
 	
 	/// <summary>
 	/// Refresh this the files and folders in current directory
@@ -84,15 +82,11 @@ public class UI_DataPlayback : IToolbar {
 		// hide button
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
-			hidden = true;
+			_windows.Pop();
 		}
 		// refresh files and folders
 		if (GUILayout.Button("R", GUILayout.Width(30f))) {
 			Refresh();
-		}
-		// display botpath legend
-		if (GUILayout.Button("Path Legend")) {
-			_windows.Push(Legend);
 		}
 		GUILayout.EndHorizontal();
 		
@@ -115,8 +109,11 @@ public class UI_DataPlayback : IToolbar {
 		for (int i = 0; i < _files.Count; i++) {
 			// try paths from file
 			if (GUILayout.Button(_files[i])) {
-				List<BotPath> newPaths = LogLoader.LoadPaths(currentDir + "\\" + _files[i]);
-				_paths.AddRange(newPaths);
+				// change state when loading first data
+				if (BotNavSim.isIdle) {
+					BotNavSim.state = BotNavSim.State.ViewingData;
+				}
+				LogLoader.LoadPaths(currentDir + "\\" + _files[i]);
 			}
 		}
 		
@@ -127,7 +124,10 @@ public class UI_DataPlayback : IToolbar {
 		// back button
 		GUILayout.BeginHorizontal();
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
-			_windows.Pop();
+			hidden = true;
+		}
+		if (GUILayout.Button("Load from CSV...")) {
+			_windows.Push(CsvBrowser);
 		}
 		GUILayout.EndHorizontal();
 		
@@ -135,19 +135,23 @@ public class UI_DataPlayback : IToolbar {
 		Camera.main.orthographicSize = 50f;
 		Camera.main.transform.position = Simulation.bounds.center + Vector3.up * 100f;
 		
+		if (LogLoader.paths.Count < 1) {
+			GUILayout.Label("No paths loaded.");
+		}
+		
 		// list botpaths
-		for(int i = 0; i < _paths.Count; i++) {
-			if (GUILayout.Button(_paths[i].csvName)) {
-				_paths[i].visible = !_paths[i].visible;
+		for(int i = 0; i < LogLoader.paths.Count; i++) {
+			if (GUILayout.Button(LogLoader.paths[i].csvName)) {
+				LogLoader.paths[i].visible = !LogLoader.paths[i].visible;
 				continue;
 			}
 			if (IsMouseOver()) {
-				_paths[i].highlight = true;
+				LogLoader.paths[i].highlight = true;
 			} else {
-				_paths[i].highlight = false;
+				LogLoader.paths[i].highlight = false;
 			}
-			if (_paths[i].visible) {
-				_paths[i].DrawPath();
+			if (LogLoader.paths[i].visible) {
+				LogLoader.paths[i].DrawPath();
 			}
 		}
 		
