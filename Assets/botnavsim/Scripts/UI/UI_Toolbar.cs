@@ -10,11 +10,20 @@ using Vexe.Runtime.Types;
 /// </summary>
 public class UI_Toolbar : MonoBehaviour {
 
+	/// <summary>
+	/// Singleton pattern.
+	/// </summary>
 	public static UI_Toolbar I;
 	
+	/// <summary>
+	/// The width of the toolbar in screen px.
+	/// </summary>
 	public float width;
 	
-	[Serialize]
+	/// <summary>
+	/// The additional windows to be drawn outside the toolbar.
+	/// used for classes like UI_SimulationSettings
+	/// </summary>
 	public List<IWindowFunction> additionalWindows = new List<IWindowFunction>();
 
 	private List<IToolbar> _tools = new List<IToolbar>();
@@ -95,6 +104,11 @@ public class UI_Toolbar : MonoBehaviour {
 	/// <param name="windowID">Window ID.</param>
 	void ToolbarWindow(int windowID) {
 		GUILayout.BeginVertical();
+		if (!BotNavSim.isIdle) {
+			if (GUILayout.Button("Close")) {
+				BotNavSim.state = BotNavSim.State.Idle;
+			}
+		}
 		foreach(IToolbar t in _tools) {
 			// only handle windows that are contextual
 			if (t.contextual) {

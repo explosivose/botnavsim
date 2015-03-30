@@ -92,6 +92,7 @@ public class BotNavSim {
 			//Simulation.Exit();
 			break;
 		case State.ViewingData:
+			LogLoader.Exit();
 			break;
 		case State.EditingRobot:
 			break;

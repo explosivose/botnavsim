@@ -559,18 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313b93b6ce3f2de4e87ba56d2699803b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dbg: 0
-  _serializationData:
-    serializedObjects: []
-    serializedStrings:
-      keys:
-      - 'Field: float height'
-      - 'Field: List<IWindowFunction> additionalWindows'
-      values:
-      - 0
-      - '[]'
-  id: b546e4ff-75e6-4b0b-b2b0-8e822bee318e
-  height: 0
+  width: 240
 --- !u!4 &1780533661
 Transform:
   m_ObjectHideFlags: 0

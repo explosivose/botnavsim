@@ -15,7 +15,12 @@ public class LogLoader {
 	/// </summary>
 	public static List<BotPath> paths;
 	
-	private GameObject _environment;
+	private static GameObject _environment;
+	
+	public static void Exit() {
+		_environment.transform.Recycle();
+		paths.Clear();
+	}
 	
 	/// <summary>
 	/// Loads the paths stored in a CSV file. Also attempts to load

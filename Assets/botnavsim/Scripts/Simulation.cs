@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,21 +9,29 @@ public class Simulation : MonoBehaviour {
 
 	public enum State {
 		/// <summary>
-		/// Simulations have not yet started.
+		/// BotNavSim is not simulating.
 		/// </summary>
-		preSimulation,
+		inactive,
+		
+		/// <summary>
+		/// Simulation is about to start.
+		/// </summary>
+		starting,
+		
 		/// <summary>
 		/// Simulation is running.
 		/// </summary>
 		simulating,
+		
 		/// <summary>
 		/// Simulation is stopped.
 		/// </summary>
 		stopped,
+		
 		/// <summary>
-		/// Simulation has finished.
+		/// Simulation has reached the end of the batch. 
 		/// </summary>
-		finished
+		end
 	}
 
 	public enum StopCode {
@@ -31,18 +39,22 @@ public class Simulation : MonoBehaviour {
 		/// Reason for simulation stopping is not given.
 		/// </summary>
 		Unspecified,
+		
 		/// <summary>
 		/// Simulation stopped because user requested next test.
 		/// </summary>
 		UserRequestNextTest,
+		
 		/// <summary>
 		/// Simulation stopped because the robot reached the destination.
 		/// </summary>
 		RobotReachedDestination,
+		
 		/// <summary>
 		/// Simulation stopped because the maximum test time was exceeded.
 		/// </summary>
 		MaxTimeExceeded,
+		
 		/// <summary>
 		/// Simulation stopped because the robot appears to be stuck.
 		/// i.e. the robot position has not changed for some time.
@@ -270,8 +282,8 @@ public class Simulation : MonoBehaviour {
 	/// Gets a value indicating whether this <see cref="Simulation"/> has not yet started.
 	/// </summary>
 	/// <value><c>true</c> if pre simulation; otherwise, <c>false</c>.</value>
-	public static bool preSimulation {
-		get { return state == State.preSimulation; }
+	public static bool isInactive {
+		get { return state == State.inactive; }
 	}
 	/// <summary>
 	/// Gets a value indicating whether this <see cref="Simulation"/> is running.
@@ -292,7 +304,7 @@ public class Simulation : MonoBehaviour {
 	/// </summary>
 	/// <value><c>true</c> if is finished; otherwise, <c>false</c>.</value>
 	public static bool isFinished {
-		get { return state == State.finished; }
+		get { return state == State.end; }
 	}
 	
 	/// <summary>
@@ -353,9 +365,6 @@ public class Simulation : MonoBehaviour {
 	private static bool _paused;
 	private static float _timeScale = 1f;
 	
-	// bool flag indicates whether StartTestRoutine is running
-	private static bool _startingTest;
-	
 	/* ### Static Methods ### */
 	
 	/// <summary>
@@ -370,37 +379,70 @@ public class Simulation : MonoBehaviour {
 	/// Run the next simulation in batch.
 	/// </summary>
 	public static void NextSimulation() {
-		Log.Stop(0);
+		// stop current simulation
+		if (state == State.simulating) {
+			Halt(StopCode.Unspecified);
+		}
+		// next in batch
+		simulationNumber++;
 		if (simulationNumber >= batch.Count) {
-			End();
+			// end of batch
+			Halt(StopCode.Unspecified);
+			state = State.end;
 			return;
 		}
-		Instance.StartCoroutine(StartSimulationRoutine());
+		// load simulation settings
+		settings = batch[simulationNumber-1];
+		Log.Settings();
+		// load environment
+		EnvLoader.SearchForEnvironments();
+		environment = EnvLoader.LoadEnvironment(settings.environmentName);
+		destination.transform.position = RandomInBounds();
+		// load robot
+		Camera.main.transform.parent = null;
+		BotLoader.SearchForRobots();
+		robot = BotLoader.LoadRobot(settings.robotName);
+		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
+		// start the simulation
+		testNumber = 0;
+		NextTest();
 	}
 	
 	/// <summary>
 	/// Stops the current test and starts the next test in current simulation.
 	/// </summary>
 	/// <param name="code">Code.</param>
-	public static void NextTest(StopCode code) {
-		Log.Stop(code);
-		if (testNumber >= settings.numberOfTests) {
-			NextSimulation();
-			return;
+	public static void NextTest() {
+		if (testNumber+1 >= settings.numberOfTests) {
+			
 		}
-		if (!_startingTest) Instance.StartCoroutine(StartTestRoutine());
+		// start test routine
+		if (state != State.starting) Instance.StartCoroutine(StartTestRoutine());
 	}
 	
 	/// <summary>
-	/// Stops the test. Sets simulation state to State.stopped and holds the robot still.
+	/// Halt simulation and write log to file. 
 	/// </summary>
-	private static void StopTest() {
+	/// <param name="code">Reason for halt.</param>
+	public static void Halt(StopCode code) {
+		// stop logging
+		Log.Stop(code);
+		// freeze the robot
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.rigidbody.angularVelocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
+		// set simulation state
 		state = State.stopped;
+	}
+	
+	
+	/// <summary>
+	/// 
+	/// </summary>
+	private static void StopTest() {
+		
 	}
 	
 	/// <summary>
@@ -424,7 +466,7 @@ public class Simulation : MonoBehaviour {
 			robot.rigidbody.velocity = Vector3.zero;
 			robot.moveEnabled = false;
 		}
-		state = State.finished;
+		state = State.end;
 		Log.Stop(0);
 		if (exhibitionMode) {
 			if (batch.Count > 10) {
@@ -457,9 +499,9 @@ public class Simulation : MonoBehaviour {
 	
 	// Routine for starting a new test
 	private static IEnumerator StartTestRoutine() {
-		_startingTest = true;
+		state = State.starting;
+		Halt(0);
 		CamController.Instance.OnTestEnd();
-		StopTest();
 		yield return new WaitForSeconds(1f);
 		// randomly place the robot
 		if (settings.randomizeOrigin) {
@@ -473,33 +515,17 @@ public class Simulation : MonoBehaviour {
 			destination.transform.position = RandomInBounds();
 			
 		yield return new WaitForSeconds(1f);
+		
 		CamController.Instance.OnTestStart();
-		state = State.simulating;
 		testNumber++;
+		
 		yield return new WaitForSeconds(1f);
+		
 		_startTime = Time.time;
+		state = State.simulating;
 		if (loggingEnabled) Log.Start();
 		robot.moveEnabled = true;
 		robot.NavigateToDestination();
-		_startingTest = false;
-	}
-	
-	// Routine for starting a new simulation
-	private static IEnumerator StartSimulationRoutine() {
-		StopSimulation();
-		simulationNumber++;
-		settings = batch[simulationNumber-1];
-		Log.Settings();
-		EnvLoader.SearchForEnvironments();
-		environment = EnvLoader.LoadEnvironment(settings.environmentName);
-		destination.transform.position = RandomInBounds();
-		Camera.main.transform.parent = null;
-		BotLoader.SearchForRobots();
-		robot = BotLoader.LoadRobot(settings.robotName);
-		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
-		testNumber = 0;
-		NextTest(0);
-		yield break;
 	}
 	
 	// Set the simulation bounds to encapsulate all renderers in scene
@@ -508,12 +534,10 @@ public class Simulation : MonoBehaviour {
 		foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
 			bounds.Encapsulate(r.bounds);
 	}
-	
-
-	
 
 	/** Instance Methods **/
-
+	
+	// Called on gameobject created
 	void Awake() {
 		// singleton pattern (can only be one Instance of Simulation)
 		if (Instance) {
@@ -525,34 +549,38 @@ public class Simulation : MonoBehaviour {
 		_settings = new Settings();
 	}
 	
+	// Called on the first frame
 	void Start() {
 		destination = GameObject.Find("Destination");
 	}
 	
+	// Called every frame
 	void Update() {
 		if (isRunning) {
 			// check for conditions to end the test
 			if (robot.atDestination && settings.continueOnNavObjectiveComplete) {
 				Debug.Log("Simulation: nav objective complete!");
-				NextTest(StopCode.RobotReachedDestination);
+				Halt(StopCode.RobotReachedDestination);
 			}
 			else if (robot.isStuck && settings.continueOnRobotIsStuck) {
 				Debug.LogWarning("Simulation: Robot appears to be stuck! Skipping test.");
-				NextTest(StopCode.RobotIsStuck);
+				Halt(StopCode.RobotIsStuck);
 			}
 			else if (settings.maximumTestTime > 0 && time > settings.maximumTestTime) {
 				Debug.LogWarning("Simulation: Max test time exceeded! Skipping test.");
-				NextTest(StopCode.MaxTimeExceeded);
+				Halt(StopCode.MaxTimeExceeded);
 			}
 
 		}
 	}
 
+	// Called every frame for drawing Gizmos
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(bounds.center, bounds.size);
 	}
 	
+	// called before application shuts down
 	void OnApplicationQuit() {
-		Log.Stop(0);
+		Log.Stop(StopCode.Unspecified);
 	}
 }
