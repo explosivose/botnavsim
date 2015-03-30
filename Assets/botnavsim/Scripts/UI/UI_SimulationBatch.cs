@@ -64,7 +64,6 @@ public class UI_SimulationBatch : IToolbar  {
 	/// Refresh this the files and folders in current directory
 	/// </summary>
 	private void Refresh() {
-		Debug.Log(currentDir);
 		_files = FileBrowser.ListFiles(currentDir, "*.xml");
 		_folders = FileBrowser.ListFolders(currentDir);
 	}
@@ -95,21 +94,40 @@ public class UI_SimulationBatch : IToolbar  {
 			_windows.Push(XmlBrowser);
 		}
 		
-		// list batch
+		// Batch list
 		GUILayout.Label("Currently in batch:");
 		if (Simulation.batch.Count < 1) {
 			GUILayout.Label("None");
 		}
+		
 		for(int i = 0; i < Simulation.batch.Count; i++) {
-			if (GUILayout.Button(Simulation.batch[i].title + ", " + Simulation.batch[i].time)) {
-				_settings = Simulation.batch[i];
+			Simulation.Settings batchItem = Simulation.batch[i];
+			// batch list table row by row
+			GUILayout.BeginHorizontal();
+			// display batch position
+			if (i+1 == Simulation.simulationNumber) {
+				GUILayout.Label("->");
+			}
+			// label 
+			string label = i+1 + ". " + batchItem.title + ", " + batchItem.time;
+			if (batchItem.active) label += ", RUNNING";
+			GUILayout.Label(label);
+			// edit these settings
+			if (GUILayout.Button("Edit")) {
+				_settings = batchItem;
 				_editSettings = new UI_SimulationSettings(_settings);
 				UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 			}
+			// indicate which have been executed already
+			// if (batchItem.executed)
+			
+			GUILayout.EndHorizontal();
 		}
+		
 		GUILayout.Space (10);
 		// start simulating 
 		if (GUILayout.Button("Start Batch")) {
+			BotNavSim.state = BotNavSim.State.Simulating;
 			Simulation.Begin();
 		}
 		GUILayout.Space(20);

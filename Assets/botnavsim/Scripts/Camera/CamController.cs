@@ -146,7 +146,7 @@ public class CamController : Singleton<CamController> {
 		if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
 		if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
 		
-		if (Simulation.settings.isValid) {
+		if (BotNavSim.isSimulating) {
 			PerspectiveUpdate();
 			RenderModeUpdate();
 		}

@@ -104,7 +104,7 @@ public class UI_Toolbar : MonoBehaviour {
 	void ToolbarWindow(int windowID) {
 		GUILayout.BeginVertical();
 		if (!BotNavSim.isIdle) {
-			if (GUILayout.Button("Close")) {
+			if (GUILayout.Button("Back")) {
 				BotNavSim.state = BotNavSim.State.Idle;
 			}
 		}

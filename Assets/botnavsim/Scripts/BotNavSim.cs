@@ -89,7 +89,7 @@ public class BotNavSim {
 		case State.Idle:
 			break;
 		case State.Simulating:
-			//Simulation.Exit();
+			Simulation.Exit();
 			break;
 		case State.ViewingData:
 			LogLoader.Exit();
