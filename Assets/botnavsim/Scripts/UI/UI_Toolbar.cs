@@ -3,7 +3,6 @@ using System;
 using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
-using Vexe.Runtime.Types;
 
 /// <summary>
 /// UI Toolbar provides controls for choosing which UI windows to display
