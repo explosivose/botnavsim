@@ -141,7 +141,7 @@ public class Log  {
 			System.IO.Directory.CreateDirectory(path);
 		}
 		path += "\\" + Simulation.settings.fileName;
-		Debug.Log(path);
+		Debug.Log("Settings saved at " + path);
 		ObjectSerializer.SerializeObject(Simulation.settings, path);
 	}
 	

@@ -28,7 +28,7 @@ public class UI_SimulationControl : IToolbar {
 
 	public string windowTitle {
 		get {
-			return "Simulation Control";
+			return "Simulation: " + Simulation.state.ToString();
 		}
 	}
 

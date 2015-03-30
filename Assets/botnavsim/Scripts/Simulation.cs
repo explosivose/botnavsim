@@ -213,6 +213,7 @@ public class Simulation : MonoBehaviour {
 		set {
 			_settings.active = false;
 			_settings = value;
+			if (_settings == null) _settings = new Settings();	
 			_settings.active = true;
 		}
 	}
@@ -351,7 +352,9 @@ public class Simulation : MonoBehaviour {
 		get { return _timeScale; }
 		set {
 			_timeScale = value;
-			Time.timeScale = value;
+			if (!paused) {
+				Time.timeScale = value;
+			}
 		}
 	}
 
@@ -371,6 +374,7 @@ public class Simulation : MonoBehaviour {
 	/// Begin simulating.
 	/// </summary>
 	public static void Begin() {
+		Debug.Log("Simulation Begin");
 		simulationNumber = 0;
 		NextSimulation();
 	}
@@ -387,12 +391,13 @@ public class Simulation : MonoBehaviour {
 		}
 		// next in batch
 		simulationNumber++;
-		if (simulationNumber >= batch.Count) {
+		if (simulationNumber > batch.Count) {
 			// end of batch
 			Halt(StopCode.Unspecified);
 			End();
 			return;
 		}
+		Debug.Log("Simulation NextSimulation: " + simulationNumber + " of " + batch.Count);
 		// load simulation settings
 		settings = batch[simulationNumber-1];
 		Log.Settings();
@@ -415,7 +420,7 @@ public class Simulation : MonoBehaviour {
 	/// </summary>
 	/// <param name="code">Code.</param>
 	public static void NextTest() {
-		if (testNumber+1 >= settings.numberOfTests) {
+		if (testNumber >= settings.numberOfTests) {
 			Halt(StopCode.Unspecified);
 			NextSimulation();
 			return;
@@ -428,7 +433,8 @@ public class Simulation : MonoBehaviour {
 	/// Run the simulation. 
 	/// </summary>
 	public static void Run() {
-		if (state = State.stopped) {
+		Debug.Log("Simulation run.");
+		if (state == State.stopped) {
 			Time.timeScale = _timeScale;
 			state = State.simulating;
 		}
@@ -438,7 +444,8 @@ public class Simulation : MonoBehaviour {
 	/// Pause the simulation. 
 	/// </summary>
 	public static void Pause() {
-		if (state = State.simulating) {
+		Debug.Log("Simulation Pause.");
+		if (state == State.simulating) {
 			Time.timeScale = 0f;
 			state = State.stopped;
 		}
@@ -449,6 +456,7 @@ public class Simulation : MonoBehaviour {
 	/// </summary>
 	/// <param name="code">Reason for halt.</param>
 	public static void Halt(StopCode code) {
+		Debug.Log("Simulation Halt! " + code.ToString());
 		// stop logging
 		if (Log.logging) Log.Stop(code);
 
@@ -467,7 +475,7 @@ public class Simulation : MonoBehaviour {
 	/// Stop all simulations.
 	/// </summary>
 	public static void End() {
-
+		Debug.Log("Simulation End.");
 		state = State.end;
 		
 		// in exhibition mode, run more simulations with random settings
@@ -486,6 +494,9 @@ public class Simulation : MonoBehaviour {
 	/// Exit simulation. 
 	/// </summary>
 	public static void Exit() {
+		Debug.Log("Simulation Exit.");
+		Instance.StopAllCoroutines();
+		settings = null;
 		if (Log.logging) Log.Stop(StopCode.Unspecified);
 		if (robot) robot.Recycle();
 		if (environment) environment.transform.Recycle();
@@ -512,8 +523,8 @@ public class Simulation : MonoBehaviour {
 	
 	// Routine for starting a new test
 	private static IEnumerator StartTestRoutine() {
+		if (isRunning) Halt(StopCode.Unspecified);
 		state = State.starting;
-		Halt(0);
 		CamController.Instance.OnTestEnd();
 		yield return new WaitForSeconds(1f);
 		// randomly place the robot
@@ -531,6 +542,7 @@ public class Simulation : MonoBehaviour {
 		
 		CamController.Instance.OnTestStart();
 		testNumber++;
+		Debug.Log("Simulation NextTest: " + testNumber + " of " + settings.numberOfTests);
 		
 		yield return new WaitForSeconds(1f);
 		
@@ -574,14 +586,17 @@ public class Simulation : MonoBehaviour {
 			if (robot.atDestination && settings.continueOnNavObjectiveComplete) {
 				Debug.Log("Simulation: nav objective complete!");
 				Halt(StopCode.RobotReachedDestination);
+				NextTest();
 			}
 			else if (robot.isStuck && settings.continueOnRobotIsStuck) {
 				Debug.LogWarning("Simulation: Robot appears to be stuck! Skipping test.");
 				Halt(StopCode.RobotIsStuck);
+				NextTest();
 			}
 			else if (settings.maximumTestTime > 0 && time > settings.maximumTestTime) {
 				Debug.LogWarning("Simulation: Max test time exceeded! Skipping test.");
 				Halt(StopCode.MaxTimeExceeded);
+				NextTest();
 			}
 
 		}
