@@ -59,6 +59,6 @@ public class UI_CameraControls : IToolbar {
 		}
 		GUILayout.EndHorizontal();
 		
-		GUI.DragWindow();
+		//GUI.DragWindow();
 	} 
 }

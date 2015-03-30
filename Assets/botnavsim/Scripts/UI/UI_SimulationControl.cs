@@ -135,7 +135,7 @@ public class UI_SimulationControl : IToolbar {
 		}
 	
 		
-		GUI.DragWindow();
+		//GUI.DragWindow();
 	}
 	
 

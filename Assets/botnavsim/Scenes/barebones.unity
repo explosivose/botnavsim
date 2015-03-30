@@ -178,9 +178,9 @@ Camera:
   m_BackGroundColor: {r: .568130314, g: .534115493, b: .654411793, a: .0196078438}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
+    x: .300000012
     y: 0
-    width: 1
+    width: .610000014
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
@@ -310,6 +310,14 @@ Prefab:
     - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
       propertyPath: orthographic size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: .610000014
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: .300000012
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ca9f596cd9add0244993b763c805ca74, type: 2}
@@ -560,7 +568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313b93b6ce3f2de4e87ba56d2699803b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 240
+  width: 450
 --- !u!4 &1780533661
 Transform:
   m_ObjectHideFlags: 0

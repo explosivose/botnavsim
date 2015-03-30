@@ -36,7 +36,7 @@ public class UI_Log : IToolbar  {
 	}
 	
 	void LogSettingsWindow(int windowID) {
-		float lw = 200f;
+		float w = UI_Toolbar.I.innerWidth/2f;
 		
 		// close window button
 		GUILayout.BeginHorizontal();
@@ -47,15 +47,13 @@ public class UI_Log : IToolbar  {
 		
 		// toggle logging
 		GUILayout.BeginHorizontal();
-		GUILayout.Label("Log to file: ", GUILayout.Width(lw));
+		GUILayout.Label("Log to file: ", GUILayout.Width(w));
 		Simulation.loggingEnabled = GUILayout.Toggle(Simulation.loggingEnabled, "");
 		GUILayout.EndHorizontal();
-
-		lw = windowRect.width/2f;
 		
 		GUILayout.BeginHorizontal();
-		GUILayout.Label("Available Parameters", GUILayout.Width(lw));
-		GUILayout.Label("Parameters To Be Logged");
+		GUILayout.Label("Available Parameters", GUILayout.Width(w));
+		GUILayout.Label("Parameters To Be Logged", GUILayout.Width(w));
 		GUILayout.EndHorizontal();
 		
 		int max = Mathf.Max(Log.availableParams.Count, Log.selectedParams.Count);
@@ -63,24 +61,24 @@ public class UI_Log : IToolbar  {
 		for(int i = 0; i < max; i++) {
 			GUILayout.BeginHorizontal();
 			if (i < Log.availableParams.Count) {
-				if (GUILayout.Button(Log.availableParams[i].ToString(), GUILayout.Width(lw))) {
+				if (GUILayout.Button(Log.availableParams[i].ToString(), GUILayout.Width(w))) {
 					Log.LogParameter(Log.availableParams[i], true);
 				}
 			}
 			else {
-				GUILayout.Button("", GUILayout.Width(lw));
+				GUILayout.Button("", GUILayout.Width(w));
 			}
 			if (i < Log.selectedParams.Count) {
-				if(GUILayout.Button(Log.selectedParams[i].ToString())) {
+				if(GUILayout.Button(Log.selectedParams[i].ToString(),GUILayout.Width(w))) {
 					Log.LogParameter(Log.selectedParams[i], false);
 				}
 			}
 			else {
-				GUILayout.Button("");
+				GUILayout.Button("", GUILayout.Width(w));
 			}
 			GUILayout.EndHorizontal();
 		}
 		
-		GUI.DragWindow();
+		//GUI.DragWindow();
 	}
 }

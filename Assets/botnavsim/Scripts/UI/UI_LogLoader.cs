@@ -117,7 +117,7 @@ public class UI_LogLoader : IToolbar {
 			}
 		}
 		
-		GUI.DragWindow();
+		//GUI.DragWindow();
 	}
 	
 	private void Legend(int windowID) {
@@ -155,7 +155,7 @@ public class UI_LogLoader : IToolbar {
 			}
 		}
 		
-		GUI.DragWindow();
+		//GUI.DragWindow();
 	}
 	
 	

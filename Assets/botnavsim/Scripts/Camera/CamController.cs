@@ -143,6 +143,11 @@ public class CamController : Singleton<CamController> {
 	void Update() {
 		_robot = Simulation.robot;
 		
+		// set camera size on screen
+		float x = UI_Toolbar.I.width/Screen.width;
+		camera.rect = new Rect(x, 0, 1f-x, Screen.height);
+		
+		
 		if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
 		if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
 		

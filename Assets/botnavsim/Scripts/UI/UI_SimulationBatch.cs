@@ -140,7 +140,7 @@ public class UI_SimulationBatch : IToolbar  {
 		
 
 		
-		GUI.DragWindow();
+		//GUI.DragWindow();
 	}
 	
 	/// <summary>
@@ -188,7 +188,7 @@ public class UI_SimulationBatch : IToolbar  {
 			}
 		}
 		
-		GUI.DragWindow();
+		//GUI.DragWindow();
 	}
 
 }

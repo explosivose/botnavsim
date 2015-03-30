@@ -115,5 +115,6 @@ public class BotNavSim {
 			break;
 		}
 		
+		Debug.Log("BotNavSim: " + state.ToString());
 	}
 }
