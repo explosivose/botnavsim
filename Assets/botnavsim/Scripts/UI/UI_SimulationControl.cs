@@ -99,7 +99,7 @@ public class UI_SimulationControl : IToolbar {
 			}
 			GUILayout.EndHorizontal();
 			if (GUILayout.Button("Next Test")) {
-				Simulation.NextTest(Simulation.StopCode.UserRequestNextTest);
+				Simulation.NextTest();
 			}
 			
 		}

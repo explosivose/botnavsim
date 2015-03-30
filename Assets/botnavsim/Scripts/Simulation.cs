@@ -261,7 +261,7 @@ public class Simulation : MonoBehaviour {
 			return _environment;
 		}
 		set {
-			if (isRunning) StopSimulation();
+			if (isRunning) Halt(0);
 			if (_environment) _environment.transform.Recycle();
 			_environment = value;
 			SetBounds();
@@ -376,7 +376,9 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Run the next simulation in batch.
+	/// Halt current simulation.
+	/// Load the next simulation in batch, or
+	///  change state to State.end if at the end of batch. 
 	/// </summary>
 	public static void NextSimulation() {
 		// stop current simulation
@@ -388,7 +390,7 @@ public class Simulation : MonoBehaviour {
 		if (simulationNumber >= batch.Count) {
 			// end of batch
 			Halt(StopCode.Unspecified);
-			state = State.end;
+			End();
 			return;
 		}
 		// load simulation settings
@@ -403,7 +405,7 @@ public class Simulation : MonoBehaviour {
 		BotLoader.SearchForRobots();
 		robot = BotLoader.LoadRobot(settings.robotName);
 		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
-		// start the simulation
+		// reset test number
 		testNumber = 0;
 		NextTest();
 	}
@@ -414,10 +416,32 @@ public class Simulation : MonoBehaviour {
 	/// <param name="code">Code.</param>
 	public static void NextTest() {
 		if (testNumber+1 >= settings.numberOfTests) {
-			
+			Halt(StopCode.Unspecified);
+			NextSimulation();
+			return;
 		}
 		// start test routine
 		if (state != State.starting) Instance.StartCoroutine(StartTestRoutine());
+	}
+	
+	/// <summary>
+	/// Run the simulation. 
+	/// </summary>
+	public static void Run() {
+		if (state = State.stopped) {
+			Time.timeScale = _timeScale;
+			state = State.simulating;
+		}
+	}
+	
+	/// <summary>
+	/// Pause the simulation. 
+	/// </summary>
+	public static void Pause() {
+		if (state = State.simulating) {
+			Time.timeScale = 0f;
+			state = State.stopped;
+		}
 	}
 	
 	/// <summary>
@@ -426,7 +450,8 @@ public class Simulation : MonoBehaviour {
 	/// <param name="code">Reason for halt.</param>
 	public static void Halt(StopCode code) {
 		// stop logging
-		Log.Stop(code);
+		if (Log.logging) Log.Stop(code);
+
 		// freeze the robot
 		if (robot) {
 			robot.rigidbody.velocity = Vector3.zero;
@@ -439,35 +464,13 @@ public class Simulation : MonoBehaviour {
 	
 	
 	/// <summary>
-	/// 
-	/// </summary>
-	private static void StopTest() {
-		
-	}
-	
-	/// <summary>
-	/// Stops the simulation.
-	/// </summary>
-	private static void StopSimulation() {
-		if (robot) {
-			robot.rigidbody.velocity = Vector3.zero;
-			robot.rigidbody.angularVelocity = Vector3.zero;
-			robot.moveEnabled = false;
-		}
-		state = State.stopped;
-	}
-	
-
-	/// <summary>
 	/// Stop all simulations.
 	/// </summary>
 	public static void End() {
-		if (robot) {
-			robot.rigidbody.velocity = Vector3.zero;
-			robot.moveEnabled = false;
-		}
+
 		state = State.end;
-		Log.Stop(0);
+		
+		// in exhibition mode, run more simulations with random settings
 		if (exhibitionMode) {
 			if (batch.Count > 10) {
 				batch.RemoveAt(0);
@@ -477,6 +480,16 @@ public class Simulation : MonoBehaviour {
 			batch.Add(settings);
 			Begin();
 		}
+	}
+	
+	/// <summary>
+	/// Exit simulation. 
+	/// </summary>
+	public static void Exit() {
+		if (Log.logging) Log.Stop(StopCode.Unspecified);
+		if (robot) robot.Recycle();
+		if (environment) environment.transform.Recycle();
+		state = State.inactive;
 	}
 	
 	// Return a random position inside the simulation bounds

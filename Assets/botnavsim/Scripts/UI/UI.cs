@@ -330,7 +330,7 @@ public class UI : MonoBehaviour {
 			}
 			GUILayout.EndHorizontal();
 			if (GUILayout.Button("Next Test")) {
-				Simulation.NextTest(Simulation.StopCode.UserRequestNextTest);
+				Simulation.NextTest();
 			}
 			
 		}

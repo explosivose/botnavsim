@@ -58,7 +58,9 @@ public class Log  {
 	
 	
 	// flag used for running log routine
-	private static bool logging = false;
+	public static bool logging {
+		get; private set;
+	}
 	// metadata to write to the top of the CSV file
 	private static string header;
 	// FIFO timeframe data buffer to be written to file 
@@ -104,6 +106,10 @@ public class Log  {
 	/// Start logging.
 	/// </summary>
 	public static void Start() {
+		if (logging) {
+			Debug.LogWarning("Already logging!");
+			return;
+		}
 		Debug.Log("Log Started.");
 		string br = Strings.newline + Strings.csvComment;
 		char d = Strings.csvDelimiter;
