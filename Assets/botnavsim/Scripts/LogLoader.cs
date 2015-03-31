@@ -87,6 +87,8 @@ public class LogLoader : MonoBehaviour  {
 			// if environment is different to the currently loaded environment
 			// prompt user for action  (discard other paths, or load new env and paths?)
 			// (not yet implemented)
+			// may need to change this to a coroutine and yield execution until
+			// a user prompt returns an appropriate action
 			EnvLoader.SearchForEnvironments();
 			if (environment) environment.transform.Recycle();
 			environment = EnvLoader.LoadEnvironment(settings.environmentName);

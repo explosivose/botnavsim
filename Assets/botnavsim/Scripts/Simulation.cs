@@ -514,9 +514,11 @@ public class Simulation : MonoBehaviour {
 		v.x += Random.Range(0f, bounds.max.x);
 		v.y += bounds.max.y;
 		v.z += Random.Range(0f, bounds.max.z);
+		Debug.Log (bounds);
 		RaycastHit hit;
 		if (Physics.Raycast(v, Vector3.down, out hit, 100f)) {
 			v = hit.point + hit.normal;
+			Debug.DrawRay(v, Vector3.down, Color.white, 5f);
 		}
 		return v;
 	}

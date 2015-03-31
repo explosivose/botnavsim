@@ -76,11 +76,10 @@ public class UI_SimulationBatch : IToolbar  {
 	void BatchListWindow(int windowID) {
 		
 		// controls and title
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
 			hidden = true;
 		}
-		GUILayout.EndHorizontal();
 		
 		// add a new simulation to batch
 		if (GUILayout.Button("Add new simulation")) {
@@ -93,6 +92,7 @@ public class UI_SimulationBatch : IToolbar  {
 			Refresh();
 			_windows.Push(XmlBrowser);
 		}
+		GUILayout.EndHorizontal();
 		
 		// Batch list
 		GUILayout.Label("Currently in batch:");
@@ -103,7 +103,7 @@ public class UI_SimulationBatch : IToolbar  {
 		for(int i = 0; i < Simulation.batch.Count; i++) {
 			Simulation.Settings batchItem = Simulation.batch[i];
 			// batch list table row by row
-			GUILayout.BeginHorizontal();
+			GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 			// display batch position
 			if (i+1 == Simulation.simulationNumber) {
 				GUILayout.Label("->");
@@ -149,7 +149,7 @@ public class UI_SimulationBatch : IToolbar  {
 	/// <param name="windowID">Window ID.</param>
 	void XmlBrowser(int windowID) {
 		// back button
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
 			_windows.Pop();
 		}

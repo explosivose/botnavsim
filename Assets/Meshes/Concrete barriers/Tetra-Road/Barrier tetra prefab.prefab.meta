@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+guid: 43ed410746fa0d34eb347768e58c587f
+labels:
+- Barrier
+- Concrete
+- Props
+- Road
+- Rough
+- Block
+NativeFormatImporter:
+  userData: 

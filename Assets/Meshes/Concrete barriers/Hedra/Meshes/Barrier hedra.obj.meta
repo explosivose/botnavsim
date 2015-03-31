@@ -1,0 +1,83 @@
+fileFormatVersion: 2
+guid: 326f50e2868c1b44eb40eb2aae24c079
+labels:
+- Architecture
+- Barrier
+- Concrete
+- Prop
+- Hedra
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Hedra
+    100002: //RootNode
+    100004: Barrier_hedra_collider
+    100006: Barrier_hedra
+    400000: Hedra
+    400002: //RootNode
+    400004: Barrier_hedra_collider
+    400006: Barrier_hedra
+    2300000: Hedra
+    2300002: Barrier_hedra_collider
+    2300004: Barrier_hedra
+    3300000: Hedra
+    3300002: Barrier_hedra_collider
+    3300004: Barrier_hedra
+    4300000: Hedra
+    4300002: Barrier_hedra_collider
+    4300004: Barrier_hedra
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
