@@ -133,7 +133,7 @@ MonoBehaviour:
   m_toggle:
     m_Name: toggle
     m_Normal:
-      m_Background: {fileID: 2800000, guid: a62d5961487395449ad8fb3aa3a2ec65, type: 3}
+      m_Background: {fileID: 2800000, guid: 7fdd6d03c6a05e24982d1ee78fdf6654, type: 3}
       m_TextColor: {r: .891128957, g: .891128957, b: .891128957, a: 1}
     m_Hover:
       m_Background: {fileID: 2800000, guid: 0f5342ded4548574599c94217fc71eb9, type: 3}
