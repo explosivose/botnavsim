@@ -122,7 +122,7 @@ public class UI_LogLoader : IToolbar {
 	
 	private void Legend(int windowID) {
 		// back button
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		if (GUILayout.Button("<", GUILayout.Width(30f))) {
 			hidden = true;
 		}
@@ -140,21 +140,29 @@ public class UI_LogLoader : IToolbar {
 		}
 		
 		// list botpaths
+		Color c = GUI.contentColor;
 		for(int i = 0; i < LogLoader.paths.Count; i++) {
+			GUILayout.BeginHorizontal();
+			GUI.contentColor = LogLoader.paths[i].color;
 			if (GUILayout.Button(LogLoader.paths[i].csvName)) {
 				LogLoader.paths[i].visible = !LogLoader.paths[i].visible;
 				continue;
 			}
+			// highlight path if mouseover button
+			// this event appears to be broken 
 			if (IsMouseOver()) {
 				LogLoader.paths[i].highlight = true;
 			} else {
 				LogLoader.paths[i].highlight = false;
 			}
-			if (LogLoader.paths[i].visible) {
-				LogLoader.paths[i].DrawPath();
+			// unload path button
+			if (GUILayout.Button("X")) {
+				LogLoader.paths.RemoveAt(i);
 			}
+			GUILayout.EndHorizontal();
 		}
-		
+		// reset content color
+		GUI.contentColor = c;
 		//GUI.DragWindow();
 	}
 	

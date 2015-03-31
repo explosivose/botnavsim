@@ -9,7 +9,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400000}
   - 114: {fileID: 11400000}
-  - 114: {fileID: 11400002}
+  - 114: {fileID: 11418098}
   m_Layer: 0
   m_Name: Simulation
   m_TagString: Untagged
@@ -40,8 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a13a05817dcfc1445a95b70cb3125758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  astar: {fileID: 0}
---- !u!114 &11400002
+--- !u!114 &11418098
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -49,21 +48,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 100000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d45bfd662851fc64ca7d59aefdd36029, type: 3}
+  m_Script: {fileID: 11500000, guid: b671b151265dc0c449b51ef0c68e0c8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showsteps: 0
-  steptime: 0
-  graphData:
-    drawDebug: 1
-    X: 50
-    Y: 50
-    spacing: 2
-    detectObstacles: 1
-    obstacleMask:
-      serializedVersion: 2
-      m_Bits: 4294967295
-    nodeRenderPrefab: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

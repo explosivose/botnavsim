@@ -95,5 +95,22 @@ public class BotPath  {
 				_nodes[i],
 				c);
 		}
+		if (_nodes.Count > 2) {
+			// draw start node
+			Draw.Instance.Cube(
+				_nodes[0],
+				Vector3.one * 0.5f,
+				c);
+			// draw end node
+			Draw.Instance.Cube(
+				_nodes[_nodes.Count-1],
+				Vector3.one,
+				c);
+			Draw.Instance.Cube(
+				_nodes[_nodes.Count-1],
+				Vector3.one * 0.5f,
+				c);
+		}
+
 	}
 }

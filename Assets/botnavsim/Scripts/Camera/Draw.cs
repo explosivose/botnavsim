@@ -54,10 +54,10 @@ Do GL.Lines instead...
 	}
 		
 	public void Line(Vector3 start, Vector3 end, float thickness, Color color) {
-		if (Simulation.robot.navigation.spaceRelativeTo == Space.Self) {
-			start = Simulation.robot.transform.TransformPoint(start);
-			end = Simulation.robot.transform.TransformPoint(end);
-		}
+		//if (Simulation.robot.navigation.spaceRelativeTo == Space.Self) {
+		//	start = Simulation.robot.transform.TransformPoint(start);
+		//	end = Simulation.robot.transform.TransformPoint(end);
+		//}
 		Transform instance = line.Spawn();
 		instances.Add(instance);
 		LineRenderer ren = instance.GetComponent<LineRenderer>();
@@ -78,9 +78,9 @@ Do GL.Lines instead...
 	}
 	
 	public void Cube(Vector3 center, Vector3 size, Color color) {
-		if (Simulation.robot.navigation.spaceRelativeTo == Space.Self) {
-			center = Simulation.robot.transform.TransformPoint(center);
-		}
+		//if (Simulation.robot.navigation.spaceRelativeTo == Space.Self) {
+		//	center = Simulation.robot.transform.TransformPoint(center);
+		//}
 		gl_cubes.Add(new CubeData(size, center, color));
 	}
 	

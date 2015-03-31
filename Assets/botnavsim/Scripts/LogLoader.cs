@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 
-public class LogLoader {
+public class LogLoader : MonoBehaviour  {
 	
 	static LogLoader() {
 		paths = new List<BotPath>();
@@ -13,12 +13,20 @@ public class LogLoader {
 	/// <summary>
 	/// The BotPaths loaded from file.
 	/// </summary>
-	public static List<BotPath> paths;
+	public static List<BotPath> paths {
+		get; private set;
+	}
 	
-	private static GameObject _environment;
+	public static GameObject environment {
+		get; private set;
+	}
+	
+	public static Bounds bounds {
+		get; private set;
+	}
 	
 	public static void Exit() {
-		_environment.transform.Recycle();
+		environment.transform.Recycle();
 		paths.Clear();
 	}
 	
@@ -75,8 +83,13 @@ public class LogLoader {
 			// prompt user for action  (discard other paths, or load new env and paths?)
 			// (not yet implemented)
 			EnvLoader.SearchForEnvironments();
-			if (_environment) _environment.transform.Recycle();
-			_environment = EnvLoader.LoadEnvironment(settings.environmentName);
+			if (environment) environment.transform.Recycle();
+			environment = EnvLoader.LoadEnvironment(settings.environmentName);
+			Debug.Log(environment);
+			bounds = new Bounds(Vector3.zero, Vector3.zero);
+			foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
+				bounds.Encapsulate(r.bounds);
+			Debug.Log (bounds);
 			// prompt user about browsing for an environment if one couldn't be loaded
 		}
 		
@@ -117,9 +130,21 @@ public class LogLoader {
 			botpos.AddNode(pos, time);
 		}
 		
+		
 		List<BotPath> pathsLoaded = new List<BotPath>();
 		pathsLoaded.Add(botpos);
 		paths.AddRange(pathsLoaded);
+		UpdatePathColors();
+	}
+	
+	public static void UpdatePathColors() {
+		float d = 1f/(float)paths.Count;
+		for(int i = 0; i < paths.Count; i++) {
+			float h = i*d;
+			//Color c = UnityEditor.EditorGUIUtility.HSVToRGB(h,1f,1f);
+			Color c = HSBColor.ToColor(new HSBColor(h,1f,1f));
+			paths[i].color = c;
+		}
 	}
 	
 	// parse a vector3 object from a string like "(1.0,2.0,3.0)"
@@ -132,4 +157,9 @@ public class LogLoader {
 		return new Vector3(x, y, z);
 	}
 	
+	void OnGUI() {
+		foreach(BotPath p in paths) {
+			 if (p.visible) p.DrawPath();
+		}
+	}
 }

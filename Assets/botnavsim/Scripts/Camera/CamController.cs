@@ -141,7 +141,7 @@ public class CamController : Singleton<CamController> {
 	}
 	
 	void Update() {
-		_robot = Simulation.robot;
+		
 		
 		// set camera size on screen
 		float x = UI_Toolbar.I.width/Screen.width;
@@ -152,8 +152,13 @@ public class CamController : Singleton<CamController> {
 		if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
 		
 		if (BotNavSim.isSimulating) {
+			_robot = Simulation.robot;
 			PerspectiveUpdate();
 			RenderModeUpdate();
+		}
+		
+		if (BotNavSim.isViewingData) {
+			BirdseyePerspective();
 		}
 		
 	}
@@ -180,15 +185,31 @@ public class CamController : Singleton<CamController> {
 		// scrollwheel zoom
 		_birdseyeDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
 		
-		// size orthographic camera to fit robot and destination in shot
-		float size = Simulation.robot.distanceToDestination * 0.75f;
-		size += _birdseyeDist;
-		size = Mathf.Max(size, 10f);
-		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
+		Vector3 targetPosition = Vector3.up *100f;
 		
-		// calculate position above and between robot and target
-		Vector3 targetPosition = (_robot.position + Simulation.destination.transform.position)/2f;
-		targetPosition += Vector3.up * 100f;
+		if (BotNavSim.isSimulating) {
+			// size orthographic camera to fit robot and destination in shot
+			float size = Simulation.robot.distanceToDestination * 0.75f;
+			size += _birdseyeDist;
+			size = Mathf.Max(size, 10f);
+			_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
+			
+			// calculate position above and between robot and target
+			targetPosition = (_robot.position + Simulation.destination.transform.position)/2f;
+			targetPosition += Vector3.up * 100f;
+		}
+		
+		if (BotNavSim.isViewingData) {
+			// size orthographic camera to fit environment in shot
+			float size = 50f;
+			size += _birdseyeDist;
+			_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
+			
+			// calculate position above and center of environment
+			targetPosition = LogLoader.bounds.center;
+			targetPosition += Vector3.up * 100f;
+		}
+		
 		// smooth move to position
 		_camera.transform.position = Vector3.Slerp(
 			_camera.transform.position, 
