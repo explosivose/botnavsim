@@ -383,6 +383,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
+      propertyPath: m_Name
+      value: BotNavSim
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 789dde9025c152f4f8015e9c9b4c8894, type: 2}
   m_RootGameObject: {fileID: 1590369736}
@@ -456,8 +460,10 @@ GameObject:
   - 4: {fileID: 1590369738}
   - 114: {fileID: 1590369737}
   - 114: {fileID: 1590369739}
+  - 114: {fileID: 1590369741}
+  - 114: {fileID: 1590369740}
   m_Layer: 0
-  m_Name: Simulation
+  m_Name: BotNavSim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -497,6 +503,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b671b151265dc0c449b51ef0c68e0c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1590369740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590369736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f53b1b1ec6c1afd44bc343079f4b4499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1590369741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1590369736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15eb0d189611574984e91fe98dfce93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1603927140

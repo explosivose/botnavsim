@@ -4,7 +4,12 @@ using System.Collections.Generic;
 using System.IO;
 using System;
 
+/// <summary>
+/// Log loader state machine. 
+/// </summary>
 public class LogLoader : MonoBehaviour  {
+	
+	public static LogLoader Instance;
 	
 	static LogLoader() {
 		paths = new List<BotPath>();
@@ -137,6 +142,9 @@ public class LogLoader : MonoBehaviour  {
 		UpdatePathColors();
 	}
 	
+	/// <summary>
+	/// Updates the path colors with evenly spaced hues.
+	/// </summary>
 	public static void UpdatePathColors() {
 		float d = 1f/(float)paths.Count;
 		for(int i = 0; i < paths.Count; i++) {
@@ -147,7 +155,11 @@ public class LogLoader : MonoBehaviour  {
 		}
 	}
 	
-	// parse a vector3 object from a string like "(1.0,2.0,3.0)"
+	/// <summary>
+	/// Parses the vector3 object from a string like "(1.0,2.0,3.0)"
+	/// </summary>
+	/// <returns>The vector3.</returns>
+	/// <param name="strv">Vector3 string i.e. "(1.0,2.0,3.0)".</param>
 	private static Vector3 ParseVector3(string strv) {
 		// remove " and bracket chars then split by commas
 		string[] split = strv.Substring(2,strv.Length-4).Split(',');
@@ -157,6 +169,22 @@ public class LogLoader : MonoBehaviour  {
 		return new Vector3(x, y, z);
 	}
 	
+	/** Instance Methods **/
+	
+	/// <summary>
+	/// Awake this instance.
+	/// </summary>
+	void Awake() {
+		if (Instance == null) {
+			Instance = this;
+		} else {
+			Destroy(this);
+		}
+	}
+	
+	/// <summary>
+	/// Raises the GUI event.
+	/// </summary>
 	void OnGUI() {
 		foreach(BotPath p in paths) {
 			 if (p.visible) p.DrawPath();

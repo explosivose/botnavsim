@@ -80,6 +80,25 @@ public class BotNavSim {
 		}
 	}
 	
+	/// <summary>
+	/// Gets a value indicating whether this <see cref="BotNavSim"/> is editing robot.
+	/// </summary>
+	/// <value><c>true</c> if is editing robot; otherwise, <c>false</c>.</value>
+	public static bool isEditingRobot {
+		get {
+			return _state == State.EditingRobot;
+		}
+	}
+	
+	/// <summary>
+	/// Gets a value indicating whether this <see cref="BotNavSim"/> is editing environment.
+	/// </summary>
+	/// <value><c>true</c> if is editing environment; otherwise, <c>false</c>.</value>
+	public static bool isEditingEnvironment {
+		get {
+			return _state == State.EditingEnvironment;
+		}
+	}
 
 	private static State _state;
 	
