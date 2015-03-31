@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['navloader',['NavLoader',['../class_nav_loader.html',1,'']]]
+  ['log',['Log',['../class_log.html',1,'']]],
+  ['logloader',['LogLoader',['../class_log_loader.html',1,'']]]
 ];

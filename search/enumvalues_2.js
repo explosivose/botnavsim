@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['maxtimeexceeded',['MaxTimeExceeded',['../class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6aeb8f530585744a4843050f7fb5b7ca33',1,'Simulation']]]
+  ['idle',['Idle',['../class_bot_nav_sim.html#afe45830547a947680425ef43c781029bae599161956d626eda4cb0a5ffb85271c',1,'BotNavSim']]],
+  ['inactive',['inactive',['../class_simulation.html#ae78a9ea9fcee1463856ddc068221317da19d3894f53ce79c3f836f26cf8a3be3b',1,'Simulation']]]
 ];

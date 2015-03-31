@@ -1,0 +1,4 @@
+<map id="UI_LogLoader" name="UI_LogLoader">
+<area shape="rect" id="node2" href="$interface_i_toolbar.html" title="Interface for classes that implement a toolbar item " alt="" coords="33,80,99,107"/>
+<area shape="rect" id="node3" href="$interface_i_window_function.html" title="Interface for classes that implement a GUI.WindowFunction " alt="" coords="5,5,127,32"/>
+</map>

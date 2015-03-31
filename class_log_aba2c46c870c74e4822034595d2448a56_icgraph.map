@@ -1,0 +1,6 @@
+<map id="Log.Settings" name="Log.Settings">
+<area shape="rect" id="node2" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="148,56,323,83"/>
+<area shape="rect" id="node3" href="$class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="380,5,500,32"/>
+<area shape="rect" id="node5" href="$class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="371,56,509,83"/>
+<area shape="rect" id="node4" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="557,56,668,83"/>
+</map>

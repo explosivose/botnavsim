@@ -1,6 +1,10 @@
 <map id="Simulation.Begin" name="Simulation.Begin">
-<area shape="rect" id="node2" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="173,5,348,32"/>
-<area shape="rect" id="node3" href="$class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="619,5,694,32"/>
-<area shape="rect" id="node4" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="396,56,507,83"/>
-<area shape="rect" id="node5" href="$class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="555,56,759,83"/>
+<area shape="rect" id="node2" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="173,107,348,133"/>
+<area shape="rect" id="node3" href="$class_simulation.html#ad6b5099e0dede90883b8577c371c6998" title="Halt simulation and write log to file. " alt="" coords="680,81,791,108"/>
+<area shape="rect" id="node5" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="435,5,546,32"/>
+<area shape="rect" id="node7" href="$class_log.html#aba2c46c870c74e4822034595d2448a56" title="Serialize the current simulation settings and write to XML file. " alt="" coords="443,157,538,184"/>
+<area shape="rect" id="node8" href="$class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9" title="Return a random position inside the simulation bounds, but not inside any physical objects..." alt="" coords="396,208,585,235"/>
+<area shape="rect" id="node9" href="$class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="421,107,560,133"/>
+<area shape="rect" id="node4" href="$class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="885,81,960,108"/>
+<area shape="rect" id="node6" href="$class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="633,5,837,32"/>
 </map>

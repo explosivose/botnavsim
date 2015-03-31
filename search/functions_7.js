@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pathdirection',['PathDirection',['../interface_i_navigation.html#affcf964d42b72e86ac5611256de427db',1,'INavigation']]],
-  ['proximity',['Proximity',['../interface_i_navigation.html#a4f5842fd8571a60c80a4c21a177853e6',1,'INavigation']]]
+  ['ontestend',['OnTestEnd',['../class_cam_controller.html#ada7cd42a6b338f0585b9b2cbd1312431',1,'CamController']]],
+  ['onteststart',['OnTestStart',['../class_cam_controller.html#a6e84614e825b03be16e472146c633e82',1,'CamController']]]
 ];

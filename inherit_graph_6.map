@@ -1,10 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interface_i_window_function.html" title="Interface for classes that implement a GUI.WindowFunction " alt="" coords="5,132,127,159"/>
-<area shape="rect" id="node2" href="$interface_i_toolbar.html" title="Interface for classes that implement a toolbar item " alt="" coords="217,107,283,133"/>
-<area shape="rect" id="node8" href="$class_u_i___simulation_settings.html" title="An instantiable class that provides a UI for editing a given Simulation.Settings object ..." alt="" coords="175,157,325,184"/>
-<area shape="rect" id="node3" href="$class_u_i___camera_controls.html" title="UI_CameraControls" alt="" coords="377,5,512,32"/>
-<area shape="rect" id="node4" href="$class_u_i___data_playback.html" title="UI_DataPlayback" alt="" coords="383,56,506,83"/>
-<area shape="rect" id="node5" href="$class_u_i___log.html" title="UI_Log" alt="" coords="413,107,476,133"/>
-<area shape="rect" id="node6" href="$class_u_i___simulation_batch.html" title="UI for displaying and editing the simulation batch list " alt="" coords="377,157,513,184"/>
-<area shape="rect" id="node7" href="$class_u_i___simulation_control.html" title="UI window for simulation control. Provides controls for pausing, stopping or skipping the current tes..." alt="" coords="373,208,516,235"/>
+<area shape="rect" id="node1" href="$struct_h_s_b_color.html" title="HSBColor" alt="" coords="5,5,84,32"/>
 </map>

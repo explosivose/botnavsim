@@ -1,12 +1,16 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node1" href="$interface_i_sensor.html" title="ISensor" alt="" coords="27,5,94,32"/>
-<area shape="rect" id="node2" href="$class_param_sensor.html" title="ParamSensor" alt="" coords="167,5,268,32"/>
-<area shape="rect" id="node4" href="$class_boe_bot.html" title="BoeBot" alt="" coords="185,56,250,83"/>
-<area shape="rect" id="node5" href="$class_robot.html" title="Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro..." alt="" coords="189,107,245,133"/>
-<area shape="rect" id="node6" href="$class_rotator.html" title="Rotator" alt="" coords="185,157,249,184"/>
-<area shape="rect" id="node7" href="$class_sensor.html" title="Sensor" alt="" coords="186,208,249,235"/>
-<area shape="rect" id="node8" href="$class_simulation.html" title="This is a manager class used to overlook the running of a simulation. " alt="" coords="176,259,259,285"/>
-<area shape="rect" id="node9" href="$class_singleton.html" title="Singleton\&lt; T \&gt;" alt="" coords="164,309,271,336"/>
-<area shape="rect" id="node10" href="$class_sprite_fade.html" title="SpriteFade" alt="" coords="175,360,260,387"/>
-<area shape="rect" id="node11" href="$class_u_i.html" title="All BotNavSim GUI functions. " alt="" coords="198,411,237,437"/>
+<area shape="rect" id="node2" href="$class_param_sensor.html" title="ParamSensor" alt="" coords="177,5,278,32"/>
+<area shape="rect" id="node4" href="$class_boe_bot.html" title="BoeBot" alt="" coords="195,56,260,83"/>
+<area shape="rect" id="node5" href="$class_environment_editor.html" title="Environment editor state machine class. " alt="" coords="164,107,291,133"/>
+<area shape="rect" id="node6" href="$class_log_loader.html" title="Log loader state machine. " alt="" coords="186,157,269,184"/>
+<area shape="rect" id="node7" href="$class_robot.html" title="Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro..." alt="" coords="199,208,255,235"/>
+<area shape="rect" id="node8" href="$class_robot_editor.html" title="Robot editor state machine. " alt="" coords="182,259,273,285"/>
+<area shape="rect" id="node9" href="$class_rotator.html" title="Rotator" alt="" coords="195,309,259,336"/>
+<area shape="rect" id="node10" href="$class_sensor.html" title="Sensor" alt="" coords="196,360,259,387"/>
+<area shape="rect" id="node11" href="$class_simulation.html" title="This is a manager class used to overlook the running of a simulation. " alt="" coords="186,411,269,437"/>
+<area shape="rect" id="node12" href="$class_singleton.html" title="Singleton\&lt; T \&gt;" alt="" coords="174,461,281,488"/>
+<area shape="rect" id="node13" href="$class_sprite_fade.html" title="SpriteFade" alt="" coords="185,512,270,539"/>
+<area shape="rect" id="node14" href="$class_u_i.html" title="All BotNavSim GUI functions. " alt="" coords="208,563,247,589"/>
+<area shape="rect" id="node15" href="$class_u_i___toolbar.html" title="UI Toolbar provides controls for choosing which UI windows to display " alt="" coords="186,613,269,640"/>
 </map>

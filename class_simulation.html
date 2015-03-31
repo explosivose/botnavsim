@@ -114,10 +114,14 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ae78a9ea9fcee1463856ddc068221317d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317d">State</a> { <a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317da420117b3909bdd046c5f3d84d1d0faf6">State.preSimulation</a>, 
+<tr class="memitem:ae78a9ea9fcee1463856ddc068221317d"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317d">State</a> { <br />
+&#160;&#160;<a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317da19d3894f53ce79c3f836f26cf8a3be3b">State.inactive</a>, 
+<a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317da1ee85f6c60017a7f0646ba8dc5824de6">State.starting</a>, 
 <a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317dad9c18bd5b6838696a3fd358d75b9c34b">State.simulating</a>, 
 <a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317daf0a0bfe6bc7d2c58d2989034f83183e0">State.stopped</a>, 
-<a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317daa5d7ceb2c59b8cee46c2953fec9abc19">State.finished</a>
+<br />
+&#160;&#160;<a class="el" href="class_simulation.html#ae78a9ea9fcee1463856ddc068221317da7f021a1415b86f2d013b2618fb31ae53">State.end</a>
+<br />
  }</td></tr>
 <tr class="separator:ae78a9ea9fcee1463856ddc068221317d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8665329fffe0f8c6302c51f78ed9a3a6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a> { <br />
@@ -137,14 +141,26 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memdesc:aced98f22a509ee955a4d1d50712c6643"><td class="mdescLeft">&#160;</td><td class="mdescRight">Begin simulating.  <a href="#aced98f22a509ee955a4d1d50712c6643">More...</a><br /></td></tr>
 <tr class="separator:aced98f22a509ee955a4d1d50712c6643"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad08bc6a93c41913a29635d4bc4d92370"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370">NextSimulation</a> ()</td></tr>
-<tr class="memdesc:ad08bc6a93c41913a29635d4bc4d92370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the next simulation in batch.  <a href="#ad08bc6a93c41913a29635d4bc4d92370">More...</a><br /></td></tr>
+<tr class="memdesc:ad08bc6a93c41913a29635d4bc4d92370"><td class="mdescLeft">&#160;</td><td class="mdescRight">Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch.  <a href="#ad08bc6a93c41913a29635d4bc4d92370">More...</a><br /></td></tr>
 <tr class="separator:ad08bc6a93c41913a29635d4bc4d92370"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3da6160493a1b321673e1f583497a844"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a3da6160493a1b321673e1f583497a844">NextTest</a> (<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a> code)</td></tr>
-<tr class="memdesc:a3da6160493a1b321673e1f583497a844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the current test and starts the next test in current simulation.  <a href="#a3da6160493a1b321673e1f583497a844">More...</a><br /></td></tr>
-<tr class="separator:a3da6160493a1b321673e1f583497a844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8f4a9a54dac81e55bf15929289d4df0"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0">NextTest</a> ()</td></tr>
+<tr class="memdesc:aa8f4a9a54dac81e55bf15929289d4df0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops the current test and starts the next test in current simulation.  <a href="#aa8f4a9a54dac81e55bf15929289d4df0">More...</a><br /></td></tr>
+<tr class="separator:aa8f4a9a54dac81e55bf15929289d4df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ecb5416e574c63225c4300d58588a97"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a9ecb5416e574c63225c4300d58588a97">Run</a> ()</td></tr>
+<tr class="memdesc:a9ecb5416e574c63225c4300d58588a97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the simulation.  <a href="#a9ecb5416e574c63225c4300d58588a97">More...</a><br /></td></tr>
+<tr class="separator:a9ecb5416e574c63225c4300d58588a97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad2cd184a893f6f040a93628d5fec7ca"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#aad2cd184a893f6f040a93628d5fec7ca">Pause</a> ()</td></tr>
+<tr class="memdesc:aad2cd184a893f6f040a93628d5fec7ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pause the simulation.  <a href="#aad2cd184a893f6f040a93628d5fec7ca">More...</a><br /></td></tr>
+<tr class="separator:aad2cd184a893f6f040a93628d5fec7ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b5099e0dede90883b8577c371c6998"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ad6b5099e0dede90883b8577c371c6998">Halt</a> (<a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a> code)</td></tr>
+<tr class="memdesc:ad6b5099e0dede90883b8577c371c6998"><td class="mdescLeft">&#160;</td><td class="mdescRight">Halt simulation and write log to file.  <a href="#ad6b5099e0dede90883b8577c371c6998">More...</a><br /></td></tr>
+<tr class="separator:ad6b5099e0dede90883b8577c371c6998"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abef1fed7499d589fd7df2ff02c09710c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c">End</a> ()</td></tr>
 <tr class="memdesc:abef1fed7499d589fd7df2ff02c09710c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stop all simulations.  <a href="#abef1fed7499d589fd7df2ff02c09710c">More...</a><br /></td></tr>
 <tr class="separator:abef1fed7499d589fd7df2ff02c09710c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a8c8c189fac54d94b93547ba022cbd9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a1a8c8c189fac54d94b93547ba022cbd9">Exit</a> ()</td></tr>
+<tr class="memdesc:a1a8c8c189fac54d94b93547ba022cbd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exit simulation.  <a href="#a1a8c8c189fac54d94b93547ba022cbd9">More...</a><br /></td></tr>
+<tr class="separator:a1a8c8c189fac54d94b93547ba022cbd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac152dc9a1a62316abc773b64035f6cb9"><td class="memItemLeft" align="right" valign="top">static Vector3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9">RandomInBounds</a> ()</td></tr>
 <tr class="memdesc:ac152dc9a1a62316abc773b64035f6cb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a random position inside the simulation bounds, but not inside any physical objects.  <a href="#ac152dc9a1a62316abc773b64035f6cb9">More...</a><br /></td></tr>
 <tr class="separator:ac152dc9a1a62316abc773b64035f6cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,9 +206,9 @@ Properties</h2></td></tr>
 <tr class="memitem:aca18e644c6b222ab038732d6cbc040f5"><td class="memItemLeft" align="right" valign="top">static GameObject&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#aca18e644c6b222ab038732d6cbc040f5">destination</a><code> [get]</code></td></tr>
 <tr class="memdesc:aca18e644c6b222ab038732d6cbc040f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets reference to the destination.  <a href="#aca18e644c6b222ab038732d6cbc040f5">More...</a><br /></td></tr>
 <tr class="separator:aca18e644c6b222ab038732d6cbc040f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab007c3ca1ba6373d9c45b5e3ce23d18a"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#ab007c3ca1ba6373d9c45b5e3ce23d18a">preSimulation</a><code> [get]</code></td></tr>
-<tr class="memdesc:ab007c3ca1ba6373d9c45b5e3ce23d18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has not yet started.  <a href="#ab007c3ca1ba6373d9c45b5e3ce23d18a">More...</a><br /></td></tr>
-<tr class="separator:ab007c3ca1ba6373d9c45b5e3ce23d18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d3fef5bdda73d5a919960c1951b7367"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a2d3fef5bdda73d5a919960c1951b7367">isInactive</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2d3fef5bdda73d5a919960c1951b7367"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has not yet started.  <a href="#a2d3fef5bdda73d5a919960c1951b7367">More...</a><br /></td></tr>
+<tr class="separator:a2d3fef5bdda73d5a919960c1951b7367"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69e1c97b9c85cf42e06cb0012884e5f1"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_simulation.html#a69e1c97b9c85cf42e06cb0012884e5f1">isRunning</a><code> [get]</code></td></tr>
 <tr class="memdesc:a69e1c97b9c85cf42e06cb0012884e5f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is running.  <a href="#a69e1c97b9c85cf42e06cb0012884e5f1">More...</a><br /></td></tr>
 <tr class="separator:a69e1c97b9c85cf42e06cb0012884e5f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -225,8 +241,11 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317da420117b3909bdd046c5f3d84d1d0faf6"></a>preSimulation&#160;</td><td class="fielddoc">
-<p>Simulations have not yet started. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317da19d3894f53ce79c3f836f26cf8a3be3b"></a>inactive&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_bot_nav_sim.html" title="BotNavSim high-level manager class. Holds BotNavSim.State and controls state transition behaviour...">BotNavSim</a> is not simulating. </p>
+</td></tr>
+<tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317da1ee85f6c60017a7f0646ba8dc5824de6"></a>starting&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is about to start. </p>
 </td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317dad9c18bd5b6838696a3fd358d75b9c34b"></a>simulating&#160;</td><td class="fielddoc">
 <p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is running. </p>
@@ -234,8 +253,8 @@ Properties</h2></td></tr>
 <tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317daf0a0bfe6bc7d2c58d2989034f83183e0"></a>stopped&#160;</td><td class="fielddoc">
 <p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is stopped. </p>
 </td></tr>
-<tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317daa5d7ceb2c59b8cee46c2953fec9abc19"></a>finished&#160;</td><td class="fielddoc">
-<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has finished. </p>
+<tr><td class="fieldname"><a class="anchor" id="ae78a9ea9fcee1463856ddc068221317da7f021a1415b86f2d013b2618fb31ae53"></a>end&#160;</td><td class="fielddoc">
+<p><a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has reached the end of the batch. </p>
 </td></tr>
 </table>
 
@@ -299,7 +318,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph.png" border="0" usemap="#class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph" alt=""/></div>
 <map name="class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph" id="class_simulation_aced98f22a509ee955a4d1d50712c6643_cgraph">
-<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="173,5,348,32"/><area shape="rect" id="node3" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="619,5,694,32"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="396,56,507,83"/><area shape="rect" id="node5" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="555,56,759,83"/></map>
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="173,107,348,133"/><area shape="rect" id="node3" href="class_simulation.html#ad6b5099e0dede90883b8577c371c6998" title="Halt simulation and write log to file. " alt="" coords="680,81,791,108"/><area shape="rect" id="node5" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="435,5,546,32"/><area shape="rect" id="node7" href="class_log.html#aba2c46c870c74e4822034595d2448a56" title="Serialize the current simulation settings and write to XML file. " alt="" coords="443,157,538,184"/><area shape="rect" id="node8" href="class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9" title="Return a random position inside the simulation bounds, but not inside any physical objects..." alt="" coords="396,208,585,235"/><area shape="rect" id="node9" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="421,107,560,133"/><area shape="rect" id="node4" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="885,81,960,108"/><area shape="rect" id="node6" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="633,5,837,32"/></map>
 </div>
 </p>
 
@@ -308,7 +327,7 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph.png" border="0" usemap="#class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph" alt=""/></div>
 <map name="class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph" id="class_simulation_aced98f22a509ee955a4d1d50712c6643_icgraph">
-<area shape="rect" id="node2" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="173,5,284,32"/><area shape="rect" id="node3" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="332,31,507,57"/><area shape="rect" id="node4" href="class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="555,31,693,57"/></map>
+<area shape="rect" id="node2" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="173,5,284,32"/><area shape="rect" id="node3" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="332,31,507,57"/><area shape="rect" id="node4" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="555,31,693,57"/></map>
 </div>
 </p>
 
@@ -342,7 +361,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph.png" border="0" usemap="#class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph" alt=""/></div>
 <map name="class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph" id="class_simulation_abef1fed7499d589fd7df2ff02c09710c_cgraph">
-<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="639,35,713,62"/><area shape="rect" id="node3" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="164,35,368,62"/><area shape="rect" id="node4" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="206,86,326,113"/><area shape="rect" id="node5" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="416,86,591,113"/></map>
+<area shape="rect" id="node2" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="164,7,368,34"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="206,58,326,85"/><area shape="rect" id="node4" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="416,83,591,110"/><area shape="rect" id="node5" href="class_simulation.html#ad6b5099e0dede90883b8577c371c6998" title="Halt simulation and write log to file. " alt="" coords="876,58,987,85"/><area shape="rect" id="node7" href="class_log.html#aba2c46c870c74e4822034595d2448a56" title="Serialize the current simulation settings and write to XML file. " alt="" coords="686,33,781,59"/><area shape="rect" id="node8" href="class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9" title="Return a random position inside the simulation bounds, but not inside any physical objects..." alt="" coords="639,83,828,110"/><area shape="rect" id="node9" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="664,134,803,161"/><area shape="rect" id="node6" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="1035,58,1109,85"/></map>
 </div>
 </p>
 
@@ -351,7 +370,91 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph.png" border="0" usemap="#class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph" alt=""/></div>
 <map name="class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph" id="class_simulation_abef1fed7499d589fd7df2ff02c09710c_icgraph">
-<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="164,56,339,83"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="396,5,516,32"/><area shape="rect" id="node4" href="class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="387,56,525,83"/></map>
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="164,56,339,83"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="396,5,516,32"/><area shape="rect" id="node4" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="387,56,525,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a1a8c8c189fac54d94b93547ba022cbd9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Simulation.Exit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Exit simulation. </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_a1a8c8c189fac54d94b93547ba022cbd9_cgraph.png" border="0" usemap="#class_simulation_a1a8c8c189fac54d94b93547ba022cbd9_cgraph" alt=""/></div>
+<map name="class_simulation_a1a8c8c189fac54d94b93547ba022cbd9_cgraph" id="class_simulation_a1a8c8c189fac54d94b93547ba022cbd9_cgraph">
+<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="164,5,239,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad6b5099e0dede90883b8577c371c6998"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Simulation.Halt </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a>&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Halt simulation and write log to file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">code</td><td>Reason for halt.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_ad6b5099e0dede90883b8577c371c6998_cgraph.png" border="0" usemap="#class_simulation_ad6b5099e0dede90883b8577c371c6998_cgraph" alt=""/></div>
+<map name="class_simulation_ad6b5099e0dede90883b8577c371c6998_cgraph" id="class_simulation_ad6b5099e0dede90883b8577c371c6998_cgraph">
+<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="164,5,239,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_ad6b5099e0dede90883b8577c371c6998_icgraph.png" border="0" usemap="#class_simulation_ad6b5099e0dede90883b8577c371c6998_icgraph" alt=""/></div>
+<map name="class_simulation_ad6b5099e0dede90883b8577c371c6998_icgraph" id="class_simulation_ad6b5099e0dede90883b8577c371c6998_icgraph">
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="164,56,339,83"/><area shape="rect" id="node5" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="387,107,525,133"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="396,5,516,32"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="573,31,684,57"/></map>
 </div>
 </p>
 
@@ -378,14 +481,14 @@ Here is the caller graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Run the next simulation in batch. </p>
+<p>Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. </p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph.png" border="0" usemap="#class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph" alt=""/></div>
 <map name="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph" id="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_cgraph">
-<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="451,5,526,32"/><area shape="rect" id="node3" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="228,56,339,83"/><area shape="rect" id="node4" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="387,56,591,83"/><area shape="rect" id="node5" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="429,107,549,133"/></map>
+<area shape="rect" id="node2" href="class_simulation.html#ad6b5099e0dede90883b8577c371c6998" title="Halt simulation and write log to file. " alt="" coords="512,233,623,260"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="267,5,378,32"/><area shape="rect" id="node7" href="class_log.html#aba2c46c870c74e4822034595d2448a56" title="Serialize the current simulation settings and write to XML file. " alt="" coords="275,107,370,133"/><area shape="rect" id="node8" href="class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9" title="Return a random position inside the simulation bounds, but not inside any physical objects..." alt="" coords="228,157,417,184"/><area shape="rect" id="node9" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="253,259,392,285"/><area shape="rect" id="node3" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="717,233,792,260"/><area shape="rect" id="node5" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="465,5,669,32"/><area shape="rect" id="node6" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="507,56,627,83"/></map>
 </div>
 </p>
 
@@ -394,13 +497,13 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph.png" border="0" usemap="#class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph" alt=""/></div>
 <map name="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph" id="class_simulation_ad08bc6a93c41913a29635d4bc4d92370_icgraph">
-<area shape="rect" id="node2" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="237,5,357,32"/><area shape="rect" id="node4" href="class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="228,56,367,83"/><area shape="rect" id="node3" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="415,56,525,83"/></map>
+<area shape="rect" id="node2" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="237,5,357,32"/><area shape="rect" id="node4" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="228,56,367,83"/><area shape="rect" id="node3" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="415,56,525,83"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a3da6160493a1b321673e1f583497a844"></a>
+<a class="anchor" id="aa8f4a9a54dac81e55bf15929289d4df0"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -410,8 +513,7 @@ Here is the caller graph for this function:</div>
         <tr>
           <td class="memname">static void Simulation.NextTest </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6">StopCode</a>&#160;</td>
-          <td class="paramname"><em>code</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -433,11 +535,45 @@ Here is the caller graph for this function:</div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_simulation_a3da6160493a1b321673e1f583497a844_cgraph.png" border="0" usemap="#class_simulation_a3da6160493a1b321673e1f583497a844_cgraph" alt=""/></div>
-<map name="class_simulation_a3da6160493a1b321673e1f583497a844_cgraph" id="class_simulation_a3da6160493a1b321673e1f583497a844_cgraph">
-<area shape="rect" id="node2" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="638,31,713,57"/><area shape="rect" id="node3" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="192,56,367,83"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="415,81,525,108"/><area shape="rect" id="node5" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="573,81,777,108"/><area shape="rect" id="node6" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="615,132,735,159"/></map>
+<div class="center"><img src="class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_cgraph.png" border="0" usemap="#class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_cgraph" alt=""/></div>
+<map name="class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_cgraph" id="class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_cgraph">
+<area shape="rect" id="node2" href="class_simulation.html#ad6b5099e0dede90883b8577c371c6998" title="Halt simulation and write log to file. " alt="" coords="454,5,565,32"/><area shape="rect" id="node4" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="192,95,367,121"/><area shape="rect" id="node3" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="717,5,791,32"/><area shape="rect" id="node5" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="454,56,565,83"/><area shape="rect" id="node8" href="class_log.html#aba2c46c870c74e4822034595d2448a56" title="Serialize the current simulation settings and write to XML file. " alt="" coords="462,107,557,133"/><area shape="rect" id="node9" href="class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9" title="Return a random position inside the simulation bounds, but not inside any physical objects..." alt="" coords="415,157,604,184"/><area shape="rect" id="node6" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="652,56,856,83"/><area shape="rect" id="node7" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="694,157,814,184"/></map>
 </div>
 </p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_icgraph.png" border="0" usemap="#class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_icgraph" alt=""/></div>
+<map name="class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_icgraph" id="class_simulation_aa8f4a9a54dac81e55bf15929289d4df0_icgraph">
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="192,31,367,57"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="415,5,535,32"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="583,31,693,57"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aad2cd184a893f6f040a93628d5fec7ca"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Simulation.Pause </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Pause the simulation. </p>
 
 </div>
 </div>
@@ -464,6 +600,40 @@ Here is the call graph for this function:</div>
 
 <p>Return a random position inside the simulation bounds, but not inside any physical objects. </p>
 <dl class="section return"><dt>Returns</dt><dd>Random position inside simulation bounds.</dd></dl>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_simulation_ac152dc9a1a62316abc773b64035f6cb9_icgraph.png" border="0" usemap="#class_simulation_ac152dc9a1a62316abc773b64035f6cb9_icgraph" alt=""/></div>
+<map name="class_simulation_ac152dc9a1a62316abc773b64035f6cb9_icgraph" id="class_simulation_ac152dc9a1a62316abc773b64035f6cb9_icgraph">
+<area shape="rect" id="node2" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="243,56,417,83"/><area shape="rect" id="node3" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="475,5,595,32"/><area shape="rect" id="node5" href="class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="465,56,604,83"/><area shape="rect" id="node4" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="652,56,763,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a9ecb5416e574c63225c4300d58588a97"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void Simulation.Run </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Run the simulation. </p>
 
 </div>
 </div>
@@ -648,6 +818,29 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
+<a class="anchor" id="a2d3fef5bdda73d5a919960c1951b7367"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Simulation.isInactive</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has not yet started. </p>
+<p><code>true</code> if pre simulation; otherwise, <code>false</code>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a69e1c97b9c85cf42e06cb0012884e5f1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -714,29 +907,6 @@ Here is the call graph for this function:</div>
 
 <p>Gets or sets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> is paused. </p>
 <p><code>true</code> if paused; otherwise, <code>false</code>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ab007c3ca1ba6373d9c45b5e3ce23d18a"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Simulation.preSimulation</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">get</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets a value indicating whether this <a class="el" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. ">Simulation</a> has not yet started. </p>
-<p><code>true</code> if pre simulation; otherwise, <code>false</code>.</p>
 
 </div>
 </div>
@@ -907,7 +1077,7 @@ Here is the call graph for this function:</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 14 2015 15:37:18 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 31 2015 15:48:40 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

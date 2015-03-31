@@ -1,5 +1,5 @@
 <map id="Simulation.Begin" name="Simulation.Begin">
 <area shape="rect" id="node2" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="173,5,284,32"/>
-<area shape="rect" id="node3" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="332,31,507,57"/>
-<area shape="rect" id="node4" href="$class_simulation.html#a3da6160493a1b321673e1f583497a844" title="Stops the current test and starts the next test in current simulation. " alt="" coords="555,31,693,57"/>
+<area shape="rect" id="node3" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="332,31,507,57"/>
+<area shape="rect" id="node4" href="$class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="555,31,693,57"/>
 </map>
