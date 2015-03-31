@@ -4,7 +4,7 @@ using System.Collections;
 public static class Strings  {
 
 	public const string projectTitle = "BotNavSim";
-	public const string projectVersion = "v0.4.1";
+	public const string projectVersion = "v0.5.0-dev";
 	
 	/// <summary>
 	/// The csv delimiter character. Avoid using comma because some
