@@ -147,9 +147,13 @@ public class CamController : Singleton<CamController> {
 		float x = UI_Toolbar.I.width/Screen.width;
 		camera.rect = new Rect(x, 0, 1f-x, Screen.height);
 		
-		
-		if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
-		if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
+		if ( camera.pixelRect.Contains(Input.mousePosition) ) {
+			if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
+			if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
+			// scrollwheel zoom
+			_birdseyeDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
+		}
+
 		
 		if (BotNavSim.isSimulating) {
 			_robot = Simulation.robot;
@@ -182,8 +186,7 @@ public class CamController : Singleton<CamController> {
 
 	void BirdseyePerspective() {
 		
-		// scrollwheel zoom
-		_birdseyeDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
+		
 		
 		Vector3 targetPosition = Vector3.up *100f;
 		
