@@ -65,7 +65,7 @@ public class Robot : MonoBehaviour {
 	/// <value>The move command.</value>
 	public Vector3 moveCommand {
 		get {
-			return _move.normalized;
+			return _move;
 		}
 	}
 	

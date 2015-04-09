@@ -50220,7 +50220,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e1aa0ff293dac9469ed44d2319442bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTorque: 1.20000005
+  maxTorque: 1.5
   window: .100000001
 --- !u!114 &11400002
 MonoBehaviour:
@@ -50235,7 +50235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualControl: 0
   moveEnabled: 0
-  stopDistance: 1
+  stopDistance: 2
   sensors: []
   destination: {fileID: 0}
   centerOfMass: {x: 0, y: .400000006, z: 0}
