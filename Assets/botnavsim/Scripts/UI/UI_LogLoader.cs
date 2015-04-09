@@ -11,7 +11,7 @@ public class UI_LogLoader : IToolbar {
 		// initialise file browsing
 		_files = FileBrowser.ListFiles(Strings.logFileDirectory);
 		_folders = FileBrowser.ListFolders(Strings.logFileDirectory);
-		_subPath = "";
+		_subPath = "\\";
 		// initialise window stack
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(Legend);
@@ -60,7 +60,6 @@ public class UI_LogLoader : IToolbar {
 	/// Refresh this the files and folders in current directory
 	/// </summary>
 	private void Refresh() {
-		Debug.Log(currentDir);
 		_files = FileBrowser.ListFiles(currentDir, "*.csv");
 		_folders = FileBrowser.ListFolders(currentDir);
 	}
@@ -101,7 +100,7 @@ public class UI_LogLoader : IToolbar {
 		for (int i = 0; i < _folders.Count; i++) {
 			// enter subdirectory
 			if (GUILayout.Button(_folders[i])) {
-				_subPath += "\\" + new DirectoryInfo(_folders[i]).Name;
+				_subPath += new DirectoryInfo(_folders[i]).Name;
 				Refresh();
 			}
 		}
