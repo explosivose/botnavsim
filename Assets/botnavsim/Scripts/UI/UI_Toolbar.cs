@@ -88,16 +88,7 @@ public class UI_Toolbar : MonoBehaviour {
 		rect = new Rect(0,0,width,Screen.height);
 		// display toolbar window
 		rect = GUILayout.Window(winId++, rect, ToolbarWindow, Strings.projectTitle + "-" + Strings.projectVersion);
-		// display any visible toolbar windows
-		foreach(IToolbar t in _tools) {
-			// only handle windows that are contextual
-			if (t.contextual) {
-				// display windows that aren't hidden
-				if (!t.hidden) {
-					//t.windowRect = GUILayout.Window(winId++, t.windowRect, t.windowFunction, t.windowTitle);
-				}
-			}
-		}
+
 		// display any additional windows
 		for(int i = 0; i < additionalWindows.Count; i++) {
 			IWindowFunction w = additionalWindows[i];

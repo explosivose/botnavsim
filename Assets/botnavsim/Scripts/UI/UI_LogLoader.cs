@@ -31,7 +31,7 @@ public class UI_LogLoader : IToolbar {
 
 	public string windowTitle {
 		get {
-			return "Data Playback";
+			return "Log Loader";
 		}
 	}
 
@@ -105,19 +105,23 @@ public class UI_LogLoader : IToolbar {
 				Refresh();
 			}
 		}
-		// list files
-		for (int i = 0; i < _files.Count; i++) {
-			// try paths from file
-			if (GUILayout.Button(_files[i])) {
-				// change state when loading first data
-				if (BotNavSim.isIdle) {
-					BotNavSim.state = BotNavSim.State.ViewingData;
+		if (LogLoader.loading) {
+			GUILayout.Label("Loading...");
+		}
+		else {
+			// list files
+			for (int i = 0; i < _files.Count; i++) {
+				// try paths from file
+				if (GUILayout.Button(_files[i])) {
+					// change state when loading first data
+					if (BotNavSim.isIdle) {
+						BotNavSim.state = BotNavSim.State.ViewingData;
+					}
+					LogLoader.LoadPaths(currentDir + "\\" + _files[i]);
 				}
-				LogLoader.LoadPaths(currentDir + "\\" + _files[i]);
 			}
 		}
-		
-		//GUI.DragWindow();
+
 	}
 	
 	private void Legend(int windowID) {
