@@ -33,8 +33,8 @@ public class CamController : Singleton<CamController> {
 			switch (_p) {
 			case Perspective.FirstPerson:
 				_camera.orthographic = false;
-				_camera.fieldOfView = 120f;
-				_camera.transform.parent = Simulation.robot.transform;
+				_camera.fieldOfView = 90f;
+				_camera.transform.parent = Simulation.robot.cameraMount;
 				_camera.transform.localPosition = Vector3.zero;
 				_camera.transform.localRotation = Quaternion.identity;
 				break;
