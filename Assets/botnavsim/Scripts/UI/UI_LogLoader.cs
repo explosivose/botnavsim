@@ -134,10 +134,6 @@ public class UI_LogLoader : IToolbar {
 		}
 		GUILayout.EndHorizontal();
 		
-		// Hacky, temporary camera placement
-		Camera.main.orthographicSize = 50f;
-		Camera.main.transform.position = Simulation.bounds.center + Vector3.up * 100f;
-		
 		if (LogLoader.paths.Count < 1) {
 			GUILayout.Label("No paths loaded.");
 		}

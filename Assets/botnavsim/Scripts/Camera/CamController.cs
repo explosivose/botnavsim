@@ -152,6 +152,10 @@ public class CamController : Singleton<CamController> {
 			if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
 			// scrollwheel zoom
 			_birdseyeDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
+			// adjust third person distance with scroll wheel input
+			_3rdPersonDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
+			_3rdPersonDist = Mathf.Min(_3rdPersonDist, 20f);
+			_3rdPersonDist = Mathf.Max(_3rdPersonDist, 1f);
 		}
 
 		
@@ -231,10 +235,7 @@ public class CamController : Singleton<CamController> {
 	
 	void ThirdPersonPerspective() {
 		
-		// adjust third person distance with scroll wheel input
-		_3rdPersonDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
-		_3rdPersonDist = Mathf.Min(_3rdPersonDist, 20f);
-		_3rdPersonDist = Mathf.Max(_3rdPersonDist, 1f);
+
 		
 		// move camera position based on input
 		if (Input.GetMouseButton(1)) {
