@@ -85,7 +85,7 @@ public class UI_Toolbar : MonoBehaviour {
 		GUI.skin = _skin;
 		winId = 1;
 		// set toolbar size and position
-		rect = new Rect(0,0,width,Screen.height);
+		rect = new Rect(Screen.width-width,0,width,Screen.height);
 		// display toolbar window
 		rect = GUILayout.Window(winId++, rect, ToolbarWindow, Strings.projectTitle + "-" + Strings.projectVersion);
 

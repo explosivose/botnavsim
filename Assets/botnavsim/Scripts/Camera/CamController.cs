@@ -145,7 +145,7 @@ public class CamController : Singleton<CamController> {
 		
 		// set camera size on screen
 		float x = UI_Toolbar.I.width/Screen.width;
-		camera.rect = new Rect(x, 0, 1f-x, Screen.height);
+		camera.rect = new Rect(0, 0, 1f-x, Screen.height);
 		
 		if ( camera.pixelRect.Contains(Input.mousePosition) ) {
 			if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
