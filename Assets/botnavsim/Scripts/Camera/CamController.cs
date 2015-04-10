@@ -1,20 +1,43 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
-public class CamController : Singleton<CamController> {
+/// <summary>
+/// Controls the camera orientation and render modes according to registered 
+/// ViewMode and user input. ViewMode are registered in modes by BotNavSim 
+/// state manager classes i.e. Simulation, LogLoader, RobotEditor, EnvironmentEditor
+/// </summary>
+[RequireComponent(typeof(Camera))]
+public class CamController : MonoBehaviour {
 
-	public float mouseSensitivity = 10f;
+	// class types
 	
-	public LayerMask maskCameraCollision;
-	public LayerMask maskNormal;
-	public LayerMask maskBotData;
-	public LayerMask maskHybrid;
 	
-	public enum Perspective {
+	public enum ViewMode {
+		/// <summary>
+		/// Top-down orthographic view. 
+		/// </summary>
 		Birdseye,
-		ThirdPerson,
-		Landscape,
-		FirstPerson
+		
+		/// <summary>
+		/// Camera orbit around a point of interest. 
+		/// </summary>
+		Orbit,
+		
+		/// <summary>
+		/// Camera attached to an object i.e. robot. 
+		/// </summary>
+		Mounted,
+		
+		/// <summary>
+		/// A stationary camera position
+		/// </summary>
+		Static,
+		
+		/// <summary>
+		/// Free-flying camera. 
+		/// </summary>
+		FreeMovement
 	}
 	
 	public enum RenderMode {
@@ -23,38 +46,138 @@ public class CamController : Singleton<CamController> {
 		BotData
 	}
 	
-	// Perspective state change behaviour
-	public Perspective perspective {
+	static CamController() {
+		// modes list will always have ViewMode.Static, and any other modes registered by AddViewMode
+		_modes = new List<ViewMode>();
+		_modes.Add(ViewMode.Static);
+		_areas = new List<IObservable>();
+	}
+
+	public static CamController Instance {
+		get; private set;
+	}
+	
+	/// <summary>
+	/// Adds a ViewMode to the list of camera modes to use.
+	/// </summary>
+	/// <param name="mode">Mode.</param>
+	public static void AddViewMode(ViewMode mode) {
+		if (!_modes.Contains(mode)) _modes.Add(mode);
+	}
+	
+	/// <summary>
+	/// Removes a ViewMode from the list of camera modes to use. 
+	/// </summary>
+	/// <param name="mode">Mode.</param>
+	public static void RemoveViewMode(ViewMode mode) {
+		if (mode != ViewMode.Static) _modes.Remove(mode);
+	}
+	
+	/// <summary>
+	/// Clears the view mode list.
+	/// </summary>
+	public static void ClearViewModeList() {
+		_modes.Clear();
+		_modes.Add(ViewMode.Static);
+	}
+				
+	/// <summary>
+	/// Use next ViewMode in modes
+	/// </summary>
+	public static void CycleViewMode() {
+		_mode = (++_mode) % _modes.Count;
+		viewMode = _modes[_mode];
+	}
+	
+	/// <summary>
+	/// Use random ViewMode in modes
+	/// </summary>
+	public static void RandomViewMode() {
+		_mode = Random.Range(0, _modes.Count-1);
+		viewMode = _modes[_mode];
+	}
+	
+	
+	/// <summary>
+	/// Adds an area of interest for the camera to look at.
+	/// </summary>
+	/// <param name="b">An area of interest defined by a bounding box.</param>
+	public static void AddAreaOfInterest(IObservable area) {
+		if (!_areas.Contains(area)) _areas.Add(area);
+	}
+	
+	/// <summary>
+	/// Removes an area of interest for the camera to look at.
+	/// </summary>
+	/// <param name="b">An area of interest defined by a bounding box.</param>
+	public static void RemoveAreaOfInterest(IObservable area) {
+		if (_areas.Count > 1) _areas.Remove(area);
+	}
+	
+	public static void ClearAreaList() {
+		_areas.Clear();
+		_areas.Add(Simulation.Instance);
+	}
+	
+	/// <summary>
+	/// Go to next area of interest
+	/// </summary>
+	public static void CyclePointOfInterest() {
+		_poi = (++_poi) % _areas.Count;
+	}
+	
+	/// <summary>
+	/// Use next RenderMode
+	/// </summary>
+	public static void CycleRenderMode() {
+		int length = System.Enum.GetValues(typeof(RenderMode)).Length;
+		renderMode = (RenderMode)((int)(++renderMode) % length);
+	}
+	
+	/// <summary>
+	/// Select random RenderMode
+	/// </summary>
+	public static void RandomRenderMode() {
+		System.Array values = System.Enum.GetValues(typeof(RenderMode));
+		renderMode = (RenderMode)values.GetValue(Random.Range(0,values.Length-1));
+	}
+	
+	
+	/// <summary>
+	/// Gets or sets the current ViewMode in use. viewMode determines camera perspective behaviour.
+	/// </summary>
+	/// <value>The view mode.</value>
+	public static ViewMode viewMode {
 		get {
-			return _p;
+			return _viewMode;
 		}
 		set {
-			_p = value;
-			switch (_p) {
-			case Perspective.FirstPerson:
+			_viewMode = value;
+			switch (_viewMode) {
+			case ViewMode.Mounted:
 				_camera.orthographic = false;
 				_camera.fieldOfView = 90f;
 				_camera.transform.parent = Simulation.robot.cameraMount;
 				_camera.transform.localPosition = Vector3.zero;
 				_camera.transform.localRotation = Quaternion.identity;
 				break;
-			case Perspective.ThirdPerson:
-				_camera.camera.orthographic = false;
-				_camera.camera.fieldOfView = 60f;
+			case ViewMode.Orbit:
+				_camera.orthographic = false;
+				_camera.fieldOfView = 60f;
 				break;
-			case Perspective.Landscape:
-				_camera.camera.orthographic = false;
-				_camera.camera.fieldOfView = 60f;
-				Bounds b = Simulation.bounds;
+			case ViewMode.Static:
+				_camera.orthographic = false;
+				_camera.fieldOfView = 60f;
+				Bounds b = Simulation.Instance.bounds;
 				Vector3 position = b.max;
 				position.y *= 2f;
 				position.x = Random.value < 0.5f ? b.min.x : b.max.x;
 				position.z = Random.value < 0.5f ? b.min.z : b.max.z;
-				transform.position = position;
-				transform.rotation = Quaternion.LookRotation(b.center - transform.position);
+				Instance.transform.position = position;
+				Instance.transform.rotation = Quaternion.LookRotation(b.center - Instance.transform.position);
 				break;
 			default:
-			case Perspective.Birdseye:
+			case ViewMode.Birdseye:
 				_camera.camera.orthographic = true;
 				_camera.transform.parent = null;
 				break;
@@ -62,34 +185,58 @@ public class CamController : Singleton<CamController> {
 		}
 	}
 	
-	// Render mode state change behaviour
-	public RenderMode renderMode {
+	/// <summary>
+	/// Gets or sets the RenderMode in use. RenderMode determines which render layers are drawn. 
+	/// </summary>
+	/// <value>The render mode.</value>
+	public static RenderMode renderMode {
 		get {
-			return _r;
+			return _renderMode;
 		}
 		set {
-			_r = value;
-			switch(_r) {
+			_renderMode = value;
+			switch(_renderMode) {
 			case RenderMode.Normal:
 			default:
-				_camera.cullingMask = maskNormal;
+				_camera.cullingMask = Instance.maskNormal;
 				break;
 			case RenderMode.BotData:
-				_camera.cullingMask = maskBotData;
+				_camera.cullingMask = Instance.maskBotData;
 				break;
 			case RenderMode.Hybrid:
-				_camera.cullingMask = maskHybrid;
+				_camera.cullingMask = Instance.maskHybrid;
 				break;
 			}
 		}
 	}
+	
+	
+	private static List<ViewMode>		_modes;		// list of available ViewMode to use 
+	private static List<IObservable>	_areas;		// list of areas to point the camera at
+	private static int _mode; 					// index for _modes
+	private static int _poi; 					// index for pointsOfInterest
+	private static Camera _camera;
+	private static ViewMode _viewMode;
+	private static RenderMode _renderMode;
+	
+	
+	// instance members (defined in Unity Inspector)
+	
+	public float mouseSensitivity;			// multiplies speed of mouse axis input 
+	
+	public LayerMask maskCameraCollision;	// layermasks for rendering modes
+	public LayerMask maskNormal;
+	public LayerMask maskBotData;
+	public LayerMask maskHybrid;
+	
+	// instance methods
 	
 	/// <summary>
 	/// Raises the test start event. (handles camera exhibitionMode behaviour)
 	/// </summary>
 	public void OnTestStart() {
 		if (Simulation.exhibitionMode) {
-			RandomPerspective();
+			RandomViewMode();
 			RandomRenderMode();
 		}
 	}
@@ -99,57 +246,43 @@ public class CamController : Singleton<CamController> {
 	/// </summary>
 	public void OnTestEnd() {
 		if (Simulation.exhibitionMode) {
-			perspective = Perspective.Landscape;
+			viewMode = ViewMode.Static;
 		}
 	}
 	
-	// Increment perspective circularly
-	public void CyclePerspective() {
-		int length = System.Enum.GetValues(typeof(Perspective)).Length;
-		if ((int)perspective + 1 >= length) perspective = 0;
-		else perspective++;
-	}
-	
-	public void RandomPerspective() {
-		System.Array values = System.Enum.GetValues(typeof(Perspective));
-		perspective = (Perspective)values.GetValue(Random.Range(0,values.Length-1));
-	}
-	
-	// Increment rendermode circularly
-	public void CycleRenderMode() {
-		int length = System.Enum.GetValues(typeof(RenderMode)).Length;
-		if ((int)renderMode + 1 >= length) renderMode = 0;
-		else renderMode++;
-	}
-	
-	public void RandomRenderMode() {
-		System.Array values = System.Enum.GetValues(typeof(RenderMode));
-		renderMode = (RenderMode)values.GetValue(Random.Range(0,values.Length-1));
-	}
-	
-	private Perspective _p;
-	private RenderMode _r;
-	private Camera _camera;
-	private Robot _robot;
+	// private instance members
+
 	private float _birdseyeDist = 0f;
 	private float _3rdPersonDist = 10f;
 	private Vector3 _3rdPersonDir = Vector3.one;
 
 	
 	void Awake() {
+		if (Instance == null) {	
+			Instance = this;
+		}
+		else {
+			Destroy(this);
+		}
 		_camera = GetComponent<Camera>();
+	}
+	
+	void Start() {
+		viewMode = _modes[_mode];
+		_areas.Add(Simulation.Instance);
 	}
 	
 	void Update() {
 		
-		
 		// set camera size on screen
 		float x = UI_Toolbar.I.width/Screen.width;
-		camera.rect = new Rect(0, 0, 1f-x, Screen.height);
+		camera.rect = new Rect(0, 0, 1f-x, 1f);
 		
+		// ignore input unless mouse position is inside camera screen area
 		if ( camera.pixelRect.Contains(Input.mousePosition) ) {
-			if (Input.GetKeyDown(KeyCode.C)) CyclePerspective();
+			if (Input.GetKeyDown(KeyCode.C)) CycleViewMode();
 			if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
+			if (Input.GetKeyDown(KeyCode.Space)) CyclePointOfInterest();
 			// scrollwheel zoom
 			_birdseyeDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
 			// adjust third person distance with scroll wheel input
@@ -158,37 +291,36 @@ public class CamController : Singleton<CamController> {
 			_3rdPersonDist = Mathf.Max(_3rdPersonDist, 1f);
 		}
 
-		
-		if (BotNavSim.isSimulating) {
-			_robot = Simulation.robot;
-			PerspectiveUpdate();
-			RenderModeUpdate();
-		}
-		
-		if (BotNavSim.isViewingData) {
-			BirdseyePerspective();
+		// choose update behaviour 
+		switch(viewMode) {
+		case ViewMode.Birdseye:
+			BirdseyeUpdate();
+			break;
+		case ViewMode.FreeMovement:
+			FreeMovementUpdate();
+			break;
+		case ViewMode.Orbit:
+			OrbitUpdate();  
+			break;
+		case ViewMode.Mounted:
+		case ViewMode.Static:
+		default:
+			break;
 		}
 		
 	}
 	
 	void RenderModeUpdate() {
-		if (renderMode != RenderMode.Normal) 
-			Simulation.robot.navigation.DrawDebugInfo();
-	}
-	
-	void PerspectiveUpdate() {
-
-		switch(perspective) {
-		case Perspective.Birdseye:
-			BirdseyePerspective();
-			break;
-		case Perspective.ThirdPerson:
-			ThirdPersonPerspective();
-			break;
-		}
+		if (Simulation.isRunning)
+			if (renderMode != RenderMode.Normal) 
+				Simulation.robot.navigation.DrawDebugInfo();
 	}
 
-	void BirdseyePerspective() {
+	/// <summary>
+	/// Place the camera above the pointOfInterest
+	/// 
+	/// </summary>
+	void BirdseyeUpdate() {
 		
 		
 		
@@ -202,7 +334,7 @@ public class CamController : Singleton<CamController> {
 			_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
 			
 			// calculate position above and between robot and target
-			targetPosition = (_robot.position + Simulation.destination.transform.position)/2f;
+			targetPosition = (_areas[_poi].bounds.center + Simulation.destination.transform.position)/2f;
 			targetPosition += Vector3.up * 100f;
 		}
 		
@@ -213,7 +345,7 @@ public class CamController : Singleton<CamController> {
 			_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
 			
 			// calculate position above and center of environment
-			targetPosition = LogLoader.bounds.center;
+			targetPosition = LogLoader.Instance.bounds.center;
 			targetPosition += Vector3.up * 100f;
 		}
 		
@@ -233,7 +365,11 @@ public class CamController : Singleton<CamController> {
 			);
 	}
 	
-	void ThirdPersonPerspective() {
+	void FreeMovementUpdate() {
+		
+	}
+	
+	void OrbitUpdate() {
 		
 
 		
@@ -247,9 +383,9 @@ public class CamController : Singleton<CamController> {
 			_3rdPersonDir = rotation * _3rdPersonDir;
 		}
 		
-		Vector3 targetPosition = _robot.position;
+		Vector3 targetPosition = _areas[_poi].bounds.center;
 		// raycast from robot in a direction to avoid placing camera inside other objects
-		Ray ray = new Ray(_robot.position, _3rdPersonDir);
+		Ray ray = new Ray(_areas[_poi].bounds.center, _3rdPersonDir);
 		RaycastHit hit;
 		// if raycast hit, put camera on hit object
 		if (Physics.SphereCast(ray, 0.5f, out hit, _3rdPersonDist, maskCameraCollision)) {
@@ -258,7 +394,7 @@ public class CamController : Singleton<CamController> {
 		}
 		// else place camera at _3rdPersonDist away from robot
 		else {
-			targetPosition = _robot.position + _3rdPersonDir * _3rdPersonDist;
+			targetPosition = _areas[_poi].bounds.center + _3rdPersonDir * _3rdPersonDist;
 		}
 		
 		// smooth move to position
@@ -269,7 +405,7 @@ public class CamController : Singleton<CamController> {
 			);
 		
 		// look at robot
-		Quaternion targetRotation = Quaternion.LookRotation(_robot.position - targetPosition);
+		Quaternion targetRotation = Quaternion.LookRotation(_areas[_poi].bounds.center - targetPosition);
 		_camera.transform.rotation = Quaternion.Slerp(
 			_camera.transform.rotation, 
 			targetRotation, 

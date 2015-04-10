@@ -46,16 +46,16 @@ public class UI_CameraControls : IToolbar {
 		// camera perspective controls
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Camera Perspective: ", GUILayout.Width(lw));
-		if (GUILayout.Button(CamController.Instance.perspective.ToString())) {
-			CamController.Instance.CyclePerspective();
+		if (GUILayout.Button(CamController.viewMode.ToString())) {
+			CamController.CycleViewMode();
 		}
 		GUILayout.EndHorizontal();
 		
 		// camera render mode controls
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Render Mode: ", GUILayout.Width(lw));
-		if (GUILayout.Button(CamController.Instance.renderMode.ToString())) {
-			CamController.Instance.CycleRenderMode();
+		if (GUILayout.Button(CamController.renderMode.ToString())) {
+			CamController.CycleRenderMode();
 		}
 		GUILayout.EndHorizontal();
 		

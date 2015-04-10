@@ -7,7 +7,7 @@ using System;
 /// <summary>
 /// Log loader state machine. 
 /// </summary>
-public class LogLoader : MonoBehaviour  {
+public class LogLoader : MonoBehaviour, IObservable  {
 	
 	public static LogLoader Instance;
 	
@@ -39,18 +39,25 @@ public class LogLoader : MonoBehaviour  {
 	/// Gets the environment bounds.
 	/// </summary>
 	/// <value>The bounds.</value>
-	public static Bounds bounds {
+	public Bounds bounds {
 		get; private set;
 	}
 	
 	private static bool _waitingForResponse;
 	private static bool _response;
 	
+	public static void Enter() {
+		CamController.AddViewMode(CamController.ViewMode.Birdseye);
+		CamController.AddViewMode(CamController.ViewMode.FreeMovement);
+		CamController.AddAreaOfInterest(Instance);
+	}
 	
 	/// <summary>
 	/// Exit BotNavSim.state behaviour: remove environment, clear paths
 	/// </summary>
 	public static void Exit() {
+		CamController.ClearAreaList();
+		CamController.ClearViewModeList();
 		environment.transform.Recycle();
 		paths.Clear();
 	}
@@ -220,11 +227,19 @@ public class LogLoader : MonoBehaviour  {
 		}
 		
 		
-		List<BotPath> pathsLoaded = new List<BotPath>();
-		pathsLoaded.Add(botpos);
-		paths.AddRange(pathsLoaded);
+		AddPath(botpos);
 		UpdatePathColors();
 		loading = false;
+	}
+	
+	public static void AddPath(BotPath path) {
+		if (!paths.Contains(path)) paths.Add(path);
+		CamController.AddAreaOfInterest(path);
+	}
+	
+	public static void RemovePath(BotPath path) {
+		paths.Remove(path);
+		CamController.RemoveAreaOfInterest(path);
 	}
 	
 	/// <summary>
@@ -245,9 +260,10 @@ public class LogLoader : MonoBehaviour  {
 		environment = EnvLoader.LoadEnvironment(name);
 		environment.name = name; // avoids: Unity appending "(Clone)" to instance names
 		Debug.Log(environment);
-		bounds = new Bounds(Vector3.zero, Vector3.zero);
+		Bounds b = new Bounds();
 		foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
-			bounds.Encapsulate(r.bounds);
+			b.Encapsulate(r.bounds);
+		Instance.bounds = b;
 	}
 	
 	/// <summary>

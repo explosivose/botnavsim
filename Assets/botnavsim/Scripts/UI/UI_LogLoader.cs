@@ -156,7 +156,7 @@ public class UI_LogLoader : IToolbar {
 			}
 			// unload path button
 			if (GUILayout.Button("X")) {
-				LogLoader.paths.RemoveAt(i);
+				LogLoader.RemovePath(LogLoader.paths[i]);
 			}
 			GUILayout.EndHorizontal();
 		}

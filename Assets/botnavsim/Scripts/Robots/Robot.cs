@@ -8,7 +8,7 @@ using System.Collections;
 /// any physics simulation. Robot locomotion models are implemented
 /// in other classes that require this component for communications and data. 
 /// </summary>
-public class Robot : MonoBehaviour {
+public class Robot : MonoBehaviour, IObservable {
 
 	// public fields
 	// ~-~-~-~-~-~-~-~-
@@ -29,7 +29,8 @@ public class Robot : MonoBehaviour {
 	private int 		_stuckCounter;
 	private Vector3[]	_positions;
 	private BotPath 	_path;
-
+	private Vector3 	_size;
+	
 	// public properties
 	// ~-~-~-~-~-~-~-~-
 	
@@ -46,7 +47,7 @@ public class Robot : MonoBehaviour {
 		}
 		set {
 			_navigation = value;
-			_navigation.searchBounds = Simulation.bounds;
+			_navigation.searchBounds = Simulation.Instance.bounds;
 			if (_navigation.spaceRelativeTo == Space.Self) {
 				_navigation.origin = Vector3.zero;
 				_navigation.destination = transform.InverseTransformPoint(destination.position);
@@ -83,6 +84,12 @@ public class Robot : MonoBehaviour {
 	/// </summary>
 	/// <value>The camera mount position.</value>
 	public Transform cameraMount { get; private set; }
+	
+	public Bounds bounds {
+		get {
+			return new Bounds(transform.position, _size);
+		}
+	}
 	
 	/// <summary>
 	/// Gets depth data from the next sensor in a circular
@@ -158,6 +165,12 @@ public class Robot : MonoBehaviour {
 			cameraMount = transform;
 			Debug.LogWarning("CameraMount object not found on Robot.");
 		} 
+		// calculate size bounding box for renderers
+		Bounds b = new Bounds(Vector3.zero, Vector3.zero);
+		foreach(Renderer r in GetComponentsInChildren<Renderer>())
+			b.Encapsulate(r.bounds);
+		_size = b.size;
+		// initialise bath plotter
 		_path = new BotPath();
 		StartCoroutine(RecordPath());
 	}

@@ -141,7 +141,7 @@ Do GL.Lines instead...
 	/// Raises the post render event. Use this for GL stuff.
 	/// </summary>
 	void OnPostRender() {
-		if (CamController.Instance.renderMode == CamController.RenderMode.Normal) return;
+		if (CamController.renderMode == CamController.RenderMode.Normal) return;
 		GL.PushMatrix();
 		glLineMaterial.SetPass(0);
 		foreach(LineData line in gl_lines) {

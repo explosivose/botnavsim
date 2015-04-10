@@ -125,8 +125,10 @@ public class BotNavSim {
 		case State.Idle:
 			break;
 		case State.Simulating:
+			Simulation.Enter();
 			break;
 		case State.ViewingData:
+			LogLoader.Enter();
 			break;
 		case State.EditingRobot:
 			break;
