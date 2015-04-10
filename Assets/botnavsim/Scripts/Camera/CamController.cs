@@ -153,6 +153,7 @@ public class CamController : MonoBehaviour {
 		}
 		set {
 			_viewMode = value;
+			_camera.transform.parent = null;
 			switch (_viewMode) {
 			case ViewMode.Mounted:
 				_camera.orthographic = false;
@@ -210,6 +211,9 @@ public class CamController : MonoBehaviour {
 		}
 	}
 	
+	public static IObservable area {
+		get { return _areas[_poi]; }
+	}
 	
 	private static List<ViewMode>		_modes;		// list of available ViewMode to use 
 	private static List<IObservable>	_areas;		// list of areas to point the camera at
@@ -275,8 +279,8 @@ public class CamController : MonoBehaviour {
 	void Update() {
 		
 		// set camera size on screen
-		float x = UI_Toolbar.I.width/Screen.width;
-		camera.rect = new Rect(0, 0, 1f-x, 1f);
+		float w = UI_Toolbar.I.width/Screen.width;
+		camera.rect = new Rect(0, 0, 1f-w, 1f);
 		
 		// ignore input unless mouse position is inside camera screen area
 		if ( camera.pixelRect.Contains(Input.mousePosition) ) {
@@ -289,6 +293,16 @@ public class CamController : MonoBehaviour {
 			_3rdPersonDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
 			_3rdPersonDist = Mathf.Min(_3rdPersonDist, 20f);
 			_3rdPersonDist = Mathf.Max(_3rdPersonDist, 1f);
+			
+			// move orbit direction vector while rightclick drag
+			if (Input.GetMouseButton(1)) {
+				float x = Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
+				float y = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
+				Quaternion rotation = Quaternion.AngleAxis(-y, Vector3.up);
+				_3rdPersonDir = rotation * _3rdPersonDir;
+				rotation = Quaternion.AngleAxis(x, _camera.transform.right);
+				_3rdPersonDir = rotation * _3rdPersonDir;
+			}
 		}
 
 		// choose update behaviour 
@@ -323,9 +337,8 @@ public class CamController : MonoBehaviour {
 	void BirdseyeUpdate() {
 		
 		
-		
-		Vector3 targetPosition = Vector3.up *100f;
-		
+
+		/*
 		if (BotNavSim.isSimulating) {
 			// size orthographic camera to fit robot and destination in shot
 			float size = Simulation.robot.distanceToDestination * 0.75f;
@@ -348,6 +361,12 @@ public class CamController : MonoBehaviour {
 			targetPosition = LogLoader.Instance.bounds.center;
 			targetPosition += Vector3.up * 100f;
 		}
+		*/
+		float size = Mathf.Max(area.bounds.size.x/2f, area.bounds.size.y/2f);
+		size += _birdseyeDist;
+		size = Mathf.Max(size, 10f);
+		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, Time.deltaTime * 4f);
+		Vector3 targetPosition = area.bounds.center + Vector3.up * 100f;
 		
 		// smooth move to position
 		_camera.transform.position = Vector3.Slerp(
@@ -373,19 +392,11 @@ public class CamController : MonoBehaviour {
 		
 
 		
-		// move camera position based on input
-		if (Input.GetMouseButton(1)) {
-			float x = Input.GetAxisRaw("Mouse Y") * mouseSensitivity;
-			float y = Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-			Quaternion rotation = Quaternion.AngleAxis(-y, Vector3.up);
-			_3rdPersonDir = rotation * _3rdPersonDir;
-			rotation = Quaternion.AngleAxis(x, _camera.transform.right);
-			_3rdPersonDir = rotation * _3rdPersonDir;
-		}
+
 		
-		Vector3 targetPosition = _areas[_poi].bounds.center;
+		Vector3 targetPosition = area.bounds.center;
 		// raycast from robot in a direction to avoid placing camera inside other objects
-		Ray ray = new Ray(_areas[_poi].bounds.center, _3rdPersonDir);
+		Ray ray = new Ray(area.bounds.center, _3rdPersonDir);
 		RaycastHit hit;
 		// if raycast hit, put camera on hit object
 		if (Physics.SphereCast(ray, 0.5f, out hit, _3rdPersonDist, maskCameraCollision)) {
@@ -394,7 +405,7 @@ public class CamController : MonoBehaviour {
 		}
 		// else place camera at _3rdPersonDist away from robot
 		else {
-			targetPosition = _areas[_poi].bounds.center + _3rdPersonDir * _3rdPersonDist;
+			targetPosition = area.bounds.center + _3rdPersonDir * _3rdPersonDist;
 		}
 		
 		// smooth move to position
@@ -405,7 +416,7 @@ public class CamController : MonoBehaviour {
 			);
 		
 		// look at robot
-		Quaternion targetRotation = Quaternion.LookRotation(_areas[_poi].bounds.center - targetPosition);
+		Quaternion targetRotation = Quaternion.LookRotation(area.bounds.center - targetPosition);
 		_camera.transform.rotation = Quaternion.Slerp(
 			_camera.transform.rotation, 
 			targetRotation, 

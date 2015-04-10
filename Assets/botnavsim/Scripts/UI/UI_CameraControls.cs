@@ -59,6 +59,12 @@ public class UI_CameraControls : IToolbar {
 		}
 		GUILayout.EndHorizontal();
 		
-		//GUI.DragWindow();
+		// camera areas of interest
+		GUILayout.BeginHorizontal();
+		GUILayout.Label("Observing: ", GUILayout.Width(lw));
+		if (GUILayout.Button(CamController.area.name)) {
+			CamController.CyclePointOfInterest();
+		}
+		GUILayout.EndHorizontal();
 	} 
 }

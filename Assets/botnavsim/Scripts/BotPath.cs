@@ -64,6 +64,10 @@ public class BotPath : IObservable  {
 		get; private set;
 	}
 	
+	public string name {
+		get { return csvName; }
+	}
+	
 	/// <summary>
 	/// Gets or sets the color used in drawing the path via Draw.
 	/// </summary>
@@ -85,7 +89,10 @@ public class BotPath : IObservable  {
 		
 		_nodes.Add(node);
 		_times.Add(time);
-		bounds.Encapsulate(node);
+		Bounds b = new Bounds();
+		b.Encapsulate(bounds);
+		b.Encapsulate(node);
+		bounds = b;
 	}
 	
 	/// <summary>
