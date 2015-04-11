@@ -114,6 +114,9 @@ public class UI_SimulationBatch : IToolbar  {
 				_editSettings = new UI_SimulationSettings(_settings);
 				UI_Toolbar.I.additionalWindows.Add((IWindowFunction)_editSettings);
 			}
+			if (GUILayout.Button("X")) {
+				Simulation.batch.RemoveAt(i);
+			}
 			// indicate which have been executed already
 			// if (batchItem.executed)
 			
