@@ -75,11 +75,7 @@ public class UI_SimulationBatch : IToolbar  {
 	/// <param name="windowID">Window ID.</param>
 	void BatchListWindow(int windowID) {
 		
-		// controls and title
 		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
-		if (GUILayout.Button("<", GUILayout.Width(30f))) {
-			hidden = true;
-		}
 		
 		// add a new simulation to batch
 		if (GUILayout.Button("Add new simulation")) {
@@ -126,21 +122,18 @@ public class UI_SimulationBatch : IToolbar  {
 		
 		GUILayout.Space (10);
 		// start simulating 
-		if (GUILayout.Button("Start Batch")) {
-			BotNavSim.state = BotNavSim.State.Simulating;
-			Simulation.Begin();
+		if (Simulation.batch.Count > 0) {
+			if (GUILayout.Button("Start Batch")) {
+				BotNavSim.state = BotNavSim.State.Simulating;
+				Simulation.Begin();
+			}
+			GUILayout.Space(20);
+			// remove all simulations from batch
+			GUILayout.Space (20);
+			if (GUILayout.Button("Clear Batch")) {
+				Simulation.batch.Clear();
+			}
 		}
-		GUILayout.Space(20);
-
-		// remove all simulations from batch
-		GUILayout.Space (20);
-		if (GUILayout.Button("Clear Batch")) {
-			Simulation.batch.Clear();
-		}
-		
-
-		
-		//GUI.DragWindow();
 	}
 	
 	/// <summary>
