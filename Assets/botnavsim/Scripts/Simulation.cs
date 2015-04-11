@@ -419,6 +419,7 @@ public class Simulation : MonoBehaviour, IObservable {
 		// configure camera
 		CamController.AddAreaOfInterest(robot);
 		CamController.SetViewMode(CamController.ViewMode.Birdseye);
+		CamController.SetAreaOfInterest(robot);
 		// reset test number
 		testNumber = 0;
 		NextTest();
@@ -485,6 +486,7 @@ public class Simulation : MonoBehaviour, IObservable {
 	/// </summary>
 	public static void End() {
 		Debug.Log("Simulation End.");
+		settings.active = false;
 		state = State.end;
 		
 		// in exhibition mode, run more simulations with random settings

@@ -53,29 +53,28 @@ public class UI_SimulationControl : IToolbar {
 	/// <param name="windowID">Window ID.</param>
 	void MainWindow (int windowID) {
 		float lw = 200f;
-		
-		// close window button
-		GUILayout.BeginHorizontal();
-		if (GUILayout.Button("<", GUILayout.Width(30f))) {
-			hidden = true;
-		}
-		GUILayout.EndHorizontal();
-		
+				
 		// simulation information
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		GUILayout.Label(Simulation.settings.title + "(" + Simulation.simulationNumber + "/" +
-		                Simulation.batch.Count + ") " +  Simulation.settings.time, GUILayout.Width(lw));
+		                Simulation.batch.Count + ") ", GUILayout.Width(lw));
 		GUILayout.Label("Test " + Simulation.testNumber + "/" + Simulation.settings.numberOfTests);
 		GUILayout.EndHorizontal();
 		
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
+		GUILayout.Label("Time (s): " + Simulation.time.ToString("G3") + "/" + 
+			Simulation.settings.maximumTestTime, GUILayout.Width(lw));
+		GUILayout.EndHorizontal();
+
+		
 		// exhbition mode tickbox
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		GUILayout.Label("Exhibition Mode: ", GUILayout.Width(lw));
 		Simulation.exhibitionMode = GUILayout.Toggle(Simulation.exhibitionMode, "");
 		GUILayout.EndHorizontal();
 		
 		// timescale slider 
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		GUILayout.Label("Simulation Timescale: ", GUILayout.Width(lw));
 		Simulation.timeScale = GUILayout.HorizontalSlider(
 			Simulation.timeScale,

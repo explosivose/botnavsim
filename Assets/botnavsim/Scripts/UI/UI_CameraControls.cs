@@ -36,15 +36,10 @@ public class UI_CameraControls : IToolbar {
 	
 	void CameraControlsWindow(int windowID) {
 		float lw = 200f;
-		// close window button
-		GUILayout.BeginHorizontal();
-		if (GUILayout.Button("<", GUILayout.Width(30f))) {
-			hidden = true;
-		}
-		GUILayout.EndHorizontal();
+
 		
 		// camera perspective controls
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		GUILayout.Label("Camera Perspective: ", GUILayout.Width(lw));
 		if (GUILayout.Button(CamController.viewMode.ToString())) {
 			CamController.CycleViewMode();
@@ -52,7 +47,7 @@ public class UI_CameraControls : IToolbar {
 		GUILayout.EndHorizontal();
 		
 		// camera render mode controls
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		GUILayout.Label("Render Mode: ", GUILayout.Width(lw));
 		if (GUILayout.Button(CamController.renderMode.ToString())) {
 			CamController.CycleRenderMode();
@@ -60,7 +55,7 @@ public class UI_CameraControls : IToolbar {
 		GUILayout.EndHorizontal();
 		
 		// camera areas of interest
-		GUILayout.BeginHorizontal();
+		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
 		GUILayout.Label("Observing: ", GUILayout.Width(lw));
 		if (GUILayout.Button(CamController.area.name)) {
 			CamController.CycleAreaOfInterest();
