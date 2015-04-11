@@ -226,6 +226,7 @@ public class CamController : MonoBehaviour {
 			_camera.transform.localRotation = Quaternion.identity;
 			break;
 		case ViewMode.Orbit:
+		case ViewMode.FreeMovement:
 			_camera.orthographic = false;
 			_camera.fieldOfView = 60f;
 			break;
@@ -268,6 +269,8 @@ public class CamController : MonoBehaviour {
 	// ~-~-~-~-~-~-~-~-
 	
 	public float mouseSensitivity;			// multiplies speed of mouse axis input 
+	public float freeMoveSpeed;
+	public float freeMoveSpeedShiftMult;
 	
 	public LayerMask maskCameraCollision;	// layermasks for rendering modes
 	public LayerMask maskNormal;
@@ -277,6 +280,7 @@ public class CamController : MonoBehaviour {
 	private float _birdseyeDist = 0f;
 	private float _3rdPersonDist = 10f;
 	private Vector3 _3rdPersonDir = Vector3.one;
+	private Vector3 _1stPersonDir = Vector3.one;
 	
 	// instance methods
 	// ~-~-~-~-~-~-~-~-
@@ -344,6 +348,11 @@ public class CamController : MonoBehaviour {
 				_3rdPersonDir = rotation * _3rdPersonDir;
 				rotation = Quaternion.AngleAxis(x, _camera.transform.right);
 				_3rdPersonDir = rotation * _3rdPersonDir;
+				
+				rotation = Quaternion.AngleAxis(y, Vector3.up);
+				_1stPersonDir = rotation * _1stPersonDir;
+				rotation = Quaternion.AngleAxis(-x, _camera.transform.right);
+				_1stPersonDir = rotation * _1stPersonDir;
 			}
 		}
 
@@ -409,7 +418,18 @@ public class CamController : MonoBehaviour {
 	/// Camera position and rotation controlled by axis keys and mouse axis
 	/// </summary>
 	void FreeMovementUpdate() {
-		
+		// rotate accoring to right click drag calculated in Update()
+		transform.rotation = Quaternion.LookRotation(_1stPersonDir);
+		// boost movement speed if LeftShift is held down
+		float b = Input.GetKey(KeyCode.LeftShift) ? freeMoveSpeedShiftMult : 1f;
+		// grab axis input
+		float y = Input.GetAxisRaw("Vertical") * freeMoveSpeed * b * Time.deltaTime;
+		float x = Input.GetAxisRaw("Horizontal") * freeMoveSpeed * b * Time.deltaTime;
+		// modify position according to orientation (move forward/back, strafe left/right)
+		Vector3 pos = transform.position;
+		pos += transform.forward * y;
+		pos += transform.right * x;
+		transform.position = pos;
 	}
 	
 	/// <summary>

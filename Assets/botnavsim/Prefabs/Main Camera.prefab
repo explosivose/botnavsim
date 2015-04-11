@@ -121,6 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 10
+  freeMoveSpeed: 10
+  freeMoveSpeedShiftMult: 4
   maskCameraCollision:
     serializedVersion: 2
     m_Bits: 4294966527
