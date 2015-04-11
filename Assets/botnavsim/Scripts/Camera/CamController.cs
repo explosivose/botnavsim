@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 /// <summary>
 /// Controls the camera orientation and render modes according to registered 
@@ -11,8 +12,7 @@ using System.Collections.Generic;
 public class CamController : MonoBehaviour {
 
 	// class types
-	
-	
+	// ~-~-~-~-~-~-
 	public enum ViewMode {
 		/// <summary>
 		/// Top-down orthographic view. 
@@ -46,143 +46,24 @@ public class CamController : MonoBehaviour {
 		BotData
 	}
 	
-	static CamController() {
-		// modes list will always have ViewMode.Static, and any other modes registered by AddViewMode
-		_modes = new List<ViewMode>();
-		_modes.Add(ViewMode.Static);
-		_areas = new List<IObservable>();
-	}
-
+	// static members
+	// ~-~-~-~-~-~-~-
+	
+	/// <summary>
+	/// Gets the instance.
+	/// </summary>
+	/// <value>The instance.</value>
 	public static CamController Instance {
 		get; private set;
 	}
 	
 	/// <summary>
-	/// Adds a ViewMode to the list of camera modes to use.
-	/// </summary>
-	/// <param name="mode">Mode.</param>
-	public static void AddViewMode(ViewMode mode) {
-		if (!_modes.Contains(mode)) _modes.Add(mode);
-	}
-	
-	/// <summary>
-	/// Removes a ViewMode from the list of camera modes to use. 
-	/// </summary>
-	/// <param name="mode">Mode.</param>
-	public static void RemoveViewMode(ViewMode mode) {
-		if (mode != ViewMode.Static) _modes.Remove(mode);
-	}
-	
-	/// <summary>
-	/// Clears the view mode list.
-	/// </summary>
-	public static void ClearViewModeList() {
-		_modes.Clear();
-		_modes.Add(ViewMode.Static);
-	}
-				
-	/// <summary>
-	/// Use next ViewMode in modes
-	/// </summary>
-	public static void CycleViewMode() {
-		_mode = (++_mode) % _modes.Count;
-		viewMode = _modes[_mode];
-	}
-	
-	/// <summary>
-	/// Use random ViewMode in modes
-	/// </summary>
-	public static void RandomViewMode() {
-		_mode = Random.Range(0, _modes.Count-1);
-		viewMode = _modes[_mode];
-	}
-	
-	
-	/// <summary>
-	/// Adds an area of interest for the camera to look at.
-	/// </summary>
-	/// <param name="b">An area of interest defined by a bounding box.</param>
-	public static void AddAreaOfInterest(IObservable area) {
-		if (!_areas.Contains(area)) _areas.Add(area);
-	}
-	
-	/// <summary>
-	/// Removes an area of interest for the camera to look at.
-	/// </summary>
-	/// <param name="b">An area of interest defined by a bounding box.</param>
-	public static void RemoveAreaOfInterest(IObservable area) {
-		if (_areas.Count > 1) _areas.Remove(area);
-	}
-	
-	public static void ClearAreaList() {
-		_areas.Clear();
-		_areas.Add(Simulation.Instance);
-	}
-	
-	/// <summary>
-	/// Go to next area of interest
-	/// </summary>
-	public static void CyclePointOfInterest() {
-		_poi = (++_poi) % _areas.Count;
-	}
-	
-	/// <summary>
-	/// Use next RenderMode
-	/// </summary>
-	public static void CycleRenderMode() {
-		int length = System.Enum.GetValues(typeof(RenderMode)).Length;
-		renderMode = (RenderMode)((int)(++renderMode) % length);
-	}
-	
-	/// <summary>
-	/// Select random RenderMode
-	/// </summary>
-	public static void RandomRenderMode() {
-		System.Array values = System.Enum.GetValues(typeof(RenderMode));
-		renderMode = (RenderMode)values.GetValue(Random.Range(0,values.Length-1));
-	}
-	
-	
-	/// <summary>
-	/// Gets or sets the current ViewMode in use. viewMode determines camera perspective behaviour.
+	/// Gets the current ViewMode.
 	/// </summary>
 	/// <value>The view mode.</value>
 	public static ViewMode viewMode {
 		get {
-			return _viewMode;
-		}
-		set {
-			_viewMode = value;
-			_camera.transform.parent = null;
-			switch (_viewMode) {
-			case ViewMode.Mounted:
-				_camera.orthographic = false;
-				_camera.fieldOfView = 90f;
-				_camera.transform.parent = Simulation.robot.cameraMount;
-				_camera.transform.localPosition = Vector3.zero;
-				_camera.transform.localRotation = Quaternion.identity;
-				break;
-			case ViewMode.Orbit:
-				_camera.orthographic = false;
-				_camera.fieldOfView = 60f;
-				break;
-			case ViewMode.Static:
-				_camera.orthographic = false;
-				_camera.fieldOfView = 60f;
-				Bounds b = Simulation.Instance.bounds;
-				Vector3 position = b.max;
-				position.y *= 2f;
-				position.x = Random.value < 0.5f ? b.min.x : b.max.x;
-				position.z = Random.value < 0.5f ? b.min.z : b.max.z;
-				Instance.transform.position = position;
-				Instance.transform.rotation = Quaternion.LookRotation(b.center - Instance.transform.position);
-				break;
-			default:
-			case ViewMode.Birdseye:
-				_camera.camera.orthographic = true;
-				_camera.transform.parent = null;
-				break;
-			}
+			return _modes[_mode];
 		}
 	}
 	
@@ -211,20 +92,180 @@ public class CamController : MonoBehaviour {
 		}
 	}
 	
+	/// <summary>
+	/// Gets the current area of interest.
+	/// </summary>
+	/// <value>The area.</value>
 	public static IObservable area {
-		get { return _areas[_poi]; }
+		get { return _areas[_area]; }
+	}
+	
+	/// <summary>
+	/// Gets a readonly view mode list.
+	/// </summary>
+	/// <value>The view mode list.</value>
+	public static ReadOnlyCollection<ViewMode> viewModeList {
+		get { return _modes.AsReadOnly(); }
 	}
 	
 	private static List<ViewMode>		_modes;		// list of available ViewMode to use 
 	private static List<IObservable>	_areas;		// list of areas to point the camera at
-	private static int _mode; 					// index for _modes
-	private static int _poi; 					// index for pointsOfInterest
+	private static int _mode; 						// index for _modes
+	private static int _area; 						// index for _areas
 	private static Camera _camera;
-	private static ViewMode _viewMode;
 	private static RenderMode _renderMode;
 	
+	// static methods
+	// ~-~-~-~-~-~-~-
+	
+	// static constructor
+	static CamController() {
+		// modes list will always have ViewMode.FreeMovement, and any other modes registered by AddViewMode
+		_modes = new List<ViewMode>();
+		_modes.Add(ViewMode.FreeMovement);
+		_areas = new List<IObservable>();
+	}
+
+	/// <summary>
+	/// Adds an area of interest for the camera to look at.
+	/// </summary>
+	/// <param name="b">An area of interest defined by a bounding box.</param>
+	public static void AddAreaOfInterest(IObservable area) {
+		if (!_areas.Contains(area)) _areas.Add(area);
+	}
+	
+	/// <summary>
+	/// Removes an area of interest for the camera to look at.
+	/// </summary>
+	/// <param name="b">An area of interest defined by a bounding box.</param>
+	public static void RemoveAreaOfInterest(IObservable area) {
+		if (_areas.Count > 1) _areas.Remove(area);
+		if (_area > _areas.Count) _area = 0;
+	}
+	
+	/// <summary>
+	/// Clears the area list.
+	/// </summary>
+	public static void ClearAreaList() {
+		_areas.Clear();
+		_areas.Add(Simulation.Instance);
+		_area = 0;
+	}
+	
+	/// <summary>
+	/// Go to next area of interest
+	/// </summary>
+	public static void CyclePointOfInterest() {
+		_area = (++_area) % _areas.Count;
+	}
+	
+	/// <summary>
+	/// Use next RenderMode
+	/// </summary>
+	public static void CycleRenderMode() {
+		int length = System.Enum.GetValues(typeof(RenderMode)).Length;
+		renderMode = (RenderMode)((int)(++renderMode) % length);
+	}
+	
+	/// <summary>
+	/// Select random RenderMode
+	/// </summary>
+	public static void RandomRenderMode() {
+		System.Array values = System.Enum.GetValues(typeof(RenderMode));
+		renderMode = (RenderMode)values.GetValue(Random.Range(0,values.Length-1));
+	}
+	
+	
+	/// <summary>
+	/// Adds a ViewMode to the list of camera modes to use.
+	/// </summary>
+	/// <param name="mode">Mode.</param>
+	public static void AddViewMode(ViewMode mode) {
+		if (!_modes.Contains(mode)) _modes.Add(mode);
+	}
+	
+	/// <summary>
+	/// Removes a ViewMode from the list of camera modes to use. 
+	/// </summary>
+	/// <param name="mode">Mode.</param>
+	public static void RemoveViewMode(ViewMode mode) {
+		if (mode != ViewMode.FreeMovement) _modes.Remove(mode);
+		if (_mode > _modes.Count) {
+			SetViewMode(0);
+		}
+	}
+	
+	/// <summary>
+	/// Clears the view mode list.
+	/// </summary>
+	public static void ClearViewModeList() {
+		_modes.Clear();
+		_modes.Add(ViewMode.Static);
+		SetViewMode(0);
+	}
+	
+	/// <summary>
+	/// Sets the view mode.
+	/// </summary>
+	/// <param name="index">Index for selecting from viewModeList.</param>
+	public static void SetViewMode(int index) {
+		// ignore out of range indexes
+		if (index < 0 || index >= _modes.Count) {
+			Debug.LogWarning("SetViewMode index param out of range. Ignoring.");
+			return;
+		}
+		_mode = index;
+		_camera.transform.parent = null;
+		// set camera properties for new ViewMode
+		switch (_modes[_mode]) {
+		case ViewMode.Mounted:
+			_camera.orthographic = false;
+			_camera.fieldOfView = 90f;
+			_camera.transform.parent = Simulation.robot.cameraMount;
+			_camera.transform.localPosition = Vector3.zero;
+			_camera.transform.localRotation = Quaternion.identity;
+			break;
+		case ViewMode.Orbit:
+			_camera.orthographic = false;
+			_camera.fieldOfView = 60f;
+			break;
+		case ViewMode.Static:
+			_camera.orthographic = false;
+			_camera.fieldOfView = 60f;
+			Bounds b = Simulation.Instance.bounds;
+			Vector3 position = b.max;
+			position.y *= 2f;
+			position.x = Random.value < 0.5f ? b.min.x : b.max.x;
+			position.z = Random.value < 0.5f ? b.min.z : b.max.z;
+			Instance.transform.position = position;
+			Instance.transform.rotation = Quaternion.LookRotation(b.center - Instance.transform.position);
+			break;
+		default:
+		case ViewMode.Birdseye:
+			_camera.camera.orthographic = true;
+			_camera.transform.parent = null;
+			break;
+		}
+	}
+	
+	/// <summary>
+	/// Use next ViewMode in modes
+	/// </summary>
+	public static void CycleViewMode() {
+		SetViewMode((++_mode) % _modes.Count);
+	}
+	
+	/// <summary>
+	/// Use random ViewMode in modes
+	/// </summary>
+	public static void RandomViewMode() {
+		SetViewMode(Random.Range(0, _modes.Count-1));
+	}
+	
+
 	
 	// instance members (defined in Unity Inspector)
+	// ~-~-~-~-~-~-~-~-
 	
 	public float mouseSensitivity;			// multiplies speed of mouse axis input 
 	
@@ -233,7 +274,12 @@ public class CamController : MonoBehaviour {
 	public LayerMask maskBotData;
 	public LayerMask maskHybrid;
 	
+	private float _birdseyeDist = 0f;
+	private float _3rdPersonDist = 10f;
+	private Vector3 _3rdPersonDir = Vector3.one;
+	
 	// instance methods
+	// ~-~-~-~-~-~-~-~-
 	
 	/// <summary>
 	/// Raises the test start event. (handles camera exhibitionMode behaviour)
@@ -250,17 +296,11 @@ public class CamController : MonoBehaviour {
 	/// </summary>
 	public void OnTestEnd() {
 		if (Simulation.exhibitionMode) {
-			viewMode = ViewMode.Static;
+			SetViewMode(0);
 		}
 	}
-	
-	// private instance members
 
-	private float _birdseyeDist = 0f;
-	private float _3rdPersonDist = 10f;
-	private Vector3 _3rdPersonDir = Vector3.one;
-
-	
+	// called when the instance enters the scene
 	void Awake() {
 		if (Instance == null) {	
 			Instance = this;
@@ -271,11 +311,13 @@ public class CamController : MonoBehaviour {
 		_camera = GetComponent<Camera>();
 	}
 	
+	// called on the first frame for this instance 
 	void Start() {
-		viewMode = _modes[_mode];
+		SetViewMode(0);
 		_areas.Add(Simulation.Instance);
 	}
 	
+	// called every frame for this instance
 	void Update() {
 		
 		// set camera size on screen
@@ -322,8 +364,14 @@ public class CamController : MonoBehaviour {
 			break;
 		}
 		
+		RenderModeUpdate();
+		
 	}
 	
+	/// <summary>
+	/// Call INavigation.DrawDebugInfo as appropriate
+	/// (Camera culling mask is handled in renderMode.set)
+	/// </summary>
 	void RenderModeUpdate() {
 		if (Simulation.isRunning)
 			if (renderMode != RenderMode.Normal) 
@@ -331,37 +379,10 @@ public class CamController : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Place the camera above the pointOfInterest
-	/// 
+	/// Place the camera above the area of interest
 	/// </summary>
 	void BirdseyeUpdate() {
 		
-		
-
-		/*
-		if (BotNavSim.isSimulating) {
-			// size orthographic camera to fit robot and destination in shot
-			float size = Simulation.robot.distanceToDestination * 0.75f;
-			size += _birdseyeDist;
-			size = Mathf.Max(size, 10f);
-			_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
-			
-			// calculate position above and between robot and target
-			targetPosition = (_areas[_poi].bounds.center + Simulation.destination.transform.position)/2f;
-			targetPosition += Vector3.up * 100f;
-		}
-		
-		if (BotNavSim.isViewingData) {
-			// size orthographic camera to fit environment in shot
-			float size = 50f;
-			size += _birdseyeDist;
-			_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, 4f);
-			
-			// calculate position above and center of environment
-			targetPosition = LogLoader.Instance.bounds.center;
-			targetPosition += Vector3.up * 100f;
-		}
-		*/
 		float size = Mathf.Max(area.bounds.size.x/2f, area.bounds.size.y/2f);
 		size += _birdseyeDist;
 		size = Mathf.Max(size, 10f);
@@ -384,29 +405,31 @@ public class CamController : MonoBehaviour {
 			);
 	}
 	
+	/// <summary>
+	/// Camera position and rotation controlled by axis keys and mouse axis
+	/// </summary>
 	void FreeMovementUpdate() {
 		
 	}
 	
+	/// <summary>
+	/// Camera orbit around the area of interest center
+	/// </summary>
 	void OrbitUpdate() {
-		
-
-		
-
 		
 		Vector3 targetPosition = area.bounds.center;
 		// raycast from robot in a direction to avoid placing camera inside other objects
 		Ray ray = new Ray(area.bounds.center, _3rdPersonDir);
 		RaycastHit hit;
 		// if raycast hit, put camera on hit object
-		if (Physics.SphereCast(ray, 0.5f, out hit, _3rdPersonDist, maskCameraCollision)) {
-			targetPosition = hit.point + hit.normal;
-			Debug.DrawLine(ray.origin, hit.point, Color.red);
-		}
+		//if (Physics.SphereCast(ray, 0.5f, out hit, _3rdPersonDist, maskCameraCollision)) {
+		//	targetPosition = hit.point + hit.normal;
+		//	Debug.DrawLine(ray.origin, hit.point, Color.red);
+		//}
 		// else place camera at _3rdPersonDist away from robot
-		else {
+		//else {
 			targetPosition = area.bounds.center + _3rdPersonDir * _3rdPersonDist;
-		}
+		//}
 		
 		// smooth move to position
 		_camera.transform.position = Vector3.Slerp(

@@ -239,8 +239,10 @@ public class Robot : MonoBehaviour, IObservable {
 	}
 	
 	private void OnDrawGizmos() {
-		if (_navigation != null)
+		if (_navigation != null) {
 			_navigation.DrawGizmos();
+		}
+			
 		// draw center of mass
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.1f);
