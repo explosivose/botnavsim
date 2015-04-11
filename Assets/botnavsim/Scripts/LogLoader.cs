@@ -265,6 +265,7 @@ public class LogLoader : MonoBehaviour, IObservable  {
 		foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
 			b.Encapsulate(r.bounds);
 		Instance.bounds = b;
+		CamController.SetViewMode(CamController.viewModeList.IndexOf(CamController.ViewMode.Birdseye));
 	}
 	
 	/// <summary>

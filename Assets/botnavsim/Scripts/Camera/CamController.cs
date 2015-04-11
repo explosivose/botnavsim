@@ -292,6 +292,7 @@ public class CamController : MonoBehaviour {
 		if (Simulation.exhibitionMode) {
 			RandomViewMode();
 			RandomRenderMode();
+			CyclePointOfInterest();
 		}
 	}
 	
@@ -300,7 +301,7 @@ public class CamController : MonoBehaviour {
 	/// </summary>
 	public void OnTestEnd() {
 		if (Simulation.exhibitionMode) {
-			SetViewMode(0);
+			SetViewMode(viewModeList.IndexOf(ViewMode.Birdseye));
 		}
 	}
 

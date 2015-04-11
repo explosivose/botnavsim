@@ -416,8 +416,9 @@ public class Simulation : MonoBehaviour, IObservable {
 		BotLoader.SearchForRobots();
 		robot = BotLoader.LoadRobot(settings.robotName);
 		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
-		// add observable object
+		// configure camera
 		CamController.AddAreaOfInterest(robot);
+		CamController.SetViewMode(CamController.viewModeList.IndexOf(CamController.ViewMode.Birdseye));
 		// reset test number
 		testNumber = 0;
 		NextTest();
