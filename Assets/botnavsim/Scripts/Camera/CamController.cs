@@ -124,6 +124,7 @@ public class CamController : MonoBehaviour {
 		_modes = new List<ViewMode>();
 		_modes.Add(ViewMode.FreeMovement);
 		_areas = new List<IObservable>();
+		_areas.Add(BotNavSim.defaultObservable);
 	}
 
 	/// <summary>
@@ -148,7 +149,7 @@ public class CamController : MonoBehaviour {
 	/// </summary>
 	public static void ClearAreaList() {
 		_areas.Clear();
-		_areas.Add(Simulation.Instance);
+		_areas.Add(BotNavSim.defaultObservable);
 		_area = 0;
 	}
 	
