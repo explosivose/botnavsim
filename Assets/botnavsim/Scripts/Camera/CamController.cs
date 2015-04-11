@@ -140,7 +140,7 @@ public class CamController : MonoBehaviour {
 	/// <param name="b">An area of interest defined by a bounding box.</param>
 	public static void RemoveAreaOfInterest(IObservable area) {
 		if (_areas.Count > 1) _areas.Remove(area);
-		if (_area > _areas.Count) _area = 0;
+		if (_area >= _areas.Count) _area = 0;
 	}
 	
 	/// <summary>
@@ -392,7 +392,7 @@ public class CamController : MonoBehaviour {
 	/// </summary>
 	void BirdseyeUpdate() {
 		
-		float size = Mathf.Max(area.bounds.size.x/2f, area.bounds.size.y/2f);
+		float size = Mathf.Max(area.bounds.size.x/2f, area.bounds.size.z/2f);
 		size += _birdseyeDist;
 		size = Mathf.Max(size, 10f);
 		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, Time.deltaTime * 4f);

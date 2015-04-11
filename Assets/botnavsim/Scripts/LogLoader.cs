@@ -175,6 +175,7 @@ public class LogLoader : MonoBehaviour, IObservable  {
 					if (_response) {
 						// load environment and clear paths if YES
 						paths.Clear();
+						CamController.ClearAreaList();
 						LoadEnvironment(settings.environmentName);
 					} 
 					else {
@@ -300,6 +301,16 @@ public class LogLoader : MonoBehaviour, IObservable  {
 		// draw path lines
 		foreach(BotPath p in paths) {
 			 if (p.visible) p.DrawPath();
+		}
+	}
+	
+	void OnDrawGizmos() {
+		foreach(BotPath p in paths) {
+			if (p.visible) {
+				Gizmos.color = p.color;
+				Gizmos.DrawCube(p.bounds.center, p.bounds.size);
+				Gizmos.DrawLine(p.start, p.end);
+			}
 		}
 	}
 }

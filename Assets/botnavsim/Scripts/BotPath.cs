@@ -84,15 +84,20 @@ public class BotPath : IObservable  {
 	/// <param name="node">Node.</param>
 	/// <param name="time">Time.</param>
 	public void AddNode(Vector3 node, float time) {
-		if (_nodes.Count > 1)
+		if (_nodes.Count > 1) {
 			distance += Vector3.Distance(_nodes[_nodes.Count-1], node);
-		
+			
+			Bounds b = new Bounds(node, Vector3.one);
+			b.Encapsulate(bounds);
+			bounds = b;
+		}
+		else {
+			bounds = new Bounds(node, Vector3.one);
+		}
+			
 		_nodes.Add(node);
 		_times.Add(time);
-		Bounds b = new Bounds();
-		b.Encapsulate(bounds);
-		b.Encapsulate(node);
-		bounds = b;
+
 	}
 	
 	/// <summary>
