@@ -63,7 +63,7 @@ public class UI_CameraControls : IToolbar {
 		GUILayout.BeginHorizontal();
 		GUILayout.Label("Observing: ", GUILayout.Width(lw));
 		if (GUILayout.Button(CamController.area.name)) {
-			CamController.CyclePointOfInterest();
+			CamController.CycleAreaOfInterest();
 		}
 		GUILayout.EndHorizontal();
 	} 

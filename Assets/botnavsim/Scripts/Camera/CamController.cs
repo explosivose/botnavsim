@@ -153,10 +153,25 @@ public class CamController : MonoBehaviour {
 		_area = 0;
 	}
 	
+	
+	public static void SetAreaOfInterest(int index) {
+		// ignore out of range indexes
+		if (index < 0 || index >= _areas.Count) {
+			Debug.LogWarning("SetAreaOfInterest index param out of range. Ignoring.");
+			return;
+		}
+		_area = index;
+	}
+	
+	public static void SetAreaOfInterest(IObservable obj) {
+		int index = _areas.IndexOf(obj);
+		if (index > 0) _area = index;
+	}
+	
 	/// <summary>
 	/// Go to next area of interest
 	/// </summary>
-	public static void CyclePointOfInterest() {
+	public static void CycleAreaOfInterest() {
 		_area = (++_area) % _areas.Count;
 	}
 	
@@ -203,6 +218,15 @@ public class CamController : MonoBehaviour {
 		_modes.Clear();
 		_modes.Add(ViewMode.Static);
 		SetViewMode(0);
+	}
+	
+	/// <summary>
+	/// Sets the view mode.
+	/// </summary>
+	/// <param name="mode">ViewMode selection. If selection is not in viewModeList then it will fail.</param>
+	public static void SetViewMode(ViewMode mode) {
+		int index = _modes.IndexOf(mode);
+		SetViewMode(index);
 	}
 	
 	/// <summary>
@@ -293,7 +317,7 @@ public class CamController : MonoBehaviour {
 		if (Simulation.exhibitionMode) {
 			RandomViewMode();
 			RandomRenderMode();
-			CyclePointOfInterest();
+			CycleAreaOfInterest();
 		}
 	}
 	
@@ -334,7 +358,7 @@ public class CamController : MonoBehaviour {
 		if ( camera.pixelRect.Contains(Input.mousePosition) ) {
 			if (Input.GetKeyDown(KeyCode.C)) CycleViewMode();
 			if (Input.GetKeyDown(KeyCode.R)) CycleRenderMode();
-			if (Input.GetKeyDown(KeyCode.Space)) CyclePointOfInterest();
+			if (Input.GetKeyDown(KeyCode.Space)) CycleAreaOfInterest();
 			// scrollwheel zoom
 			_birdseyeDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
 			// adjust third person distance with scroll wheel input

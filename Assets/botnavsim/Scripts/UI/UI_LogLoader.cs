@@ -154,6 +154,10 @@ public class UI_LogLoader : IToolbar {
 			} else {
 				LogLoader.paths[i].highlight = false;
 			}
+			// observe button
+			if (GUILayout.Button("O")) {
+				CamController.SetAreaOfInterest(LogLoader.paths[i]);
+			}
 			// unload path button
 			if (GUILayout.Button("X")) {
 				LogLoader.RemovePath(LogLoader.paths[i]);
