@@ -15016,7 +15016,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 401766}
-  - 95: {fileID: 9500000}
   m_Layer: 9
   m_Name: BoeBot
   m_TagString: Untagged
@@ -50194,21 +50193,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1.25}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &9500000
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 101766}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 13fcb20cbc83799409fd5878e4c9967f, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
