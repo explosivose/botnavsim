@@ -46,6 +46,19 @@ public class CamController : MonoBehaviour {
 		BotData
 	}
 	
+	private class StubObservable : IObservable {
+		public StubObservable() {
+			bounds = new Bounds();
+		}
+		public string name {
+			get { return Strings.projectTitle; }
+		}
+		
+		public Bounds bounds {
+			get; private set;
+		}
+	}
+	
 	// static members
 	// ~-~-~-~-~-~-~-
 	
@@ -97,7 +110,12 @@ public class CamController : MonoBehaviour {
 	/// </summary>
 	/// <value>The area.</value>
 	public static IObservable area {
-		get { return _areas[_area]; }
+		get { 
+			if (_areas.Count > 0)
+				return _areas[_area]; 
+			else 
+				return _stub;
+		}
 	}
 	
 	/// <summary>
@@ -110,6 +128,7 @@ public class CamController : MonoBehaviour {
 	
 	private static List<ViewMode>		_modes;		// list of available ViewMode to use 
 	private static List<IObservable>	_areas;		// list of areas to point the camera at
+	private static IObservable			_stub;		// a stub object to use when _areas list is empty
 	private static int _mode; 						// index for _modes
 	private static int _area; 						// index for _areas
 	private static Camera _camera;
@@ -124,7 +143,7 @@ public class CamController : MonoBehaviour {
 		_modes = new List<ViewMode>();
 		_modes.Add(ViewMode.FreeMovement);
 		_areas = new List<IObservable>();
-		_areas.Add(BotNavSim.defaultObservable);
+		_stub = new StubObservable();
 	}
 
 	/// <summary>
@@ -149,7 +168,6 @@ public class CamController : MonoBehaviour {
 	/// </summary>
 	public static void ClearAreaList() {
 		_areas.Clear();
-		_areas.Add(BotNavSim.defaultObservable);
 		_area = 0;
 	}
 	
@@ -344,7 +362,6 @@ public class CamController : MonoBehaviour {
 	// called on the first frame for this instance 
 	void Start() {
 		SetViewMode(0);
-		_areas.Add(Simulation.Instance);
 	}
 	
 	// called every frame for this instance

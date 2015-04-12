@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// <summary>
 /// This is a manager class used to overlook the running of a simulation.
 /// </summary>
-public class Simulation : MonoBehaviour, IObservable {
+public class Simulation : MonoBehaviour {
 
 	public enum State {
 		/// <summary>
@@ -184,6 +184,38 @@ public class Simulation : MonoBehaviour, IObservable {
 		}
 	}
 
+	// observer class that defines an area that includes the robot and destination during a simulation
+	private class Observer : IObservable {
+		public Observer() {}
+		
+		public string name {
+			get { return "Simulation"; }
+		}
+		
+		public Bounds bounds {
+			get {
+				// encapsulate robot and destination
+				if (isRunning) {
+					Bounds b = new Bounds();
+					b.Encapsulate(robot.position);
+					b.Encapsulate(destination.transform.position);
+					return b;
+				} 
+				// use Simulation.Instance.Bounds
+				else {
+					return Simulation.Instance.bounds;
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Initializes the <see cref="Simulation"/> class.
+	/// </summary>
+	static Simulation() {
+		testArea = new Observer();
+	}
+
 	/// <summary>
 	/// Singleton pattern.
 	/// </summary>
@@ -202,7 +234,7 @@ public class Simulation : MonoBehaviour, IObservable {
 	/// Exhibition mode will run continually and 
 	/// randomly choose camera perspectives and simulation settings.
 	/// </summary>
-	public static bool exhibitionMode;
+	public static bool exhibitionMode;  
 	
 	/// <summary>
 	/// Gets or sets the settings for the current simulation.
@@ -276,6 +308,14 @@ public class Simulation : MonoBehaviour, IObservable {
 	/// <value>The destination.</value>
 	public static GameObject destination { 
 		get; private set; 
+	}
+	
+	/// <summary>
+	/// Gets the test area (Observer object)
+	/// </summary>
+	/// <value>The test area.</value>
+	public static IObservable testArea {
+		get; private set;
 	}
 	
 	// Simulation states
@@ -373,7 +413,7 @@ public class Simulation : MonoBehaviour, IObservable {
 		CamController.AddViewMode(CamController.ViewMode.FreeMovement);
 		CamController.AddViewMode(CamController.ViewMode.Mounted);
 		CamController.AddViewMode(CamController.ViewMode.Orbit);
-		CamController.AddAreaOfInterest(Instance);
+		CamController.AddAreaOfInterest(testArea);
 	}
 	
 	/// <summary>
@@ -588,6 +628,7 @@ public class Simulation : MonoBehaviour, IObservable {
 	public Bounds bounds {
 		get; private set;
 	}
+	
 	
 	// Called on gameobject created
 	void Awake() {

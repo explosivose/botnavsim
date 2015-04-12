@@ -8,7 +8,6 @@ public class BotNavSim  {
 	
 	static BotNavSim() {
 		_state = State.Idle;
-		_defaultObservable = new StubObservable();
 	}
 	
 	public enum State {
@@ -38,18 +37,7 @@ public class BotNavSim  {
 		EditingEnvironment
 	}
 	
-	private class StubObservable : IObservable {
-		public StubObservable() {
-			bounds = new Bounds();
-		}
-		public string name {
-			get { return Strings.projectTitle; }
-		}
 
-		public Bounds bounds {
-			get; private set;
-		}
-	}
 	
 	/// <summary>
 	/// Gets or sets the state.
@@ -114,21 +102,7 @@ public class BotNavSim  {
 		}
 	}
 	
-	public static IObservable defaultObservable {
-		get {
-			switch(_state) {
-			default:
-				return _defaultObservable;
-			case State.Simulating:
-				return Simulation.Instance;
-			case State.ViewingData:
-				return LogLoader.Instance;
-			}
-		}
-	}
-	
 	private static State _state;
-	private static StubObservable _defaultObservable;
 	
 	private static void ChangeState(State newState) {
 		// exit old state behaviour
