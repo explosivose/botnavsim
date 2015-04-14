@@ -77,6 +77,7 @@ public class UI_Toolbar : MonoBehaviour {
 		
 	}
 	
+	
 	/// <summary>
 	/// Draw GUI elements
 	/// </summary>
@@ -107,6 +108,11 @@ public class UI_Toolbar : MonoBehaviour {
 	/// <param name="windowID">Window ID.</param>
 	void ToolbarWindow(int windowID) {
 		_scrollPos = GUILayout.BeginScrollView(_scrollPos, true, false);
+		// about button
+		if (GUILayout.Button("About")) {
+			additionalWindows.Add(new UI_Credits());
+		}
+		
 		// horizontal separator
 		GUILayout.Box("", GUILayout.Width(innerWidth), GUILayout.Height(5));
 		if (!BotNavSim.isIdle) {
@@ -130,4 +136,5 @@ public class UI_Toolbar : MonoBehaviour {
 		}
 		GUILayout.EndScrollView();
 	}
+	
 }
