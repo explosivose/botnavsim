@@ -595,6 +595,7 @@ public class Simulation : MonoBehaviour {
 		yield return new WaitForSeconds(1f);
 		
 		CamController.Instance.OnTestStart();
+		destination.SendMessage("ChooseRandomSprite");
 		testNumber++;
 		Debug.Log("Simulation NextTest: " + testNumber + " of " + settings.numberOfTests);
 		
