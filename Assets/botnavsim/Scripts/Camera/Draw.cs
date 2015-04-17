@@ -7,7 +7,7 @@ using System.Collections.Generic;
 /// Note that GL implementations require that this Monobehaviour
 /// be attached to a the rendering camera (OnPostRender event)
 /// </summary>
-public class Draw : Singleton<Draw> {
+public class Draw : MonoBehaviour {
 
 /*
 
@@ -16,6 +16,7 @@ Do GL.Lines instead...
 
 */
 	
+	public static Draw Instance;
 
 	private class LineData {
 		public Vector3 start;
@@ -46,6 +47,12 @@ Do GL.Lines instead...
 	List<CubeData> gl_cubes = new List<CubeData>();
 	
 	void Awake() {
+		if (Instance == null){
+			Instance = this;
+		}
+		else {	
+			Destroy(this);
+		}
 		line = new GameObject("Line").transform;
 		line.gameObject.AddComponent<LineRenderer>();
 		LineRenderer ren =  line.GetComponent<LineRenderer>();
