@@ -4,7 +4,7 @@ using System.Collections;
 /// <summary>
 /// BotNavSim high-level manager class. Holds BotNavSim.State and controls state transition behaviour.
 /// </summary>
-public class BotNavSim {
+public class BotNavSim  {
 	
 	static BotNavSim() {
 		_state = State.Idle;
@@ -36,6 +36,8 @@ public class BotNavSim {
 		/// </summary>
 		EditingEnvironment
 	}
+	
+
 	
 	/// <summary>
 	/// Gets or sets the state.
@@ -99,7 +101,7 @@ public class BotNavSim {
 			return _state == State.EditingEnvironment;
 		}
 	}
-
+	
 	private static State _state;
 	
 	private static void ChangeState(State newState) {
@@ -125,8 +127,10 @@ public class BotNavSim {
 		case State.Idle:
 			break;
 		case State.Simulating:
+			Simulation.Enter();
 			break;
 		case State.ViewingData:
+			LogLoader.Enter();
 			break;
 		case State.EditingRobot:
 			break;
@@ -136,4 +140,6 @@ public class BotNavSim {
 		
 		Debug.Log("BotNavSim: " + state.ToString());
 	}
+	
 }
+

@@ -7,10 +7,11 @@ using System;
 /// <summary>
 /// Log loader state machine. 
 /// </summary>
-public class LogLoader : MonoBehaviour  {
+public class LogLoader : MonoBehaviour, IObservable  {
 	
 	public static LogLoader Instance;
 	
+	// static class constructor
 	static LogLoader() {
 		paths = new List<BotPath>();
 	}
@@ -22,15 +23,41 @@ public class LogLoader : MonoBehaviour  {
 		get; private set;
 	}
 	
+	public static bool loading {
+		get; private set;
+	}
+	
+	/// <summary>
+	/// Gets the environment game object.
+	/// </summary>
+	/// <value>The environment.</value>
 	public static GameObject environment {
 		get; private set;
 	}
 	
-	public static Bounds bounds {
+	/// <summary>
+	/// Gets the environment bounds.
+	/// </summary>
+	/// <value>The bounds.</value>
+	public Bounds bounds {
 		get; private set;
 	}
 	
+	private static bool _waitingForResponse;
+	private static bool _response;
+	
+	public static void Enter() {
+		CamController.AddViewMode(CamController.ViewMode.Birdseye);
+		CamController.AddViewMode(CamController.ViewMode.FreeMovement);
+		CamController.AddAreaOfInterest(Instance);
+	}
+	
+	/// <summary>
+	/// Exit BotNavSim.state behaviour: remove environment, clear paths
+	/// </summary>
 	public static void Exit() {
+		CamController.ClearAreaList();
+		CamController.ClearViewModeList();
 		environment.transform.Recycle();
 		paths.Clear();
 	}
@@ -42,27 +69,54 @@ public class LogLoader : MonoBehaviour  {
 	/// <returns>List of paths found in CSV file.</returns>
 	/// <param name="csvFilePath">Path to CSV file.</param>
 	public static void LoadPaths(string csvFilePath) {
+		
+		Instance.StartCoroutine( LoadCsvRoutine(csvFilePath) );
+		
+
+	}
+	
+	static void PromptResponse(bool response) {
+		_waitingForResponse = false;
+		_response = response;
+	}
+	
+	static IEnumerator LoadCsvRoutine(string csvFilePath) {
+		loading = true;
+		
 		string csvPath = Path.GetDirectoryName(csvFilePath);
 		string csvFileName = Path.GetFileName(csvFilePath);
 		
+		// try opening the file with StreamReader
 		StreamReader sr;
 		try {
 			sr = new StreamReader(csvFilePath);
 		}
 		catch (Exception e) {
+			// log exception
 			Debug.LogException(e);
-			return;
+			UI_Toolbar.I.additionalWindows.Add( 
+			    new UI_Prompt(
+				PromptResponse,
+				UI_Prompt.Type.Close,
+				"File Load Exception!",
+				"See log for details"
+				)
+			);
+			// stop loading
+			loading = false;
+			yield break;
 		}
-		
-		
-		// inspect comments 
+
+		// inspect CSV header 
 		string line;
+		string header = "";
 		string xmlFileName = null;
 		while ((line = sr.ReadLine()) != null) {
 			// stop inspecting when comments are no longer found
 			if (!line.StartsWith(Strings.csvComment)) {
 				break;
 			}
+			header += line;
 			// find XML filename stored in CSV
 			if (line.Contains(Strings.csvXmlCommentTag)) {
 				xmlFileName = line.Substring(
@@ -72,14 +126,31 @@ public class LogLoader : MonoBehaviour  {
 			}
 		}
 		
+		// temporary settings object for deserialization
 		Simulation.Settings settings;
+		
 		
 		// if xml filename was not found in csv...
 		if (xmlFileName == null) {
-			// prompt user whether to browse for XML
-			// or to choose an environment to load
-			// (not yet implemented)
 			settings = new Simulation.Settings();
+			// prompt user whether to select environment
+			_waitingForResponse = true;
+			UI_Toolbar.I.additionalWindows.Add( 
+			   	new UI_Prompt(
+					PromptResponse,
+					UI_Prompt.Type.YesNo,
+					"XML filename not found in CSV header!",
+					header + "\n Select environment to load?"
+				)
+			);
+			while (_waitingForResponse) {
+				yield return new WaitForSeconds(0.1f);
+			}
+			if (_response) {
+				/// not yet implemented
+				// browse environments and load selection
+				Debug.Log("Not yet implemented: browse and load environment");
+			}
 		}
 		else {
 			// try loading environment
@@ -87,17 +158,36 @@ public class LogLoader : MonoBehaviour  {
 			// if environment is different to the currently loaded environment
 			// prompt user for action  (discard other paths, or load new env and paths?)
 			// (not yet implemented)
-			// may need to change this to a coroutine and yield execution until
-			// a user prompt returns an appropriate action
-			EnvLoader.SearchForEnvironments();
-			if (environment) environment.transform.Recycle();
-			environment = EnvLoader.LoadEnvironment(settings.environmentName);
-			Debug.Log(environment);
-			bounds = new Bounds(Vector3.zero, Vector3.zero);
-			foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
-				bounds.Encapsulate(r.bounds);
-			Debug.Log (bounds);
-			// prompt user about browsing for an environment if one couldn't be loaded
+			if (environment) {
+				if (environment.name != settings.environmentName) {
+					_waitingForResponse = true;
+					UI_Toolbar.I.additionalWindows.Add( 
+					 	new UI_Prompt(
+							PromptResponse,
+							UI_Prompt.Type.OkCancel,
+							"Load new environment and paths?",
+							"CSV log is for a different environment. Load new environment and paths instead?"
+						)
+					);
+					while (_waitingForResponse) {
+						yield return new WaitForSeconds(0.1f);
+					}
+					if (_response) {
+						// load environment and clear paths if YES
+						paths.Clear();
+						CamController.ClearAreaList();
+						LoadEnvironment(settings.environmentName);
+					} 
+					else {
+						// stop loading if NO
+						loading = false;
+						yield break;
+					}
+				}
+			}
+			else {
+				LoadEnvironment(settings.environmentName);
+			}
 		}
 		
 		// load paths from CSV and display them
@@ -120,7 +210,7 @@ public class LogLoader : MonoBehaviour  {
 		
 		BotPath botpos = new BotPath();
 		botpos.csvName = csvFileName;
-
+		
 		// Build BotPath objects for each path type columns found
 		while((line = sr.ReadLine()) != null) {
 			row = line.Split(Strings.csvDelimiter);
@@ -138,10 +228,19 @@ public class LogLoader : MonoBehaviour  {
 		}
 		
 		
-		List<BotPath> pathsLoaded = new List<BotPath>();
-		pathsLoaded.Add(botpos);
-		paths.AddRange(pathsLoaded);
+		AddPath(botpos);
 		UpdatePathColors();
+		loading = false;
+	}
+	
+	public static void AddPath(BotPath path) {
+		if (!paths.Contains(path)) paths.Add(path);
+		CamController.AddAreaOfInterest(path);
+	}
+	
+	public static void RemovePath(BotPath path) {
+		paths.Remove(path);
+		CamController.RemoveAreaOfInterest(path);
 	}
 	
 	/// <summary>
@@ -151,10 +250,22 @@ public class LogLoader : MonoBehaviour  {
 		float d = 1f/(float)paths.Count;
 		for(int i = 0; i < paths.Count; i++) {
 			float h = i*d;
-			//Color c = UnityEditor.EditorGUIUtility.HSVToRGB(h,1f,1f);
 			Color c = HSBColor.ToColor(new HSBColor(h,1f,1f));
 			paths[i].color = c;
 		}
+	}
+	
+	private static void LoadEnvironment(string name) {
+		EnvLoader.SearchForEnvironments();
+		if (environment) environment.transform.Recycle();
+		environment = EnvLoader.LoadEnvironment(name);
+		environment.name = name; // avoids: Unity appending "(Clone)" to instance names
+		Debug.Log(environment);
+		Bounds b = new Bounds();
+		foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
+			b.Encapsulate(r.bounds);
+		Instance.bounds = b;
+		CamController.SetViewMode(CamController.ViewMode.Birdseye);
 	}
 	
 	/// <summary>
@@ -188,8 +299,19 @@ public class LogLoader : MonoBehaviour  {
 	/// Raises the GUI event.
 	/// </summary>
 	void OnGUI() {
+		// draw path lines
 		foreach(BotPath p in paths) {
 			 if (p.visible) p.DrawPath();
+		}
+	}
+	
+	void OnDrawGizmos() {
+		foreach(BotPath p in paths) {
+			if (p.visible) {
+				Gizmos.color = p.color;
+				Gizmos.DrawCube(p.bounds.center, p.bounds.size);
+				Gizmos.DrawLine(p.start, p.end);
+			}
 		}
 	}
 }

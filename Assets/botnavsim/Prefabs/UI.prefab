@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 114: {fileID: 11443242}
+  - 114: {fileID: 11417150}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.5251846, y: 9.69998646, z: 6.33694458}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11417150
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eae685b8eefa7cf43805d5ed9516fa21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  credits:
+  - name: 3D model of AR Drone
+    author: matthieu M.
+    description: Freely available on 3dwarehouse.sketchup.com
+    url: https://3dwarehouse.sketchup.com/model.html?id=fb442457163fcdbed04e3327b51cff5c
+  - name: 3D model of Parallax BoeBot
+    author: Nikos Giannakopoulos
+    description: The 3D model of the BoeBot was made in Sketchup and published on
+      the Parallax forum by the author.
+    url: http://forums.parallax.com/showthread.php/126536-Parallax-products-and-Google-SketchUP
+  - name: Textures & concrete barriers
+    author: Yughues
+    description: These quality art assets were provided for free by Yughues on the
+      Unity Asset Store.
+    url: https://www.assetstore.unity3d.com/en/#!/publisher/4986
+  - name: Support and resources
+    author: Loughborough University
+    description: Many thanks to my project supervisor David Mulvaney and my other
+      peers.
+    url: http://www.lboro.ac.uk/
+  - name: Project resository
+    author: GitHub
+    description: Source code available here. Thanks GitHub!
+    url: https://github.com/explosivose/botnavsim
+  width: 500
+--- !u!114 &11443242
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313b93b6ce3f2de4e87ba56d2699803b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  width: 450
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

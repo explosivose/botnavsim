@@ -1,10 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 public static class Strings  {
 
 	public const string projectTitle = "BotNavSim";
-	public const string projectVersion = "v0.4.1";
+	public const string projectVersion = "v0.4.2-a";
+	
+	public const string projectAbout = 
+		"BotNavSim is a master's research project exploring the use of Unity3D for " + 
+		"developing robot simulations. The project is developed at Loughborough University " + 
+		"by undergraduate Matt Blickem.";
+	
 	
 	/// <summary>
 	/// The csv delimiter character. Avoid using comma because some
@@ -22,8 +30,15 @@ public static class Strings  {
 	/// </summary>
 	public const string csvXmlCommentTag = " XML:";
 	
-	public static string logFileDirectory = System.Environment.CurrentDirectory + "\\Logs";
-	public static string navigationPluginDirectory = System.Environment.CurrentDirectory + "\\INavigation";
+	public static string logFileDirectory {
+		get { return System.Environment.CurrentDirectory + "\\Logs"; }
+	}
+	public static string navigationPluginDirectory {
+		get { return System.Environment.CurrentDirectory + "\\INavigation"; }
+	} 
+	public static string creditDirectory {
+		get { return System.Environment.CurrentDirectory + "\\Credits"; }
+	} 
 	
 	public static char[] invalidFileNameChars {
 		get {

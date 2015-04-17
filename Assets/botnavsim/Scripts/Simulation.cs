@@ -184,6 +184,38 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
+	// observer class that defines an area that includes the robot and destination during a simulation
+	private class Observer : IObservable {
+		public Observer() {}
+		
+		public string name {
+			get { return "Simulation"; }
+		}
+		
+		public Bounds bounds {
+			get {
+				// encapsulate robot and destination
+				if (isRunning) {
+					Bounds b = new Bounds();
+					b.Encapsulate(robot.position);
+					b.Encapsulate(destination.transform.position);
+					return b;
+				} 
+				// use Simulation.Instance.Bounds
+				else {
+					return Simulation.Instance.bounds;
+				}
+			}
+		}
+	}
+
+	/// <summary>
+	/// Initializes the <see cref="Simulation"/> class.
+	/// </summary>
+	static Simulation() {
+		testArea = new Observer();
+	}
+
 	/// <summary>
 	/// Singleton pattern.
 	/// </summary>
@@ -202,7 +234,7 @@ public class Simulation : MonoBehaviour {
 	/// Exhibition mode will run continually and 
 	/// randomly choose camera perspectives and simulation settings.
 	/// </summary>
-	public static bool exhibitionMode;
+	public static bool exhibitionMode;  
 	
 	/// <summary>
 	/// Gets or sets the settings for the current simulation.
@@ -278,6 +310,14 @@ public class Simulation : MonoBehaviour {
 		get; private set; 
 	}
 	
+	/// <summary>
+	/// Gets the test area (Observer object)
+	/// </summary>
+	/// <value>The test area.</value>
+	public static IObservable testArea {
+		get; private set;
+	}
+	
 	// Simulation states
 	/// <summary>
 	/// Gets a value indicating whether this <see cref="Simulation"/> has not yet started.
@@ -307,12 +347,7 @@ public class Simulation : MonoBehaviour {
 	public static bool isFinished {
 		get { return state == State.end; }
 	}
-	
-	/// <summary>
-	/// The simulation bounds described as a cube. This is the search
-	/// space indicated to INavigation.
-	/// </summary>
-	public static Bounds bounds;
+
 	
 	/// <summary>
 	/// If true, simulation will be logged to a file via Log class.
@@ -371,6 +406,17 @@ public class Simulation : MonoBehaviour {
 	/* ### Static Methods ### */
 	
 	/// <summary>
+	/// Enter this instance.
+	/// </summary>
+	public static void Enter() {
+		CamController.AddViewMode(CamController.ViewMode.Birdseye);
+		CamController.AddViewMode(CamController.ViewMode.FreeMovement);
+		CamController.AddViewMode(CamController.ViewMode.Mounted);
+		CamController.AddViewMode(CamController.ViewMode.Orbit);
+		CamController.AddAreaOfInterest(testArea);
+	}
+	
+	/// <summary>
 	/// Begin simulating.
 	/// </summary>
 	public static void Begin() {
@@ -406,10 +452,14 @@ public class Simulation : MonoBehaviour {
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
 		destination.transform.position = RandomInBounds();
 		// load robot
-		Camera.main.transform.parent = null;
+		if (robot) CamController.RemoveAreaOfInterest(robot);
 		BotLoader.SearchForRobots();
 		robot = BotLoader.LoadRobot(settings.robotName);
 		robot.navigation = NavLoader.LoadPlugin(settings.navigationAssemblyName);
+		// configure camera
+		CamController.AddAreaOfInterest(robot);
+		CamController.SetViewMode(CamController.ViewMode.Birdseye);
+		CamController.SetAreaOfInterest(robot);
 		// reset test number
 		testNumber = 0;
 		NextTest();
@@ -476,6 +526,7 @@ public class Simulation : MonoBehaviour {
 	/// </summary>
 	public static void End() {
 		Debug.Log("Simulation End.");
+		settings.active = false;
 		state = State.end;
 		
 		// in exhibition mode, run more simulations with random settings
@@ -500,6 +551,8 @@ public class Simulation : MonoBehaviour {
 		if (Log.logging) Log.Stop(StopCode.Unspecified);
 		if (robot) robot.Recycle();
 		if (environment) environment.transform.Recycle();
+		CamController.ClearAreaList();
+		CamController.ClearViewModeList();
 		state = State.inactive;
 	}
 	
@@ -510,11 +563,10 @@ public class Simulation : MonoBehaviour {
 	/// </summary>
 	/// <returns>Random position inside simulation bounds.</returns>
 	public static Vector3 RandomInBounds() {
-		Vector3 v = bounds.min;
-		v.x += Random.Range(0f, bounds.max.x);
-		v.y += bounds.max.y;
-		v.z += Random.Range(0f, bounds.max.z);
-		Debug.Log (bounds);
+		Vector3 v = Instance.bounds.min;
+		v.x += Random.Range(0f, Instance.bounds.max.x);
+		v.y += Instance.bounds.max.y;
+		v.z += Random.Range(0f, Instance.bounds.max.z);
 		RaycastHit hit;
 		if (Physics.Raycast(v, Vector3.down, out hit, 100f)) {
 			v = hit.point + hit.normal;
@@ -543,6 +595,7 @@ public class Simulation : MonoBehaviour {
 		yield return new WaitForSeconds(1f);
 		
 		CamController.Instance.OnTestStart();
+		destination.SendMessage("ChooseRandomSprite");
 		testNumber++;
 		Debug.Log("Simulation NextTest: " + testNumber + " of " + settings.numberOfTests);
 		
@@ -555,14 +608,28 @@ public class Simulation : MonoBehaviour {
 		robot.NavigateToDestination();
 	}
 	
+	
+
+	
 	// Set the simulation bounds to encapsulate all renderers in scene
 	private static void SetBounds() {
-		bounds = new Bounds(Vector3.zero, Vector3.zero);
+		Bounds b = new Bounds();
 		foreach(Renderer r in environment.GetComponentsInChildren<Renderer>())
-			bounds.Encapsulate(r.bounds);
+			b.Encapsulate(r.bounds);
+			
+		Instance.bounds = b;
 	}
 
 	/** Instance Methods **/
+	
+	/// <summary>
+	/// The simulation bounds described as a cube. This is the search
+	/// space indicated to INavigation.
+	/// </summary>
+	public Bounds bounds {
+		get; private set;
+	}
+	
 	
 	// Called on gameobject created
 	void Awake() {

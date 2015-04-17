@@ -11,7 +11,7 @@ public class UI_LogLoader : IToolbar {
 		// initialise file browsing
 		_files = FileBrowser.ListFiles(Strings.logFileDirectory);
 		_folders = FileBrowser.ListFolders(Strings.logFileDirectory);
-		_subPath = "";
+		_subPath = "\\";
 		// initialise window stack
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(Legend);
@@ -31,7 +31,7 @@ public class UI_LogLoader : IToolbar {
 
 	public string windowTitle {
 		get {
-			return "Data Playback";
+			return "Log Loader";
 		}
 	}
 
@@ -60,7 +60,6 @@ public class UI_LogLoader : IToolbar {
 	/// Refresh this the files and folders in current directory
 	/// </summary>
 	private void Refresh() {
-		Debug.Log(currentDir);
 		_files = FileBrowser.ListFiles(currentDir, "*.csv");
 		_folders = FileBrowser.ListFolders(currentDir);
 	}
@@ -101,23 +100,27 @@ public class UI_LogLoader : IToolbar {
 		for (int i = 0; i < _folders.Count; i++) {
 			// enter subdirectory
 			if (GUILayout.Button(_folders[i])) {
-				_subPath += "\\" + new DirectoryInfo(_folders[i]).Name;
+				_subPath += new DirectoryInfo(_folders[i]).Name;
 				Refresh();
 			}
 		}
-		// list files
-		for (int i = 0; i < _files.Count; i++) {
-			// try paths from file
-			if (GUILayout.Button(_files[i])) {
-				// change state when loading first data
-				if (BotNavSim.isIdle) {
-					BotNavSim.state = BotNavSim.State.ViewingData;
+		if (LogLoader.loading) {
+			GUILayout.Label("Loading...");
+		}
+		else {
+			// list files
+			for (int i = 0; i < _files.Count; i++) {
+				// try paths from file
+				if (GUILayout.Button(_files[i])) {
+					// change state when loading first data
+					if (BotNavSim.isIdle) {
+						BotNavSim.state = BotNavSim.State.ViewingData;
+					}
+					LogLoader.LoadPaths(currentDir + "\\" + _files[i]);
 				}
-				LogLoader.LoadPaths(currentDir + "\\" + _files[i]);
 			}
 		}
-		
-		//GUI.DragWindow();
+
 	}
 	
 	private void Legend(int windowID) {
@@ -130,10 +133,6 @@ public class UI_LogLoader : IToolbar {
 			_windows.Push(CsvBrowser);
 		}
 		GUILayout.EndHorizontal();
-		
-		// Hacky, temporary camera placement
-		Camera.main.orthographicSize = 50f;
-		Camera.main.transform.position = Simulation.bounds.center + Vector3.up * 100f;
 		
 		if (LogLoader.paths.Count < 1) {
 			GUILayout.Label("No paths loaded.");
@@ -155,9 +154,13 @@ public class UI_LogLoader : IToolbar {
 			} else {
 				LogLoader.paths[i].highlight = false;
 			}
+			// observe button
+			if (GUILayout.Button("O")) {
+				CamController.SetAreaOfInterest(LogLoader.paths[i]);
+			}
 			// unload path button
 			if (GUILayout.Button("X")) {
-				LogLoader.paths.RemoveAt(i);
+				LogLoader.RemovePath(LogLoader.paths[i]);
 			}
 			GUILayout.EndHorizontal();
 		}

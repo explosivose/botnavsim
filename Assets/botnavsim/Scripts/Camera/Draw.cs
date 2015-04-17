@@ -7,7 +7,7 @@ using System.Collections.Generic;
 /// Note that GL implementations require that this Monobehaviour
 /// be attached to a the rendering camera (OnPostRender event)
 /// </summary>
-public class Draw : Singleton<Draw> {
+public class Draw : MonoBehaviour {
 
 /*
 
@@ -16,6 +16,7 @@ Do GL.Lines instead...
 
 */
 	
+	public static Draw Instance;
 
 	private class LineData {
 		public Vector3 start;
@@ -46,6 +47,12 @@ Do GL.Lines instead...
 	List<CubeData> gl_cubes = new List<CubeData>();
 	
 	void Awake() {
+		if (Instance == null){
+			Instance = this;
+		}
+		else {	
+			Destroy(this);
+		}
 		line = new GameObject("Line").transform;
 		line.gameObject.AddComponent<LineRenderer>();
 		LineRenderer ren =  line.GetComponent<LineRenderer>();
@@ -93,11 +100,9 @@ Do GL.Lines instead...
 	
 
 	private void GLLine(LineData line) {
-		GL.Begin(GL.LINES);
 		GL.Color(line.color);
 		GL.Vertex(line.start);
 		GL.Vertex(line.end);
-		GL.End();
 	}
 	
 	private void GLCube(CubeData cube) {
@@ -107,49 +112,45 @@ Do GL.Lines instead...
 		float x = cube.center.x;
 		float y = cube.center.y;
 		float z = cube.center.z;
-		GL.Begin(GL.LINES);
+		
 		GL.Color(cube.color);
+		
 		GL.Vertex3(x - w/2f, y - h/2f, z - d/2f); // 4
 		GL.Vertex3(x - w/2f, y - h/2f, z + d/2f); // 1
 		GL.Vertex3(x - w/2f, y + h/2f, z + d/2f); // 2
 		GL.Vertex3(x - w/2f, y + h/2f, z - d/2f); // 3
-		GL.End();
-		GL.Begin(GL.LINES);
-		GL.Color(cube.color);
+
 		GL.Vertex3(x + w/2f, y - h/2f, z - d/2f); // 5
 		GL.Vertex3(x - w/2f, y - h/2f, z - d/2f); // 4
 		GL.Vertex3(x - w/2f, y + h/2f, z - d/2f); // 3
 		GL.Vertex3(x + w/2f, y + h/2f, z - d/2f); // 8
-		GL.End();
-		GL.Begin(GL.LINES);
-		GL.Color(cube.color);
+
 		GL.Vertex3(x + w/2f, y - h/2f, z + d/2f); // 6
 		GL.Vertex3(x + w/2f, y - h/2f, z - d/2f); // 5
 		GL.Vertex3(x + w/2f, y + h/2f, z - d/2f); // 8
 		GL.Vertex3(x + w/2f, y + h/2f, z + d/2f); // 7
-		GL.End();
-		GL.Begin(GL.LINES);
-		GL.Color (cube.color);
+		
 		GL.Vertex3(x - w/2f, y - h/2f, z + d/2f); // 1
 		GL.Vertex3(x + w/2f, y - h/2f, z + d/2f); // 6
 		GL.Vertex3(x + w/2f, y + h/2f, z + d/2f); // 7
 		GL.Vertex3(x - w/2f, y + h/2f, z + d/2f); // 2
-		GL.End();
 	}
 	
 	/// <summary>
 	/// Raises the post render event. Use this for GL stuff.
 	/// </summary>
 	void OnPostRender() {
-		if (CamController.Instance.renderMode == CamController.RenderMode.Normal) return;
+		if (CamController.renderMode == CamController.RenderMode.Normal) return;
 		GL.PushMatrix();
 		glLineMaterial.SetPass(0);
+		GL.Begin(GL.LINES);
 		foreach(LineData line in gl_lines) {
 			GLLine(line);
 		}
 		foreach(CubeData cube in gl_cubes) {
 			GLCube(cube);
 		}
+		GL.End();
 		GL.PopMatrix();
 		gl_lines.Clear();
 		gl_cubes.Clear();

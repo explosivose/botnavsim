@@ -7,6 +7,7 @@ using System.Collections.Generic;
 /// <summary>
 /// UI Toolbar provides controls for choosing which UI windows to display
 /// </summary>
+[RequireComponent(typeof(UI_Credits))]
 public class UI_Toolbar : MonoBehaviour {
 
 	/// <summary>
@@ -39,6 +40,7 @@ public class UI_Toolbar : MonoBehaviour {
 	private GUISkin _skin;
 	private Vector2 _scrollPos;
 	private int winId;
+	private UI_Credits _credits;
 	
 	void Awake() {
 		// singleton pattern
@@ -74,8 +76,9 @@ public class UI_Toolbar : MonoBehaviour {
 		// get GUISkin
 		_skin = Resources.Load<GUISkin>("GUI_style");
 		_scrollPos = new Vector2();
-		
+		_credits = GetComponent<UI_Credits>();
 	}
+	
 	
 	/// <summary>
 	/// Draw GUI elements
@@ -85,19 +88,10 @@ public class UI_Toolbar : MonoBehaviour {
 		GUI.skin = _skin;
 		winId = 1;
 		// set toolbar size and position
-		rect = new Rect(0,0,width,Screen.height);
+		rect = new Rect(Screen.width-width,0,width,Screen.height);
 		// display toolbar window
 		rect = GUILayout.Window(winId++, rect, ToolbarWindow, Strings.projectTitle + "-" + Strings.projectVersion);
-		// display any visible toolbar windows
-		foreach(IToolbar t in _tools) {
-			// only handle windows that are contextual
-			if (t.contextual) {
-				// display windows that aren't hidden
-				if (!t.hidden) {
-					//t.windowRect = GUILayout.Window(winId++, t.windowRect, t.windowFunction, t.windowTitle);
-				}
-			}
-		}
+
 		// display any additional windows
 		for(int i = 0; i < additionalWindows.Count; i++) {
 			IWindowFunction w = additionalWindows[i];
@@ -116,6 +110,11 @@ public class UI_Toolbar : MonoBehaviour {
 	/// <param name="windowID">Window ID.</param>
 	void ToolbarWindow(int windowID) {
 		_scrollPos = GUILayout.BeginScrollView(_scrollPos, true, false);
+		// about button
+		if (GUILayout.Button("About", GUILayout.Width(innerWidth))) {
+			additionalWindows.Add(_credits);
+		}
+		
 		// horizontal separator
 		GUILayout.Box("", GUILayout.Width(innerWidth), GUILayout.Height(5));
 		if (!BotNavSim.isIdle) {
@@ -139,4 +138,5 @@ public class UI_Toolbar : MonoBehaviour {
 		}
 		GUILayout.EndScrollView();
 	}
+	
 }

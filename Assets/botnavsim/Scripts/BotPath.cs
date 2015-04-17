@@ -6,7 +6,7 @@ using System.Collections.Generic;
 /// BotPath displays information about a recorded path taken or calculated.
 /// </summary>
 [System.Serializable]
-public class BotPath  {
+public class BotPath : IObservable  {
 	
 	public BotPath() {
 		_nodes = new List<Vector3>();
@@ -60,6 +60,14 @@ public class BotPath  {
 		}
 	}
 	
+	public Bounds bounds {
+		get; private set;
+	}
+	
+	public string name {
+		get { return csvName; }
+	}
+	
 	/// <summary>
 	/// Gets or sets the color used in drawing the path via Draw.
 	/// </summary>
@@ -76,12 +84,20 @@ public class BotPath  {
 	/// <param name="node">Node.</param>
 	/// <param name="time">Time.</param>
 	public void AddNode(Vector3 node, float time) {
-		if (_nodes.Count > 1)
+		if (_nodes.Count > 1) {
 			distance += Vector3.Distance(_nodes[_nodes.Count-1], node);
-		
+			
+			Bounds b = new Bounds(node, Vector3.one);
+			b.Encapsulate(bounds);
+			bounds = b;
+		}
+		else {
+			bounds = new Bounds(node, Vector3.one);
+		}
+			
 		_nodes.Add(node);
 		_times.Add(time);
-		
+
 	}
 	
 	/// <summary>
