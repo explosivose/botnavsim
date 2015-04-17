@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="Windows-1252"?>
-<Credit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <name>3D model of AR Drone</name>
-  <author>John Wiseman</author>
-  <description>The 3D model of the AR Drone was built in Sketchup and provided by the author on GitHub.</description>
-  <url>https://github.com/wiseman/ardrone-browser-3d/tree/master/public/assets</url>
-</Credit>

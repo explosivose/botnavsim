@@ -7,6 +7,7 @@ using System.Collections.Generic;
 /// <summary>
 /// UI Toolbar provides controls for choosing which UI windows to display
 /// </summary>
+[RequireComponent(typeof(UI_Credits))]
 public class UI_Toolbar : MonoBehaviour {
 
 	/// <summary>
@@ -39,6 +40,7 @@ public class UI_Toolbar : MonoBehaviour {
 	private GUISkin _skin;
 	private Vector2 _scrollPos;
 	private int winId;
+	private UI_Credits _credits;
 	
 	void Awake() {
 		// singleton pattern
@@ -74,7 +76,7 @@ public class UI_Toolbar : MonoBehaviour {
 		// get GUISkin
 		_skin = Resources.Load<GUISkin>("GUI_style");
 		_scrollPos = new Vector2();
-		
+		_credits = GetComponent<UI_Credits>();
 	}
 	
 	
@@ -109,8 +111,8 @@ public class UI_Toolbar : MonoBehaviour {
 	void ToolbarWindow(int windowID) {
 		_scrollPos = GUILayout.BeginScrollView(_scrollPos, true, false);
 		// about button
-		if (GUILayout.Button("About")) {
-			additionalWindows.Add(new UI_Credits());
+		if (GUILayout.Button("About", GUILayout.Width(innerWidth))) {
+			additionalWindows.Add(_credits);
 		}
 		
 		// horizontal separator
