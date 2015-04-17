@@ -206,7 +206,7 @@ public class Log  {
 		case Parameters.NavigationPathFound:
 			return Simulation.robot.navigation.pathFound.ToString();
 		case Parameters.NavigationMoveDirection:
-			return Simulation.robot.moveCommand.ToString();
+			return Simulation.robot.navigationCommand.ToString();
 		}
 		return null;
 	}

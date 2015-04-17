@@ -4,7 +4,7 @@ using System.Collections;
 // param sensor returns the sensor direction at the smallest
 // range inside a cone 
 
-public class ParamSensor : MonoBehaviour, ISensor {
+public class ParamSensor : Sensor {
 
 	public bool drawDebug = true;
 	public float FOV = 20f;
@@ -16,7 +16,7 @@ public class ParamSensor : MonoBehaviour, ISensor {
 	private ProximityData 	_data;
 	
 	
-	public ProximityData GetData () {
+	public override ProximityData GetData () {
 		if (Time.time > _lastUpdateTime + 1f/maxUpdateRate) {
 			UpdateData();
 		}

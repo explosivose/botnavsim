@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 public static class Strings  {
 
 	public const string projectTitle = "BotNavSim";
-	public const string projectVersion = "v0.4.2-a";
+	public const string projectVersion = "v0.4.3-dev";
 	
 	public const string projectAbout = 
 		"BotNavSim is a master's research project exploring the use of Unity3D for " + 

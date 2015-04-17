@@ -28,7 +28,7 @@ public class BoeBot : MonoBehaviour {
 	
 	void Update() {
 		Vector3 right = transform.right;
-		_moveDirection = _robot.moveCommand;
+		_moveDirection = _robot.navigationCommand;
 		
 		// do nothing if move command is small (expected length is 1f)
 		if (_moveDirection.magnitude < 0.5f) {

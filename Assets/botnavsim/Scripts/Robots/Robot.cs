@@ -4,7 +4,7 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 /// <summary>
 /// Robot class bridges the gap between sensors and INavigation. The navigation 
-/// direction is cached in Robot.moveCommand. This class does not implement
+/// direction is cached in Robot.navigationCommand. This class does not implement
 /// any physics simulation. Robot locomotion models are implemented
 /// in other classes that require this component for communications and data. 
 /// </summary>
@@ -14,17 +14,16 @@ public class Robot : MonoBehaviour, IObservable {
 	// ~-~-~-~-~-~-~-~-
 	public bool 		manualControl;
 	public bool 		moveEnabled;
-	public float		stopDistance;	// how close the robot will get to _destination before stopping
-	public ParamSensor[] 	sensors;
+	public float		stopDistance;	// how close the robot will get to destination before stopping
+	public Sensor[] 	sensors;
 	public Transform 	destination;	
 	public Vector3 		centerOfMass;
 	
-	// private members
+	// private fields
 	// ~-~-~-~-~-~-~-~-
 	
-	private INavigation _navigation;
-	private Vector3 	_move;			// the move command applied to our rigidbody
-	private Vector3?	_destination;	// used to automatically stop when near a target location
+	private INavigation _navigation;	// reference to the navigation assembly
+	private Vector3 	_move;			// the move command from the navigation assembly
 	private int 		_snsrIndex;		// circular index for sensor array
 	private int 		_stuckCounter;
 	private Vector3[]	_positions;
@@ -61,12 +60,20 @@ public class Robot : MonoBehaviour, IObservable {
 	}
 	
 	/// <summary>
-	/// The normalized move command direction from INavigation. 
+	/// The cached navigation bearing from INavigation.
 	/// </summary>
 	/// <value>The move command.</value>
-	public Vector3 moveCommand {
+	public Vector3 navigationCommand {
+		get; private set;
+	}
+	
+	/// <summary>
+	/// Gets a value indicating whether <see cref="navigation"/> found a path to <see cref="destination"/>.
+	/// </summary>
+	/// <value><c>true</c> if path found; otherwise, <c>false</c>.</value>
+	public bool pathFound {
 		get {
-			return _move;
+			return _navigation.pathFound;
 		}
 	}
 	
@@ -85,6 +92,10 @@ public class Robot : MonoBehaviour, IObservable {
 	/// <value>The camera mount position.</value>
 	public Transform cameraMount { get; private set; }
 	
+	/// <summary>
+	/// Gets the bounds of the robot for IObservable
+	/// </summary>
+	/// <value>The bounds.</value>
 	public Bounds bounds {
 		get {
 			return new Bounds(transform.position, _size);
@@ -104,7 +115,8 @@ public class Robot : MonoBehaviour, IObservable {
 			return data;
 		}
 	}
-
+	
+	
 	public bool atDestination {
 		get {
 			if (!destination) return false;
@@ -154,7 +166,7 @@ public class Robot : MonoBehaviour, IObservable {
 	
 	// Populate sensor array
 	private void InitialiseSensors() {
-		sensors = GetComponentsInChildren<ParamSensor>();
+		sensors = GetComponentsInChildren<Sensor>();
 	}
 	
 	private void Awake() {
@@ -185,8 +197,7 @@ public class Robot : MonoBehaviour, IObservable {
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
 			float y = Input.GetAxis ("Vertical");
-			_move.x = x;
-			_move.z = y;
+			navigationCommand = new Vector3(x, 0, y);
 		}
 		else if (Simulation.isRunning){
 			
@@ -198,13 +209,11 @@ public class Robot : MonoBehaviour, IObservable {
 				data.direction = transform.InverseTransformDirection(data.direction);
 				_navigation.Proximity(Vector3.zero, 
 										data.direction, 
-										20f,
 										data.obstructed);
 			}
 			else {
 				_navigation.Proximity(transform.position, 
 				                      transform.position + data.direction, 
-				                      20f,
 				                      data.obstructed);
 			}
 			
@@ -224,16 +233,16 @@ public class Robot : MonoBehaviour, IObservable {
 			// Read move direction if a path has been found.
 			if (_navigation.pathFound) {
 				if (navigation.spaceRelativeTo == Space.Self) {
-					_move = _navigation.PathDirection(Vector3.zero);
-					_move = transform.TransformDirection(_move);
+					navigationCommand = _navigation.PathDirection(Vector3.zero);
+					navigationCommand = transform.TransformDirection(navigationCommand);
 				}
 				else {
-					_move = _navigation.PathDirection(transform.position + Vector3.up);
+					navigationCommand = _navigation.PathDirection(transform.position + Vector3.up);
 				}
-				Debug.DrawRay(transform.position, _move * stopDistance, Color.green);
+				Debug.DrawRay(transform.position, navigationCommand * stopDistance, Color.green);
 			}
 			else {
-				_move = Vector3.zero;
+				navigationCommand = Vector3.zero;
 			}		
 		}
 	}

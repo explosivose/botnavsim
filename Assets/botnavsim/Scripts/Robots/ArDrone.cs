@@ -40,7 +40,7 @@ public class ArDrone : MonoBehaviour {
 		Vector3 yaw = -transform.right;
 		yaw.y = 0;
 		Debug.DrawRay(transform.position, yaw * 2f, Color.red);
-		Vector3 targetYaw = _robot.moveCommand;
+		Vector3 targetYaw = _robot.navigationCommand;
 		targetYaw.y = 0f;
 		Debug.DrawRay(transform.position, targetYaw * 3f, Color.green);
 		
@@ -49,7 +49,7 @@ public class ArDrone : MonoBehaviour {
 		rigidbody.AddTorque(0f, ang, 0f);
 		
 		if (Mathf.Abs(bearing) < 0.25f) {
-			rigidbody.AddForce(_robot.moveCommand.normalized * 2f);
+			rigidbody.AddForce(_robot.navigationCommand.normalized * 2f);
 		}
 	}
 	
