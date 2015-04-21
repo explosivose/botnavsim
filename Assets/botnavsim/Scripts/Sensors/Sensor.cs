@@ -4,7 +4,6 @@ using System.Collections;
 
 
 abstract public class Sensor : MonoBehaviour {
-
-	abstract public ProximityData GetData();
-	
+	abstract public void Enable(Robot.SensorData callback);
+	abstract public void Disable();
 }

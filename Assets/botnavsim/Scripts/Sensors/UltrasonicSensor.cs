@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Ultrasonic sensor model. 
+/// </summary>
 public class UltrasonicSensor : Sensor {
+	
+	// public fields
 	
 	public float updateDt;
 	public float Fov;
@@ -9,37 +14,52 @@ public class UltrasonicSensor : Sensor {
 	public bool test;
 	public LayerMask raycastLayer;
 	
-	private float _lastUpdateTime;
+	private Robot.SensorData _callback;
 	private ProximityData _data;
 	private Color _recieveColor;
 	private Color _hitColor;
 	private Color _missColor;
+	
+	
+	public override void Enable (Robot.SensorData callback) {
+		scanning = true;
+		_callback = callback;
+		StartCoroutine(Scan());
+	}
 
-	public override ProximityData GetData () {
-		if (Time.time > _lastUpdateTime + updateDt) Scan();
-		return _data;
+	public override void Disable () {
+		scanning = false;
+	}
+
+	public bool scanning {
+		get; private set;
 	}
 	
 	// scan for obstructions in a cone 
-	private void Scan() {
-		_lastUpdateTime = Time.time;
-		float proximity = maxRange;
-		// roll
-		for (float r = 0; r <= 180f; r += 10f) {
-			// yaw
-			for (float y = -Fov; y < Fov; y += 2f){
-				Quaternion rotation;
-				Vector3 direction;
-				rotation = Quaternion.AngleAxis(y, transform.up);
-				direction = rotation * transform.forward;
-				rotation = Quaternion.AngleAxis(r, transform.forward);
-				direction = rotation * direction;
-				float cast = Cast(direction);
-				// if this cast is shorter than returnData
-				if (cast < proximity) proximity = cast;
+	private IEnumerator Scan() {
+		
+		while(scanning) {
+			float proximity = maxRange;
+			// roll
+			for (float r = 0; r <= 180f; r += 10f) {
+				// yaw
+				for (float y = -Fov; y < Fov; y += 2f){
+					Quaternion rotation;
+					Vector3 direction;
+					rotation = Quaternion.AngleAxis(y, transform.up);
+					direction = rotation * transform.forward;
+					rotation = Quaternion.AngleAxis(r, transform.forward);
+					direction = rotation * direction;
+					float cast = Cast(direction);
+					// if this cast is shorter than returnData
+					if (cast < proximity) proximity = cast;
+				}
 			}
+			_data = new ProximityData(transform.forward * proximity, proximity < maxRange);
+			_callback(_data);
+			yield return new WaitForSeconds(updateDt);
 		}
-		_data = new ProximityData(transform.forward * proximity, proximity < maxRange);
+		
 	}
 	
 	// cast a ray and return detected obstruction if the hit angle is less than a threshold
@@ -90,11 +110,6 @@ public class UltrasonicSensor : Sensor {
 		_missColor.a = 0.5f;
 	}
 	
-	void Update() {
-		if (test) {
-			GetData();
-		}
-	}
 	
 	// draw sensor ray approximation in Unity Editor
 	void OnDrawGizmos() {

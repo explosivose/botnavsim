@@ -10,6 +10,8 @@ using System.Collections;
 /// </summary>
 public class Robot : MonoBehaviour, IObservable {
 
+	public delegate void SensorData(ProximityData data);
+
 	// public fields
 	// ~-~-~-~-~-~-~-~-
 	public bool 		manualControl;
@@ -102,21 +104,6 @@ public class Robot : MonoBehaviour, IObservable {
 		}
 	}
 	
-	/// <summary>
-	/// Gets depth data from the next sensor in a circular
-	/// indexed array of sensors
-	/// </summary>
-	/// <value>Depth data from the next sensor in a circular
-	/// indexed array of sensors</value>
-	public ProximityData nextSensorData {
-		get {
-			ProximityData data = sensors[_snsrIndex].GetData();
-			if (++_snsrIndex >= sensors.Length) _snsrIndex = 0;
-			return data;
-		}
-	}
-	
-	
 	public bool atDestination {
 		get {
 			if (!destination) return false;
@@ -154,11 +141,17 @@ public class Robot : MonoBehaviour, IObservable {
 	public void NavigateToDestination() {
 		if (_navigation == null) return;
 		StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
+		foreach(Sensor s in sensors) {
+			s.Enable(ReceiveSensorData);
+		}
 	}
 	
 	public void Reset() {
 		_path = new BotPath();
 		_positions = new Vector3[30];
+		foreach(Sensor s in sensors) {
+			s.Disable();
+		}
 	}
 	
 	// private methods
@@ -188,7 +181,6 @@ public class Robot : MonoBehaviour, IObservable {
 	}
 	
 	private void Update() {
-		ProximityData data = nextSensorData;
 		if (_navigation == null) return;
 		
 		// update center of mass
@@ -204,19 +196,7 @@ public class Robot : MonoBehaviour, IObservable {
 			// draw path
 			_path.DrawPath();
 			
-			// Pass sensor data to INavigation
-			if (_navigation.spaceRelativeTo == Space.Self) {
-				data.direction = transform.InverseTransformDirection(data.direction);
-				_navigation.Proximity(Vector3.zero, 
-										data.direction, 
-										data.obstructed);
-			}
-			else {
-				_navigation.Proximity(transform.position, 
-				                      transform.position + data.direction, 
-				                      data.obstructed);
-			}
-			
+	
 			// Update INavigation.destination if it has changed.
 			if (destination.hasChanged) {
 				if (_navigation.spaceRelativeTo == Space.Self) {
@@ -237,13 +217,31 @@ public class Robot : MonoBehaviour, IObservable {
 					navigationCommand = transform.TransformDirection(navigationCommand);
 				}
 				else {
-					navigationCommand = _navigation.PathDirection(transform.position + Vector3.up);
+					navigationCommand = _navigation.PathDirection(transform.position);
 				}
 				Debug.DrawRay(transform.position, navigationCommand * stopDistance, Color.green);
 			}
 			else {
 				navigationCommand = Vector3.zero;
 			}		
+		}
+	}
+	
+	public void ReceiveSensorData(ProximityData data) {
+		if (_navigation == null) return;
+		// data is recieved here by any enabled sensor in world space
+		// transformed into robot local space if necessary
+		// and transmitted to INavigation
+		if (_navigation.spaceRelativeTo == Space.Self) {
+			_navigation.Proximity(
+				Vector3.zero,
+				data.direction,
+				data.obstructed);
+		} else {
+			_navigation.Proximity(
+				transform.position,
+				transform.position + data.direction,
+				data.obstructed);
 		}
 	}
 	
