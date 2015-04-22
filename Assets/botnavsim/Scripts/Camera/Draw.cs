@@ -40,7 +40,6 @@ Do GL.Lines instead...
 		}
 	}
 
-	Transform line;
 	List<Transform> instances = new List<Transform>();
 	Material glLineMaterial;
 	List<LineData> gl_lines = new List<LineData>();
@@ -53,27 +52,10 @@ Do GL.Lines instead...
 		else {	
 			Destroy(this);
 		}
-		line = new GameObject("Line").transform;
-		line.gameObject.AddComponent<LineRenderer>();
-		LineRenderer ren =  line.GetComponent<LineRenderer>();
-		ren.material = Resources.Load<Material>("Materials/Line");
-		glLineMaterial = ren.material;
+
+		glLineMaterial = Resources.Load<Material>("Materials/Line");
 	}
 		
-	public void Line(Vector3 start, Vector3 end, float thickness, Color color) {
-		//if (Simulation.robot.navigation.spaceRelativeTo == Space.Self) {
-		//	start = Simulation.robot.transform.TransformPoint(start);
-		//	end = Simulation.robot.transform.TransformPoint(end);
-		//}
-		Transform instance = line.Spawn();
-		instances.Add(instance);
-		LineRenderer ren = instance.GetComponent<LineRenderer>();
-		ren.SetVertexCount(2);
-		ren.SetPosition(0, start);
-		ren.SetPosition(1, end);
-		ren.SetWidth(thickness, thickness);
-		ren.SetColors(color, color);
-	}
 	
 	public void Line(Vector3 start, Vector3 end, Color color) {
 		/*
@@ -81,6 +63,14 @@ Do GL.Lines instead...
 			start = Simulation.robot.transform.TransformPoint(start);
 			end = Simulation.robot.transform.TransformPoint(end);
 		}*/
+		gl_lines.Add(new LineData(start, end, color));
+	}
+	
+	public void Line(Vector3 start, Vector3 end, Color color, Space relativeTo) {
+		if (relativeTo == Space.Self && Simulation.robot != null) {
+			start = Simulation.robot.transform.TransformPoint(start);
+			end = Simulation.robot.transform.TransformPoint(end);
+		}
 		gl_lines.Add(new LineData(start, end, color));
 	}
 	

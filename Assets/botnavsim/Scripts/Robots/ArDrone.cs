@@ -37,10 +37,11 @@ public class ArDrone : MonoBehaviour {
 			}
 		}
 		
+		
 		Vector3 yaw = -transform.right;
 		yaw.y = 0;
 		Debug.DrawRay(transform.position, yaw * 2f, Color.red);
-		Vector3 targetYaw = _robot.navigationCommand;
+		Vector3 targetYaw = Vector3.right;
 		targetYaw.y = 0f;
 		Debug.DrawRay(transform.position, targetYaw * 3f, Color.green);
 		
@@ -48,9 +49,9 @@ public class ArDrone : MonoBehaviour {
 		float ang = angularThrustController.output(0f, bearing);
 		rigidbody.AddTorque(0f, ang, 0f);
 		
-		if (Mathf.Abs(bearing) < 0.25f) {
-			rigidbody.AddForce(_robot.navigationCommand.normalized * 2f);
-		}
+
+		rigidbody.AddForce(_robot.navigationCommand.normalized * 2f);
+		
 	}
 	
 	float MeasureHeight(Vector3 localPosition) {
@@ -62,5 +63,12 @@ public class ArDrone : MonoBehaviour {
 		else {
 			return 0f;
 		}
+	}
+	
+	void OnDrawGizmos() {
+		Vector3 size = Vector3.one * 5f;
+		size.y = 2f;
+		Gizmos.color = Color.Lerp(Color.black, Color.clear, 0.5f);
+		Gizmos.DrawCube(transform.position, size);
 	}
 }

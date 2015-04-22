@@ -235,7 +235,7 @@ public class Robot : MonoBehaviour, IObservable {
 		if (_navigation.spaceRelativeTo == Space.Self) {
 			_navigation.Proximity(
 				Vector3.zero,
-				data.direction,
+				transform.InverseTransformDirection(data.direction),
 				data.obstructed);
 		} else {
 			_navigation.Proximity(
@@ -251,8 +251,8 @@ public class Robot : MonoBehaviour, IObservable {
 		}
 			
 		// draw center of mass
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.1f);
+		Gizmos.color = Color.Lerp(Color.yellow, Color.clear, 0.25f);
+		Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.05f);
 	}
 	
 	// detects if robot appears to be stuck taking an average position over time
@@ -282,7 +282,7 @@ public class Robot : MonoBehaviour, IObservable {
 		_path.AddNode(prev, Simulation.time);
 		while (true) {
 			// only record a line when bot has moved far enough
-			if (Vector3.Distance(prev, rigidbody.worldCenterOfMass) > 0.25f) {
+			if (Vector3.Distance(prev, rigidbody.worldCenterOfMass) > 0.1f) {
 				prev = rigidbody.worldCenterOfMass;
 				_path.AddNode(rigidbody.worldCenterOfMass, Simulation.time);
 			}

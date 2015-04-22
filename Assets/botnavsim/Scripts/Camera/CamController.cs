@@ -321,7 +321,7 @@ public class CamController : MonoBehaviour {
 	public LayerMask maskHybrid;
 	
 	private float _birdseyeDist = 0f;
-	private float _3rdPersonDist = 10f;
+	private float _3rdPersonDist = 5f;
 	private Vector3 _3rdPersonDir = Vector3.one;
 	private Vector3 _1stPersonDir = Vector3.one;
 	
@@ -437,9 +437,9 @@ public class CamController : MonoBehaviour {
 		
 		float size = Mathf.Max(area.bounds.size.x/2f, area.bounds.size.z/2f);
 		size += _birdseyeDist;
-		size = Mathf.Max(size, 10f);
+		size = Mathf.Max(size, 5f);
 		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, Time.deltaTime * 4f);
-		Vector3 targetPosition = area.bounds.center + Vector3.up * 100f;
+		Vector3 targetPosition = area.bounds.center + Vector3.up * 10f;
 		
 		// smooth move to position
 		_camera.transform.position = Vector3.Slerp(

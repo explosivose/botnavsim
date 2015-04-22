@@ -291,12 +291,12 @@ public class Simulation : MonoBehaviour {
 	/// <value>The environment.</value>
 	public static GameObject environment {
 		get {
-			return _environment;
+			return _environment.gameObject;
 		}
 		set {
 			if (isRunning) Halt(0);
 			if (_environment) _environment.transform.Recycle();
-			_environment = value;
+			_environment = value.GetComponent<Environment>();
 			SetBounds();
 		}
 	}
@@ -399,7 +399,7 @@ public class Simulation : MonoBehaviour {
 	
 	private static Settings _settings;
 	private static Robot _robot;
-	private static GameObject _environment;
+	private static Environment _environment;
 	private static bool _paused;
 	private static float _timeScale = 1f;
 	
@@ -450,7 +450,7 @@ public class Simulation : MonoBehaviour {
 		// load environment
 		EnvLoader.SearchForEnvironments();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
-		destination.transform.position = RandomInBounds();
+		destination.transform.position = RandomInBounds(Instance.bounds);
 		// load robot
 		if (robot) CamController.RemoveAreaOfInterest(robot);
 		BotLoader.SearchForRobots();
@@ -556,19 +556,19 @@ public class Simulation : MonoBehaviour {
 		state = State.inactive;
 	}
 	
-	// Return a random position inside the simulation bounds
+	// Return a random position inside the  bounds
 	/// <summary>
-	/// Return a random position inside the simulation bounds, but 
+	/// Return a random position inside the bounds, but 
 	/// not inside any physical objects.
 	/// </summary>
-	/// <returns>Random position inside simulation bounds.</returns>
-	public static Vector3 RandomInBounds() {
-		Vector3 v = Instance.bounds.min;
-		v.x += Random.Range(0f, Instance.bounds.max.x);
-		v.y += Instance.bounds.max.y;
-		v.z += Random.Range(0f, Instance.bounds.max.z);
+	/// <returns>Random position inside bounds.</returns>
+	public static Vector3 RandomInBounds(Bounds b) {
+		Vector3 v = new Vector3();
+		v.x = Random.Range(b.min.x, b.max.x);
+		v.y = b.max.y;
+		v.z = Random.Range(b.min.z, b.max.z);
 		RaycastHit hit;
-		if (Physics.Raycast(v, Vector3.down, out hit, 100f)) {
+		if (Physics.Raycast(v, Vector3.down, out hit)) {
 			v = hit.point + hit.normal;
 			Debug.DrawRay(v, Vector3.down, Color.white, 5f);
 		}
@@ -581,16 +581,13 @@ public class Simulation : MonoBehaviour {
 		state = State.starting;
 		CamController.Instance.OnTestEnd();
 		yield return new WaitForSeconds(1f);
-		// randomly place the robot
-		if (settings.randomizeOrigin) {
-			robot.Reset();
-			robot.transform.position = RandomInBounds();
-			robot.transform.rotation = Quaternion.identity;
-		}
+		
+		// place the robot
+		robot.Reset();
+		PlaceRobotInStartArea();
 			
-		// randomly place the destination
-		if (settings.randomizeDestination)
-			destination.transform.position = RandomInBounds();
+		// place the destination
+		PlaceDestination();
 			
 		yield return new WaitForSeconds(1f);
 		
@@ -609,7 +606,22 @@ public class Simulation : MonoBehaviour {
 	}
 	
 	
-
+	private static void PlaceRobotInStartArea() {
+		if (settings.randomizeOrigin) {
+			robot.position = RandomInBounds(_environment.originBounds);
+		} else {
+			robot.position = _environment.originBounds.center;
+		}
+		robot.transform.rotation = Quaternion.identity;
+	}
+	
+	private static void PlaceDestination() {
+		if (settings.randomizeDestination) {
+			destination.transform.position = RandomInBounds(_environment.destinationBounds);
+		} else {
+			destination.transform.position = _environment.destinationBounds.center;
+		}
+	}
 	
 	// Set the simulation bounds to encapsulate all renderers in scene
 	private static void SetBounds() {

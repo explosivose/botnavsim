@@ -43,7 +43,7 @@ public class UltrasonicSensor : Sensor {
 			// roll
 			for (float r = 0; r <= 180f; r += 10f) {
 				// yaw
-				for (float y = -Fov; y < Fov; y += 2f){
+				for (float y = -Fov; y < Fov; y += 6f){
 					Quaternion rotation;
 					Vector3 direction;
 					rotation = Quaternion.AngleAxis(y, transform.up);
