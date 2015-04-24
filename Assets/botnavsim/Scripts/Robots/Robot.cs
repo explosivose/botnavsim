@@ -10,6 +10,7 @@ using System.Collections;
 /// </summary>
 public class Robot : MonoBehaviour, IObservable {
 
+	// sensor callback method type
 	public delegate void SensorData(ProximityData data);
 
 	// public fields
@@ -19,7 +20,7 @@ public class Robot : MonoBehaviour, IObservable {
 	public float		stopDistance;	// how close the robot will get to destination before stopping
 	public Sensor[] 	sensors;
 	public Transform 	destination;	
-	public Vector3 		centerOfMass;
+	public Vector3 		centerOfMassOffset;
 	
 	// private fields
 	// ~-~-~-~-~-~-~-~-
@@ -136,16 +137,19 @@ public class Robot : MonoBehaviour, IObservable {
 	// ~-~-~-~-~-~-~-~-
 	
 	/// <summary>
-	/// Start moving toward destination.
+	/// Enable sensors, start moving toward destination using INavigation
 	/// </summary>
 	public void NavigateToDestination() {
 		if (_navigation == null) return;
-		StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
+		StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
 		foreach(Sensor s in sensors) {
 			s.Enable(ReceiveSensorData);
 		}
 	}
 	
+	/// <summary>
+	/// Reset the robot, disable sensors
+	/// </summary>
 	public void Reset() {
 		_path = new BotPath();
 		_positions = new Vector3[30];
@@ -154,16 +158,34 @@ public class Robot : MonoBehaviour, IObservable {
 		}
 	}
 	
+	/// <summary>
+	/// Sensor data callback passes proximity data to INavigation
+	/// </summary>
+	/// <param name="data">Data.</param>
+	public void ReceiveSensorData(ProximityData data) {
+		if (_navigation == null) return;
+		// data is recieved here by any enabled sensor in world space
+		// transformed into robot local space if necessary
+		// and transmitted to INavigation
+		if (_navigation.spaceRelativeTo == Space.Self) {
+			_navigation.Proximity(
+				Vector3.zero,
+				transform.InverseTransformDirection(data.direction),
+				data.obstructed);
+		} else {
+			_navigation.Proximity(
+				transform.position,
+				transform.position + data.direction,
+				data.obstructed);
+		}
+	}
+	
 	// private methods
 	// ~-~-~-~-~-~-~-~-
 	
-	// Populate sensor array
-	private void InitialiseSensors() {
-		sensors = GetComponentsInChildren<Sensor>();
-	}
-	
+	// called once at the start
 	private void Awake() {
-		InitialiseSensors();
+		sensors = GetComponentsInChildren<Sensor>();
 		StartCoroutine(StuckDetector());
 		cameraMount = transform.Find("CameraMount");
 		if (!cameraMount) {
@@ -175,17 +197,19 @@ public class Robot : MonoBehaviour, IObservable {
 		foreach(Renderer r in GetComponentsInChildren<Renderer>())
 			b.Encapsulate(r.bounds);
 		_size = b.size;
+		// add center of mass offset
+		rigidbody.centerOfMass += centerOfMassOffset;
 		// initialise bath plotter
 		_path = new BotPath();
 		StartCoroutine(RecordPath());
 	}
 	
+	// called every rendered frame
 	private void Update() {
-		if (_navigation == null) return;
-		
-		// update center of mass
-		rigidbody.centerOfMass = centerOfMass;
-		
+	
+	
+	
+		// manual control for testing robots
 		if (manualControl) {
 			float x = Input.GetAxis("Horizontal");
 			float y = Input.GetAxis ("Vertical");
@@ -196,7 +220,7 @@ public class Robot : MonoBehaviour, IObservable {
 			// draw path
 			_path.DrawPath();
 			
-	
+			if (_navigation == null) return;
 			// Update INavigation.destination if it has changed.
 			if (destination.hasChanged) {
 				if (_navigation.spaceRelativeTo == Space.Self) {
@@ -204,7 +228,7 @@ public class Robot : MonoBehaviour, IObservable {
 					StartCoroutine( _navigation.SearchForPath(Vector3.zero, dest) );
 				}
 				else {
-					StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
+					StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
 				}
 				
 				destination.hasChanged = false;
@@ -227,24 +251,9 @@ public class Robot : MonoBehaviour, IObservable {
 		}
 	}
 	
-	public void ReceiveSensorData(ProximityData data) {
-		if (_navigation == null) return;
-		// data is recieved here by any enabled sensor in world space
-		// transformed into robot local space if necessary
-		// and transmitted to INavigation
-		if (_navigation.spaceRelativeTo == Space.Self) {
-			_navigation.Proximity(
-				Vector3.zero,
-				transform.InverseTransformDirection(data.direction),
-				data.obstructed);
-		} else {
-			_navigation.Proximity(
-				transform.position,
-				transform.position + data.direction,
-				data.obstructed);
-		}
-	}
+
 	
+	// draws shapes on screen inside the Unity Editor
 	private void OnDrawGizmos() {
 		if (_navigation != null) {
 			_navigation.DrawGizmos();
@@ -252,7 +261,12 @@ public class Robot : MonoBehaviour, IObservable {
 			
 		// draw center of mass
 		Gizmos.color = Color.Lerp(Color.yellow, Color.clear, 0.25f);
-		Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.05f);
+		if (Application.isPlaying) {
+			Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.05f);
+		} else {
+			Gizmos.DrawSphere(rigidbody.worldCenterOfMass + centerOfMassOffset, 0.05f);
+		}
+		
 	}
 	
 	// detects if robot appears to be stuck taking an average position over time
