@@ -16,10 +16,10 @@ public class BoeBot : MonoBehaviour {
 	private WheelCollider 	_leftWheel;
 	private WheelCollider 	_rightWheel;
 	
-	private float forwardangle;
-	private float frontback;
-	private float rightangle;
-	private float rightleft;
+	private float forwardAngle;
+	private float frontBack;
+	private float rightAngle;
+	private float rightLeft;
 	
 	private float leftTarget;
 	private float rightTarget;
@@ -42,14 +42,14 @@ public class BoeBot : MonoBehaviour {
 			rightTarget = 0f;
 			leftTarget = 0f;
 		} else {
-			forwardangle = Vector3.Angle(target, transform.forward);
-			frontback = Mathf.Cos(forwardangle * Mathf.Deg2Rad);		//1:forward, -1:backward, 0:(left or right)
+			forwardAngle = Vector3.Angle(target, transform.forward);
+			frontBack = Mathf.Cos(forwardAngle * Mathf.Deg2Rad);		//1:forward, -1:backward, 0:(left or right)
 			
-			rightangle = Vector3.Angle(target, transform.right);
-			rightleft = Mathf.Cos(rightangle * Mathf.Deg2Rad);		//1:right, -1:left, 0:(forward or back)
+			rightAngle = Vector3.Angle(target, transform.right);
+			rightLeft = Mathf.Cos(rightAngle * Mathf.Deg2Rad);		//1:right, -1:left, 0:(forward or back)
 			
-			rightTarget = Mathf.Clamp(frontback+rightleft, -1f, 1f);
-			leftTarget = Mathf.Clamp(frontback-rightleft, -1f, 1f);
+			rightTarget = Mathf.Clamp(frontBack+rightLeft, -1f, 1f);
+			leftTarget = Mathf.Clamp(frontBack-rightLeft, -1f, 1f);
 		}
 		
 		// drive wheel

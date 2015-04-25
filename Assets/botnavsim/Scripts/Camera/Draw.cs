@@ -57,21 +57,17 @@ Do GL.Lines instead...
 	}
 		
 	
-	public void Line(Vector3 start, Vector3 end, Color color) {
-		/*
-		if (Simulation.robot.navigation.spaceRelativeTo == Space.Self) {
-			start = Simulation.robot.transform.TransformPoint(start);
-			end = Simulation.robot.transform.TransformPoint(end);
-		}*/
-		gl_lines.Add(new LineData(start, end, color));
-	}
-	
-	public void Line(Vector3 start, Vector3 end, Color color, Space relativeTo) {
+	public void Line(Vector3 start, Vector3 end, Color color, Space relativeTo = Space.World) {
 		if (relativeTo == Space.Self && Simulation.robot != null) {
 			start = Simulation.robot.transform.TransformPoint(start);
 			end = Simulation.robot.transform.TransformPoint(end);
 		}
 		gl_lines.Add(new LineData(start, end, color));
+	}
+	
+	public void Bearing(Vector3 origin, Vector3 direction, Color color) {
+		Vector3 end = origin + direction;
+		gl_lines.Add(new LineData(origin, end, color));
 	}
 	
 	public void Cube(Vector3 center, Vector3 size, Color color) {

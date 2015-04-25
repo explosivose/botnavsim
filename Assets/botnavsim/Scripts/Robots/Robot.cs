@@ -211,9 +211,11 @@ public class Robot : MonoBehaviour, IObservable {
 	
 		// manual control for testing robots
 		if (manualControl) {
-			float x = Input.GetAxis("Horizontal");
-			float y = Input.GetAxis ("Vertical");
-			navigationCommand = new Vector3(x, 0, y);
+			float x = Input.GetAxis("X");
+			float y = Input.GetAxis("Y");
+			float z = Input.GetAxis("Z");
+			
+			navigationCommand = new Vector3(x, y, z);
 		}
 		else if (Simulation.isRunning){
 			
