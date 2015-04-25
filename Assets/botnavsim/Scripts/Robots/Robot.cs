@@ -216,6 +216,7 @@ public class Robot : MonoBehaviour, IObservable {
 			float z = Input.GetAxis("Z");
 			
 			navigationCommand = new Vector3(x, y, z);
+
 		}
 		else if (Simulation.isRunning){
 			
