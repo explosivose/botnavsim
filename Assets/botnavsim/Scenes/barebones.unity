@@ -1880,6 +1880,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 11499264, guid: bc9db5bc88c4a6443981291e98679ac1, type: 2}
+      propertyPath: moveEnabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc9db5bc88c4a6443981291e98679ac1, type: 2}
   m_RootGameObject: {fileID: 327938841}
@@ -2288,18 +2292,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7110cd92a8338ef4092cbaa78d8bee87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLateralSpeed: 1
+  maxLateralSpeed: 5
   lateralSpeedController:
     kp: 1
+    ki: .00200000009
+    kd: 5
+  tiltController:
+    kp: 5
     ki: 0
     kd: 0
+  verticalOffset: 1
   verticalSpeed: .5
-  maxThrottle: 5
+  maxThrottle: 1.5
   throttleController:
     kp: 10
     ki: 1
     kd: 1
-  maxTilt: 20
+  maxTilt: 25
   maxYawVelocity: 3.1400001
   yawKp: 6
   rollController:
@@ -2326,7 +2335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9984c6baccbf52a4697d023d9771303c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualControl: 1
+  manualControl: 0
   moveEnabled: 1
   stopDistance: 2
   sensors: []

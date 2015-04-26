@@ -116,8 +116,13 @@ public class Robot : MonoBehaviour, IObservable {
 
 	public float distanceToDestination {
 		get {
-			if (!destination) return 0f;
-			else return Vector3.Distance(transform.position, destination.position);
+			if (manualControl) {
+				return navigationCommand.magnitude;
+			}else{
+				if (!destination) return 0f;
+				else return Vector3.Distance(transform.position, destination.position);
+			}
+
 		}
 	}
 
