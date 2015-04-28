@@ -147,6 +147,7 @@ public class Robot : MonoBehaviour, IObservable {
 	public void NavigateToDestination() {
 		if (_navigation == null) return;
 		StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
+		Debug.Log("Path search due to NavigationToDestination() call.");
 		foreach(Sensor s in sensors) {
 			s.Enable(ReceiveSensorData);
 		}
@@ -231,14 +232,17 @@ public class Robot : MonoBehaviour, IObservable {
 			if (_navigation == null) return;
 			// Update INavigation.destination if it has changed.
 			if (destination.hasChanged) {
-				if (_navigation.spaceRelativeTo == Space.Self) {
-					Vector3 dest = transform.InverseTransformPoint(destination.position);
-					StartCoroutine( _navigation.SearchForPath(Vector3.zero, dest) );
+				if (Vector3.Distance(_navigation.destination,destination.position)>0.5f) {
+					if (_navigation.spaceRelativeTo == Space.Self) {
+						Vector3 dest = transform.InverseTransformPoint(destination.position);
+						StartCoroutine( _navigation.SearchForPath(Vector3.zero, dest) );
+					}
+					else {
+						StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
+					}
+					Debug.Log("Path search due to destination change.");
 				}
-				else {
-					StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
-				}
-				
+
 				destination.hasChanged = false;
 			}
 			

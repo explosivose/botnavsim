@@ -19,10 +19,17 @@ public class Pid {
 	/// <param name="actual">Actual.</param>
 	public float output(float target, float actual) {
 		error = target - actual;
-		integral += error * Time.deltaTime;
-		derivative = (error - previous_error) / Time.deltaTime;
+		integral += error * Time.fixedDeltaTime;
+		derivative = (error - previous_error) / Time.fixedDeltaTime;
 		previous_error = error;
 		return (kp*error) + (ki*integral) + (kd*derivative);
+	}
+	
+	public void Reset() {
+		error = 0f;
+		previous_error = 0f;
+		integral = 0f;
+		derivative = 0f;
 	}
 	
 	/// <summary>

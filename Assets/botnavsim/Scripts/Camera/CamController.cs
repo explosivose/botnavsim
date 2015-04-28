@@ -438,14 +438,14 @@ public class CamController : MonoBehaviour {
 		float size = Mathf.Max(area.bounds.size.x/2f, area.bounds.size.z/2f);
 		size += _birdseyeDist;
 		size = Mathf.Max(size, 5f);
-		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, Time.deltaTime * 4f);
+		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, Time.unscaledDeltaTime * 4f);
 		Vector3 targetPosition = area.bounds.center + Vector3.up * 10f;
 		
 		// smooth move to position
 		_camera.transform.position = Vector3.Slerp(
 			_camera.transform.position, 
 			targetPosition, 
-			Time.deltaTime * 4f
+			Time.unscaledDeltaTime * 4f
 			);
 		
 		// look down
@@ -453,7 +453,7 @@ public class CamController : MonoBehaviour {
 		_camera.transform.rotation = Quaternion.Slerp(
 			_camera.transform.rotation, 
 			targetRotation, 
-			Time.deltaTime * 8f
+			Time.unscaledDeltaTime * 8f
 			);
 	}
 	
@@ -466,8 +466,8 @@ public class CamController : MonoBehaviour {
 		// boost movement speed if LeftShift is held down
 		float b = Input.GetKey(KeyCode.LeftShift) ? freeMoveSpeedShiftMult : 1f;
 		// grab axis input
-		float y = Input.GetAxisRaw("Vertical") * freeMoveSpeed * b * Time.deltaTime;
-		float x = Input.GetAxisRaw("Horizontal") * freeMoveSpeed * b * Time.deltaTime;
+		float y = Input.GetAxisRaw("Z") * freeMoveSpeed * b * Time.unscaledDeltaTime;
+		float x = Input.GetAxisRaw("X") * freeMoveSpeed * b * Time.unscaledDeltaTime;
 		// modify position according to orientation (move forward/back, strafe left/right)
 		Vector3 pos = transform.position;
 		pos += transform.forward * y;
@@ -498,7 +498,7 @@ public class CamController : MonoBehaviour {
 		_camera.transform.position = Vector3.Slerp(
 			_camera.transform.position, 
 			targetPosition, 
-			Time.deltaTime * 4f
+			Time.unscaledDeltaTime * 4f
 			);
 		
 		// look at robot
@@ -506,7 +506,7 @@ public class CamController : MonoBehaviour {
 		_camera.transform.rotation = Quaternion.Slerp(
 			_camera.transform.rotation, 
 			targetRotation, 
-			Time.deltaTime * 8f
+			Time.unscaledDeltaTime * 8f
 			);
 	}
 	

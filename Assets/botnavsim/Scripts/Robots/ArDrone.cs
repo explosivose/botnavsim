@@ -50,10 +50,22 @@ public class ArDrone : MonoBehaviour {
 		_targetHeight = transform.position.y;
 	}
 	
+	void Reset() {
+		lateralSpeedController.Reset();
+		pitchController.Reset();
+		rollController.Reset();
+		throttleController.Reset();
+		tiltController.Reset();
+	}
+	
 	// calculate control forces
 	void Update() {
 		
-		if (!_robot.moveEnabled) return;
+		if (!_robot.moveEnabled) {
+			Reset();
+			_holdPosition = transform.position;
+			return;
+		}
 		
 		Vector3 command = _robot.navigationCommand;
 		
@@ -91,13 +103,13 @@ public class ArDrone : MonoBehaviour {
 			_holdRotation = command;
 			// keep hold position
 			_holdPosition = transform.position;
-			displacement2d = _robot.distanceToDestination;
+			displacement2d = command.magnitude;
 		}
 		
 		_targetSpeed = lateralSpeedController.output(0f, - displacement2d);
 		_targetSpeed = Mathf.Clamp(_targetSpeed, 0f, maxLateralSpeed);
 		_targetTilt = tiltController.output(_targetSpeed, rigidbody.velocity.magnitude);
-		_targetTilt = Mathf.Clamp(_targetTilt, 0f, maxTilt);
+		_targetTilt = Mathf.Clamp(_targetTilt, -maxTilt, maxTilt);
 		
 		
 		Draw.Instance.Bearing(transform.position, target2d, Color.red);

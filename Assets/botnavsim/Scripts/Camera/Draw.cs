@@ -55,7 +55,13 @@ Do GL.Lines instead...
 
 		glLineMaterial = Resources.Load<Material>("Materials/Line");
 	}
-		
+	
+	void Update() {
+		if (Camera.current != camera) {
+			gl_lines.Clear();
+			gl_cubes.Clear();
+		}
+	}
 	
 	public void Line(Vector3 start, Vector3 end, Color color, Space relativeTo = Space.World) {
 		if (relativeTo == Space.Self && Simulation.robot != null) {

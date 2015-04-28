@@ -569,7 +569,7 @@ public class Simulation : MonoBehaviour {
 		v.z = Random.Range(b.min.z, b.max.z);
 		RaycastHit hit;
 		if (Physics.Raycast(v, Vector3.down, out hit)) {
-			v = hit.point + hit.normal;
+			v = hit.point + hit.normal* 0.25f;
 			Debug.DrawRay(v, Vector3.down, Color.white, 5f);
 		}
 		return v;

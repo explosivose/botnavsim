@@ -636,6 +636,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 11499264, guid: bc9db5bc88c4a6443981291e98679ac1, type: 2}
+      propertyPath: moveEnabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11499264, guid: bc9db5bc88c4a6443981291e98679ac1, type: 2}
+      propertyPath: manualControl
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc9db5bc88c4a6443981291e98679ac1, type: 2}
   m_RootGameObject: {fileID: 736345536}
@@ -22882,8 +22890,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9984c6baccbf52a4697d023d9771303c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manualControl: 0
-  moveEnabled: 0
+  manualControl: 1
+  moveEnabled: 1
   stopDistance: 2
   sensors: []
   destination: {fileID: 0}
