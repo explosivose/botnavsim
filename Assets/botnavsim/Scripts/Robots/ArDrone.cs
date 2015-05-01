@@ -1,35 +1,100 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// AR Drone control system implementation.
+/// Developed with data from http://parrotcontact.emencia.net/website/user-guides/download-user-guides.php?pdf=ar-drone-2/AR-Drone-2_User-guide_Android_UK.pdf
+/// </summary>
 [RequireComponent(typeof(Robot))]
 public class ArDrone : MonoBehaviour {
 	
+	// public members
+	// -~-~-~-~-~-~-~
+	
+	/// <summary>
+	/// The maximum lateral speed allowed by the control system.
+	/// </summary>
 	public float maxLateralSpeed;
+	
+	/// <summary>
+	/// The lateral speed controller.
+	/// </summary>
 	public Pid lateralSpeedController;
+	
+	/// <summary>
+	/// The tilt controller.
+	/// </summary>
 	public Pid tiltController;
+	
+	/// <summary>
+	/// The maximum speed that the vertical target location can change. 
+	/// </summary>
 	public float verticalSpeed;
-	public float maxThrottle = 0.2f;
+	
+	/// <summary>
+	/// The max throttle of each propeller force. 
+	/// </summary>
+	public float maxThrottle;
+	
+	/// <summary>
+	/// The throttle controller.
+	/// </summary>
 	public Pid throttleController;
-	public float maxTilt = 25f;
-	public float maxYawVelocity = 0.5f;
+	
+	/// <summary>
+	/// The maximum roll and pitch permitted by the control system. (measured in degrees)
+	/// </summary>
+	[Range(5.0f,30.0f)]
+	public float maxTilt;
+	
+	/// <summary>
+	/// The max yaw rotational velocity.  (measured in degrees per second)
+	/// </summary>
+	[Range(40.0f,350.0f)]
+	public float maxYawVelocity;
+	
+	/// <summary>
+	/// Gain parameter in controlling the yaw torque.
+	/// </summary>
 	public float yawKp;
+	
+	/// <summary>
+	/// The roll controller.
+	/// </summary>
 	public Pid rollController;
+	/// <summary>
+	/// The pitch controller.
+	/// </summary>
 	public Pid pitchController;
 	
-	
+	/// <summary>
+	/// Reference to the front-left propeller position.
+	/// </summary>
 	public Transform FL;
+	
+	/// <summary>
+	/// Reference to the front-right propeller position.
+	/// </summary>
 	public Transform FR;
+	
+	/// <summary>
+	/// Reference to the back-left propeller position.
+	/// </summary>
 	public Transform BL;
+	
+	/// <summary>
+	/// Reference to the back-right propeller position.
+	/// </summary>
 	public Transform BR;
 	
-	private float _actualPitch;
-	private float _actualRoll;
+	private float _actualPitch;				// measured pitch
+	private float _actualRoll;				// measured roll
 	
-	private float _targetSpeed;
-	private float _targetTilt;
-	private float _targetHeight;
+	private float _targetSpeed;				// target lateral speed
+	private float _targetTilt;				// target tilt
+	private float _targetHeight;			// target height
 	
-	private Robot _robot;
+	private Robot _robot;					// reference to the Robot component 
 	
 	private Vector3 _holdRotation;			// maintain this forward direction in yaw control when there is no navigation command
 	private Vector3 _holdPosition;
@@ -41,15 +106,24 @@ public class ArDrone : MonoBehaviour {
 	private Vector3 _blControlThrust;		// back left propeller force
 	private Vector3 _brControlThrust;		// back right propeller force
 	
+	/// <summary>
+	/// Awake this instance.
+	/// </summary>
 	void Awake() {
 		_robot = GetComponent<Robot>();
 	}
 	
+	/// <summary>
+	/// Start this instance.
+	/// </summary>
 	void Start() {
 		_holdPosition = transform.position;
 		_targetHeight = transform.position.y;
 	}
 	
+	/// <summary>
+	/// Reset the PID controllers.
+	/// </summary>
 	void Reset() {
 		lateralSpeedController.Reset();
 		pitchController.Reset();
@@ -123,8 +197,7 @@ public class ArDrone : MonoBehaviour {
 		_controlTorque = transform.rotation * new Vector3(0f, yawForce, 0f);
 
 
-		// adapted from here
-		// https://ghowen.me/build-your-own-quadcopter-autopilot/
+
 
 	
 		// PITCH
@@ -146,6 +219,9 @@ public class ArDrone : MonoBehaviour {
 		// THROTTLE
 		float throttle = throttleController.output(_targetHeight, transform.position.y);
 		
+		
+		// adapted from here
+		// https://ghowen.me/build-your-own-quadcopter-autopilot/
 		float flForce = Mathf.Clamp(throttle + rollOutput - pitchOutput, 0f, maxThrottle);
 		float blForce = Mathf.Clamp(throttle + rollOutput + pitchOutput, 0f, maxThrottle);
 		float frForce = Mathf.Clamp(throttle - rollOutput - pitchOutput, 0f, maxThrottle);
@@ -179,17 +255,6 @@ public class ArDrone : MonoBehaviour {
 			rigidbody.AddForceAtPosition(_blControlThrust, BL.position);
 			rigidbody.AddForceAtPosition(_brControlThrust, BR.position);
 			rigidbody.AddTorque(_controlTorque, ForceMode.Acceleration);
-		}
-	}
-	
-	float MeasureHeight(Vector3 localPosition) {
-		Ray ray = new Ray(localPosition, Vector3.down);
-		RaycastHit hit;
-		if (Physics.Raycast(ray, out hit)) {
-			return hit.distance;
-		}
-		else {
-			return 0f;
 		}
 	}
 	

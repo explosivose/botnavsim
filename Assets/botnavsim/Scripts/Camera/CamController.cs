@@ -4,15 +4,16 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 /// <summary>
-/// Controls the camera orientation and render modes according to registered 
-/// ViewMode and user input. ViewMode are registered in modes by BotNavSim 
-/// state manager classes i.e. Simulation, LogLoader, RobotEditor, EnvironmentEditor
+/// Controls the camera orientation and render modes according to ViewMode in viewModeList 
+/// user input. viewModeList is maintained by the state manager class in control
+/// i.e. Simulation, LogLoader, RobotEditor, EnvironmentEditor
 /// </summary>
 [RequireComponent(typeof(Camera))]
 public class CamController : MonoBehaviour {
 
 	// class types
 	// ~-~-~-~-~-~-
+	
 	public enum ViewMode {
 		/// <summary>
 		/// Top-down orthographic view. 
@@ -41,11 +42,25 @@ public class CamController : MonoBehaviour {
 	}
 	
 	public enum RenderMode {
+		/// <summary>
+		/// Display BotData and scene geometry.
+		/// </summary>
 		Hybrid,
+		
+		/// <summary>
+		/// Display scene geometry only.
+		/// </summary>
 		Normal,
+		
+		/// <summary>
+		/// Display the robot data (drawn with Draw class) only.
+		/// </summary>
 		BotData
 	}
 	
+	/// <summary>
+	/// A blank IObservable implementation (used when the _areas list is empty)
+	/// </summary>
 	private class StubObservable : IObservable {
 		public StubObservable() {
 			bounds = new Bounds();
@@ -63,7 +78,7 @@ public class CamController : MonoBehaviour {
 	// ~-~-~-~-~-~-~-
 	
 	/// <summary>
-	/// Gets the instance.
+	/// Gets the MonoBehaviour instance.
 	/// </summary>
 	/// <value>The instance.</value>
 	public static CamController Instance {
@@ -106,7 +121,7 @@ public class CamController : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Gets the current area of interest.
+	/// Gets the current observable area of interest.
 	/// </summary>
 	/// <value>The area.</value>
 	public static IObservable area {
@@ -131,8 +146,8 @@ public class CamController : MonoBehaviour {
 	private static IObservable			_stub;		// a stub object to use when _areas list is empty
 	private static int _mode; 						// index for _modes
 	private static int _area; 						// index for _areas
-	private static Camera _camera;
-	private static RenderMode _renderMode;
+	private static Camera _camera;					// reference to the camera component attached to the MonoBehaviour instance
+	private static RenderMode _renderMode;			// the current RenderMode
 	
 	// static methods
 	// ~-~-~-~-~-~-~-
@@ -147,7 +162,7 @@ public class CamController : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Adds an area of interest for the camera to look at.
+	/// Adds an area of interest to the list of areas for the camera to observe.
 	/// </summary>
 	/// <param name="b">An area of interest defined by a bounding box.</param>
 	public static void AddAreaOfInterest(IObservable area) {
@@ -155,7 +170,7 @@ public class CamController : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Removes an area of interest for the camera to look at.
+	/// Removes an area of interest from the list of areas for the camera to observe.
 	/// </summary>
 	/// <param name="b">An area of interest defined by a bounding box.</param>
 	public static void RemoveAreaOfInterest(IObservable area) {
@@ -171,7 +186,10 @@ public class CamController : MonoBehaviour {
 		_area = 0;
 	}
 	
-	
+	/// <summary>
+	/// Sets the area of interest by index.
+	/// </summary>
+	/// <param name="index">Index.</param>
 	public static void SetAreaOfInterest(int index) {
 		// ignore out of range indexes
 		if (index < 0 || index >= _areas.Count) {
@@ -181,20 +199,24 @@ public class CamController : MonoBehaviour {
 		_area = index;
 	}
 	
+	/// <summary>
+	/// Sets the area of interest by object (does nothing if the <param name="obj"/> is not in the areas list.
+	/// </summary>
+	/// <param name="obj">Object.</param>
 	public static void SetAreaOfInterest(IObservable obj) {
 		int index = _areas.IndexOf(obj);
-		if (index > 0) _area = index;
+		if (index >= 0) _area = index;
 	}
 	
 	/// <summary>
-	/// Go to next area of interest
+	/// Set area to next area of interest (circular index of areas list)
 	/// </summary>
 	public static void CycleAreaOfInterest() {
 		_area = (++_area) % _areas.Count;
 	}
 	
 	/// <summary>
-	/// Use next RenderMode
+	/// Set renderMode to next RenderMode (circular index of render modes).
 	/// </summary>
 	public static void CycleRenderMode() {
 		int length = System.Enum.GetValues(typeof(RenderMode)).Length;
@@ -202,7 +224,7 @@ public class CamController : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Select random RenderMode
+	/// Set renderMode to random RenderMode. 
 	/// </summary>
 	public static void RandomRenderMode() {
 		System.Array values = System.Enum.GetValues(typeof(RenderMode));
@@ -293,14 +315,14 @@ public class CamController : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Use next ViewMode in modes
+	/// Set viewMode to the next ViewMode in viewModeList (circular index of viewModeList).
 	/// </summary>
 	public static void CycleViewMode() {
 		SetViewMode((++_mode) % _modes.Count);
 	}
 	
 	/// <summary>
-	/// Use random ViewMode in modes
+	/// Set viewMode to random ViewMode in viewModeList.
 	/// </summary>
 	public static void RandomViewMode() {
 		SetViewMode(Random.Range(0, _modes.Count-1));
@@ -308,22 +330,50 @@ public class CamController : MonoBehaviour {
 	
 
 	
-	// instance members (defined in Unity Inspector)
+	// instance members (defined in Unity Editor)
 	// ~-~-~-~-~-~-~-~-
 	
-	public float mouseSensitivity;			// multiplies speed of mouse axis input 
-	public float freeMoveSpeed;
+	/// <summary>
+	/// Multiplies speed of mouse axis input 
+	/// </summary>
+	public float mouseSensitivity;		
+	
+	/// <summary>
+	/// Camera translation speed when in free movement mode
+	/// </summary>
+	public float freeMoveSpeed;		
+	
+	/// <summary>
+	/// Camera translation speed multiplier when the SHIFT key is used
+	/// </summary>
 	public float freeMoveSpeedShiftMult;
 	
-	public LayerMask maskCameraCollision;	// layermasks for rendering modes
+	
+	/// <summary>
+	/// Camera collision mask to avoid placing camera inside objects.
+	/// </summary>
+	public LayerMask maskCameraCollision;
+	
+	/// <summary>
+	/// Camera culling mask for RenderMode.Normal
+	/// </summary>
 	public LayerMask maskNormal;
+	
+	/// <summary>
+	/// Camera culling mask for RenderMode.BotData
+	/// </summary>
 	public LayerMask maskBotData;
+	
+	/// <summary>
+	/// Camera culling mask for RenderMode.Hybrid
+	/// </summary>
 	public LayerMask maskHybrid;
 	
-	private float _birdseyeDist = 0f;
-	private float _3rdPersonDist = 5f;
-	private Vector3 _3rdPersonDir = Vector3.one;
-	private Vector3 _1stPersonDir = Vector3.one;
+	
+	private float _birdseyeDist = 0f;				// vertical distance offset for camera in birdseye mode
+	private float _3rdPersonDist = 5f;				// distance offset for camera in orbit mode
+	private Vector3 _3rdPersonDir = Vector3.one;	// direction offset for camera in orbit mode
+	private Vector3 _1stPersonDir = Vector3.one;	// camera direction when in free movement mode
 	
 	// instance methods
 	// ~-~-~-~-~-~-~-~-
