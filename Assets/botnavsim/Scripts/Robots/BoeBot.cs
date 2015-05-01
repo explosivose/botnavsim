@@ -1,15 +1,33 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// BoeBot differential drive control system.
+/// Built using data from: https://www.parallax.com/product/900-00008
+/// See final report for diagram of implementation
+/// </summary>
 [RequireComponent(typeof(Robot))]
 public class BoeBot : MonoBehaviour {
 
 	// public fields
+	
+	/// <summary>
+	/// The max wheel RPM (50RPM for parallax continuous rotation servo)
+	/// </summary>
 	public float maxWheelRpm = 50f;
-	[Header("Warning: Kp = 1 will crash Unity")]
+	
+	/// <summary>
+	/// The max wheel torque (0.268NM for parallax continuous rotation servo).
+	/// </summary>
+	public float maxWheelTorque = 0.268f;
+	
+	/// <summary>
+	/// Control system gain parameter.
+	/// </summary>
 	public float Kp = 0.5f;
 	
-	
+	// private members
+	// -~-~-~-~-~-~-~
 	
 	// References to robot topology
 	private Robot 			_robot;
@@ -53,8 +71,10 @@ public class BoeBot : MonoBehaviour {
 		}
 		
 		// drive wheel
-		_leftWheel.motorTorque = (leftTarget*maxWheelRpm - _leftWheel.rpm) * Kp;
-		_rightWheel.motorTorque = (rightTarget*maxWheelRpm - _rightWheel.rpm) * Kp;
+		float leftTorque = (leftTarget*maxWheelRpm - _leftWheel.rpm) * Kp;
+		_leftWheel.motorTorque = Mathf.Clamp(leftTorque, 0f, maxWheelTorque);
+		float rightTorque = (rightTarget*maxWheelRpm - _rightWheel.rpm) * Kp;
+		_rightWheel.motorTorque = Mathf.Clamp(rightTorque, 0f, maxWheelTorque);
 		
 		Debug.DrawRay(_leftWheel.transform.position, transform.forward * leftTarget * 0.1f, Color.magenta);
 		Debug.DrawRay(_rightWheel.transform.position, transform.forward * rightTarget * 0.1f, Color.magenta);

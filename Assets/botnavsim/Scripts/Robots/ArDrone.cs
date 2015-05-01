@@ -4,6 +4,7 @@ using System.Collections;
 /// <summary>
 /// AR Drone control system implementation.
 /// Developed with data from http://parrotcontact.emencia.net/website/user-guides/download-user-guides.php?pdf=ar-drone-2/AR-Drone-2_User-guide_Android_UK.pdf
+/// See final report for diagram of implementation.
 /// </summary>
 [RequireComponent(typeof(Robot))]
 public class ArDrone : MonoBehaviour {

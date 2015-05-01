@@ -30,7 +30,6 @@ public class LogLoader : MonoBehaviour, IObservable  {
 	/// <summary>
 	/// Gets the environment game object.
 	/// </summary>
-	/// <value>The environment.</value>
 	public static GameObject environment {
 		get; private set;
 	}
@@ -38,7 +37,6 @@ public class LogLoader : MonoBehaviour, IObservable  {
 	/// <summary>
 	/// Gets the environment bounds.
 	/// </summary>
-	/// <value>The bounds.</value>
 	public Bounds bounds {
 		get; private set;
 	}

@@ -227,7 +227,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the simulation state.
 	/// </summary>
-	/// <value>The current simulation state.</value>
 	public static State state {get; private set;}
 	
 	/// <summary>
@@ -239,7 +238,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets the settings for the current simulation.
 	/// </summary>
-	/// <value>The settings for the current (active) simulation.</value>
 	public static Settings settings {
 		get { return _settings; }
 		set {
@@ -258,7 +256,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the simulation number (index in batch list, 1 to batch.Count).
 	/// </summary>
-	/// <value>The simulation number.</value>
 	public static int simulationNumber {
 		get; private set;
 	}
@@ -266,7 +263,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the current test number (1 to settings.numberOfTests).
 	/// </summary>
-	/// <value>The current test number.</value>
 	public static int testNumber {
 		get; private set;
 	}
@@ -274,7 +270,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets reference to the robot in the current simulation.
 	/// </summary>
-	/// <value>The robot.</value>
 	public static Robot robot {
 		get { return _robot; }
 		private set {
@@ -288,7 +283,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets reference to the environment in the current simulation.
 	/// </summary>
-	/// <value>The environment.</value>
 	public static GameObject environment {
 		get {
 			return _environment.gameObject;
@@ -305,7 +299,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets reference to the destination.
 	/// </summary>
-	/// <value>The destination.</value>
 	public static GameObject destination { 
 		get; private set; 
 	}
@@ -313,7 +306,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the test area (Observer object)
 	/// </summary>
-	/// <value>The test area.</value>
 	public static IObservable testArea {
 		get; private set;
 	}
@@ -371,7 +363,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Time (in seconds) since robot started searching for destination.
 	/// </summary>
-	/// <value>The simulation time.</value>
 	public static float time {
 		get {
 			if (isRunning) _stopTime = Time.time;
@@ -382,7 +373,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets the time scale.
 	/// </summary>
-	/// <value>The time scale.</value>
 	public static float timeScale {
 		get { return _timeScale; }
 		set {
@@ -468,7 +458,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Stops the current test and starts the next test in current simulation.
 	/// </summary>
-	/// <param name="code">Code.</param>
 	public static void NextTest() {
 		if (testNumber >= settings.numberOfTests) {
 			Halt(StopCode.Unspecified);

@@ -31,19 +31,16 @@ public class BotPath : IObservable  {
 	/// <summary>
 	/// Gets or sets the name of the csv.
 	/// </summary>
-	/// <value>The name of the csv.</value>
 	public string csvName { get; set; }
 	
 	/// <summary>
 	/// Gets the total distance this BotPath covers.
 	/// </summary>
-	/// <value>The distance.</value>
 	public float distance { get; private set; }
 	
 	/// <summary>
 	/// Gets the start of the path.
 	/// </summary>
-	/// <value>The start.</value>
 	public Vector3 start {
 		get {
 			return _nodes[0];
@@ -53,7 +50,6 @@ public class BotPath : IObservable  {
 	/// <summary>
 	/// Gets the end of the path.
 	/// </summary>
-	/// <value>The end.</value>
 	public Vector3 end {
 		get {
 			return _nodes[_nodes.Count-1];
@@ -71,7 +67,6 @@ public class BotPath : IObservable  {
 	/// <summary>
 	/// Gets or sets the color used in drawing the path via Draw.
 	/// </summary>
-	/// <value>The draw color.</value>
 	public Color color { get; set; }
 	
 	

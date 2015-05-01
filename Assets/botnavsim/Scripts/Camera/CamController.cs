@@ -80,7 +80,6 @@ public class CamController : MonoBehaviour {
 	/// <summary>
 	/// Gets the MonoBehaviour instance.
 	/// </summary>
-	/// <value>The instance.</value>
 	public static CamController Instance {
 		get; private set;
 	}
@@ -88,7 +87,6 @@ public class CamController : MonoBehaviour {
 	/// <summary>
 	/// Gets the current ViewMode.
 	/// </summary>
-	/// <value>The view mode.</value>
 	public static ViewMode viewMode {
 		get {
 			return _modes[_mode];
@@ -98,7 +96,6 @@ public class CamController : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets the RenderMode in use. RenderMode determines which render layers are drawn. 
 	/// </summary>
-	/// <value>The render mode.</value>
 	public static RenderMode renderMode {
 		get {
 			return _renderMode;
@@ -123,7 +120,6 @@ public class CamController : MonoBehaviour {
 	/// <summary>
 	/// Gets the current observable area of interest.
 	/// </summary>
-	/// <value>The area.</value>
 	public static IObservable area {
 		get { 
 			if (_areas.Count > 0)
@@ -134,9 +130,8 @@ public class CamController : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Gets a readonly view mode list.
+	/// List of all <see cref="ViewMode"/> in effect.
 	/// </summary>
-	/// <value>The view mode list.</value>
 	public static ReadOnlyCollection<ViewMode> viewModeList {
 		get { return _modes.AsReadOnly(); }
 	}
@@ -164,7 +159,7 @@ public class CamController : MonoBehaviour {
 	/// <summary>
 	/// Adds an area of interest to the list of areas for the camera to observe.
 	/// </summary>
-	/// <param name="b">An area of interest defined by a bounding box.</param>
+	/// <param name="area">An area of interest defined by a bounding box.</param>
 	public static void AddAreaOfInterest(IObservable area) {
 		if (!_areas.Contains(area)) _areas.Add(area);
 	}
@@ -172,7 +167,7 @@ public class CamController : MonoBehaviour {
 	/// <summary>
 	/// Removes an area of interest from the list of areas for the camera to observe.
 	/// </summary>
-	/// <param name="b">An area of interest defined by a bounding box.</param>
+	/// <param name="area">An area of interest defined by a bounding box.</param>
 	public static void RemoveAreaOfInterest(IObservable area) {
 		if (_areas.Count > 1) _areas.Remove(area);
 		if (_area >= _areas.Count) _area = 0;
@@ -189,7 +184,7 @@ public class CamController : MonoBehaviour {
 	/// <summary>
 	/// Sets the area of interest by index.
 	/// </summary>
-	/// <param name="index">Index.</param>
+	/// <param name="index">Index for area list.</param>
 	public static void SetAreaOfInterest(int index) {
 		// ignore out of range indexes
 		if (index < 0 || index >= _areas.Count) {
@@ -200,7 +195,7 @@ public class CamController : MonoBehaviour {
 	}
 	
 	/// <summary>
-	/// Sets the area of interest by object (does nothing if the <param name="obj"/> is not in the areas list.
+	/// Sets the area of interest by object (does nothing if the obj is not in the areas list.
 	/// </summary>
 	/// <param name="obj">Object.</param>
 	public static void SetAreaOfInterest(IObservable obj) {
@@ -233,17 +228,17 @@ public class CamController : MonoBehaviour {
 	
 	
 	/// <summary>
-	/// Adds a ViewMode to the list of camera modes to use.
+	/// Adds a <see cref="ViewMode"/> to <see cref="viewModeList"/>.
 	/// </summary>
-	/// <param name="mode">Mode.</param>
+	/// <param name="mode">The view mode enum to add.</param>
 	public static void AddViewMode(ViewMode mode) {
 		if (!_modes.Contains(mode)) _modes.Add(mode);
 	}
 	
 	/// <summary>
-	/// Removes a ViewMode from the list of camera modes to use. 
+	/// Removes a <see cref="ViewMode"/> from <see cref="viewModeList"/>. 
 	/// </summary>
-	/// <param name="mode">Mode.</param>
+	/// <param name="mode">The view mode enum to remove.</param>
 	public static void RemoveViewMode(ViewMode mode) {
 		if (mode != ViewMode.FreeMovement) _modes.Remove(mode);
 		if (_mode > _modes.Count) {

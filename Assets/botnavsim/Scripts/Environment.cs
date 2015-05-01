@@ -19,7 +19,6 @@ public class Environment : MonoBehaviour {
 	/// <summary>
 	/// Gets the origin bounds.
 	/// </summary>
-	/// <value>The origin bounds.</value>
 	public Bounds originBounds {
 		get {
 			return origin.collider.bounds;
@@ -29,7 +28,6 @@ public class Environment : MonoBehaviour {
 	/// <summary>
 	/// Gets the destination bounds.
 	/// </summary>
-	/// <value>The destination bounds.</value>
 	public Bounds destinationBounds {
 		get {
 			return destination.collider.bounds;

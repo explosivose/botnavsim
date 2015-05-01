@@ -6,6 +6,7 @@ using System.Collections;
 /// Pid encapsulates PID control for floating point variables.
 /// </summary>
 public class Pid {
+
 	public float kp, ki, kd;
 	public float error {get; private set;}
 	public float previous_error {get; private set;}
@@ -13,10 +14,10 @@ public class Pid {
 	public float derivative {get; private set;}
 	
 	/// <summary>
-	/// Pid control from actual to target. Call in Update (not FixedUpdate), uses Time.deltaTime
+	/// Pid control from actual to target. Uses Time.fixedDeltaTime for delta time values
 	/// </summary>
-	/// <param name="target">Target.</param>
-	/// <param name="actual">Actual.</param>
+	/// <param name="target">Target value.</param>
+	/// <param name="actual">Actual value.</param>
 	public float output(float target, float actual) {
 		error = target - actual;
 		integral += error * Time.fixedDeltaTime;
@@ -25,6 +26,9 @@ public class Pid {
 		return (kp*error) + (ki*integral) + (kd*derivative);
 	}
 	
+	/// <summary>
+	/// Set error, previous_error, integral and derivative to 0.
+	/// </summary>
 	public void Reset() {
 		error = 0f;
 		previous_error = 0f;
@@ -33,9 +37,9 @@ public class Pid {
 	}
 	
 	/// <summary>
-	/// Copies the settings from param to this instance
+	/// Copies the gain values from param to this instance
 	/// </summary>
-	/// <param name="pid">Pid.</param>
+	/// <param name="pid">Pid controller to copy gain values from.</param>
 	public void CopySettings(Pid pid) {
 		kp = pid.kp;
 		ki = pid.ki;

@@ -7,15 +7,43 @@ using System.Collections;
 public class UltrasonicSensor : Sensor {
 	
 	// public fields
+	// ~-~-~-~-~-~-
 	
+	/// <summary>
+	/// The sensor update delta time in seconds.
+	/// </summary>
 	public float updateDt;
+	
+	/// <summary>
+	/// The field of view angle in degrees.
+	/// </summary>
 	public float Fov;
+	
+	/// <summary>
+	/// The max range of the sensor in metres.
+	/// </summary>
 	public float maxRange;
-	public bool test;
+	
+	/// <summary>
+	/// The raycast collision layer. 
+	/// </summary>
 	public LayerMask raycastLayer;
 	
+	
+	// private members
+	// -~-~-~-~-~-~-~-~
+	
+	/// <summary>
+	/// The callback function to execute when the sensor has new data to share.
+	/// </summary>
 	private Robot.SensorData _callback;
+	
+	/// <summary>
+	/// Cached proximity data from the last scan
+	/// </summary>
 	private ProximityData _data;
+	
+	
 	private Color _recieveColor;
 	private Color _hitColor;
 	private Color _missColor;
@@ -35,7 +63,9 @@ public class UltrasonicSensor : Sensor {
 		get; private set;
 	}
 	
-	// scan for obstructions in a cone 
+	/// <summary>
+	/// Scan for obstructions in a cone
+	/// </summary>
 	private IEnumerator Scan() {
 		
 		while(scanning) {
@@ -62,7 +92,10 @@ public class UltrasonicSensor : Sensor {
 		
 	}
 	
-	// cast a ray and return detected obstruction if the hit angle is less than a threshold
+	/// <summary>
+	/// Cast a ray and return detected obstruction if the hit angle is less than a threshold
+	/// </summary>
+	/// <param name="direction">Direction.</param>
 	private float Cast(Vector3 direction) {
 		Ray ray = new Ray(transform.position, direction);
 		RaycastHit hit;
@@ -101,6 +134,9 @@ public class UltrasonicSensor : Sensor {
 		return proximity;
 	}
 	
+	/// <summary>
+	/// Awake this instance.
+	/// </summary>
 	void Awake() {
 		_recieveColor = Color.red;
 		_recieveColor.a = 0.5f;
@@ -111,7 +147,9 @@ public class UltrasonicSensor : Sensor {
 	}
 	
 	
-	// draw sensor ray approximation in Unity Editor
+	/// <summary>
+	/// Raises the draw gizmos event.
+	/// </summary>
 	void OnDrawGizmos() {
 		Gizmos.color = Color.grey;
 		// roll

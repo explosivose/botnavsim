@@ -10,24 +10,45 @@ using System.Collections;
 /// </summary>
 public class Robot : MonoBehaviour, IObservable {
 
-	// sensor callback method type
+	/// <summary>
+	/// Sensor callback delegate type
+	/// </summary>
 	public delegate void SensorData(ProximityData data);
 
 	// public fields
 	// ~-~-~-~-~-~-~-~-
+	
+	/// <summary>
+	/// If true, the robot navigation is controlled using the keyboard. 
+	/// </summary>
 	public bool 		manualControl;
+	
+	/// <summary>
+	/// A flag indicating whether the robot should try moving.
+	/// </summary>
 	public bool 		moveEnabled;
+	
+	/// <summary>
+	/// The maximum distance from the destination before setting <see cref="atDestination"/> to <c>true</c>.
+	/// </summary>
 	public float		stopDistance;	// how close the robot will get to destination before stopping
-	public Sensor[] 	sensors;
+	
+	/// <summary>
+	/// Reference to the destination GameObject
+	/// </summary>
 	public Transform 	destination;	
+	
+	/// <summary>
+	/// RigidBody center of mass offset vector in local coordinates.
+	/// </summary>
 	public Vector3 		centerOfMassOffset;
 	
 	// private fields
 	// ~-~-~-~-~-~-~-~-
 	
 	private INavigation _navigation;	// reference to the navigation assembly
+	private Sensor[] 	_sensors;		// references to sensor components in this object hierarchy
 	private Vector3 	_move;			// the move command from the navigation assembly
-	private int 		_snsrIndex;		// circular index for sensor array
 	private int 		_stuckCounter;
 	private Vector3[]	_positions;
 	private BotPath 	_path;
@@ -65,7 +86,6 @@ public class Robot : MonoBehaviour, IObservable {
 	/// <summary>
 	/// The cached navigation bearing from INavigation.
 	/// </summary>
-	/// <value>The move command.</value>
 	public Vector3 navigationCommand {
 		get; private set;
 	}
@@ -83,7 +103,6 @@ public class Robot : MonoBehaviour, IObservable {
 	/// <summary>
 	/// Gets or sets the transform position.
 	/// </summary>
-	/// <value>The transform position.</value>
 	public Vector3 position {
 		get{ return transform.position; }
 		set{ transform.position = value; }
@@ -92,13 +111,11 @@ public class Robot : MonoBehaviour, IObservable {
 	/// <summary>
 	/// The first-person perspective camera position. 
 	/// </summary>
-	/// <value>The camera mount position.</value>
 	public Transform cameraMount { get; private set; }
 	
 	/// <summary>
 	/// Gets the bounds of the robot for IObservable
 	/// </summary>
-	/// <value>The bounds.</value>
 	public Bounds bounds {
 		get {
 			return new Bounds(transform.position, _size);
@@ -148,7 +165,7 @@ public class Robot : MonoBehaviour, IObservable {
 		if (_navigation == null) return;
 		StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
 		Debug.Log("Path search due to NavigationToDestination() call.");
-		foreach(Sensor s in sensors) {
+		foreach(Sensor s in _sensors) {
 			s.Enable(ReceiveSensorData);
 		}
 	}
@@ -159,7 +176,7 @@ public class Robot : MonoBehaviour, IObservable {
 	public void Reset() {
 		_path = new BotPath();
 		_positions = new Vector3[30];
-		foreach(Sensor s in sensors) {
+		foreach(Sensor s in _sensors) {
 			s.Disable();
 		}
 	}
@@ -191,7 +208,7 @@ public class Robot : MonoBehaviour, IObservable {
 	
 	// called once at the start
 	private void Awake() {
-		sensors = GetComponentsInChildren<Sensor>();
+		_sensors = GetComponentsInChildren<Sensor>();
 		StartCoroutine(StuckDetector());
 		cameraMount = transform.Find("CameraMount");
 		if (!cameraMount) {
