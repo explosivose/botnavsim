@@ -49,6 +49,11 @@ public class ArDrone : MonoBehaviour {
 	public float maxTilt;
 	
 	/// <summary>
+	/// If <c>true</c> then AR Drone will rotate to face the command direction vector.
+	/// </summary>
+	public bool rotateYaw;
+	
+	/// <summary>
 	/// The max yaw rotational velocity.  (measured in degrees per second)
 	/// </summary>
 	[Range(40.0f,350.0f)]
@@ -92,11 +97,15 @@ public class ArDrone : MonoBehaviour {
 	private float _actualRoll;				// measured roll
 	
 	private float _targetSpeed;				// target lateral speed
-	private float _targetTilt;				// target tilt
+	private float _targetTilt;				// modified max tilt
+	private float _targetRoll;				// target roll
+	private float _targetPitch;				// target pitch
 	private float _targetHeight;			// target height
 	
 	private Robot _robot;					// reference to the Robot component 
 	
+	private Vector3 _command;
+	private Vector3 _target2d;				// target direction with no y component
 	private Vector3 _holdRotation;			// maintain this forward direction in yaw control when there is no navigation command
 	private Vector3 _holdPosition;
 	
@@ -142,99 +151,61 @@ public class ArDrone : MonoBehaviour {
 			return;
 		}
 		
-		Vector3 command = _robot.navigationCommand;
+		_command = _robot.navigationCommand;
 		
-		Draw.Instance.Bearing(transform.position, command, Color.green);
-		Debug.DrawRay(transform.position, command, Color.green);
+		Draw.Instance.Bearing(transform.position, _command, Color.green);
+		Debug.DrawRay(transform.position, _command, Color.green);
 		
-		_targetHeight += command.y * Time.deltaTime * verticalSpeed;
+		_targetHeight += _command.y * Time.deltaTime * verticalSpeed;
 		
-		
-		
-		Vector3 forward2d; 	// transform.forward with no y component
-		Vector3 right2d;	// transform.right with no y component
-		Vector3 target2d;	// target direction with no y component
+		Vector3 forward2d = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
+		Vector3 right2d = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
 		Vector3 yawTarget;	// set to vector3.forward when there is no command
-		float displacement2d;
 		
-		forward2d = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
-		right2d = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
+
 		
 		// if no command
-		if (command.magnitude < 0.1f) {		// no command, replace command vector with hold values
+		if (_command.magnitude < 0.1f) {		// no command, replace command vector with hold values
 			
 			
-			target2d = _holdPosition - transform.position;
-			target2d.y = 0f;
+			_target2d = _holdPosition - transform.position;
+			_target2d.y = 0f;
 			yawTarget = Vector3.forward;
-			displacement2d = target2d.magnitude;
 			
 		} else {	// deal with command vector
 			
 			// X/Z plane target direction
-			target2d = new Vector3(command.x, 0f, command.z);
-			yawTarget = target2d;
+			_target2d = new Vector3(_command.x, 0f, _command.z);
+			yawTarget = _target2d;
 			// update hold previous command 
-			_holdRotation = command;
+			_holdRotation = _command;
 			// keep hold position
 			_holdPosition = transform.position;
-			displacement2d = command.magnitude;
 		}
 		
-		_targetSpeed = lateralSpeedController.output(0f, - displacement2d);
-		_targetSpeed = Mathf.Clamp(_targetSpeed, 0f, maxLateralSpeed);
-		_targetTilt = tiltController.output(_targetSpeed, rigidbody.velocity.magnitude);
-		_targetTilt = Mathf.Clamp(_targetTilt, -maxTilt, maxTilt);
+
 		
 		
-		Draw.Instance.Bearing(transform.position, target2d, Color.red);
-		Debug.DrawRay(transform.position, target2d, Color.red);
+		Draw.Instance.Bearing(transform.position, _target2d, Color.red);
+		Debug.DrawRay(transform.position, _target2d, Color.red);
 			
-		// control the local yaw velocity so that ArDrone faces command direction
-		float yawAxisAngle = Vector3.Angle(right2d, yawTarget);
-		float yawCosine = Mathf.Cos(yawAxisAngle * Mathf.Deg2Rad); // 1:RotateRight, -1:RotateLeft
-		float localYawVelocity = transform.InverseTransformDirection(rigidbody.angularVelocity).y;
-		float yawForce = (yawCosine*maxYawVelocity - localYawVelocity) * yawKp;
-		_controlTorque = transform.rotation * new Vector3(0f, yawForce, 0f);
-
-
+		if (rotateYaw) {
+			// control the local yaw velocity so that ArDrone faces command direction
+			float yawAxisAngle = Vector3.Angle(right2d, yawTarget);
+			float yawCosine = Mathf.Cos(yawAxisAngle * Mathf.Deg2Rad); // 1:RotateRight, -1:RotateLeft
+			float localYawVelocity = transform.InverseTransformDirection(rigidbody.angularVelocity).y;
+			float yawForce = (yawCosine*maxYawVelocity - localYawVelocity) * yawKp;
+			_controlTorque = transform.rotation * new Vector3(0f, yawForce, 0f);
+		}
 
 
 	
-		// PITCH
-		float forwardAxisAngle = Vector3.Angle(forward2d, target2d);
-		float forwardCosine = Mathf.Cos(forwardAxisAngle * Mathf.Deg2Rad);
-		_actualPitch = Vector3.Angle(transform.forward, Vector3.up) - 90f; // avoids the 0-360 boundary
-		float pitchOutput = pitchController.output(forwardCosine*_targetTilt, _actualPitch);
-		// ROLL
-		float rightAxisAngle = Vector3.Angle(right2d, target2d);
-		float rightCosine = Mathf.Cos(rightAxisAngle * Mathf.Deg2Rad);
-		_actualRoll = Vector3.Angle(transform.right, Vector3.up) - 90f;	// avoids the 0-360 boundary
-		float rollOutput = rollController.output(rightCosine*_targetTilt, _actualRoll);
-		
+
 		
 
 		Draw.Instance.Bearing(transform.position, throttleController.error * Vector3.up, Color.red);
 		Debug.DrawRay(transform.position, throttleController.error * Vector3.up, Color.red);
 		
-		// THROTTLE
-		float throttle = throttleController.output(_targetHeight, transform.position.y);
-		
-		
-		// adapted from here
-		// https://ghowen.me/build-your-own-quadcopter-autopilot/
-		float flForce = Mathf.Clamp(throttle + rollOutput - pitchOutput, 0f, maxThrottle);
-		float blForce = Mathf.Clamp(throttle + rollOutput + pitchOutput, 0f, maxThrottle);
-		float frForce = Mathf.Clamp(throttle - rollOutput - pitchOutput, 0f, maxThrottle);
-		float brForce = Mathf.Clamp(throttle - rollOutput + pitchOutput, 0f, maxThrottle);
-		
-		
-		_flControlThrust = FL.up * flForce;
-		_blControlThrust = BL.up * blForce;
-		_frControlThrust = FR.up * frForce;
-		_brControlThrust = BR.up * brForce;
-		
-
 		
 		Draw.Instance.Bearing(FL.position, _flControlThrust, Color.magenta);
 		Draw.Instance.Bearing(BR.position, _brControlThrust, Color.magenta);
@@ -250,13 +221,56 @@ public class ArDrone : MonoBehaviour {
 	
 	// apply control forces
 	void FixedUpdate() {
-		if(_robot.moveEnabled)  {
-			rigidbody.AddForceAtPosition(_flControlThrust, FL.position);
-			rigidbody.AddForceAtPosition(_frControlThrust, FR.position);
-			rigidbody.AddForceAtPosition(_blControlThrust, BL.position);
-			rigidbody.AddForceAtPosition(_brControlThrust, BR.position);
-			rigidbody.AddTorque(_controlTorque, ForceMode.Acceleration);
-		}
+		if(!_robot.moveEnabled)  return;
+		
+		float displacement2d = _target2d.magnitude;
+
+		_targetSpeed = lateralSpeedController.output(0f, - displacement2d);
+		_targetSpeed = Mathf.Clamp(_targetSpeed, 0f, maxLateralSpeed);
+		_targetTilt = tiltController.output(_targetSpeed, rigidbody.velocity.magnitude);
+		_targetTilt = Mathf.Clamp(_targetTilt, 0f, maxTilt);
+		
+		Vector3 forward2d = new Vector3(transform.forward.x, 0f, transform.forward.z).normalized;
+		Vector3 right2d = new Vector3(transform.right.x, 0f, transform.right.z).normalized;
+		
+		// PITCH
+		float forwardAxisAngle = Vector3.Angle(forward2d, _target2d);
+		float forwardCosine = Mathf.Cos(forwardAxisAngle * Mathf.Deg2Rad);
+		_actualPitch = Vector3.Angle(transform.forward, Vector3.up) - 90f; // avoids the 0-360 boundary
+		_targetPitch = forwardCosine*_targetTilt;
+		
+		// ROLL
+		float rightAxisAngle = Vector3.Angle(right2d, _target2d);
+		float rightCosine = Mathf.Cos(rightAxisAngle * Mathf.Deg2Rad);
+		_actualRoll = Vector3.Angle(transform.right, Vector3.up) - 90f;	// avoids the 0-360 boundary
+		_targetRoll = rightCosine*_targetTilt;
+		
+		
+		float pitchOutput = pitchController.output(_targetPitch, _actualPitch);
+		float rollOutput = rollController.output(_targetRoll, _actualRoll);
+		
+		// THROTTLE
+		float throttle = throttleController.output(_targetHeight, transform.position.y);
+		
+		// adapted from here
+		// https://ghowen.me/build-your-own-quadcopter-autopilot/
+		float flForce = Mathf.Clamp(throttle + rollOutput - pitchOutput, 0f, maxThrottle);
+		float blForce = Mathf.Clamp(throttle + rollOutput + pitchOutput, 0f, maxThrottle);
+		float frForce = Mathf.Clamp(throttle - rollOutput - pitchOutput, 0f, maxThrottle);
+		float brForce = Mathf.Clamp(throttle - rollOutput + pitchOutput, 0f, maxThrottle);
+		
+		
+		_flControlThrust = FL.up * flForce;
+		_blControlThrust = BL.up * blForce;
+		_frControlThrust = FR.up * frForce;
+		_brControlThrust = BR.up * brForce;
+		
+		rigidbody.AddForceAtPosition(_flControlThrust, FL.position);
+		rigidbody.AddForceAtPosition(_frControlThrust, FR.position);
+		rigidbody.AddForceAtPosition(_blControlThrust, BL.position);
+		rigidbody.AddForceAtPosition(_brControlThrust, BR.position);
+		rigidbody.AddTorque(_controlTorque, ForceMode.Acceleration);
+		
 	}
 	
 

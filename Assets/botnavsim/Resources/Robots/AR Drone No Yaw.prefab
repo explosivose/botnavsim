@@ -3642,7 +3642,7 @@ GameObject:
   - 114: {fileID: 11499264}
   - 114: {fileID: 11499262}
   m_Layer: 9
-  m_Name: VD AR Drone
+  m_Name: AR Drone No Yaw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12185,7 +12185,7 @@ MonoBehaviour:
     ki: .100000001
     kd: 1
   maxTilt: 25
-  rotateYaw: 1
+  rotateYaw: 0
   maxYawVelocity: 40
   yawKp: 6
   rollController:

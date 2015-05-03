@@ -366,7 +366,7 @@ public class CamController : MonoBehaviour {
 	
 	
 	private float _birdseyeDist = 0f;				// vertical distance offset for camera in birdseye mode
-	private float _3rdPersonDist = 5f;				// distance offset for camera in orbit mode
+	private float _3rdPersonDist = 0.5f;			// distance offset for camera in orbit mode
 	private Vector3 _3rdPersonDir = Vector3.one;	// direction offset for camera in orbit mode
 	private Vector3 _1stPersonDir = Vector3.one;	// camera direction when in free movement mode
 	
@@ -426,7 +426,7 @@ public class CamController : MonoBehaviour {
 			// adjust third person distance with scroll wheel input
 			_3rdPersonDist -= Input.GetAxis("Mouse ScrollWheel") * 4f;
 			_3rdPersonDist = Mathf.Min(_3rdPersonDist, 20f);
-			_3rdPersonDist = Mathf.Max(_3rdPersonDist, 1f);
+			_3rdPersonDist = Mathf.Max(_3rdPersonDist, 0.25f);
 			
 			// move orbit direction vector while rightclick drag
 			if (Input.GetMouseButton(1)) {
@@ -482,7 +482,7 @@ public class CamController : MonoBehaviour {
 		
 		float size = Mathf.Max(area.bounds.size.x/2f, area.bounds.size.z/2f);
 		size += _birdseyeDist;
-		size = Mathf.Max(size, 5f);
+		size = Mathf.Max(size, 0.5f);
 		_camera.orthographicSize = Mathf.Lerp(_camera.orthographicSize, size, Time.unscaledDeltaTime * 4f);
 		Vector3 targetPosition = area.bounds.center + Vector3.up * 10f;
 		
