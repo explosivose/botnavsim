@@ -75,54 +75,6 @@ NavMeshSettings:
     heightInaccuracy: 10
     tileSizeHint: 0
   m_NavMesh: {fileID: 0}
---- !u!1001 &11379859
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 38.5251846
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 9.69998646
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 6.33694458
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-  m_RootGameObject: {fileID: 1780533659}
-  m_IsPrefabParent: 0
-  m_IsExploded: 1
 --- !u!1 &77809484
 GameObject:
   m_ObjectHideFlags: 0
@@ -253,6 +205,50 @@ MonoBehaviour:
   maskHybrid:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1001 &539217387
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 38.5251846
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 9.69998646
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 6.33694458
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
+  m_RootGameObject: {fileID: 1780533659}
+  m_IsPrefabParent: 0
+  m_IsExploded: 1
 --- !u!1 &610891075
 GameObject:
   m_ObjectHideFlags: 0
@@ -639,7 +635,7 @@ Prefab:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 100000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-  m_PrefabInternal: {fileID: 11379859}
+  m_PrefabInternal: {fileID: 539217387}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1780533661}
@@ -657,7 +653,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11443242, guid: 6578effa2045c10469e914e3e8fe06fb,
     type: 2}
-  m_PrefabInternal: {fileID: 11379859}
+  m_PrefabInternal: {fileID: 539217387}
   m_GameObject: {fileID: 1780533659}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -669,7 +665,7 @@ MonoBehaviour:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 400000, guid: 6578effa2045c10469e914e3e8fe06fb, type: 2}
-  m_PrefabInternal: {fileID: 11379859}
+  m_PrefabInternal: {fileID: 539217387}
   m_GameObject: {fileID: 1780533659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 38.5251846, y: 9.69998646, z: 6.33694458}
@@ -682,7 +678,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11417150, guid: 6578effa2045c10469e914e3e8fe06fb,
     type: 2}
-  m_PrefabInternal: {fileID: 11379859}
+  m_PrefabInternal: {fileID: 539217387}
   m_GameObject: {fileID: 1780533659}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -709,7 +705,7 @@ MonoBehaviour:
     description: Many thanks to my project supervisor David Mulvaney and my other
       peers.
     url: http://www.lboro.ac.uk/
-  - name: Project resository
+  - name: Project repository
     author: GitHub
     description: Source code available here. Thanks GitHub!
     url: https://github.com/explosivose/botnavsim
