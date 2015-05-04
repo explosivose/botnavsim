@@ -50166,6 +50166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxWheelRpm: 50
+  maxWheelTorque: 2.68000007
   Kp: .5
 --- !u!114 &11400002
 MonoBehaviour:
@@ -50180,8 +50181,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualControl: 0
   moveEnabled: 0
-  stopDistance: 2
-  sensors: []
+  stopDistance: .200000003
   destination: {fileID: 0}
   centerOfMassOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &11400004

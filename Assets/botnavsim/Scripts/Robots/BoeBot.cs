@@ -42,6 +42,8 @@ public class BoeBot : MonoBehaviour {
 	private float leftTarget;
 	private float rightTarget;
 	
+	private float leftTorque;
+	private float rightTorque;
 	// called when robot is instantiated
 	void Awake() {
 		_robot = GetComponent<Robot>();
@@ -53,7 +55,9 @@ public class BoeBot : MonoBehaviour {
 
 		if (!_robot.moveEnabled) return;
 		
-		Vector3 target = _robot.navigationCommand.normalized;
+		Vector3 target = _robot.navigationCommand;
+		target.y = 0f;
+		target.Normalize();
 		Debug.DrawRay(transform.position, target, Color.green);
 		
 		if(target.magnitude < 0.1f) {
@@ -71,10 +75,10 @@ public class BoeBot : MonoBehaviour {
 		}
 		
 		// drive wheel
-		float leftTorque = (leftTarget*maxWheelRpm - _leftWheel.rpm) * Kp;
-		_leftWheel.motorTorque = Mathf.Clamp(leftTorque, 0f, maxWheelTorque);
-		float rightTorque = (rightTarget*maxWheelRpm - _rightWheel.rpm) * Kp;
-		_rightWheel.motorTorque = Mathf.Clamp(rightTorque, 0f, maxWheelTorque);
+		leftTorque = (leftTarget*maxWheelRpm - _leftWheel.rpm) * Kp;
+		_leftWheel.motorTorque = Mathf.Clamp(leftTorque, -maxWheelTorque, maxWheelTorque);
+		rightTorque = (rightTarget*maxWheelRpm - _rightWheel.rpm) * Kp;
+		_rightWheel.motorTorque = Mathf.Clamp(rightTorque, -maxWheelTorque, maxWheelTorque);
 		
 		Debug.DrawRay(_leftWheel.transform.position, transform.forward * leftTarget * 0.1f, Color.magenta);
 		Debug.DrawRay(_rightWheel.transform.position, transform.forward * rightTarget * 0.1f, Color.magenta);
