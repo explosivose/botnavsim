@@ -6,7 +6,6 @@ using System.Collections.Generic;
 /// <summary>
 /// An instantiable class that provides a UI for editing a given Simulation.Settings object
 /// </summary>
-[System.Serializable]
 public class UI_SimulationSettings : IWindowFunction {
 
 	private Stack<GUI.WindowFunction> _windows;

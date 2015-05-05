@@ -2,11 +2,31 @@
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// IWindowFunction class that prompts the user for action.
+/// </summary>
 public class UI_Prompt : IWindowFunction {
 
+	
+	/// <summary>
+	/// Response callback delegate type.
+	/// </summary>
+	public delegate void Response(bool response);
+
 	public enum Type {
+		/// <summary>
+		/// Close type response: display only a "Close" button.
+		/// </summary>
 		Close,
+		
+		/// <summary>
+		/// Yes or No type response: display "Yes" and "No" buttons.
+		/// </summary>
 		YesNo,
+		
+		/// <summary>
+		/// Ok or Cancel type response: display "Ok" and "Cancel" buttons.
+		/// </summary>
 		OkCancel
 	}
 
@@ -15,7 +35,7 @@ public class UI_Prompt : IWindowFunction {
 /// Initializes a new instance of the <see cref="UI_Prompt"/> class.
 /// </summary>
 /// <param name="response">Response callback function Reponse(bool).</param>
-/// <param name="t">T.</param>
+/// <param name="t">Response Type.</param>
 /// <param name="title">Title.</param>
 /// <param name="prompt">Prompt.</param>
 	public UI_Prompt(
@@ -54,12 +74,17 @@ public class UI_Prompt : IWindowFunction {
 			else return Window;
 		}
 	}
+
 	
-	public delegate void Response(bool response);
-	
+	/// <summary>
+	/// The callback function to call once the user has responded to the prompt.
+	/// </summary>
 	private Response callback;
 	private bool close;
 	
+	/// <summary>
+	/// GUI window function for the prompt.
+	/// </summary>
 	void Window(int windowID) {
 		
 		GUILayout.Label(message);

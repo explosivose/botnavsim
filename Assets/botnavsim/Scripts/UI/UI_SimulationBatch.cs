@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 
 /// <summary>
-/// UI for displaying and editing the simulation batch list
+/// IToolbar class for displaying and editing the simulation batch list
 /// </summary>
 public class UI_SimulationBatch : IToolbar  {
 
@@ -72,7 +72,6 @@ public class UI_SimulationBatch : IToolbar  {
 	/// <summary>
 	/// List Simulation.Settings in Simulation.batch and provide controls and editing the Simulation.batch
 	/// </summary>
-	/// <param name="windowID">Window ID.</param>
 	void BatchListWindow(int windowID) {
 		
 		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
@@ -142,7 +141,6 @@ public class UI_SimulationBatch : IToolbar  {
 	/// <summary>
 	/// Browse for XML files to deserialize into Simulation.Settings
 	/// </summary>
-	/// <param name="windowID">Window ID.</param>
 	void XmlBrowser(int windowID) {
 		// back button
 		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
@@ -184,7 +182,6 @@ public class UI_SimulationBatch : IToolbar  {
 			}
 		}
 		
-		//GUI.DragWindow();
 	}
 
 }

@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[System.Serializable]
+/// <summary>
+/// IToolbar class for providing controls of data logging.
+/// Includes editing parameters to log and enable/disable logging. 
+/// Calls functions to Log class
+/// </summary>
 public class UI_Log : IToolbar  {
 
 	public UI_Log() {
@@ -35,6 +39,9 @@ public class UI_Log : IToolbar  {
 		}
 	}
 	
+	/// <summary>
+	/// GUI Window function provides controls for logging data. 
+	/// </summary>
 	void LogSettingsWindow(int windowID) {
 		float w = UI_Toolbar.I.innerWidth/2f;
 		
@@ -79,6 +86,5 @@ public class UI_Log : IToolbar  {
 			GUILayout.EndHorizontal();
 		}
 		
-		//GUI.DragWindow();
 	}
 }

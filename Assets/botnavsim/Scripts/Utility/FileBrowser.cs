@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+/// <summary>
+/// File browser utility class for finding files and folders.
+/// </summary>
 public class FileBrowser {
 
 	/// <summary>

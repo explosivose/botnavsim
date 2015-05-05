@@ -107,7 +107,6 @@ public class UI_Toolbar : MonoBehaviour {
 	/// <summary>
 	/// Toolbar window GUI.WindowFunction (a list of buttons for showing/hiding tools)
 	/// </summary>
-	/// <param name="windowID">Window ID.</param>
 	void ToolbarWindow(int windowID) {
 		_scrollPos = GUILayout.BeginScrollView(_scrollPos, true, false);
 		// about button
