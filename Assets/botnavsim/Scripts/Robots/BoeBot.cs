@@ -53,7 +53,11 @@ public class BoeBot : MonoBehaviour {
 	
 	void Update() {
 
-		if (!_robot.moveEnabled) return;
+		if (!_robot.moveEnabled) {
+			_leftWheel.motorTorque = 0f;
+			_rightWheel.motorTorque = 0f;
+			return;	
+		}
 		
 		Vector3 target = _robot.navigationCommand;
 		target.y = 0f;
