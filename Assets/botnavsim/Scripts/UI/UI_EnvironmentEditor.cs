@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// IToolbar class provides controls for the Environment Editor (not implemented!)
+/// </summary>
 public class UI_EnvironmentEditor : IToolbar {
 
 	public UI_EnvironmentEditor() {

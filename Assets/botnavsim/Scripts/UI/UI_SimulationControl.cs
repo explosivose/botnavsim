@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 /// <summary>
-/// UI window for simulation control. 
+/// IToolbar class for simulation control. 
 /// Provides controls for pausing, stopping or skipping the current test
 /// Provides a toggle for exhibition mode.
 /// Provides a slider for simulation timescale.
 /// </summary>
-[System.Serializable]
 public class UI_SimulationControl : IToolbar {
 
 	public UI_SimulationControl() {
@@ -50,7 +49,6 @@ public class UI_SimulationControl : IToolbar {
 	/// <summary>
 	/// Simulation settings window function called by UI_Toolbar.
 	/// </summary>
-	/// <param name="windowID">Window ID.</param>
 	void MainWindow (int windowID) {
 		float lw = 200f;
 				
@@ -132,9 +130,7 @@ public class UI_SimulationControl : IToolbar {
 				_liveEditSettings = false;
 			}
 		}
-	
-		
-		//GUI.DragWindow();
+
 	}
 	
 

@@ -96,7 +96,7 @@ public class BotPath : IObservable  {
 	}
 	
 	/// <summary>
-	/// Draws the path on screen using Draw class and text labels.
+	/// Draws the path on screen using Draw class 
 	/// </summary>
 	public void DrawPath() {
 		Color c = highlight ? Color.white : color;
@@ -110,7 +110,7 @@ public class BotPath : IObservable  {
 			// draw start node
 			Draw.Instance.Cube(
 				_nodes[0],
-				Vector3.one * 0.5f,
+				Vector3.one * 0.25f,
 				c);
 			// draw end node
 			Draw.Instance.Cube(
@@ -119,7 +119,7 @@ public class BotPath : IObservable  {
 				c);
 			Draw.Instance.Cube(
 				_nodes[_nodes.Count-1],
-				Vector3.one * 0.5f,
+				Vector3.one * 0.1f,
 				c);
 		}
 

@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Utility struct for transforming RGB Color to HSB Color
+/// (sourced from a previous project)
+/// </summary>
 [System.Serializable]
 public struct HSBColor
 {

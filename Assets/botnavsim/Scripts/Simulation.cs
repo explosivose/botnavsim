@@ -217,7 +217,7 @@ public class Simulation : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Singleton pattern.
+	/// Reference to the MonoBebehaviour instance
 	/// </summary>
 	public static Simulation Instance;
 	
@@ -545,7 +545,6 @@ public class Simulation : MonoBehaviour {
 		state = State.inactive;
 	}
 	
-	// Return a random position inside the  bounds
 	/// <summary>
 	/// Return a random position inside the bounds, but 
 	/// not inside any physical objects.
@@ -564,7 +563,10 @@ public class Simulation : MonoBehaviour {
 		return v;
 	}
 	
-	// Routine for starting a new test
+	/// <summary>
+	/// Routine for starting a new test
+	/// </summary>
+	/// <returns>The test routine.</returns>
 	private static IEnumerator StartTestRoutine() {
 		if (isRunning) Halt(StopCode.Unspecified);
 		state = State.starting;
@@ -594,7 +596,9 @@ public class Simulation : MonoBehaviour {
 		robot.NavigateToDestination();
 	}
 	
-	
+	/// <summary>
+	/// Places the robot in start area.
+	/// </summary>
 	private static void PlaceRobotInStartArea() {
 		if (settings.randomizeOrigin) {
 			robot.position = RandomInBounds(_environment.originBounds);
@@ -604,6 +608,9 @@ public class Simulation : MonoBehaviour {
 		robot.transform.rotation = Quaternion.identity;
 	}
 	
+	/// <summary>
+	/// Places the destination.
+	/// </summary>
 	private static void PlaceDestination() {
 		if (settings.randomizeDestination) {
 			destination.transform.position = RandomInBounds(_environment.destinationBounds);
@@ -644,12 +651,16 @@ public class Simulation : MonoBehaviour {
 		_settings = new Settings();
 	}
 	
-	// Called on the first frame
+	/// <summary>
+	/// Called on the first frame
+	/// </summary>
 	void Start() {
 		destination = GameObject.Find("Destination");
 	}
 	
-	// Called every frame
+	/// <summary>
+	/// Update this instance (called every rendered frame)
+	/// </summary>
 	void Update() {
 		if (isRunning) {
 			// check for conditions to end the test
@@ -672,12 +683,16 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
-	// Called every frame for drawing Gizmos
+	/// <summary>
+	/// Raises the draw gizmos event.
+	/// </summary>
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(bounds.center, bounds.size);
 	}
 	
-	// called before application shuts down
+	/// <summary>
+	/// called before application shuts down
+	/// </summary>
 	void OnApplicationQuit() {
 		Log.Stop(StopCode.Unspecified);
 	}

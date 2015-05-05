@@ -58,7 +58,11 @@ public class UltrasonicSensor : Sensor {
 	public override void Disable () {
 		scanning = false;
 	}
-
+	
+	/// <summary>
+	/// Gets a value indicating whether this <see cref="UltrasonicSensor"/> is enabled and scanning.
+	/// </summary>
+	/// <value><c>true</c> if scanning; otherwise, <c>false</c>.</value>
 	public bool scanning {
 		get; private set;
 	}

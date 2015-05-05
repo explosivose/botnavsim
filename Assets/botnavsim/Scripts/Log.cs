@@ -42,7 +42,7 @@ public class Log  {
 	}
 	
 	/// <summary>
-	/// The time between log entries.
+	/// The time between log entries in seconds.
 	/// </summary>
 	public static float timeStep = 0.05f;
 	
@@ -57,16 +57,25 @@ public class Log  {
 	public static List<Parameters> selectedParams = new List<Parameters>();
 	
 	
-	// flag used for running log routine
+	/// <summary>
+	/// Gets a value indicating whether this <see cref="Log"/> is logging.
+	/// </summary>
+	/// <value><c>true</c> if logging; otherwise, <c>false</c>.</value>
 	public static bool logging {
 		get; private set;
 	}
-	// metadata to write to the top of the CSV file
+	
+	/// <summary>
+	/// metadata to write to the top of the CSV file
+	/// </summary>
 	private static string header;
-	// FIFO timeframe data buffer to be written to file 
+	
+	/// <summary>
+	/// FIFO timeframe data buffer to be written to file 
+	/// </summary>
 	private static Queue<string> log = new Queue<string>();
 	
-	// static constructor initialises static members
+	//static constructor initialises static members 
 	static Log() {
 		foreach(Parameters p in (Parameters[])Enum.GetValues(typeof(Parameters))) {
 			availableParams.Add(p);
@@ -173,7 +182,9 @@ public class Log  {
 		log.Clear();
 	}
 	
-	// logging routine
+	/// <summary>
+	/// logging routine
+	/// </summary>
 	private static IEnumerator LogRoutine() {
 		string headings = "";
 		foreach(Parameters p in selectedParams) {
@@ -190,7 +201,11 @@ public class Log  {
 		}
 	}
 	
-	// get data for parameter 
+	/// <summary>
+	/// Gets the data for a specified parameter
+	/// </summary>
+	/// <returns>The data.</returns>
+	/// <param name="parameter">Parameter.</param>
 	private static string GetData(Parameters parameter) {
 		switch (parameter) {
 		case Parameters.SimulationTime:
@@ -198,15 +213,15 @@ public class Log  {
 		case Parameters.SimulationTimeScale:
 			return Simulation.timeScale.ToString();
 		case Parameters.RobotPosition:
-			return Simulation.robot.rigidbody.worldCenterOfMass.ToString();
+			return Simulation.robot.rigidbody.worldCenterOfMass.ToString("F2");
 		case Parameters.RobotIsStuck:
 			return Simulation.robot.stuckpc.ToString();
 		case Parameters.DestinationPosition:
-			return Simulation.destination.transform.position.ToString();
+			return Simulation.destination.transform.position.ToString("F2");
 		case Parameters.NavigationPathFound:
 			return Simulation.robot.navigation.pathFound.ToString();
 		case Parameters.NavigationMoveDirection:
-			return Simulation.robot.navigationCommand.ToString();
+			return Simulation.robot.navigationCommand.ToString("F2");
 		}
 		return null;
 	}

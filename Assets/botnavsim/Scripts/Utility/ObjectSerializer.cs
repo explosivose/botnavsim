@@ -5,10 +5,13 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 
+/// <summary>
+/// Object serializer utility class.
+/// </summary>
 public class ObjectSerializer {
 	
 	/// <summary>
-	/// Serializes the object.
+	/// Serializes the object to XML file.
 	/// </summary>
 	/// <param name="serializableObject">Serializable object.</param>
 	/// <param name="fileName">File name.</param>
@@ -36,7 +39,7 @@ public class ObjectSerializer {
 	}
 	
 	/// <summary>
-	/// Deserializes object.
+	/// Deserializes object from XMl file.
 	/// </summary>
 	/// <returns>The deserialized object.</returns>
 	/// <param name="fileName">File name.</param>
@@ -69,6 +72,11 @@ public class ObjectSerializer {
 		return objectOut;
 	}
 	
+	/// <summary>
+	/// Searchs for XML objects in a directory.
+	/// </summary>
+	/// <returns>The for objects.</returns>
+	/// <param name="path">Path.</param>
 	public static List<string> SearchForObjects(string path) {
 		List<string> objectsFound = new List<string>();
 		foreach (string file in Directory.GetFiles(path, "*.xml")) {
