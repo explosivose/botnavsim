@@ -56,12 +56,13 @@ public class UI_Credits : MonoBehaviour, IWindowFunction {
 
 	public GUI.WindowFunction windowFunction {
 		get {
-			if (_close) return null;
+			if (close) return null;
 			return Window;
 		}
 	}
 	
-	private bool _close;
+	public bool close;
+	
 	private Vector2 _scrollPos = new Vector2();
 	
 	/// <summary>
@@ -76,7 +77,7 @@ public class UI_Credits : MonoBehaviour, IWindowFunction {
 	/// </summary>
 	void Window(int id) {
 		if (GUILayout.Button("Close")) {
-			_close = true;
+			close = true;
 		}
 		_scrollPos = GUILayout.BeginScrollView(_scrollPos, true, false);
 		GUILayout.Label(Strings.projectAbout, GUILayout.Width(width-60f));

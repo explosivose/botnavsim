@@ -111,7 +111,9 @@ public class UI_Toolbar : MonoBehaviour {
 		_scrollPos = GUILayout.BeginScrollView(_scrollPos, true, false);
 		// about button
 		if (GUILayout.Button("About", GUILayout.Width(innerWidth))) {
+			_credits.close = false;
 			additionalWindows.Add(_credits);
+			
 		}
 		
 		// horizontal separator
