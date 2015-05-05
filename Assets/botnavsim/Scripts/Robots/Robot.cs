@@ -4,28 +4,51 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody))]
 /// <summary>
 /// Robot class bridges the gap between sensors and INavigation. The navigation 
-/// direction is cached in Robot.moveCommand. This class does not implement
+/// direction is cached in Robot.navigationCommand. This class does not implement
 /// any physics simulation. Robot locomotion models are implemented
 /// in other classes that require this component for communications and data. 
 /// </summary>
 public class Robot : MonoBehaviour, IObservable {
 
+	/// <summary>
+	/// Sensor callback delegate type
+	/// </summary>
+	public delegate void SensorData(ProximityData data);
+
 	// public fields
 	// ~-~-~-~-~-~-~-~-
-	public bool 		manualControl;
-	public bool 		moveEnabled;
-	public float		stopDistance;	// how close the robot will get to _destination before stopping
-	public ParamSensor[] 	sensors;
-	public Transform 	destination;	
-	public Vector3 		centerOfMass;
 	
-	// private members
+	/// <summary>
+	/// If true, the robot navigation is controlled using the keyboard. 
+	/// </summary>
+	public bool 		manualControl;
+	
+	/// <summary>
+	/// A flag indicating whether the robot should try moving.
+	/// </summary>
+	public bool 		moveEnabled;
+	
+	/// <summary>
+	/// The maximum distance from the destination before setting <see cref="atDestination"/> to <c>true</c>.
+	/// </summary>
+	public float		stopDistance;	// how close the robot will get to destination before stopping
+	
+	/// <summary>
+	/// Reference to the destination GameObject
+	/// </summary>
+	public Transform 	destination;	
+	
+	/// <summary>
+	/// RigidBody center of mass offset vector in local coordinates.
+	/// </summary>
+	public Vector3 		centerOfMassOffset;
+	
+	// private fields
 	// ~-~-~-~-~-~-~-~-
 	
-	private INavigation _navigation;
-	private Vector3 	_move;			// the move command applied to our rigidbody
-	private Vector3?	_destination;	// used to automatically stop when near a target location
-	private int 		_snsrIndex;		// circular index for sensor array
+	private INavigation _navigation;	// reference to the navigation assembly
+	private Sensor[] 	_sensors;		// references to sensor components in this object hierarchy
+	private Vector3 	_move;			// the move command from the navigation assembly
 	private int 		_stuckCounter;
 	private Vector3[]	_positions;
 	private BotPath 	_path;
@@ -61,19 +84,25 @@ public class Robot : MonoBehaviour, IObservable {
 	}
 	
 	/// <summary>
-	/// The normalized move command direction from INavigation. 
+	/// The cached navigation bearing from INavigation.
 	/// </summary>
-	/// <value>The move command.</value>
-	public Vector3 moveCommand {
+	public Vector3 navigationCommand {
+		get; private set;
+	}
+	
+	/// <summary>
+	/// Gets a value indicating whether <see cref="navigation"/> found a path to <see cref="destination"/>.
+	/// </summary>
+	/// <value><c>true</c> if path found; otherwise, <c>false</c>.</value>
+	public bool pathFound {
 		get {
-			return _move;
+			return _navigation.pathFound;
 		}
 	}
 	
 	/// <summary>
 	/// Gets or sets the transform position.
 	/// </summary>
-	/// <value>The transform position.</value>
 	public Vector3 position {
 		get{ return transform.position; }
 		set{ transform.position = value; }
@@ -82,29 +111,17 @@ public class Robot : MonoBehaviour, IObservable {
 	/// <summary>
 	/// The first-person perspective camera position. 
 	/// </summary>
-	/// <value>The camera mount position.</value>
 	public Transform cameraMount { get; private set; }
 	
+	/// <summary>
+	/// Gets the bounds of the robot for IObservable
+	/// </summary>
 	public Bounds bounds {
 		get {
 			return new Bounds(transform.position, _size);
 		}
 	}
 	
-	/// <summary>
-	/// Gets depth data from the next sensor in a circular
-	/// indexed array of sensors
-	/// </summary>
-	/// <value>Depth data from the next sensor in a circular
-	/// indexed array of sensors</value>
-	public ProximityData nextSensorData {
-		get {
-			ProximityData data = sensors[_snsrIndex].GetData();
-			if (++_snsrIndex >= sensors.Length) _snsrIndex = 0;
-			return data;
-		}
-	}
-
 	public bool atDestination {
 		get {
 			if (!destination) return false;
@@ -116,8 +133,13 @@ public class Robot : MonoBehaviour, IObservable {
 
 	public float distanceToDestination {
 		get {
-			if (!destination) return 0f;
-			else return Vector3.Distance(transform.position, destination.position);
+			if (manualControl) {
+				return navigationCommand.magnitude;
+			}else{
+				if (!destination) return 0f;
+				else return Vector3.Distance(transform.position, destination.position);
+			}
+
 		}
 	}
 
@@ -137,28 +159,56 @@ public class Robot : MonoBehaviour, IObservable {
 	// ~-~-~-~-~-~-~-~-
 	
 	/// <summary>
-	/// Start moving toward destination.
+	/// Enable sensors, start moving toward destination using INavigation
 	/// </summary>
 	public void NavigateToDestination() {
 		if (_navigation == null) return;
-		StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
+		StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
+		Debug.Log("Path search due to NavigationToDestination() call.");
+		foreach(Sensor s in _sensors) {
+			s.Enable(ReceiveSensorData);
+		}
 	}
 	
+	/// <summary>
+	/// Reset the robot, disable sensors
+	/// </summary>
 	public void Reset() {
 		_path = new BotPath();
 		_positions = new Vector3[30];
+		foreach(Sensor s in _sensors) {
+			s.Disable();
+		}
+	}
+	
+	/// <summary>
+	/// Sensor data callback passes proximity data to INavigation
+	/// </summary>
+	/// <param name="data">Data.</param>
+	public void ReceiveSensorData(ProximityData data) {
+		if (_navigation == null) return;
+		// data is recieved here by any enabled sensor in world space
+		// transformed into robot local space if necessary
+		// and transmitted to INavigation
+		if (_navigation.spaceRelativeTo == Space.Self) {
+			_navigation.Proximity(
+				Vector3.zero,
+				transform.InverseTransformDirection(data.direction),
+				data.obstructed);
+		} else {
+			_navigation.Proximity(
+				transform.position,
+				transform.position + data.direction,
+				data.obstructed);
+		}
 	}
 	
 	// private methods
 	// ~-~-~-~-~-~-~-~-
 	
-	// Populate sensor array
-	private void InitialiseSensors() {
-		sensors = GetComponentsInChildren<ParamSensor>();
-	}
-	
+	// called once at the start
 	private void Awake() {
-		InitialiseSensors();
+		_sensors = GetComponentsInChildren<Sensor>();
 		StartCoroutine(StuckDetector());
 		cameraMount = transform.Find("CameraMount");
 		if (!cameraMount) {
@@ -170,82 +220,82 @@ public class Robot : MonoBehaviour, IObservable {
 		foreach(Renderer r in GetComponentsInChildren<Renderer>())
 			b.Encapsulate(r.bounds);
 		_size = b.size;
+		// add center of mass offset
+		rigidbody.centerOfMass += centerOfMassOffset;
 		// initialise bath plotter
 		_path = new BotPath();
 		StartCoroutine(RecordPath());
 	}
 	
+	// called every rendered frame
 	private void Update() {
-		ProximityData data = nextSensorData;
-		if (_navigation == null) return;
-		
-		// update center of mass
-		rigidbody.centerOfMass = centerOfMass;
-		
+	
+	
+	
+		// manual control for testing robots
 		if (manualControl) {
-			float x = Input.GetAxis("Horizontal");
-			float y = Input.GetAxis ("Vertical");
-			_move.x = x;
-			_move.z = y;
+			float x = Input.GetAxis("X");
+			float y = Input.GetAxis("Y");
+			float z = Input.GetAxis("Z");
+			
+			navigationCommand = new Vector3(x, y, z);
+
 		}
 		else if (Simulation.isRunning){
 			
 			// draw path
 			_path.DrawPath();
 			
-			// Pass sensor data to INavigation
-			if (_navigation.spaceRelativeTo == Space.Self) {
-				data.direction = transform.InverseTransformDirection(data.direction);
-				_navigation.Proximity(Vector3.zero, 
-										data.direction, 
-										20f,
-										data.obstructed);
-			}
-			else {
-				_navigation.Proximity(transform.position, 
-				                      transform.position + data.direction, 
-				                      20f,
-				                      data.obstructed);
-			}
-			
+			if (_navigation == null) return;
 			// Update INavigation.destination if it has changed.
 			if (destination.hasChanged) {
-				if (_navigation.spaceRelativeTo == Space.Self) {
-					Vector3 dest = transform.InverseTransformPoint(destination.position);
-					StartCoroutine( _navigation.SearchForPath(Vector3.zero, dest) );
+				if (Vector3.Distance(_navigation.destination,destination.position)>0.5f) {
+					if (_navigation.spaceRelativeTo == Space.Self) {
+						Vector3 dest = transform.InverseTransformPoint(destination.position);
+						StartCoroutine( _navigation.SearchForPath(Vector3.zero, dest) );
+					}
+					else {
+						StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
+					}
+					Debug.Log("Path search due to destination change.");
 				}
-				else {
-					StartCoroutine( _navigation.SearchForPath(transform.position, destination.position) );
-				}
-				
+
 				destination.hasChanged = false;
 			}
 			
 			// Read move direction if a path has been found.
 			if (_navigation.pathFound) {
 				if (navigation.spaceRelativeTo == Space.Self) {
-					_move = _navigation.PathDirection(Vector3.zero);
-					_move = transform.TransformDirection(_move);
+					navigationCommand = _navigation.PathDirection(Vector3.zero);
+					navigationCommand = transform.TransformDirection(navigationCommand);
 				}
 				else {
-					_move = _navigation.PathDirection(transform.position + Vector3.up);
+					navigationCommand = _navigation.PathDirection(transform.position);
 				}
-				Debug.DrawRay(transform.position, _move * stopDistance, Color.green);
+				Debug.DrawRay(transform.position, navigationCommand * stopDistance, Color.green);
 			}
 			else {
-				_move = Vector3.zero;
+				navigationCommand = Vector3.zero;
 			}		
 		}
 	}
 	
+
+	
+	// draws shapes on screen inside the Unity Editor
 	private void OnDrawGizmos() {
 		if (_navigation != null) {
 			_navigation.DrawGizmos();
 		}
 			
 		// draw center of mass
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.1f);
+		Gizmos.color = Color.Lerp(Color.yellow, Color.clear, 0.25f);
+		if (Application.isPlaying) {
+			Gizmos.DrawSphere(rigidbody.worldCenterOfMass, 0.05f);
+		} else {
+			Gizmos.DrawSphere(rigidbody.worldCenterOfMass + centerOfMassOffset, 0.05f);
+		}
+		
 	}
 	
 	// detects if robot appears to be stuck taking an average position over time
@@ -275,7 +325,7 @@ public class Robot : MonoBehaviour, IObservable {
 		_path.AddNode(prev, Simulation.time);
 		while (true) {
 			// only record a line when bot has moved far enough
-			if (Vector3.Distance(prev, rigidbody.worldCenterOfMass) > 0.25f) {
+			if (Vector3.Distance(prev, rigidbody.worldCenterOfMass) > 0.1f) {
 				prev = rigidbody.worldCenterOfMass;
 				_path.AddNode(rigidbody.worldCenterOfMass, Simulation.time);
 			}

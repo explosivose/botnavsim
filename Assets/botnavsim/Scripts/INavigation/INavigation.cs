@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// INavigation interface for robot navigation algorithms. This component of the 
+/// robot is responsible for calculating a direction along a path to a specified
+/// location. 
+/// </summary>
 public interface INavigation {
 	
 	//# Search parameters
@@ -30,6 +35,11 @@ public interface INavigation {
 	/// </summary>
 	/// <returns>An iterator which enables Unity to continue execution after calling this routine.</returns>
 	IEnumerator SearchForPath();
+	
+	/// <summary>
+	/// Start the search algorithm to find a path from <see cref="start"/> to <see cref="end"/>.
+	/// </summary>
+	/// <returns>An iterator which enables Unity to continue execution after calling this routine.</returns>
 	IEnumerator SearchForPath(Vector3 start, Vector3 end);
 	
 	/// <summary>
@@ -52,15 +62,14 @@ public interface INavigation {
 	/// </summary>
 	/// <param name="from">Sensor position.</param>
 	/// <param name="to">Sensor reading position.</param>
-	/// <param name="obstructed">If set to <c>true</c> position at <param name="to"/> is obstructed.</param>
-	void Proximity(Vector3 from, Vector3 to, float FOV, bool obstructed);
+	/// <param name="obstructed">If set to <c>true</c> position at to is obstructed.</param>
+	void Proximity(Vector3 from, Vector3 to, bool obstructed);
 	
 	/// <summary>
 	/// Indicates the frame of reference
 	/// World space is data relative to (0,0,0)
 	/// Self space is data relative to robot position and rotation
 	/// </summary>
-	/// <value>The proximity relative to.</value>
 	Space spaceRelativeTo {get;}
 	
 	//# Debugging

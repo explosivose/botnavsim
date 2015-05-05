@@ -42,7 +42,6 @@ public class BotNavSim  {
 	/// <summary>
 	/// Gets or sets the state.
 	/// </summary>
-	/// <value>The state.</value>
 	public static State state {
 		get {
 			return _state;

@@ -2,7 +2,7 @@
 using System.Collections;
 
 /// <summary>
-/// UI for the robot editor (not yet implemented)
+/// IToolbar class provides controls for the Robot Editor (not implemented!)
 /// </summary>
 public class UI_RobotEditor : IToolbar {
 

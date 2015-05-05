@@ -60,7 +60,7 @@ MonoBehaviour:
     description: Many thanks to my project supervisor David Mulvaney and my other
       peers.
     url: http://www.lboro.ac.uk/
-  - name: Project resository
+  - name: Project repository
     author: GitHub
     description: Source code available here. Thanks GitHub!
     url: https://github.com/explosivose/botnavsim

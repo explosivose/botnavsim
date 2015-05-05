@@ -5,10 +5,13 @@ using System.IO;
 using System;
 
 /// <summary>
-/// Log loader state machine. 
+/// Log loader high level BotNavSim state manager
 /// </summary>
 public class LogLoader : MonoBehaviour, IObservable  {
 	
+	/// <summary>
+	/// Reference to MonoBehaviour instance.
+	/// </summary>
 	public static LogLoader Instance;
 	
 	// static class constructor
@@ -23,6 +26,10 @@ public class LogLoader : MonoBehaviour, IObservable  {
 		get; private set;
 	}
 	
+	/// <summary>
+	/// Gets a value indicating whether this <see cref="LogLoader"/> is loading from CSV.
+	/// </summary>
+	/// <value><c>true</c> if loading; otherwise, <c>false</c>.</value>
 	public static bool loading {
 		get; private set;
 	}
@@ -30,7 +37,6 @@ public class LogLoader : MonoBehaviour, IObservable  {
 	/// <summary>
 	/// Gets the environment game object.
 	/// </summary>
-	/// <value>The environment.</value>
 	public static GameObject environment {
 		get; private set;
 	}
@@ -38,14 +44,23 @@ public class LogLoader : MonoBehaviour, IObservable  {
 	/// <summary>
 	/// Gets the environment bounds.
 	/// </summary>
-	/// <value>The bounds.</value>
 	public Bounds bounds {
 		get; private set;
 	}
 	
+	/// <summary>
+	/// Bool indicating whether waiting for user response to prompt
+	/// </summary>
 	private static bool _waitingForResponse;
+	
+	/// <summary>
+	/// The UI_Prompt response from the user.
+	/// </summary>
 	private static bool _response;
 	
+	/// <summary>
+	/// Enter this BotNavSim state: setup camera views
+	/// </summary>
 	public static void Enter() {
 		CamController.AddViewMode(CamController.ViewMode.Birdseye);
 		CamController.AddViewMode(CamController.ViewMode.FreeMovement);
@@ -75,11 +90,19 @@ public class LogLoader : MonoBehaviour, IObservable  {
 
 	}
 	
+	/// <summary>
+	/// UI_Prompt.Response callback function
+	/// </summary>
+	/// <param name="response">If set to <c>true</c> response.</param>
 	static void PromptResponse(bool response) {
 		_waitingForResponse = false;
 		_response = response;
 	}
 	
+	/// <summary>
+	/// Main routine for loading a CSV log file.
+	/// </summary>
+	/// <param name="csvFilePath">Csv file path.</param>
 	static IEnumerator LoadCsvRoutine(string csvFilePath) {
 		loading = true;
 		
@@ -233,11 +256,19 @@ public class LogLoader : MonoBehaviour, IObservable  {
 		loading = false;
 	}
 	
+	/// <summary>
+	/// Adds a path to paths list.
+	/// </summary>
+	/// <param name="path">Path.</param>
 	public static void AddPath(BotPath path) {
 		if (!paths.Contains(path)) paths.Add(path);
 		CamController.AddAreaOfInterest(path);
 	}
 	
+	/// <summary>
+	/// Removes the path.
+	/// </summary>
+	/// <param name="path">Path.</param>
 	public static void RemovePath(BotPath path) {
 		paths.Remove(path);
 		CamController.RemoveAreaOfInterest(path);
@@ -255,6 +286,10 @@ public class LogLoader : MonoBehaviour, IObservable  {
 		}
 	}
 	
+	/// <summary>
+	/// Loads the environment.
+	/// </summary>
+	/// <param name="name">Name.</param>
 	private static void LoadEnvironment(string name) {
 		EnvLoader.SearchForEnvironments();
 		if (environment) environment.transform.Recycle();
@@ -305,6 +340,9 @@ public class LogLoader : MonoBehaviour, IObservable  {
 		}
 	}
 	
+	/// <summary>
+	/// Raises the draw gizmos event.
+	/// </summary>
 	void OnDrawGizmos() {
 		foreach(BotPath p in paths) {
 			if (p.visible) {

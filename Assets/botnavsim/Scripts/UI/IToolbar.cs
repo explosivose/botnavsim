@@ -19,27 +19,3 @@ public interface IToolbar : IWindowFunction {
 	bool hidden			{ get; set; }
 	
 }
-
-/// <summary>
-/// Interface for classes that implement a GUI.WindowFunction
-/// </summary>
-public interface IWindowFunction {
-	
-	/// <summary>
-	/// Gets the window title.
-	/// </summary>
-	/// <value>The window title.</value>
-	string windowTitle	{ get; }
-	
-	/// <summary>
-	/// Gets or sets the window rect (window size and position).
-	/// </summary>
-	/// <value>The window rect.</value>
-	Rect windowRect		{ get; set; }
-	
-	/// <summary>
-	/// Gets the window function definition for GUILayout.Window()
-	/// </summary>
-	/// <value>The window function.</value>
-	GUI.WindowFunction	windowFunction { get; }
-}

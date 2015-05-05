@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 
+/// <summary>
+/// IToolbar class provides controls for loading and viewing CSV data logs. 
+/// </summary>
 public class UI_LogLoader : IToolbar {
 
 	public UI_LogLoader() {
@@ -57,7 +60,7 @@ public class UI_LogLoader : IToolbar {
 	private string _subPath;
 	
 	/// <summary>
-	/// Refresh this the files and folders in current directory
+	/// Refresh the files and folders in current directory
 	/// </summary>
 	private void Refresh() {
 		_files = FileBrowser.ListFiles(currentDir, "*.csv");
@@ -74,9 +77,8 @@ public class UI_LogLoader : IToolbar {
 	}
 	
 	/// <summary>
-	/// Top window function - browse CSV files. 
+	/// GUI window function: browse and load CSV files 
 	/// </summary>
-	/// <param name="windowID">Window ID.</param>
 	private void CsvBrowser(int windowID) {
 		// hide button
 		GUILayout.BeginHorizontal();
@@ -123,6 +125,9 @@ public class UI_LogLoader : IToolbar {
 
 	}
 	
+	/// <summary>
+	/// GUI window function: Display controls for loaded CSV files. 
+	/// </summary>
 	private void Legend(int windowID) {
 		// back button
 		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));
@@ -166,7 +171,7 @@ public class UI_LogLoader : IToolbar {
 		}
 		// reset content color
 		GUI.contentColor = c;
-		//GUI.DragWindow();
+
 	}
 	
 	

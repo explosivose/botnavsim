@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[System.Serializable]
+/// <summary>
+/// IToolbar class for controlling the camera. 
+/// </summary>
 public class UI_CameraControls : IToolbar {
 
 	public UI_CameraControls() {
@@ -34,9 +36,11 @@ public class UI_CameraControls : IToolbar {
 		}
 	}
 	
+	/// <summary>
+	/// Provide controls for calling CamController functions
+	/// </summary>
 	void CameraControlsWindow(int windowID) {
 		float lw = 200f;
-
 		
 		// camera perspective controls
 		GUILayout.BeginHorizontal(GUILayout.Width(UI_Toolbar.I.innerWidth));

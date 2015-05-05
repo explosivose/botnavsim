@@ -217,7 +217,7 @@ public class Simulation : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Singleton pattern.
+	/// Reference to the MonoBebehaviour instance
 	/// </summary>
 	public static Simulation Instance;
 	
@@ -227,7 +227,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the simulation state.
 	/// </summary>
-	/// <value>The current simulation state.</value>
 	public static State state {get; private set;}
 	
 	/// <summary>
@@ -239,7 +238,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets the settings for the current simulation.
 	/// </summary>
-	/// <value>The settings for the current (active) simulation.</value>
 	public static Settings settings {
 		get { return _settings; }
 		set {
@@ -258,7 +256,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the simulation number (index in batch list, 1 to batch.Count).
 	/// </summary>
-	/// <value>The simulation number.</value>
 	public static int simulationNumber {
 		get; private set;
 	}
@@ -266,7 +263,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the current test number (1 to settings.numberOfTests).
 	/// </summary>
-	/// <value>The current test number.</value>
 	public static int testNumber {
 		get; private set;
 	}
@@ -274,7 +270,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets reference to the robot in the current simulation.
 	/// </summary>
-	/// <value>The robot.</value>
 	public static Robot robot {
 		get { return _robot; }
 		private set {
@@ -288,15 +283,14 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets reference to the environment in the current simulation.
 	/// </summary>
-	/// <value>The environment.</value>
 	public static GameObject environment {
 		get {
-			return _environment;
+			return _environment.gameObject;
 		}
 		set {
 			if (isRunning) Halt(0);
 			if (_environment) _environment.transform.Recycle();
-			_environment = value;
+			_environment = value.GetComponent<Environment>();
 			SetBounds();
 		}
 	}
@@ -305,7 +299,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets reference to the destination.
 	/// </summary>
-	/// <value>The destination.</value>
 	public static GameObject destination { 
 		get; private set; 
 	}
@@ -313,7 +306,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets the test area (Observer object)
 	/// </summary>
-	/// <value>The test area.</value>
 	public static IObservable testArea {
 		get; private set;
 	}
@@ -371,7 +363,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Time (in seconds) since robot started searching for destination.
 	/// </summary>
-	/// <value>The simulation time.</value>
 	public static float time {
 		get {
 			if (isRunning) _stopTime = Time.time;
@@ -382,7 +373,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Gets or sets the time scale.
 	/// </summary>
-	/// <value>The time scale.</value>
 	public static float timeScale {
 		get { return _timeScale; }
 		set {
@@ -399,7 +389,7 @@ public class Simulation : MonoBehaviour {
 	
 	private static Settings _settings;
 	private static Robot _robot;
-	private static GameObject _environment;
+	private static Environment _environment;
 	private static bool _paused;
 	private static float _timeScale = 1f;
 	
@@ -450,7 +440,7 @@ public class Simulation : MonoBehaviour {
 		// load environment
 		EnvLoader.SearchForEnvironments();
 		environment = EnvLoader.LoadEnvironment(settings.environmentName);
-		destination.transform.position = RandomInBounds();
+		destination.transform.position = RandomInBounds(Instance.bounds);
 		// load robot
 		if (robot) CamController.RemoveAreaOfInterest(robot);
 		BotLoader.SearchForRobots();
@@ -468,7 +458,6 @@ public class Simulation : MonoBehaviour {
 	/// <summary>
 	/// Stops the current test and starts the next test in current simulation.
 	/// </summary>
-	/// <param name="code">Code.</param>
 	public static void NextTest() {
 		if (testNumber >= settings.numberOfTests) {
 			Halt(StopCode.Unspecified);
@@ -556,41 +545,40 @@ public class Simulation : MonoBehaviour {
 		state = State.inactive;
 	}
 	
-	// Return a random position inside the simulation bounds
 	/// <summary>
-	/// Return a random position inside the simulation bounds, but 
+	/// Return a random position inside the bounds, but 
 	/// not inside any physical objects.
 	/// </summary>
-	/// <returns>Random position inside simulation bounds.</returns>
-	public static Vector3 RandomInBounds() {
-		Vector3 v = Instance.bounds.min;
-		v.x += Random.Range(0f, Instance.bounds.max.x);
-		v.y += Instance.bounds.max.y;
-		v.z += Random.Range(0f, Instance.bounds.max.z);
+	/// <returns>Random position inside bounds.</returns>
+	public static Vector3 RandomInBounds(Bounds b) {
+		Vector3 v = new Vector3();
+		v.x = Random.Range(b.min.x, b.max.x);
+		v.y = b.max.y;
+		v.z = Random.Range(b.min.z, b.max.z);
 		RaycastHit hit;
-		if (Physics.Raycast(v, Vector3.down, out hit, 100f)) {
-			v = hit.point + hit.normal;
+		if (Physics.Raycast(v, Vector3.down, out hit)) {
+			v = hit.point + hit.normal* 0.25f;
 			Debug.DrawRay(v, Vector3.down, Color.white, 5f);
 		}
 		return v;
 	}
 	
-	// Routine for starting a new test
+	/// <summary>
+	/// Routine for starting a new test
+	/// </summary>
+	/// <returns>The test routine.</returns>
 	private static IEnumerator StartTestRoutine() {
 		if (isRunning) Halt(StopCode.Unspecified);
 		state = State.starting;
 		CamController.Instance.OnTestEnd();
 		yield return new WaitForSeconds(1f);
-		// randomly place the robot
-		if (settings.randomizeOrigin) {
-			robot.Reset();
-			robot.transform.position = RandomInBounds();
-			robot.transform.rotation = Quaternion.identity;
-		}
+		
+		// place the robot
+		robot.Reset();
+		PlaceRobotInStartArea();
 			
-		// randomly place the destination
-		if (settings.randomizeDestination)
-			destination.transform.position = RandomInBounds();
+		// place the destination
+		PlaceDestination();
 			
 		yield return new WaitForSeconds(1f);
 		
@@ -608,8 +596,28 @@ public class Simulation : MonoBehaviour {
 		robot.NavigateToDestination();
 	}
 	
+	/// <summary>
+	/// Places the robot in start area.
+	/// </summary>
+	private static void PlaceRobotInStartArea() {
+		if (settings.randomizeOrigin) {
+			robot.position = RandomInBounds(_environment.originBounds);
+		} else {
+			robot.position = _environment.originBounds.center;
+		}
+		robot.transform.rotation = Quaternion.identity;
+	}
 	
-
+	/// <summary>
+	/// Places the destination.
+	/// </summary>
+	private static void PlaceDestination() {
+		if (settings.randomizeDestination) {
+			destination.transform.position = RandomInBounds(_environment.destinationBounds);
+		} else {
+			destination.transform.position = _environment.destinationBounds.center;
+		}
+	}
 	
 	// Set the simulation bounds to encapsulate all renderers in scene
 	private static void SetBounds() {
@@ -643,12 +651,16 @@ public class Simulation : MonoBehaviour {
 		_settings = new Settings();
 	}
 	
-	// Called on the first frame
+	/// <summary>
+	/// Called on the first frame
+	/// </summary>
 	void Start() {
 		destination = GameObject.Find("Destination");
 	}
 	
-	// Called every frame
+	/// <summary>
+	/// Update this instance (called every rendered frame)
+	/// </summary>
 	void Update() {
 		if (isRunning) {
 			// check for conditions to end the test
@@ -671,12 +683,16 @@ public class Simulation : MonoBehaviour {
 		}
 	}
 
-	// Called every frame for drawing Gizmos
+	/// <summary>
+	/// Raises the draw gizmos event.
+	/// </summary>
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(bounds.center, bounds.size);
 	}
 	
-	// called before application shuts down
+	/// <summary>
+	/// called before application shuts down
+	/// </summary>
 	void OnApplicationQuit() {
 		Log.Stop(StopCode.Unspecified);
 	}

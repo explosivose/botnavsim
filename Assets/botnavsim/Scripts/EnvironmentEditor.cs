@@ -19,7 +19,6 @@ public class EnvironmentEditor : MonoBehaviour {
 	/// <summary>
 	/// Gets the RobotEditor.State.
 	/// </summary>
-	/// <value>The state.</value>
 	public static State state {
 		get; private set;
 	}

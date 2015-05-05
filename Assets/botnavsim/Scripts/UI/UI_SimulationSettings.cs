@@ -6,7 +6,6 @@ using System.Collections.Generic;
 /// <summary>
 /// An instantiable class that provides a UI for editing a given Simulation.Settings object
 /// </summary>
-[System.Serializable]
 public class UI_SimulationSettings : IWindowFunction {
 
 	private Stack<GUI.WindowFunction> _windows;
@@ -40,7 +39,6 @@ public class UI_SimulationSettings : IWindowFunction {
 	/// this will empty the stack and this window property will return null.
 	/// To check whether the stack is empty see completed flag property.
 	/// </summary>
-	/// <value>The window function.</value>
 	public GUI.WindowFunction windowFunction {
 		get {
 			if (_windows.Count > 0)
@@ -53,7 +51,6 @@ public class UI_SimulationSettings : IWindowFunction {
 	/// <summary>
 	/// Window size and position.
 	/// </summary>
-	/// <value>The rect.</value>
 	public Rect windowRect {
 		get; set;
 	}

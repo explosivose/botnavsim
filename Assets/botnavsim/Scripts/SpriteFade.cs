@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Fades a sprite alpha channel to invisible
+/// </summary>
 public class SpriteFade : MonoBehaviour {
 
 	public float fadeRate;
