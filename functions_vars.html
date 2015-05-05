@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,8 +30,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="lulogo-colour-medium.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BotNavSim
+   &#160;<span id="projectnumber">v0.4.3</span>
    </div>
    <div id="projectbrief">Mobile Robot Simulation</div>
   </td>
@@ -40,6 +50,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -76,7 +87,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_prop.html"><span>Properties</span></a></li>
     </ul>
   </div>
+  <div id="navrow4" class="tabs3">
+    <ul class="tablist">
+      <li><a href="#index__"><span>_</span></a></li>
+      <li><a href="#index_a"><span>a</span></a></li>
+      <li><a href="#index_b"><span>b</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
+      <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_f"><span>f</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
+      <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
+      <li><a href="#index_k"><span>k</span></a></li>
+      <li><a href="#index_l"><span>l</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
+      <li><a href="#index_n"><span>n</span></a></li>
+      <li><a href="#index_o"><span>o</span></a></li>
+      <li><a href="#index_p"><span>p</span></a></li>
+      <li><a href="#index_r"><span>r</span></a></li>
+      <li><a href="#index_s"><span>s</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_v"><span>v</span></a></li>
+      <li><a href="#index_w"><span>w</span></a></li>
+      <li class="current"><a href="#index_y"><span>y</span></a></li>
+    </ul>
+  </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_vars.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -92,18 +144,275 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <div class="contents">
-&#160;<ul>
+&#160;
+
+<h3><a class="anchor" id="index__"></a>- _ -</h3><ul>
+<li>_1stPersonDir
+: <a class="el" href="class_cam_controller.html#ac85aa9a4cb61e4cdcf071036d64e198f">CamController</a>
+</li>
+<li>_3rdPersonDir
+: <a class="el" href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">CamController</a>
+</li>
+<li>_3rdPersonDist
+: <a class="el" href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">CamController</a>
+</li>
+<li>_actualPitch
+: <a class="el" href="class_ar_drone.html#af552de168ea414212f8a547382aba605">ArDrone</a>
+</li>
+<li>_actualRoll
+: <a class="el" href="class_ar_drone.html#a9cb9aa992854a7ee9eb5199323b4a8c9">ArDrone</a>
+</li>
+<li>_area
+: <a class="el" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">CamController</a>
+</li>
+<li>_areas
+: <a class="el" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController</a>
+</li>
+<li>_birdseyeDist
+: <a class="el" href="class_cam_controller.html#a59f2a63795d8dfe380807271306a79c9">CamController</a>
+</li>
+<li>_blControlThrust
+: <a class="el" href="class_ar_drone.html#a1906dfd916728629844d53406dfdfd1c">ArDrone</a>
+</li>
+<li>_brControlThrust
+: <a class="el" href="class_ar_drone.html#a8ba89e0fa72c890ab9b2c8a44deac115">ArDrone</a>
+</li>
+<li>_callback
+: <a class="el" href="class_param_sensor.html#a30cd4109c01ff6e20ed361b416275993">ParamSensor</a>
+, <a class="el" href="class_ultrasonic_sensor.html#a0f013ad8dbfed5e663112af4a7e355e9">UltrasonicSensor</a>
+</li>
+<li>_camera
+: <a class="el" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">CamController</a>
+</li>
+<li>_command
+: <a class="el" href="class_ar_drone.html#ac1f6e42704d2d91984d193a95290ec03">ArDrone</a>
+</li>
+<li>_controlTorque
+: <a class="el" href="class_ar_drone.html#a7da926cf52ed44efd3cfcba55fdfc38c">ArDrone</a>
+</li>
+<li>_credits
+: <a class="el" href="class_u_i___toolbar.html#ae4e8dbfe5b167e6d7b437f2b214c8297">UI_Toolbar</a>
+</li>
+<li>_data
+: <a class="el" href="class_param_sensor.html#af3f4b8a033e388c8f58d6561bd7a437c">ParamSensor</a>
+, <a class="el" href="class_ultrasonic_sensor.html#a5e35e38574789c61e8bfc000c5a5bc7b">UltrasonicSensor</a>
+</li>
+<li>_editSettings
+: <a class="el" href="class_u_i___simulation_batch.html#ad282789c553c7d4c21272724a9d71ed7">UI_SimulationBatch</a>
+, <a class="el" href="class_u_i___simulation_control.html#a8af0044d5c54f75463201638e9416773">UI_SimulationControl</a>
+</li>
+<li>_environment
+: <a class="el" href="class_simulation.html#a1482d41f61c61d459138e50deb1e0d0d">Simulation</a>
+</li>
+<li>_files
+: <a class="el" href="class_u_i___log_loader.html#a0d7dc773b7173bbd11366c225897b0f3">UI_LogLoader</a>
+, <a class="el" href="class_u_i___simulation_batch.html#ad71b2e2ed416feaba5ef248cb6e37ce8">UI_SimulationBatch</a>
+</li>
+<li>_flControlThrust
+: <a class="el" href="class_ar_drone.html#aaa3f4bb87472e838a112491a17923683">ArDrone</a>
+</li>
+<li>_folders
+: <a class="el" href="class_u_i___log_loader.html#a553586f784cb7c0d582abb9799a451ec">UI_LogLoader</a>
+, <a class="el" href="class_u_i___simulation_batch.html#acc1edff5214c646c539ab78064e128aa">UI_SimulationBatch</a>
+</li>
+<li>_frControlThrust
+: <a class="el" href="class_ar_drone.html#a413c937768cff38c72d1549498cb6c28">ArDrone</a>
+</li>
+<li>_hitColor
+: <a class="el" href="class_ultrasonic_sensor.html#ab259ceb75a7eef14f64e1bdf8c9e678c">UltrasonicSensor</a>
+</li>
+<li>_holdPosition
+: <a class="el" href="class_ar_drone.html#a62de5c7f9a10b5fa07e69a8686f40930">ArDrone</a>
+</li>
+<li>_holdRotation
+: <a class="el" href="class_ar_drone.html#abe04c25093cad28ccf087f6f0dce37a0">ArDrone</a>
+</li>
+<li>_invalidFileNameChars
+: <a class="el" href="class_strings.html#a412cb9ac948d7a8b37e335544f82e88e">Strings</a>
+</li>
+<li>_invalidPathChars
+: <a class="el" href="class_strings.html#ab076f487f6b6062cbeb1b8ea0dd60af6">Strings</a>
+</li>
+<li>_leftWheel
+: <a class="el" href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">BoeBot</a>
+</li>
+<li>_liveEditSettings
+: <a class="el" href="class_u_i___simulation_control.html#a7de3e42aaa00752ff7a8698ce5367f5b">UI_SimulationControl</a>
+</li>
+<li>_loader
+: <a class="el" href="class_nav_loader.html#a78eb838781ad6962889dc9e93638e187">NavLoader</a>
+</li>
+<li>_missColor
+: <a class="el" href="class_ultrasonic_sensor.html#a8dcc549d4b15251559542a463064ad11">UltrasonicSensor</a>
+</li>
+<li>_mode
+: <a class="el" href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">CamController</a>
+</li>
+<li>_modes
+: <a class="el" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController</a>
+</li>
+<li>_move
+: <a class="el" href="class_robot.html#a18261868c84401c8dfb342bfa107220e">Robot</a>
+</li>
+<li>_navigation
+: <a class="el" href="class_robot.html#ad63ebe7811536f9254f58f527d12a101">Robot</a>
+</li>
+<li>_nodes
+: <a class="el" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">BotPath</a>
+</li>
+<li>_path
+: <a class="el" href="class_robot.html#a53a891cb960e7150d76cab795b83762c">Robot</a>
+</li>
+<li>_paused
+: <a class="el" href="class_simulation.html#a523ac41fc7d2a9164ef49d33997839fc">Simulation</a>
+</li>
+<li>_positions
+: <a class="el" href="class_robot.html#a0e7b80e484d71094159d6548059c299f">Robot</a>
+</li>
+<li>_recieveColor
+: <a class="el" href="class_ultrasonic_sensor.html#a9292cd12369e9256e8c22909ef34905e">UltrasonicSensor</a>
+</li>
+<li>_renderMode
+: <a class="el" href="class_cam_controller.html#a1ddd9e1cbdc9fd9ccf11a08db8b21ed9">CamController</a>
+</li>
+<li>_response
+: <a class="el" href="class_log_loader.html#aac4b967b4b192537f48efda300ac5aa8">LogLoader</a>
+</li>
+<li>_rightWheel
+: <a class="el" href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">BoeBot</a>
+</li>
+<li>_robot
+: <a class="el" href="class_ar_drone.html#a135bb32ba181ece318286e88f8abab52">ArDrone</a>
+, <a class="el" href="class_boe_bot.html#af9dae0b833656f89d09154ca0fb6d935">BoeBot</a>
+, <a class="el" href="class_simulation.html#abd1bab29c002548b25ef0cfbfe4ddc98">Simulation</a>
+</li>
+<li>_scrollPos
+: <a class="el" href="class_u_i___credits.html#a81a46756a055d58fde0f4cf4c7504262">UI_Credits</a>
+, <a class="el" href="class_u_i___toolbar.html#acb6953b15f352ea82f66b02eea36329d">UI_Toolbar</a>
+</li>
+<li>_sensors
+: <a class="el" href="class_robot.html#a93472f8314d9fa04cd84e1f3290d884a">Robot</a>
+</li>
+<li>_settings
+: <a class="el" href="class_simulation.html#ab26796fe3eae208bbb8addf04d3edb68">Simulation</a>
+, <a class="el" href="class_u_i___simulation_batch.html#a303ef6923e0dc5911d60a250512efd67">UI_SimulationBatch</a>
+, <a class="el" href="class_u_i___simulation_settings.html#aa064fa2f0fefd17fcf7f0e4e6945db03">UI_SimulationSettings</a>
+</li>
+<li>_size
+: <a class="el" href="class_robot.html#ad7bba9fc496935628be289289c362edc">Robot</a>
+</li>
+<li>_skin
+: <a class="el" href="class_u_i___toolbar.html#a7af0d6d5e9eb16298fc693355bfa35f2">UI_Toolbar</a>
+</li>
+<li>_sr
+: <a class="el" href="class_destination.html#a79505a5ccc55272c0c4d77331bbaba5d">Destination</a>
+</li>
+<li>_startTime
+: <a class="el" href="class_simulation.html#af7d2c91b31a5b8bf86510246a4a2473e">Simulation</a>
+</li>
+<li>_state
+: <a class="el" href="class_bot_nav_sim.html#a03de2570c572712dea86f70e8775a6e4">BotNavSim</a>
+</li>
+<li>_stopTime
+: <a class="el" href="class_simulation.html#a9d7656204ecd3fa0ae8ff590d315cd15">Simulation</a>
+</li>
+<li>_stub
+: <a class="el" href="class_cam_controller.html#a1165f49035cff0323eb6d9dc8720303b">CamController</a>
+</li>
+<li>_stuckCounter
+: <a class="el" href="class_robot.html#a786f0b486d6fedff82125ff4cb47f281">Robot</a>
+</li>
+<li>_subPath
+: <a class="el" href="class_u_i___log_loader.html#af1a2a0b9acfb7f23a76858cd7744b231">UI_LogLoader</a>
+, <a class="el" href="class_u_i___simulation_batch.html#aff74640b90ebc73f8677ff047743c230">UI_SimulationBatch</a>
+</li>
+<li>_target2d
+: <a class="el" href="class_ar_drone.html#aa5e865623801dc07e79a154f14a11445">ArDrone</a>
+</li>
+<li>_targetHeight
+: <a class="el" href="class_ar_drone.html#ad47fb066868d4ca1f53e96ef5130a8d7">ArDrone</a>
+</li>
+<li>_targetPitch
+: <a class="el" href="class_ar_drone.html#a8ecfa57599c43241ed88f622f14b0444">ArDrone</a>
+</li>
+<li>_targetRoll
+: <a class="el" href="class_ar_drone.html#a88c90d592a7751bbb06715ab6bb86719">ArDrone</a>
+</li>
+<li>_targetSpeed
+: <a class="el" href="class_ar_drone.html#aaab4449056e21dc1799b13e8af0cf91b">ArDrone</a>
+</li>
+<li>_targetTilt
+: <a class="el" href="class_ar_drone.html#aee422ba55f89b581daa5deee653b1ec6">ArDrone</a>
+</li>
+<li>_times
+: <a class="el" href="class_bot_path.html#acda5dfd039062d00d58f9927e203024c">BotPath</a>
+</li>
+<li>_timeScale
+: <a class="el" href="class_simulation.html#af8680c9309dc7a43e1ee6038840f91bb">Simulation</a>
+</li>
+<li>_tools
+: <a class="el" href="class_u_i___toolbar.html#a09deb652f1e9ec1ec25b85f83b5b7044">UI_Toolbar</a>
+</li>
+<li>_waitingForResponse
+: <a class="el" href="class_log_loader.html#a761edd1b619000cbb2b85731365dc676">LogLoader</a>
+</li>
+<li>_windows
+: <a class="el" href="class_u_i___log_loader.html#a52ca2c4975d126e8c2325d006982400c">UI_LogLoader</a>
+, <a class="el" href="class_u_i___simulation_batch.html#aaf001bcd41f94ab78e16370d68ca8f33">UI_SimulationBatch</a>
+, <a class="el" href="class_u_i___simulation_settings.html#ad1d33458cb5d981fa6d5cbc75a3c1ce9">UI_SimulationSettings</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>a
+: <a class="el" href="struct_h_s_b_color.html#a39be022c45e7139a000e5979c6a46c7a">HSBColor</a>
+</li>
 <li>additionalWindows
 : <a class="el" href="class_u_i___toolbar.html#ad7602e6531c63308d7c7346207f4d721">UI_Toolbar</a>
+</li>
+<li>author
+: <a class="el" href="class_u_i___credits_1_1_credit.html#a3746555ffb59e296ef40840fc9252e09">UI_Credits.Credit</a>
 </li>
 <li>availableParams
 : <a class="el" href="class_log.html#a6f0606e80ea21c53300d7b08f49887a7">Log</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
+<li>b
+: <a class="el" href="struct_h_s_b_color.html#ac583842adef56d674979abb714b91823">HSBColor</a>
+</li>
 <li>batch
 : <a class="el" href="class_simulation.html#acdc6f3fbb89fd31b518919f968664d60">Simulation</a>
 </li>
-<li>bounds
-: <a class="el" href="class_simulation.html#a7518eb936a84fc617a4eadd925014d9c">Simulation</a>
+<li>BL
+: <a class="el" href="class_ar_drone.html#a0cbe107a1662057406dee17497f089ac">ArDrone</a>
+</li>
+<li>BR
+: <a class="el" href="class_ar_drone.html#a265faed1ec1484ae64771b00f6a48f7e">ArDrone</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>callback
+: <a class="el" href="class_u_i___prompt.html#ae710dec6667cdbe6d83072966778665f">UI_Prompt</a>
+</li>
+<li>center
+: <a class="el" href="class_draw_1_1_cube_data.html#ab71263ba07fbd5a9bade5a9c566ea384">Draw.CubeData</a>
+</li>
+<li>centerOfMassOffset
+: <a class="el" href="class_robot.html#a47f7d7a9c1eeea4533343402b2b86abd">Robot</a>
+</li>
+<li>close
+: <a class="el" href="class_u_i___credits.html#a1d156ac712433b265825fc6aeecc67ca">UI_Credits</a>
+, <a class="el" href="class_u_i___prompt.html#a281a23cb5967d1fd4600bf5b3fe99dca">UI_Prompt</a>
+</li>
+<li>color
+: <a class="el" href="class_draw_1_1_cube_data.html#a5e338d4b0b2255015dad80b6e859cb27">Draw.CubeData</a>
+, <a class="el" href="class_draw_1_1_line_data.html#aec71a283f7445ede04d7886d97d868c6">Draw.LineData</a>
 </li>
 <li>continueOnNavObjectiveComplete
 : <a class="el" href="class_simulation_1_1_settings.html#a3b8eef4cae72c18ff4a25ac24904856e">Simulation.Settings</a>
@@ -111,25 +420,213 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>continueOnRobotIsStuck
 : <a class="el" href="class_simulation_1_1_settings.html#a589f18f9c3e697f3cbd1c43b9ffbc6e0">Simulation.Settings</a>
 </li>
+<li>credits
+: <a class="el" href="class_u_i___credits.html#aab010eec853ee2e16dcc8d5c17ffef4a">UI_Credits</a>
+</li>
+<li>csvComment
+: <a class="el" href="class_strings.html#adaaa45f526cf018be997e6bd4946bd4f">Strings</a>
+</li>
+<li>csvDelimiter
+: <a class="el" href="class_strings.html#a133cf47c5ea40d0a2acc7fa5811b4ce0">Strings</a>
+</li>
+<li>csvXmlCommentTag
+: <a class="el" href="class_strings.html#a049ce1463bf28a314dede61b29757c8b">Strings</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
+<li>description
+: <a class="el" href="class_u_i___credits_1_1_credit.html#a5c273cb68a3a3c0211ef10f624ef8bbf">UI_Credits.Credit</a>
+</li>
+<li>destination
+: <a class="el" href="class_environment.html#afbd02a5cd0cac2ee8098e504ac4ce392">Environment</a>
+, <a class="el" href="class_robot.html#a87800e0f32bfe81d7b5d76d36dfb6d96">Robot</a>
+</li>
+<li>direction
+: <a class="el" href="struct_proximity_data.html#a424aff6ff8aa064e3c4ca2a2259fdce6">ProximityData</a>
+</li>
+<li>drawDebug
+: <a class="el" href="class_param_sensor.html#a5ee6c07c5cd59a88145d73a5145e988f">ParamSensor</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>end
+: <a class="el" href="class_draw_1_1_line_data.html#a4a97576f33ca8fe116d03bcfe3868ccd">Draw.LineData</a>
+</li>
 <li>environmentName
 : <a class="el" href="class_simulation_1_1_settings.html#a33877ea3298b6d6e659c031d394ac8a2">Simulation.Settings</a>
+</li>
+<li>environmentsFound
+: <a class="el" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">EnvLoader</a>
 </li>
 <li>exhibitionMode
 : <a class="el" href="class_simulation.html#a66c9a669b2aa79149d5e31a1594bb3e4">Simulation</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
+<li>fadeRate
+: <a class="el" href="class_sprite_fade.html#abf024a84c0b473a3e289962e857d765a">SpriteFade</a>
+</li>
+<li>FL
+: <a class="el" href="class_ar_drone.html#afeeefdf05c70c8d3181d245e3852ba4d">ArDrone</a>
+</li>
+<li>forwardAngle
+: <a class="el" href="class_boe_bot.html#afd191e50e37f926464f4b67747b68220">BoeBot</a>
+</li>
+<li>FOV
+: <a class="el" href="class_param_sensor.html#a5071b6729499062c557877ea5d5ad299">ParamSensor</a>
+</li>
+<li>Fov
+: <a class="el" href="class_ultrasonic_sensor.html#a7c28b4389a9874811e418556601388e7">UltrasonicSensor</a>
+</li>
+<li>FR
+: <a class="el" href="class_ar_drone.html#a17ba418f381feb0aa6136f8a3298a556">ArDrone</a>
+</li>
+<li>freeMoveSpeed
+: <a class="el" href="class_cam_controller.html#a537d5ef15b92a4fedf0125bab75575fc">CamController</a>
+</li>
+<li>freeMoveSpeedShiftMult
+: <a class="el" href="class_cam_controller.html#a5f58c3572e2ae72a7c4c2e252fa17881">CamController</a>
+</li>
+<li>frontBack
+: <a class="el" href="class_boe_bot.html#a11c77b1d440bd547ecec26a1ed620b37">BoeBot</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>gl_cubes
+: <a class="el" href="class_draw.html#a610f5ba7e54f6ba57855e33ea39151b9">Draw</a>
+</li>
+<li>gl_lines
+: <a class="el" href="class_draw.html#acd64341b267a507ce637ee7956bc374e">Draw</a>
+</li>
+<li>glLineMaterial
+: <a class="el" href="class_draw.html#acd3205b8c13f819b1af05098e38e6fb7">Draw</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_h"></a>- h -</h3><ul>
+<li>h
+: <a class="el" href="struct_h_s_b_color.html#a7379a79483a187a75bee618f6c453d35">HSBColor</a>
+</li>
+<li>header
+: <a class="el" href="class_log.html#a20364770ba8058b755b0a43b2a15679f">Log</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
 <li>I
 : <a class="el" href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">UI_Toolbar</a>
 </li>
 <li>Instance
-: <a class="el" href="class_environment_editor.html#aced92ba849394e310fb86ec2456c83f6">EnvironmentEditor</a>
+: <a class="el" href="class_draw.html#aaaba92a90b3121f7f78ec2683dc67c5c">Draw</a>
+, <a class="el" href="class_environment_editor.html#aced92ba849394e310fb86ec2456c83f6">EnvironmentEditor</a>
+, <a class="el" href="class_log_loader.html#aa51fea36b9e7b103015570505f91e7bd">LogLoader</a>
 , <a class="el" href="class_robot_editor.html#af3051771a350b1452da42eb7696c0569">RobotEditor</a>
 , <a class="el" href="class_simulation.html#a37caf1e823ec85202677212a905ea21c">Simulation</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_k"></a>- k -</h3><ul>
+<li>kd
+: <a class="el" href="class_pid.html#ac0cefd4f25313a710279c325af57d200">Pid</a>
+, <a class="el" href="class_pid_vector3.html#a7bc48380246d8d67e5dd6b7959aab331">PidVector3</a>
+</li>
+<li>ki
+: <a class="el" href="class_pid.html#addc744336fba5400847d8143a8ccc44d">Pid</a>
+, <a class="el" href="class_pid_vector3.html#a3f6fa9eb8433c6f5e1b6cd09f5636534">PidVector3</a>
+</li>
+<li>Kp
+: <a class="el" href="class_boe_bot.html#a1758c9739f156ce952c2d4d19ff4b3da">BoeBot</a>
+</li>
+<li>kp
+: <a class="el" href="class_pid.html#a99180cdf6ffdd4d337f3e8cd3e509e17">Pid</a>
+, <a class="el" href="class_pid_vector3.html#abe3cd81f615ec0ee784f8fb9068a727f">PidVector3</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>lateralSpeedController
+: <a class="el" href="class_ar_drone.html#a2d4647acdd867241c097bd1c94fb8c1c">ArDrone</a>
+</li>
+<li>leftTarget
+: <a class="el" href="class_boe_bot.html#a35f01a8a07eb0a489321898b4e3a68fc">BoeBot</a>
+</li>
+<li>leftTorque
+: <a class="el" href="class_boe_bot.html#adc562797e165aab55854af003580dba2">BoeBot</a>
+</li>
+<li>log
+: <a class="el" href="class_log.html#a0190968cb0342b180435e3576afa277f">Log</a>
 </li>
 <li>loggingEnabled
 : <a class="el" href="class_simulation.html#ab2214921f8d18853905bc57a6d3364e6">Simulation</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>manualControl
+: <a class="el" href="class_robot.html#a9d6d56746b41ba655c240e561be9ee61">Robot</a>
+</li>
+<li>maskBotData
+: <a class="el" href="class_cam_controller.html#a4d0a528fc5f886aacef35af337cd9acf">CamController</a>
+</li>
+<li>maskCameraCollision
+: <a class="el" href="class_cam_controller.html#a8a00f15aaf57119732b07d187f2b4c7b">CamController</a>
+</li>
+<li>maskHybrid
+: <a class="el" href="class_cam_controller.html#a76bbf14e1450e4ae6b976abbd41ac991">CamController</a>
+</li>
+<li>maskNormal
+: <a class="el" href="class_cam_controller.html#a47ebda85f329d6e55013d920322143f2">CamController</a>
+</li>
 <li>maximumTestTime
 : <a class="el" href="class_simulation_1_1_settings.html#adf83c91de7bae261fea3f587aafb84fb">Simulation.Settings</a>
+</li>
+<li>maxLateralSpeed
+: <a class="el" href="class_ar_drone.html#a1afb0d24c5e5ceff1eb7e64ddb590861">ArDrone</a>
+</li>
+<li>maxRange
+: <a class="el" href="class_param_sensor.html#a5d3c53c77881009941f80dc7742efaad">ParamSensor</a>
+, <a class="el" href="class_ultrasonic_sensor.html#a4485b19edb541046d2dba87361a9888c">UltrasonicSensor</a>
+</li>
+<li>maxThrottle
+: <a class="el" href="class_ar_drone.html#a58ab400a2539a4d4a7c6941c4e462e23">ArDrone</a>
+</li>
+<li>maxTilt
+: <a class="el" href="class_ar_drone.html#a4ecbdc6640c785816f133f91396a812d">ArDrone</a>
+</li>
+<li>maxWheelRpm
+: <a class="el" href="class_boe_bot.html#ac043e157c76b2ed7d9d3230e661b2d02">BoeBot</a>
+</li>
+<li>maxWheelTorque
+: <a class="el" href="class_boe_bot.html#aa1e8231a5935cdb91062012397b1ef5b">BoeBot</a>
+</li>
+<li>maxYawVelocity
+: <a class="el" href="class_ar_drone.html#a3dabd39c4313a244c42380db24bf95be">ArDrone</a>
+</li>
+<li>mouseSensitivity
+: <a class="el" href="class_cam_controller.html#a7507213b069ed5d149cd1fd5502ad9af">CamController</a>
+</li>
+<li>moveEnabled
+: <a class="el" href="class_robot.html#a363d1bd7dc2c5e04abed7078da0c0803">Robot</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
+<li>name
+: <a class="el" href="class_u_i___credits_1_1_credit.html#a9f85ca8916279a2ef896cb29ab76f0c3">UI_Credits.Credit</a>
 </li>
 <li>navigationAssemblyName
 : <a class="el" href="class_simulation_1_1_settings.html#a2048fe4e5173aef742c27579d1822a34">Simulation.Settings</a>
@@ -137,17 +634,109 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>numberOfTests
 : <a class="el" href="class_simulation_1_1_settings.html#ae4791094892b6ee261c26479bad13acd">Simulation.Settings</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>obstructed
+: <a class="el" href="struct_proximity_data.html#ab3b31b37417a66af5b03dc0bfc875759">ProximityData</a>
+</li>
+<li>origin
+: <a class="el" href="class_environment.html#a43a80e0e7164309656acba7cbe4b0584">Environment</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>pitchController
+: <a class="el" href="class_ar_drone.html#a5b99ea44d1ee88b3455568bc5f76cad8">ArDrone</a>
+</li>
+<li>pluginsFound
+: <a class="el" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">NavLoader</a>
+</li>
+<li>projectAbout
+: <a class="el" href="class_strings.html#ad44a270dab13b2cdfed24e057d4f86b8">Strings</a>
+</li>
+<li>projectTitle
+: <a class="el" href="class_strings.html#a63cf01e83d4d3adf10badae87addd18c">Strings</a>
+</li>
+<li>projectVersion
+: <a class="el" href="class_strings.html#a15f20acbb2bb93c307785d49d331818e">Strings</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>randomizeDestination
 : <a class="el" href="class_simulation_1_1_settings.html#aab3edee47a02bd101722bbe7017e9771">Simulation.Settings</a>
 </li>
 <li>randomizeOrigin
 : <a class="el" href="class_simulation_1_1_settings.html#a8c962bc81df9faa71c3a55c2c4e5dfbd">Simulation.Settings</a>
 </li>
+<li>raycastLayer
+: <a class="el" href="class_ultrasonic_sensor.html#a96bde1dbc7a0145594f6c016e4f7aab5">UltrasonicSensor</a>
+</li>
+<li>rightAngle
+: <a class="el" href="class_boe_bot.html#a344ca5a9e6094d7045c197f6c712f10d">BoeBot</a>
+</li>
+<li>rightLeft
+: <a class="el" href="class_boe_bot.html#aec7e1e5dd8dccc7409d0a52baf75141d">BoeBot</a>
+</li>
+<li>rightTarget
+: <a class="el" href="class_boe_bot.html#aa1c19d2831b60ff4b05cf5bb5fb788b9">BoeBot</a>
+</li>
+<li>rightTorque
+: <a class="el" href="class_boe_bot.html#a7f9f7385a945b0b98f5bec653c4032aa">BoeBot</a>
+</li>
 <li>robotName
 : <a class="el" href="class_simulation_1_1_settings.html#aa56e012c09932cc3e1c90f8fb81aa3a6">Simulation.Settings</a>
 </li>
+<li>robotsFound
+: <a class="el" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">BotLoader</a>
+</li>
+<li>rollController
+: <a class="el" href="class_ar_drone.html#a0a0b420ec0dbd17c5a62565be0ac5a12">ArDrone</a>
+</li>
+<li>rotateYaw
+: <a class="el" href="class_ar_drone.html#a6abf5b249cdbba79c6d44c36e656fe6c">ArDrone</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>s
+: <a class="el" href="struct_h_s_b_color.html#a11db1b5f23ae77f453a43a94ed1581d3">HSBColor</a>
+</li>
 <li>selectedParams
 : <a class="el" href="class_log.html#aacfeb0e2f7ac219f54a43f4fa6ef3324">Log</a>
+</li>
+<li>size
+: <a class="el" href="class_draw_1_1_cube_data.html#a27d059496f4c43dddcff2a758e1144d8">Draw.CubeData</a>
+</li>
+<li>sprites
+: <a class="el" href="class_destination.html#aa09380c91307ed74747b3d893b0c21f7">Destination</a>
+</li>
+<li>sr
+: <a class="el" href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">SpriteFade</a>
+</li>
+<li>start
+: <a class="el" href="class_draw_1_1_line_data.html#aecd98ebf7e017140b82252b0e37741d9">Draw.LineData</a>
+</li>
+<li>stopDistance
+: <a class="el" href="class_robot.html#a265a0c42050d3a762e0d429b9c3b3c41">Robot</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>target
+: <a class="el" href="class_test_camera.html#a8b0f6e9eb9247a5e439c9eafff5ab928">TestCamera</a>
+</li>
+<li>throttleController
+: <a class="el" href="class_ar_drone.html#a6f4b6a698dcf1d456b3705aad5568759">ArDrone</a>
+</li>
+<li>tiltController
+: <a class="el" href="class_ar_drone.html#a12a9f4bb025d068e95e70b6757ba1362">ArDrone</a>
 </li>
 <li>timeStep
 : <a class="el" href="class_log.html#a3980497df1505348b58cb232bce0ae78">Log</a>
@@ -155,16 +744,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>title
 : <a class="el" href="class_simulation_1_1_settings.html#a1652fc3e24e9b2443d6166f360408ff0">Simulation.Settings</a>
 </li>
+</ul>
+
+
+<h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>updateDt
+: <a class="el" href="class_param_sensor.html#af6dbe0aecf95f276d9ab24284c4e4132">ParamSensor</a>
+, <a class="el" href="class_ultrasonic_sensor.html#aad6a62eaac5177eda6a3d9b99e476a19">UltrasonicSensor</a>
+</li>
+<li>url
+: <a class="el" href="class_u_i___credits_1_1_credit.html#a267e9f1c5fc6da92b5775c32f7d9f898">UI_Credits.Credit</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
+<li>verticalSpeed
+: <a class="el" href="class_ar_drone.html#ae88a85eedb4c525028436aff0b7fd3be">ArDrone</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
 <li>width
-: <a class="el" href="class_u_i___toolbar.html#a578a411d042e8be28d5be7cda52c48ca">UI_Toolbar</a>
+: <a class="el" href="class_u_i___credits.html#a8c0c911c3faca0a3e8d5ea9a4a1e1345">UI_Credits</a>
+, <a class="el" href="class_u_i___toolbar.html#a578a411d042e8be28d5be7cda52c48ca">UI_Toolbar</a>
+</li>
+<li>winId
+: <a class="el" href="class_u_i___toolbar.html#a3942cc66d09b8c9561bee31dad857e9d">UI_Toolbar</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_y"></a>- y -</h3><ul>
+<li>yawKp
+: <a class="el" href="class_ar_drone.html#a111104e4121900e6e72643c97ee1ce35">ArDrone</a>
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 31 2015 15:48:40 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Tue May 5 2015 18:48:31 for BotNavSim by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

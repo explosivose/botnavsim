@@ -1,0 +1,6 @@
+<map id="CamController.OnTestStart" name="CamController.OnTestStart">
+<area shape="rect" id="node2" href="$de/d55/class_cam_controller.html#a4dccd5f2c8ea2e9e48f10d7cfdd93beb" title="Set viewMode to random ViewMode in viewModeList. " alt="" coords="239,5,455,32"/>
+<area shape="rect" id="node4" href="$de/d55/class_cam_controller.html#a71315cf5772277c346eb64ec08cdae0a" title="Set renderMode to random RenderMode. " alt="" coords="232,56,461,83"/>
+<area shape="rect" id="node5" href="$de/d55/class_cam_controller.html#aff28c0727c456c60a79321904916b252" title="Set area to next area of interest (circular index of areas list) " alt="" coords="256,107,437,149"/>
+<area shape="rect" id="node3" href="$de/d55/class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84" title="Sets the view mode. " alt="" coords="509,5,697,32"/>
+</map>

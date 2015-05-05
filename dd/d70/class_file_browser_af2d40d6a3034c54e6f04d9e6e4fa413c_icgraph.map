@@ -1,0 +1,10 @@
+<map id="FileBrowser.ListFolders" name="FileBrowser.ListFolders">
+<area shape="rect" id="node2" href="$d6/d9b/class_u_i___log_loader.html#a592f4089c333b908615d3faeb9ffc845" title="UI_LogLoader.UI_LogLoader" alt="" coords="923,38,1107,65"/>
+<area shape="rect" id="node3" href="$d6/d9b/class_u_i___log_loader.html#ad79dd0c42bae7de93a251f9bbb4b7ac8" title="Refresh this the files and folders in current directory " alt="" coords="229,38,379,65"/>
+<area shape="rect" id="node6" href="$dc/d03/class_u_i___simulation_batch.html#a947211f4919231a6c9c6c0e000618513" title="Refresh this the files and folders in current directory " alt="" coords="212,89,396,116"/>
+<area shape="rect" id="node4" href="$d6/d9b/class_u_i___log_loader.html#ae845c97ac1a9acaa1885269aeaa76e4c" title="Top window function &#45; browse CSV files. " alt="" coords="461,38,635,65"/>
+<area shape="rect" id="node5" href="$d6/d9b/class_u_i___log_loader.html#a3ff37e9dbca567dc3f0b83171af11d99" title="UI_LogLoader.Legend" alt="" coords="714,38,861,65"/>
+<area shape="rect" id="node7" href="$dc/d03/class_u_i___simulation_batch.html#a7cd5f8b7f7521a41a072bcd9a71f8241" title="List Simulation.Settings in Simulation.batch and provide controls and editing the Simulation..." alt="" coords="700,111,875,152"/>
+<area shape="rect" id="node9" href="$dc/d03/class_u_i___simulation_batch.html#a0be8c1b0a68044323959cd1afa6253dd" title="Browse for XML files to deserialize into Simulation.Settings " alt="" coords="444,140,652,166"/>
+<area shape="rect" id="node8" href="$dc/d03/class_u_i___simulation_batch.html#a3dc46c7353404769232afd886ba3b354" title="UI_SimulationBatch.UI\l_SimulationBatch" alt="" coords="939,111,1091,152"/>
+</map>

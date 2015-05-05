@@ -1,15 +1,19 @@
 var searchData=
 [
-  ['randominbounds',['RandomInBounds',['../class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9',1,'Simulation']]],
-  ['randomize',['Randomize',['../class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5',1,'Simulation::Settings']]],
-  ['randomizedestination',['randomizeDestination',['../class_simulation_1_1_settings.html#aab3edee47a02bd101722bbe7017e9771',1,'Simulation::Settings']]],
-  ['randomizeorigin',['randomizeOrigin',['../class_simulation_1_1_settings.html#a8c962bc81df9faa71c3a55c2c4e5dfbd',1,'Simulation::Settings']]],
-  ['robot',['Robot',['../class_robot.html',1,'Robot'],['../class_simulation.html#a835d6e2a07339f1d5a71d54524c16e2c',1,'Simulation.robot()']]],
-  ['roboteditor',['RobotEditor',['../class_robot_editor.html',1,'']]],
-  ['robotisstuck',['RobotIsStuck',['../class_log.html#ac5d19dd314e64a9865f7b117ade04e76a69a1c7293807bb97ea17f5c9eeaafcf1',1,'Log.RobotIsStuck()'],['../class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6a69a1c7293807bb97ea17f5c9eeaafcf1',1,'Simulation.RobotIsStuck()']]],
-  ['robotname',['robotName',['../class_simulation_1_1_settings.html#aa56e012c09932cc3e1c90f8fb81aa3a6',1,'Simulation::Settings']]],
-  ['robotposition',['RobotPosition',['../class_log.html#ac5d19dd314e64a9865f7b117ade04e76a93237612228981ca310b0afcc3c600a2',1,'Log']]],
-  ['robotreacheddestination',['RobotReachedDestination',['../class_simulation.html#a8665329fffe0f8c6302c51f78ed9a3a6ad440955209ed5bdde13196d7cc0953c3',1,'Simulation']]],
-  ['rotator',['Rotator',['../class_rotator.html',1,'']]],
-  ['run',['Run',['../class_simulation.html#a9ecb5416e574c63225c4300d58588a97',1,'Simulation']]]
+  ['name',['name',['../class_bot_path.html#a2f73872499ac442e2392e9d2d9944635',1,'BotPath.name()'],['../class_cam_controller_1_1_stub_observable.html#a24eff8d38880a9cd918d63f727ca9727',1,'CamController.StubObservable.name()'],['../interface_i_observable.html#aa559aecd83eef3969c4eae9e3bb5dcd4',1,'IObservable.name()'],['../class_simulation_1_1_settings.html#adb7ad4cd4f402ee1bfd3f5d22f896fd5',1,'Simulation.Settings.name()'],['../class_simulation_1_1_observer.html#a52529e3d338279759c5a868847b052f5',1,'Simulation.Observer.name()'],['../class_u_i___credits_1_1_credit.html#a9f85ca8916279a2ef896cb29ab76f0c3',1,'UI_Credits.Credit.name()']]],
+  ['navigatetodestination',['NavigateToDestination',['../class_robot.html#a5b65c89b0ac1ddf276e853918938e80b',1,'Robot']]],
+  ['navigation',['navigation',['../class_robot.html#afbccea715a85421212ceb044d738c9b6',1,'Robot']]],
+  ['navigationassemblyname',['navigationAssemblyName',['../class_simulation_1_1_settings.html#a2048fe4e5173aef742c27579d1822a34',1,'Simulation::Settings']]],
+  ['navigationcommand',['navigationCommand',['../class_robot.html#aff3b843487fe32dbb6b135c52de1cbd2',1,'Robot']]],
+  ['navigationmovedirection',['NavigationMoveDirection',['../class_log.html#ac5d19dd314e64a9865f7b117ade04e76a17f75236dc0b9bec78d5cb4eb45c7c53',1,'Log']]],
+  ['navigationpathfound',['NavigationPathFound',['../class_log.html#ac5d19dd314e64a9865f7b117ade04e76a966c7c43d5c00983e761bb89740315b7',1,'Log']]],
+  ['navigationplugindirectory',['navigationPluginDirectory',['../class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa',1,'Strings']]],
+  ['navlistwindow',['NavListWindow',['../class_u_i___simulation_settings.html#ae53c7e587b741f5adbd58816374880f7',1,'UI_SimulationSettings']]],
+  ['navloader',['NavLoader',['../class_nav_loader.html',1,'']]],
+  ['navloader_2ecs',['NavLoader.cs',['../_nav_loader_8cs.html',1,'']]],
+  ['newline',['newline',['../class_strings.html#ac152753251c23724056d9c7a1165dde7',1,'Strings']]],
+  ['nextsimulation',['NextSimulation',['../class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370',1,'Simulation']]],
+  ['nexttest',['NextTest',['../class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0',1,'Simulation']]],
+  ['normal',['Normal',['../class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcfa960b44c579bc2f6818d2daaf9e4c16f0',1,'CamController']]],
+  ['numberoftests',['numberOfTests',['../class_simulation_1_1_settings.html#ae4791094892b6ee261c26479bad13acd',1,'Simulation::Settings']]]
 ];

@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,8 +30,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="lulogo-colour-medium.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BotNavSim
+   &#160;<span id="projectnumber">v0.4.3</span>
    </div>
    <div id="projectbrief">Mobile Robot Simulation</div>
   </td>
@@ -40,6 +50,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -66,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_object_serializer.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
@@ -89,20 +114,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">ObjectSerializer Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Object serializer utility class.  
+ <a href="class_object_serializer.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a368a72c42f3d46942e8563e017ec9922"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_serializer.html#a368a72c42f3d46942e8563e017ec9922">SerializeObject&lt; T &gt;</a> (T serializableObject, string fileName)</td></tr>
-<tr class="memdesc:a368a72c42f3d46942e8563e017ec9922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the object.  <a href="#a368a72c42f3d46942e8563e017ec9922">More...</a><br /></td></tr>
+<tr class="memdesc:a368a72c42f3d46942e8563e017ec9922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes the object to XML file.  <a href="#a368a72c42f3d46942e8563e017ec9922">More...</a><br /></td></tr>
 <tr class="separator:a368a72c42f3d46942e8563e017ec9922"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad0f1cd47bb6ef1f028075dc590939399"><td class="memItemLeft" align="right" valign="top">static T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_serializer.html#ad0f1cd47bb6ef1f028075dc590939399">DeSerializeObject&lt; T &gt;</a> (string fileName)</td></tr>
-<tr class="memdesc:ad0f1cd47bb6ef1f028075dc590939399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes object.  <a href="#ad0f1cd47bb6ef1f028075dc590939399">More...</a><br /></td></tr>
+<tr class="memdesc:ad0f1cd47bb6ef1f028075dc590939399"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserializes object from XMl file.  <a href="#ad0f1cd47bb6ef1f028075dc590939399">More...</a><br /></td></tr>
 <tr class="separator:ad0f1cd47bb6ef1f028075dc590939399"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a585c6bb05bb55139c81ed9083fcbd93b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a585c6bb05bb55139c81ed9083fcbd93b"></a>
-static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>SearchForObjects</b> (string path)</td></tr>
+<tr class="memitem:a585c6bb05bb55139c81ed9083fcbd93b"><td class="memItemLeft" align="right" valign="top">static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_serializer.html#a585c6bb05bb55139c81ed9083fcbd93b">SearchForObjects</a> (string path)</td></tr>
+<tr class="memdesc:a585c6bb05bb55139c81ed9083fcbd93b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searchs for XML objects in a directory.  <a href="#a585c6bb05bb55139c81ed9083fcbd93b">More...</a><br /></td></tr>
 <tr class="separator:a585c6bb05bb55139c81ed9083fcbd93b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Object serializer utility class. </p>
+
+<p>Definition at line <a class="el" href="_object_serializer_8cs_source.html#l00011">11</a> of file <a class="el" href="_object_serializer_8cs_source.html">ObjectSerializer.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ad0f1cd47bb6ef1f028075dc590939399"></a>
 <div class="memitem">
 <div class="memproto">
@@ -125,7 +157,7 @@ static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 </table>
 </div><div class="memdoc">
 
-<p>Deserializes object. </p>
+<p>Deserializes object from XMl file. </p>
 <dl class="section return"><dt>Returns</dt><dd>The deserialized object.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -139,6 +171,43 @@ static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><
   </table>
   </dd>
 </dl>
+
+<p>Definition at line <a class="el" href="_object_serializer_8cs_source.html#l00047">47</a> of file <a class="el" href="_object_serializer_8cs_source.html">ObjectSerializer.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a585c6bb05bb55139c81ed9083fcbd93b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static List&lt;string&gt; ObjectSerializer.SearchForObjects </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Searchs for XML objects in a directory. </p>
+<dl class="section return"><dt>Returns</dt><dd>The for objects.</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>Path.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="_object_serializer_8cs_source.html#l00080">80</a> of file <a class="el" href="_object_serializer_8cs_source.html">ObjectSerializer.cs</a>.</p>
 
 </div>
 </div>
@@ -174,7 +243,7 @@ static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><
 </table>
 </div><div class="memdoc">
 
-<p>Serializes the object. </p>
+<p>Serializes the object to XML file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">serializableObject</td><td>Serializable object.</td></tr>
@@ -189,17 +258,23 @@ static List&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><
   </dd>
 </dl>
 
+<p>Definition at line <a class="el" href="_object_serializer_8cs_source.html#l00019">19</a> of file <a class="el" href="_object_serializer_8cs_source.html">ObjectSerializer.cs</a>.</p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>Assets/botnavsim/Scripts/Utility/ObjectSerializer.cs</li>
+<li>Assets/botnavsim/Scripts/Utility/<a class="el" href="_object_serializer_8cs_source.html">ObjectSerializer.cs</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 31 2015 15:48:39 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_object_serializer.html">ObjectSerializer</a></li>
+    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

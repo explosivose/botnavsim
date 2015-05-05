@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,8 +30,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="lulogo-colour-medium.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BotNavSim
+   &#160;<span id="projectnumber">v0.4.3</span>
    </div>
    <div id="projectbrief">Mobile Robot Simulation</div>
   </td>
@@ -40,6 +50,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -67,6 +78,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('hierarchy.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -89,41 +114,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="textblock">
 <p><a href="hierarchy.html">Go to the textual class hierarchy</a></p>
 </div><table border="0" cellspacing="10" cellpadding="0">
-<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#_boe_bot"/>
-<map name="_boe_bot" id="_boe_bot">
-<area shape="rect" id="node1" href="interface_i_sensor.html" title="ISensor" alt="" coords="27,5,94,32"/><area shape="rect" id="node2" href="class_param_sensor.html" title="ParamSensor" alt="" coords="177,5,278,32"/><area shape="rect" id="node4" href="class_boe_bot.html" title="BoeBot" alt="" coords="195,56,260,83"/><area shape="rect" id="node5" href="class_environment_editor.html" title="Environment editor state machine class. " alt="" coords="164,107,291,133"/><area shape="rect" id="node6" href="class_log_loader.html" title="Log loader state machine. " alt="" coords="186,157,269,184"/><area shape="rect" id="node7" href="class_robot.html" title="Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro..." alt="" coords="199,208,255,235"/><area shape="rect" id="node8" href="class_robot_editor.html" title="Robot editor state machine. " alt="" coords="182,259,273,285"/><area shape="rect" id="node9" href="class_rotator.html" title="Rotator" alt="" coords="195,309,259,336"/><area shape="rect" id="node10" href="class_sensor.html" title="Sensor" alt="" coords="196,360,259,387"/><area shape="rect" id="node11" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. " alt="" coords="186,411,269,437"/><area shape="rect" id="node12" href="class_singleton.html" title="Singleton\&lt; T \&gt;" alt="" coords="174,461,281,488"/><area shape="rect" id="node13" href="class_sprite_fade.html" title="SpriteFade" alt="" coords="185,512,270,539"/><area shape="rect" id="node14" href="class_u_i.html" title="All BotNavSim GUI functions. " alt="" coords="208,563,247,589"/><area shape="rect" id="node15" href="class_u_i___toolbar.html" title="UI Toolbar provides controls for choosing which UI windows to display " alt="" coords="186,613,269,640"/></map>
+<tr><td><img src="inherit_graph_0.png" border="0" alt="" usemap="#_ar_drone"/>
+<map name="_ar_drone" id="_ar_drone">
+<area shape="rect" id="node1" href="interface_i_observable.html" title="Interface for objects that are observable via CamController must keep their world bounds up&#45;to&#45;date ..." alt="" coords="21,107,111,133"/><area shape="rect" id="node2" href="class_bot_path.html" title="BotPath displays information about a recorded path taken or calculated. " alt="" coords="239,5,309,32"/><area shape="rect" id="node3" href="class_cam_controller_1_1_stub_observable.html" title="A blank IObservable implementation (used when the _areas list is empty) " alt="" coords="175,56,373,83"/><area shape="rect" id="node4" href="class_log_loader.html" title="Log loader high level BotNavSim state manager " alt="" coords="233,157,315,184"/><area shape="rect" id="node5" href="class_robot.html" title="Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro..." alt="" coords="246,208,302,235"/><area shape="rect" id="node6" href="class_simulation_1_1_observer.html" title="Simulation.Observer" alt="" coords="205,107,343,133"/><area shape="rect" id="node7" href="interface_i_window_function.html" title="Interface for classes that implement a GUI.WindowFunction " alt="" coords="5,993,127,1020"/><area shape="rect" id="node8" href="interface_i_toolbar.html" title="Interface for classes that implement a toolbar item " alt="" coords="241,968,307,995"/><area shape="rect" id="node16" href="class_u_i___credits.html" title="IWindowFunction class for displaying credits. Also inherits from MonoBehaviour to expose credit data ..." alt="" coords="233,917,315,944"/><area shape="rect" id="node17" href="class_u_i___prompt.html" title="IWindowFunction class that prompts the user for action. " alt="" coords="233,1019,315,1045"/><area shape="rect" id="node18" href="class_u_i___simulation_settings.html" title="An instantiable class that provides a UI for editing a given Simulation.Settings object ..." alt="" coords="199,1069,349,1096"/><area shape="rect" id="node9" href="class_u_i___camera_controls.html" title="IToolbar class for controlling the camera. " alt="" coords="427,1120,562,1147"/><area shape="rect" id="node10" href="class_u_i___environment_editor.html" title="IToolbar class provides controls for the Environment Editor (not implemented!) " alt="" coords="421,816,568,843"/><area shape="rect" id="node11" href="class_u_i___log.html" title="IToolbar class for providing controls of data logging. Includes editing parameters to log and enable/..." alt="" coords="463,867,526,893"/><area shape="rect" id="node12" href="class_u_i___log_loader.html" title="IToolbar class provides controls for loading and viewing CSV data logs. " alt="" coords="444,917,545,944"/><area shape="rect" id="node13" href="class_u_i___robot_editor.html" title="IToolbar class provides controls for the Robot Editor (not implemented!) " alt="" coords="440,968,549,995"/><area shape="rect" id="node14" href="class_u_i___simulation_batch.html" title="IToolbar class for displaying and editing the simulation batch list " alt="" coords="427,1019,563,1045"/><area shape="rect" id="node15" href="class_u_i___simulation_control.html" title="IToolbar class for simulation control. Provides controls for pausing, stopping or skipping the curren..." alt="" coords="423,1069,566,1096"/><area shape="rect" id="node20" href="class_ar_drone.html" title="AR Drone control system implementation. Developed with data from http://parrotcontact.emencia.net/website/user&#45;guides/download&#45;user&#45;guides.php?pdf=ar&#45;drone&#45;2/AR&#45;Drone&#45;2_User&#45;guide_Android_UK.pdf See final report for diagram of implementation. " alt="" coords="239,309,309,336"/><area shape="rect" id="node21" href="class_boe_bot.html" title="BoeBot differential drive control system. Built using data from: https://www.parallax.com/product/900&#45;00008 See final report for diagram of implementation " alt="" coords="241,360,307,387"/><area shape="rect" id="node22" href="class_cam_controller.html" title="Controls the camera orientation and render modes according to ViewMode in viewModeList user input..." alt="" coords="222,411,326,437"/><area shape="rect" id="node23" href="class_destination.html" title="Sets a random sprite for displaying the robot destination. " alt="" coords="231,461,317,488"/><area shape="rect" id="node24" href="class_draw.html" title="Draws stuff, useful for displaying debug data in the simulation. Note that GL implementations require..." alt="" coords="249,512,299,539"/><area shape="rect" id="node25" href="class_environment.html" title="Environment data " alt="" coords="227,563,321,589"/><area shape="rect" id="node26" href="class_environment_editor.html" title="Environment editor state machine class. " alt="" coords="211,613,337,640"/><area shape="rect" id="node27" href="class_robot_editor.html" title="Robot editor state machine. " alt="" coords="229,664,319,691"/><area shape="rect" id="node28" href="class_sensor.html" title="Abstract Sensor class for all sensor implementations to inherit from. " alt="" coords="243,715,305,741"/><area shape="rect" id="node31" href="class_simulation.html" title="This is a manager class used to overlook the running of a simulation. " alt="" coords="233,765,315,792"/><area shape="rect" id="node32" href="class_sprite_fade.html" title="Fades a sprite alpha channel to invisible " alt="" coords="231,816,317,843"/><area shape="rect" id="node33" href="class_test_camera.html" title="A test script that tracks trains a camera on a target object. This was used to test and build robot m..." alt="" coords="228,867,320,893"/><area shape="rect" id="node34" href="class_u_i___toolbar.html" title="UI Toolbar provides controls for choosing which UI windows to display " alt="" coords="233,259,315,285"/><area shape="rect" id="node29" href="class_param_sensor.html" title="Parameter sensor is a 2D FOV sensor model, loosely based on real ultrasonic sensor behaviour ..." alt="" coords="444,740,545,767"/><area shape="rect" id="node30" href="class_ultrasonic_sensor.html" title="Ultrasonic sensor model. " alt="" coords="434,689,555,716"/></map>
 </td></tr>
 <tr><td><img src="inherit_graph_1.png" border="0" alt="" usemap="#_bot_loader"/>
 <map name="_bot_loader" id="_bot_loader">
-<area shape="rect" id="node1" href="class_bot_loader.html" title="BotLoader" alt="" coords="5,5,87,32"/></map>
+<area shape="rect" id="node1" href="class_bot_loader.html" title="Bot loader provides functions for finding and loading robots. " alt="" coords="5,5,87,32"/></map>
 </td></tr>
 <tr><td><img src="inherit_graph_2.png" border="0" alt="" usemap="#_bot_nav_sim"/>
 <map name="_bot_nav_sim" id="_bot_nav_sim">
 <area shape="rect" id="node1" href="class_bot_nav_sim.html" title="BotNavSim high&#45;level manager class. Holds BotNavSim.State and controls state transition behaviour..." alt="" coords="5,5,92,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#_bot_path"/>
-<map name="_bot_path" id="_bot_path">
-<area shape="rect" id="node1" href="class_bot_path.html" title="BotPath displays information about a recorded path taken or calculated. " alt="" coords="5,5,75,32"/></map>
+<tr><td><img src="inherit_graph_3.png" border="0" alt="" usemap="#_draw_8_cube_data"/>
+<map name="_draw_8_cube_data" id="_draw_8_cube_data">
+<area shape="rect" id="node1" href="class_draw_1_1_cube_data.html" title="Draw.CubeData" alt="" coords="5,5,117,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#_env_loader"/>
+<tr><td><img src="inherit_graph_4.png" border="0" alt="" usemap="#_draw_8_line_data"/>
+<map name="_draw_8_line_data" id="_draw_8_line_data">
+<area shape="rect" id="node1" href="class_draw_1_1_line_data.html" title="Draw.LineData" alt="" coords="5,5,112,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#_env_loader"/>
 <map name="_env_loader" id="_env_loader">
-<area shape="rect" id="node1" href="class_env_loader.html" title="EnvLoader" alt="" coords="5,5,88,32"/></map>
+<area shape="rect" id="node1" href="class_env_loader.html" title="Environment loader searches for and loads environment GameObjects from the Unity Resources folder..." alt="" coords="5,5,88,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_5.png" border="0" alt="" usemap="#_file_browser"/>
+<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#_file_browser"/>
 <map name="_file_browser" id="_file_browser">
-<area shape="rect" id="node1" href="class_file_browser.html" title="FileBrowser" alt="" coords="5,5,96,32"/></map>
+<area shape="rect" id="node1" href="class_file_browser.html" title="File browser utility class for finding files and folders. " alt="" coords="5,5,96,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_6.png" border="0" alt="" usemap="#_h_s_b_color"/>
+<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#_h_s_b_color"/>
 <map name="_h_s_b_color" id="_h_s_b_color">
-<area shape="rect" id="node1" href="struct_h_s_b_color.html" title="HSBColor" alt="" coords="5,5,84,32"/></map>
+<area shape="rect" id="node1" href="struct_h_s_b_color.html" title="Utility struct for transforming RGB Color to HSB Color (sourced from a previous project) ..." alt="" coords="5,5,84,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_7.png" border="0" alt="" usemap="#_i_navigation"/>
+<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#_i_navigation"/>
 <map name="_i_navigation" id="_i_navigation">
-<area shape="rect" id="node1" href="interface_i_navigation.html" title="INavigation" alt="" coords="5,5,89,32"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_8.png" border="0" alt="" usemap="#_i_window_function"/>
-<map name="_i_window_function" id="_i_window_function">
-<area shape="rect" id="node1" href="interface_i_window_function.html" title="Interface for classes that implement a GUI.WindowFunction " alt="" coords="5,183,127,209"/><area shape="rect" id="node2" href="interface_i_toolbar.html" title="Interface for classes that implement a toolbar item " alt="" coords="217,157,283,184"/><area shape="rect" id="node10" href="class_u_i___simulation_settings.html" title="An instantiable class that provides a UI for editing a given Simulation.Settings object ..." alt="" coords="175,208,325,235"/><area shape="rect" id="node3" href="class_u_i___camera_controls.html" title="UI_CameraControls" alt="" coords="379,5,514,32"/><area shape="rect" id="node4" href="class_u_i___environment_editor.html" title="UI_EnvironmentEditor" alt="" coords="373,56,520,83"/><area shape="rect" id="node5" href="class_u_i___log.html" title="UI_Log" alt="" coords="415,107,478,133"/><area shape="rect" id="node6" href="class_u_i___log_loader.html" title="UI_LogLoader" alt="" coords="396,157,497,184"/><area shape="rect" id="node7" href="class_u_i___robot_editor.html" title="UI for the robot editor (not yet implemented) " alt="" coords="392,208,501,235"/><area shape="rect" id="node8" href="class_u_i___simulation_batch.html" title="UI for displaying and editing the simulation batch list " alt="" coords="379,259,515,285"/><area shape="rect" id="node9" href="class_u_i___simulation_control.html" title="UI window for simulation control. Provides controls for pausing, stopping or skipping the current tes..." alt="" coords="375,309,518,336"/></map>
+<area shape="rect" id="node1" href="interface_i_navigation.html" title="INavigation interface for robot navigation algorithms. This component of the robot is responsible for..." alt="" coords="5,5,89,32"/></map>
 </td></tr>
 <tr><td><img src="inherit_graph_9.png" border="0" alt="" usemap="#_log"/>
 <map name="_log" id="_log">
@@ -131,47 +156,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </td></tr>
 <tr><td><img src="inherit_graph_10.png" border="0" alt="" usemap="#_nav_loader"/>
 <map name="_nav_loader" id="_nav_loader">
-<area shape="rect" id="node1" href="class_nav_loader.html" title="NavLoader" alt="" coords="5,5,88,32"/></map>
+<area shape="rect" id="node1" href="class_nav_loader.html" title="Used to find and load INavigation implementations from .dll files. " alt="" coords="5,5,88,32"/></map>
 </td></tr>
 <tr><td><img src="inherit_graph_11.png" border="0" alt="" usemap="#_object_serializer"/>
 <map name="_object_serializer" id="_object_serializer">
-<area shape="rect" id="node1" href="class_object_serializer.html" title="ObjectSerializer" alt="" coords="5,5,120,32"/></map>
+<area shape="rect" id="node1" href="class_object_serializer.html" title="Object serializer utility class. " alt="" coords="5,5,120,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#_plugin_factory_3_01_i_navigation_01_4"/>
+<tr><td><img src="inherit_graph_12.png" border="0" alt="" usemap="#_pid"/>
+<map name="_pid" id="_pid">
+<area shape="rect" id="node1" href="class_pid.html" title="Pid encapsulates PID control for floating point variables. " alt="" coords="5,5,47,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#_pid_vector3"/>
+<map name="_pid_vector3" id="_pid_vector3">
+<area shape="rect" id="node1" href="class_pid_vector3.html" title="PidVector3 encapsulates PID control for 3D vectors. " alt="" coords="5,5,92,32"/></map>
+</td></tr>
+<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#_plugin_factory_3_01_i_navigation_01_4"/>
 <map name="_plugin_factory_3_01_i_navigation_01_4" id="_plugin_factory_3_01_i_navigation_01_4">
 <area shape="rect" id="node1" href="class_plugin_factory.html" title="PluginFactory\&lt; INavigation \&gt;" alt="" coords="5,5,193,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_13.png" border="0" alt="" usemap="#_plugin_factory_3_01_t_01_4"/>
+<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#_plugin_factory_3_01_t_01_4"/>
 <map name="_plugin_factory_3_01_t_01_4" id="_plugin_factory_3_01_t_01_4">
-<area shape="rect" id="node1" href="class_plugin_factory.html" title="Plugin factory. http://stackoverflow.com/questions/5751844/how&#45;to&#45;reference&#45;a&#45;dll&#45;on&#45;runtime ..." alt="" coords="5,5,139,32"/></map>
+<area shape="rect" id="node1" href="class_plugin_factory.html" title="Plugin factory utility class instantates interfaces from a DLL assembly file Adapted from: http://sta..." alt="" coords="5,5,139,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_14.png" border="0" alt="" usemap="#_proximity_data"/>
+<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#_proximity_data"/>
 <map name="_proximity_data" id="_proximity_data">
-<area shape="rect" id="node1" href="struct_proximity_data.html" title="ProximityData" alt="" coords="5,5,109,32"/></map>
+<area shape="rect" id="node1" href="struct_proximity_data.html" title="Proximity data structure. " alt="" coords="5,5,109,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_15.png" border="0" alt="" usemap="#_simulation_8_settings"/>
+<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#_simulation_8_settings"/>
 <map name="_simulation_8_settings" id="_simulation_8_settings">
 <area shape="rect" id="node1" href="class_simulation_1_1_settings.html" title="Simulation.Settings" alt="" coords="5,5,140,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_16.png" border="0" alt="" usemap="#_singleton_3_01_cam_controller_01_4"/>
-<map name="_singleton_3_01_cam_controller_01_4" id="_singleton_3_01_cam_controller_01_4">
-<area shape="rect" id="node1" href="class_singleton.html" title="Singleton\&lt; CamController \&gt;" alt="" coords="5,5,188,32"/><area shape="rect" id="node2" href="class_cam_controller.html" title="CamController" alt="" coords="236,5,340,32"/></map>
+<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#_strings"/>
+<map name="_strings" id="_strings">
+<area shape="rect" id="node1" href="class_strings.html" title="A utility class for strings used in this project. " alt="" coords="5,5,68,32"/></map>
 </td></tr>
-<tr><td><img src="inherit_graph_17.png" border="0" alt="" usemap="#_singleton_3_01_draw_01_4"/>
-<map name="_singleton_3_01_draw_01_4" id="_singleton_3_01_draw_01_4">
-<area shape="rect" id="node1" href="class_singleton.html" title="Singleton\&lt; Draw \&gt;" alt="" coords="5,5,135,32"/><area shape="rect" id="node2" href="class_draw.html" title="Draws stuff, useful for displaying debug data in world space. Note that GL implementations require th..." alt="" coords="183,5,233,32"/></map>
-</td></tr>
-<tr><td><img src="inherit_graph_18.png" border="0" alt="" usemap="#_u_i__window"/>
-<map name="_u_i__window" id="_u_i__window">
-<area shape="rect" id="node1" href="class_u_i__window.html" title="UI_window" alt="" coords="5,5,88,32"/></map>
+<tr><td><img src="inherit_graph_19.png" border="0" alt="" usemap="#_u_i___credits_8_credit"/>
+<map name="_u_i___credits_8_credit" id="_u_i___credits_8_credit">
+<area shape="rect" id="node1" href="class_u_i___credits_1_1_credit.html" title="Serializable (exposed to UnityEditor) for holding creditation data " alt="" coords="5,5,125,32"/></map>
 </td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 31 2015 15:48:40 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

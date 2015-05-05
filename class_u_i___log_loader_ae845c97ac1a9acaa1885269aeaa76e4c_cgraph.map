@@ -1,0 +1,19 @@
+<map id="UI_LogLoader.CsvBrowser" name="UI_LogLoader.CsvBrowser">
+<area shape="rect" id="node2" href="$class_u_i___log_loader.html#ad79dd0c42bae7de93a251f9bbb4b7ac8" title="Refresh the files and folders in current directory " alt="" coords="227,107,376,133"/>
+<area shape="rect" id="node5" href="$class_log_loader.html#a371b2b5f820022b2af6a28780b07406c" title="Loads the paths stored in a CSV file. Also attempts to load the relevant environment. " alt="" coords="227,157,375,184"/>
+<area shape="rect" id="node3" href="$class_file_browser.html#a1be21188b416664178fc77360c9e0b0b" title="Lists file names in directory. " alt="" coords="442,56,585,83"/>
+<area shape="rect" id="node4" href="$class_file_browser.html#af2d40d6a3034c54e6f04d9e6e4fa413c" title="Lists folder names in directory. " alt="" coords="434,107,593,133"/>
+<area shape="rect" id="node6" href="$class_log_loader.html#ad7466ad8d9ce603fb335372dc5748d23" title="Main routine for loading a CSV log file. " alt="" coords="424,157,603,184"/>
+<area shape="rect" id="node7" href="$class_log_loader.html#acf5bb01a4ec3e86ce1a2476ed3583573" title="UI_Prompt.Response callback function " alt="" coords="653,5,839,32"/>
+<area shape="rect" id="node8" href="$class_cam_controller.html#ac52c95de4b66978159f970aa3dcc0a9a" title="Clears the area list. " alt="" coords="653,56,839,83"/>
+<area shape="rect" id="node9" href="$class_log_loader.html#aac228ff3644d277ef15575530d3f4064" title="Loads the environment. " alt="" coords="653,107,839,133"/>
+<area shape="rect" id="node13" href="$class_log_loader.html#aea51acfdfe4974ef4755060f0542187f" title="Parses the vector3 object from a string like &quot;(1.0,2.0,3.0)&quot; " alt="" coords="663,157,829,184"/>
+<area shape="rect" id="node14" href="$class_bot_path.html#a5acc3f483ba27e6d57fd455c9b1eeb01" title="Adds a node to the path. " alt="" coords="683,208,809,235"/>
+<area shape="rect" id="node15" href="$class_log_loader.html#a0ceacd76abf8b795a9c57072cc9d2fa8" title="Adds a path to paths list. " alt="" coords="678,259,814,285"/>
+<area shape="rect" id="node17" href="$class_log_loader.html#acf7773975b3d62b2f090a851c9a705f3" title="Updates the path colors with evenly spaced hues. " alt="" coords="651,309,841,336"/>
+<area shape="rect" id="node10" href="$class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c" title="Searchs for environments. " alt="" coords="889,56,1113,83"/>
+<area shape="rect" id="node11" href="$class_env_loader.html#af4a7bdfa4bc32b722e9081f2a5a4abdd" title="Loads the environment. " alt="" coords="909,107,1094,133"/>
+<area shape="rect" id="node12" href="$class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84" title="Sets the view mode. " alt="" coords="907,157,1095,184"/>
+<area shape="rect" id="node16" href="$class_cam_controller.html#a7e9db667e81e0c68d8b2950e015ebeb1" title="Adds an area of interest to the list of areas for the camera to observe. " alt="" coords="894,259,1109,285"/>
+<area shape="rect" id="node18" href="$struct_h_s_b_color.html#afe0e9d94cfd4813b8c0fc322e0ef12c6" title="HSBColor.ToColor" alt="" coords="938,309,1065,336"/>
+</map>

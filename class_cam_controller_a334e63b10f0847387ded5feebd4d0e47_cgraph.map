@@ -1,0 +1,11 @@
+<map id="CamController.Update" name="CamController.Update">
+<area shape="rect" id="node2" href="$class_cam_controller.html#a87896206d418061a74f9e3e2d75d173a" title="Set viewMode to the next ViewMode in viewModeList (circular index of viewModeList). " alt="" coords="209,5,411,32"/>
+<area shape="rect" id="node4" href="$class_cam_controller.html#a0e8a2edfa91ed1ff3ba6039d57085010" title="Set renderMode to next RenderMode (circular index of render modes). " alt="" coords="203,56,417,83"/>
+<area shape="rect" id="node5" href="$class_cam_controller.html#aff28c0727c456c60a79321904916b252" title="Set area to next area of interest (circular index of areas list) " alt="" coords="219,107,401,149"/>
+<area shape="rect" id="node6" href="$class_cam_controller.html#aadbc0f72c25dacc38d18e2ca8f845c0e" title="Place the camera above the area of interest " alt="" coords="210,173,410,200"/>
+<area shape="rect" id="node7" href="$class_cam_controller.html#a4cd9889db2c531b75d1df82de68a4e2f" title="Camera position and rotation controlled by axis keys and mouse axis " alt="" coords="213,225,407,266"/>
+<area shape="rect" id="node8" href="$class_cam_controller.html#a7aadc708da948bf69ab57a08da503039" title="Camera orbit around the area of interest center " alt="" coords="221,291,399,317"/>
+<area shape="rect" id="node9" href="$class_cam_controller.html#acb4ae0fa2e56c716f8ee95206d1c4288" title="Call INavigation.DrawDebugInfo as appropriate (Camera culling mask is handled in renderMode.set) " alt="" coords="219,342,401,383"/>
+<area shape="rect" id="node3" href="$class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84" title="Sets the view mode. " alt="" coords="465,5,653,32"/>
+<area shape="rect" id="node10" href="$interface_i_navigation.html#a32349e2ef77d61a31c53975a68efbf30" title="INavigation.DrawDebugInfo" alt="" coords="472,349,647,376"/>
+</map>

@@ -1,0 +1,11 @@
+<map id="UI_SimulationSettings.UI_SimulationSettings" name="UI_SimulationSettings.UI_SimulationSettings">
+<area shape="rect" id="node2" href="$class_u_i___simulation_settings.html#af3f4dde668a285dc4c6643081ec9131a" title="Edit Simulation.Settings window function (always top of _windows stack) " alt="" coords="220,163,435,205"/>
+<area shape="rect" id="node3" href="$class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11" title="Searchs for robots. " alt="" coords="775,24,961,51"/>
+<area shape="rect" id="node4" href="$class_u_i___simulation_settings.html#add42a8caaba9d85f2d55c63df662e908" title="Robot gallery window. " alt="" coords="501,46,689,87"/>
+<area shape="rect" id="node5" href="$class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c" title="Searchs for environments. " alt="" coords="756,141,980,168"/>
+<area shape="rect" id="node6" href="$class_u_i___simulation_settings.html#ae14cd59a97d8cd477991b7b0fe254239" title="Environment gallery window. " alt="" coords="483,163,708,205"/>
+<area shape="rect" id="node7" href="$class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8" title="Searchs for plugins in the INavigation directory (Strings.navigationPluginDirectory) Results are stor..." alt="" coords="773,259,963,285"/>
+<area shape="rect" id="node9" href="$class_u_i___simulation_settings.html#ae53c7e587b741f5adbd58816374880f7" title="Navigation algorithm gallery window. " alt="" coords="508,281,683,322"/>
+<area shape="rect" id="node10" href="$class_strings.html#ab5a176c05986262350e5a9c229ad52b9" title="Determines if is digits only the specified str. " alt="" coords="527,347,664,373"/>
+<area shape="rect" id="node8" href="$class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4" title="Lists assembly (DLL) file names that implement the type T. " alt="" coords="1028,259,1199,285"/>
+</map>

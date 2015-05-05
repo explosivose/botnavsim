@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,8 +30,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="lulogo-colour-medium.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BotNavSim
+   &#160;<span id="projectnumber">v0.4.3</span>
    </div>
    <div id="projectbrief">Mobile Robot Simulation</div>
   </td>
@@ -40,6 +50,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -80,19 +91,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="#index_a"><span>a</span></a></li>
       <li><a href="#index_b"><span>b</span></a></li>
+      <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_d"><span>d</span></a></li>
       <li><a href="#index_e"><span>e</span></a></li>
+      <li><a href="#index_f"><span>f</span></a></li>
+      <li><a href="#index_g"><span>g</span></a></li>
       <li><a href="#index_h"><span>h</span></a></li>
+      <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_l"><span>l</span></a></li>
+      <li><a href="#index_m"><span>m</span></a></li>
       <li><a href="#index_n"><span>n</span></a></li>
       <li><a href="#index_o"><span>o</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
       <li><a href="#index_s"><span>s</span></a></li>
-      <li class="current"><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_t"><span>t</span></a></li>
+      <li><a href="#index_u"><span>u</span></a></li>
+      <li><a href="#index_w"><span>w</span></a></li>
+      <li class="current"><a href="#index_x"><span>x</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('functions_func.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -111,15 +144,105 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 &#160;
 
 <h3><a class="anchor" id="index_a"></a>- a -</h3><ul>
+<li>AddAreaOfInterest()
+: <a class="el" href="class_cam_controller.html#a7e9db667e81e0c68d8b2950e015ebeb1">CamController</a>
+</li>
 <li>AddNode()
 : <a class="el" href="class_bot_path.html#a5acc3f483ba27e6d57fd455c9b1eeb01">BotPath</a>
+</li>
+<li>AddPath()
+: <a class="el" href="class_log_loader.html#a0ceacd76abf8b795a9c57072cc9d2fa8">LogLoader</a>
+</li>
+<li>AddViewMode()
+: <a class="el" href="class_cam_controller.html#a6e224ea762acc08abc3f66928c06a35b">CamController</a>
+</li>
+<li>Awake()
+: <a class="el" href="class_ar_drone.html#a9442edbb1f5744e61a954f4a128018f9">ArDrone</a>
+, <a class="el" href="class_boe_bot.html#ad3529b9a679ebc810b6dc612f4aa762f">BoeBot</a>
+, <a class="el" href="class_cam_controller.html#a3d6cdcc87644095d8416e16d7dd5f006">CamController</a>
+, <a class="el" href="class_destination.html#a8933c2d3b61e8e4be6e08a0b13b17ed0">Destination</a>
+, <a class="el" href="class_draw.html#a97066518001c73a0172397ac0954b7b9">Draw</a>
+, <a class="el" href="class_environment_editor.html#a3097e9b043c7c58c7f27aa730dc26eef">EnvironmentEditor</a>
+, <a class="el" href="class_log_loader.html#a4574ead2c8edb69d704ee4a8ed1216d9">LogLoader</a>
+, <a class="el" href="class_robot.html#aa92806fc6290a83fdbb0910ae12f2211">Robot</a>
+, <a class="el" href="class_robot_editor.html#a7e3ddfabf1cc734e5cdd1640e502c6c8">RobotEditor</a>
+, <a class="el" href="class_simulation.html#aba65bdc79b9261b31ca82ad47a294178">Simulation</a>
+, <a class="el" href="class_u_i___credits.html#ae334fc8fd7efff5876b9b816c698a329">UI_Credits</a>
+, <a class="el" href="class_u_i___toolbar.html#af5fb3fafd053c0450d4c4312c1ea65e0">UI_Toolbar</a>
+, <a class="el" href="class_ultrasonic_sensor.html#acf48c6e31054ecef91b7f3ff202027df">UltrasonicSensor</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
+<li>BatchListWindow()
+: <a class="el" href="class_u_i___simulation_batch.html#a7cd5f8b7f7521a41a072bcd9a71f8241">UI_SimulationBatch</a>
+</li>
+<li>Bearing()
+: <a class="el" href="class_draw.html#a50f751493a6cd115adedb38e42e58ea6">Draw</a>
+</li>
 <li>Begin()
 : <a class="el" href="class_simulation.html#aced98f22a509ee955a4d1d50712c6643">Simulation</a>
+</li>
+<li>BirdseyeUpdate()
+: <a class="el" href="class_cam_controller.html#aadbc0f72c25dacc38d18e2ca8f845c0e">CamController</a>
+</li>
+<li>BotNavSim()
+: <a class="el" href="class_bot_nav_sim.html#a36403e31a503e260bdebc05b019e25fc">BotNavSim</a>
+</li>
+<li>BotPath()
+: <a class="el" href="class_bot_path.html#a6a7f9097e12db79790e2e831c34b767f">BotPath</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
+<li>CamController()
+: <a class="el" href="class_cam_controller.html#aa38a23b89fa0b4979d1ee344e63f96ca">CamController</a>
+</li>
+<li>CameraControlsWindow()
+: <a class="el" href="class_u_i___camera_controls.html#a42ca72405ffc5b28cd8686a4e7364bbb">UI_CameraControls</a>
+</li>
+<li>Cast()
+: <a class="el" href="class_param_sensor.html#a624ac360032cab9df6f91d6be99a80d6">ParamSensor</a>
+, <a class="el" href="class_ultrasonic_sensor.html#a922b200d598d7a0438526687ca61f95b">UltrasonicSensor</a>
+</li>
+<li>ChangeState()
+: <a class="el" href="class_bot_nav_sim.html#a64babfd55696cdd6d46dc635e8cb63a7">BotNavSim</a>
+</li>
+<li>ChooseRandomSprite()
+: <a class="el" href="class_destination.html#a8cd134f8d36a56289e4431433789e752">Destination</a>
+</li>
+<li>ClearAreaList()
+: <a class="el" href="class_cam_controller.html#ac52c95de4b66978159f970aa3dcc0a9a">CamController</a>
+</li>
+<li>ClearViewModeList()
+: <a class="el" href="class_cam_controller.html#a96f405da52abf0f91444da6ed198c0a2">CamController</a>
+</li>
+<li>CopySettings()
+: <a class="el" href="class_pid.html#ad8c491725fb23681e54410e79e47653a">Pid</a>
+, <a class="el" href="class_pid_vector3.html#aabb3ddab857acaecc4b70f7c5824bc3d">PidVector3</a>
+</li>
+<li>CreatePlugin()
+: <a class="el" href="class_plugin_factory.html#a5fe25dd7659351d0cb5ea30193f33ddf">PluginFactory&lt; T &gt;</a>
+</li>
+<li>CsvBrowser()
+: <a class="el" href="class_u_i___log_loader.html#ae845c97ac1a9acaa1885269aeaa76e4c">UI_LogLoader</a>
+</li>
+<li>Cube()
+: <a class="el" href="class_draw.html#a560db59c6ea54f1b066d03acb72a00a1">Draw</a>
+</li>
+<li>CubeData()
+: <a class="el" href="class_draw_1_1_cube_data.html#a24ae48f56b7703da0d107d46f6948433">Draw.CubeData</a>
+</li>
+<li>CycleAreaOfInterest()
+: <a class="el" href="class_cam_controller.html#aff28c0727c456c60a79321904916b252">CamController</a>
+</li>
+<li>CycleRenderMode()
+: <a class="el" href="class_cam_controller.html#a0e8a2edfa91ed1ff3ba6039d57085010">CamController</a>
+</li>
+<li>CycleViewMode()
+: <a class="el" href="class_cam_controller.html#a87896206d418061a74f9e3e2d75d173a">CamController</a>
 </li>
 </ul>
 
@@ -127,6 +250,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_d"></a>- d -</h3><ul>
 <li>DeSerializeObject&lt; T &gt;()
 : <a class="el" href="class_object_serializer.html#ad0f1cd47bb6ef1f028075dc590939399">ObjectSerializer</a>
+</li>
+<li>Disable()
+: <a class="el" href="class_param_sensor.html#ab78b08f51c8c91415451fe0906aa2915">ParamSensor</a>
+, <a class="el" href="class_sensor.html#a6c33eca38d457681f4fb9faddaf2bb35">Sensor</a>
+, <a class="el" href="class_ultrasonic_sensor.html#ad7ff6aeb25095c303c09ec0e0ac24f4f">UltrasonicSensor</a>
+</li>
+<li>DrawDebugInfo()
+: <a class="el" href="interface_i_navigation.html#a32349e2ef77d61a31c53975a68efbf30">INavigation</a>
 </li>
 <li>DrawGizmos()
 : <a class="el" href="interface_i_navigation.html#a486e784fac8e43035fd1f99760a32eb0">INavigation</a>
@@ -138,13 +269,56 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>EditorWindow()
+: <a class="el" href="class_u_i___environment_editor.html#a62db2ee5f2b6a02993e02aac198b22e6">UI_EnvironmentEditor</a>
+, <a class="el" href="class_u_i___robot_editor.html#a6dcf2d8ea9746037a6a4a08b5e70aee9">UI_RobotEditor</a>
+</li>
+<li>Enable()
+: <a class="el" href="class_param_sensor.html#a66b81a713f0b30ad4d5d4d6494985af5">ParamSensor</a>
+, <a class="el" href="class_sensor.html#a87b255511d219d65173defe2d2ec5922">Sensor</a>
+, <a class="el" href="class_ultrasonic_sensor.html#ac7266eb75ac06cb6c0fbd77afb2d3482">UltrasonicSensor</a>
+</li>
 <li>End()
 : <a class="el" href="class_simulation.html#abef1fed7499d589fd7df2ff02c09710c">Simulation</a>
 </li>
+<li>Enter()
+: <a class="el" href="class_log_loader.html#abca3e3dbb9677a249f571721068bc44b">LogLoader</a>
+, <a class="el" href="class_simulation.html#a61629da1f637b05df43ea896d7351bfc">Simulation</a>
+</li>
+<li>EnvironmentGalleryWindow()
+: <a class="el" href="class_u_i___simulation_settings.html#ae14cd59a97d8cd477991b7b0fe254239">UI_SimulationSettings</a>
+</li>
 <li>Exit()
 : <a class="el" href="class_environment_editor.html#a8858de964532d7adeb4e20086782d9f8">EnvironmentEditor</a>
+, <a class="el" href="class_log_loader.html#ae3ac9739de4354b7465f36327509aba0">LogLoader</a>
 , <a class="el" href="class_robot_editor.html#acd01f028a602657699916ad56d245ab1">RobotEditor</a>
 , <a class="el" href="class_simulation.html#a1a8c8c189fac54d94b93547ba022cbd9">Simulation</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_f"></a>- f -</h3><ul>
+<li>FixedUpdate()
+: <a class="el" href="class_ar_drone.html#a44b5beb5eaff3cad1a67c83f93172930">ArDrone</a>
+</li>
+<li>FreeMovementUpdate()
+: <a class="el" href="class_cam_controller.html#a4cd9889db2c531b75d1df82de68a4e2f">CamController</a>
+</li>
+<li>FromColor()
+: <a class="el" href="struct_h_s_b_color.html#a09fe0e400c97db94d39e321e7701ec88">HSBColor</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>GetData()
+: <a class="el" href="class_log.html#a92e2f1b38bb7e416d7fb4116622fbdfb">Log</a>
+</li>
+<li>GLCube()
+: <a class="el" href="class_draw.html#af7ea2abd667e06d6b3eaa782d6524ce6">Draw</a>
+</li>
+<li>GLLine()
+: <a class="el" href="class_draw.html#a294e212d16c181cb91fe383ebda52403">Draw</a>
 </li>
 </ul>
 
@@ -153,21 +327,81 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>Halt()
 : <a class="el" href="class_simulation.html#ad6b5099e0dede90883b8577c371c6998">Simulation</a>
 </li>
+<li>HSBColor()
+: <a class="el" href="struct_h_s_b_color.html#ae2e322691d122d2c38fcf80717bf5edd">HSBColor</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>IsDigitsOnly()
+: <a class="el" href="class_strings.html#ab5a176c05986262350e5a9c229ad52b9">Strings</a>
+</li>
+<li>IsMouseOver()
+: <a class="el" href="class_u_i___log_loader.html#ab5f245856f5e8cae41f1668ff71bd372">UI_LogLoader</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
+<li>Legend()
+: <a class="el" href="class_u_i___log_loader.html#a3ff37e9dbca567dc3f0b83171af11d99">UI_LogLoader</a>
+</li>
+<li>Lerp()
+: <a class="el" href="struct_h_s_b_color.html#aa2d9e2c78ad2be94d57fd2daa6eb6ab9">HSBColor</a>
+</li>
+<li>Line()
+: <a class="el" href="class_draw.html#a1845793e3f2291ecfc426051c961ac3e">Draw</a>
+</li>
+<li>LineData()
+: <a class="el" href="class_draw_1_1_line_data.html#a9c7805e27fb7c7b59d074aab15addd79">Draw.LineData</a>
+</li>
 <li>ListFiles()
 : <a class="el" href="class_file_browser.html#a1be21188b416664178fc77360c9e0b0b">FileBrowser</a>
 </li>
 <li>ListFolders()
 : <a class="el" href="class_file_browser.html#af2d40d6a3034c54e6f04d9e6e4fa413c">FileBrowser</a>
 </li>
+<li>ListPlugins()
+: <a class="el" href="class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4">PluginFactory&lt; T &gt;</a>
+</li>
+<li>LoadCsvRoutine()
+: <a class="el" href="class_log_loader.html#ad7466ad8d9ce603fb335372dc5748d23">LogLoader</a>
+</li>
+<li>LoadEnvironment()
+: <a class="el" href="class_env_loader.html#af4a7bdfa4bc32b722e9081f2a5a4abdd">EnvLoader</a>
+, <a class="el" href="class_log_loader.html#aac228ff3644d277ef15575530d3f4064">LogLoader</a>
+</li>
 <li>LoadPaths()
 : <a class="el" href="class_log_loader.html#a371b2b5f820022b2af6a28780b07406c">LogLoader</a>
 </li>
+<li>LoadPlugin()
+: <a class="el" href="class_nav_loader.html#a98fbe88961a4608870a0be25ef01a081">NavLoader</a>
+</li>
+<li>LoadRobot()
+: <a class="el" href="class_bot_loader.html#ac2faa1786bf8a8393cdd4e8cdb88355a">BotLoader</a>
+</li>
+<li>Log()
+: <a class="el" href="class_log.html#ade149e0473372b6a1fba5e82f413b682">Log</a>
+</li>
+<li>LogLoader()
+: <a class="el" href="class_log_loader.html#a850d9ea31ab4097b11824540e75626eb">LogLoader</a>
+</li>
 <li>LogParameter()
 : <a class="el" href="class_log.html#a242879169fcd3a93350846e0ecf1a1a5">Log</a>
+</li>
+<li>LogRoutine()
+: <a class="el" href="class_log.html#a27ea097f7a83e82c03eb628e761c4f65">Log</a>
+</li>
+<li>LogSettingsWindow()
+: <a class="el" href="class_u_i___log.html#a91e25f2cb06692c4b65b85821a790467">UI_Log</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_m"></a>- m -</h3><ul>
+<li>MainWindow()
+: <a class="el" href="class_u_i___simulation_control.html#abdd1ac4ce1f9765e1b4e93e031e8db7a">UI_SimulationControl</a>
 </li>
 </ul>
 
@@ -175,6 +409,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_n"></a>- n -</h3><ul>
 <li>NavigateToDestination()
 : <a class="el" href="class_robot.html#a5b65c89b0ac1ddf276e853918938e80b">Robot</a>
+</li>
+<li>NavListWindow()
+: <a class="el" href="class_u_i___simulation_settings.html#ae53c7e587b741f5adbd58816374880f7">UI_SimulationSettings</a>
 </li>
 <li>NextSimulation()
 : <a class="el" href="class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370">Simulation</a>
@@ -186,34 +423,138 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
+<li>Observer()
+: <a class="el" href="class_simulation_1_1_observer.html#a3758d714776a0a71f4a602a4d3de8f63">Simulation.Observer</a>
+</li>
+<li>OnApplicationQuit()
+: <a class="el" href="class_simulation.html#a0376572433cb444e6f5d18f3e5ca6d3a">Simulation</a>
+</li>
+<li>OnDrawGizmos()
+: <a class="el" href="class_log_loader.html#a2356e4f6f2abe274893d47e419e577ac">LogLoader</a>
+, <a class="el" href="class_robot.html#ac3085712bb97d2e87bbc1149b10df9cc">Robot</a>
+, <a class="el" href="class_simulation.html#a413c8a4a1eac54d196780c9e0689a262">Simulation</a>
+, <a class="el" href="class_ultrasonic_sensor.html#aaa080ab12f58d1ba7eaad051b4f1950f">UltrasonicSensor</a>
+</li>
+<li>OnGUI()
+: <a class="el" href="class_log_loader.html#a34b2d5aa8ab177aa4d070e73d1ea5a72">LogLoader</a>
+, <a class="el" href="class_u_i___toolbar.html#a7452e64aa277593e6b0fd4441693e492">UI_Toolbar</a>
+</li>
+<li>OnPostRender()
+: <a class="el" href="class_draw.html#a80ca116dbd0e2ead54a0147d2c7cac68">Draw</a>
+</li>
 <li>OnTestEnd()
 : <a class="el" href="class_cam_controller.html#ada7cd42a6b338f0585b9b2cbd1312431">CamController</a>
 </li>
 <li>OnTestStart()
 : <a class="el" href="class_cam_controller.html#a6e84614e825b03be16e472146c633e82">CamController</a>
 </li>
+<li>operator&lt;()
+: <a class="el" href="struct_proximity_data.html#ab3e8a990cee55087522ffa3416b90ab8">ProximityData</a>
+</li>
+<li>operator&gt;()
+: <a class="el" href="struct_proximity_data.html#a5f1c4b35e3fb202eea065393255e1980">ProximityData</a>
+</li>
+<li>OrbitUpdate()
+: <a class="el" href="class_cam_controller.html#a7aadc708da948bf69ab57a08da503039">CamController</a>
+</li>
+<li>output()
+: <a class="el" href="class_pid.html#a83790263cfa9424715685c8b92f090a7">Pid</a>
+, <a class="el" href="class_pid_vector3.html#a6a58e9f6d1603be9ddf0fdd38c6243b3">PidVector3</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
+<li>ParseVector3()
+: <a class="el" href="class_log_loader.html#aea51acfdfe4974ef4755060f0542187f">LogLoader</a>
+</li>
 <li>PathDirection()
 : <a class="el" href="interface_i_navigation.html#affcf964d42b72e86ac5611256de427db">INavigation</a>
 </li>
 <li>Pause()
 : <a class="el" href="class_simulation.html#aad2cd184a893f6f040a93628d5fec7ca">Simulation</a>
 </li>
+<li>PlaceDestination()
+: <a class="el" href="class_simulation.html#a8ccbe465767d83b14bf270af6a5ca55e">Simulation</a>
+</li>
+<li>PlaceRobotInStartArea()
+: <a class="el" href="class_simulation.html#a12310cd98817299df3b6c232d9bf3e97">Simulation</a>
+</li>
+<li>PromptResponse()
+: <a class="el" href="class_log_loader.html#acf5bb01a4ec3e86ce1a2476ed3583573">LogLoader</a>
+</li>
 <li>Proximity()
-: <a class="el" href="interface_i_navigation.html#a4f5842fd8571a60c80a4c21a177853e6">INavigation</a>
+: <a class="el" href="interface_i_navigation.html#a513402dd6e3243b48cdc635f919b5d00">INavigation</a>
+</li>
+<li>ProximityData()
+: <a class="el" href="struct_proximity_data.html#a9421f9fbc24dac206b449eee050a7901">ProximityData</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
+<li>RandomEnvironment()
+: <a class="el" href="class_env_loader.html#a549cd4a89e82bfc2821158382fb67693">EnvLoader</a>
+</li>
+<li>RandomEnvironmentName()
+: <a class="el" href="class_env_loader.html#afc588d0754a0a3ba2e9a8cfa9dbe65b9">EnvLoader</a>
+</li>
 <li>RandomInBounds()
-: <a class="el" href="class_simulation.html#ac152dc9a1a62316abc773b64035f6cb9">Simulation</a>
+: <a class="el" href="class_simulation.html#a2adc55eb075e1bdc3cc78cb75517b9a9">Simulation</a>
 </li>
 <li>Randomize()
 : <a class="el" href="class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5">Simulation.Settings</a>
+</li>
+<li>RandomPlugin()
+: <a class="el" href="class_nav_loader.html#af2ecfdb48341c5916439a08912876992">NavLoader</a>
+</li>
+<li>RandomPluginName()
+: <a class="el" href="class_nav_loader.html#a994f84c5e6dfc0a171ae32e8eff92c48">NavLoader</a>
+</li>
+<li>RandomRenderMode()
+: <a class="el" href="class_cam_controller.html#a71315cf5772277c346eb64ec08cdae0a">CamController</a>
+</li>
+<li>RandomRobot()
+: <a class="el" href="class_bot_loader.html#ab3034713abb9c56628f710c77f11411f">BotLoader</a>
+</li>
+<li>RandomRobotName()
+: <a class="el" href="class_bot_loader.html#a8fccb4b234dbde2f5f9ede7f2954d6fe">BotLoader</a>
+</li>
+<li>RandomViewMode()
+: <a class="el" href="class_cam_controller.html#a4dccd5f2c8ea2e9e48f10d7cfdd93beb">CamController</a>
+</li>
+<li>ReceiveSensorData()
+: <a class="el" href="class_robot.html#a076adabbb40b0a1aa553d4ca57c8282b">Robot</a>
+</li>
+<li>RecordPath()
+: <a class="el" href="class_robot.html#a2e92c2fe9fb76c28897ae6e2b56f7728">Robot</a>
+</li>
+<li>Refresh()
+: <a class="el" href="class_u_i___log_loader.html#ad79dd0c42bae7de93a251f9bbb4b7ac8">UI_LogLoader</a>
+, <a class="el" href="class_u_i___simulation_batch.html#a947211f4919231a6c9c6c0e000618513">UI_SimulationBatch</a>
+</li>
+<li>RemoveAreaOfInterest()
+: <a class="el" href="class_cam_controller.html#a9c5dcf85014e79bc3274e54930643627">CamController</a>
+</li>
+<li>RemovePath()
+: <a class="el" href="class_log_loader.html#a8d11d5705cc4976ba31edcbe003dd3dc">LogLoader</a>
+</li>
+<li>RemoveViewMode()
+: <a class="el" href="class_cam_controller.html#ad8665ad381132470fa74ef9fc87a6fe3">CamController</a>
+</li>
+<li>RenderModeUpdate()
+: <a class="el" href="class_cam_controller.html#acb4ae0fa2e56c716f8ee95206d1c4288">CamController</a>
+</li>
+<li>Reset()
+: <a class="el" href="class_ar_drone.html#a27db6712052bb1c2bf0614e033dd0bf8">ArDrone</a>
+, <a class="el" href="class_pid.html#a01769f5b403982c49ac608648e050b47">Pid</a>
+, <a class="el" href="class_robot.html#a35a96b7d44d1dea25cbc714307c480ec">Robot</a>
+</li>
+<li>Response()
+: <a class="el" href="class_u_i___prompt.html#a6e9a4866eb0a042967f062f235ce35fc">UI_Prompt</a>
+</li>
+<li>RobotGalleryWindow()
+: <a class="el" href="class_u_i___simulation_settings.html#add42a8caaba9d85f2d55c63df662e908">UI_SimulationSettings</a>
 </li>
 <li>Run()
 : <a class="el" href="class_simulation.html#a9ecb5416e574c63225c4300d58588a97">Simulation</a>
@@ -222,35 +563,157 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>Scan()
+: <a class="el" href="class_ultrasonic_sensor.html#a03369f785e48d4b8068c212315b416e9">UltrasonicSensor</a>
+</li>
+<li>SearchForEnvironments()
+: <a class="el" href="class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c">EnvLoader</a>
+</li>
+<li>SearchForObjects()
+: <a class="el" href="class_object_serializer.html#a585c6bb05bb55139c81ed9083fcbd93b">ObjectSerializer</a>
+</li>
 <li>SearchForPath()
 : <a class="el" href="interface_i_navigation.html#a27acb501951d73246becb995085816a2">INavigation</a>
+</li>
+<li>SearchForPlugins()
+: <a class="el" href="class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8">NavLoader</a>
+</li>
+<li>SearchForRobots()
+: <a class="el" href="class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11">BotLoader</a>
+</li>
+<li>SensorData()
+: <a class="el" href="class_robot.html#a8b3e76d0d025f776891d8b8f6152c774">Robot</a>
 </li>
 <li>SerializeObject&lt; T &gt;()
 : <a class="el" href="class_object_serializer.html#a368a72c42f3d46942e8563e017ec9922">ObjectSerializer</a>
 </li>
+<li>SetAreaOfInterest()
+: <a class="el" href="class_cam_controller.html#a661dfecf0c1e8e57193ebd38a8978c98">CamController</a>
+</li>
+<li>SetBounds()
+: <a class="el" href="class_simulation.html#a07578d9f56f4307e02aced4fcdaa8011">Simulation</a>
+</li>
 <li>Settings()
 : <a class="el" href="class_log.html#aba2c46c870c74e4822034595d2448a56">Log</a>
+, <a class="el" href="class_simulation_1_1_settings.html#a06eb48d680e0eaa374d953a5ad28e169">Simulation.Settings</a>
+</li>
+<li>SetViewMode()
+: <a class="el" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController</a>
+</li>
+<li>Simulation()
+: <a class="el" href="class_simulation.html#a5f4d4ce1e10b313fa3e7bf752ca8458b">Simulation</a>
+</li>
+<li>SimulationSettingsWindow()
+: <a class="el" href="class_u_i___simulation_settings.html#af3f4dde668a285dc4c6643081ec9131a">UI_SimulationSettings</a>
 </li>
 <li>Start()
-: <a class="el" href="class_log.html#a811f811c78bb482ac889945a9fbe5330">Log</a>
+: <a class="el" href="class_ar_drone.html#a0ce8c01dc162011731648d059825a42e">ArDrone</a>
+, <a class="el" href="class_cam_controller.html#a6932c662c22e96927847d85ca9092d08">CamController</a>
+, <a class="el" href="class_log.html#a811f811c78bb482ac889945a9fbe5330">Log</a>
+, <a class="el" href="class_simulation.html#a5aa98a387313db4bd295dca343d689d8">Simulation</a>
+, <a class="el" href="class_sprite_fade.html#a692446031a54057ada819bd2212ca270">SpriteFade</a>
+</li>
+<li>StartTestRoutine()
+: <a class="el" href="class_simulation.html#a726e7deb89ce9d87415fba120c231d27">Simulation</a>
 </li>
 <li>Stop()
 : <a class="el" href="class_log.html#a77c4f25d268a02c63a196a6ef336b602">Log</a>
+</li>
+<li>StubObservable()
+: <a class="el" href="class_cam_controller_1_1_stub_observable.html#aea0ed376ce9f466e843faf715d37c2e7">CamController.StubObservable</a>
+</li>
+<li>StuckDetector()
+: <a class="el" href="class_robot.html#a31d57b0b6bb91b1fb5aa976a695a9f6a">Robot</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_t"></a>- t -</h3><ul>
+<li>Test()
+: <a class="el" href="struct_h_s_b_color.html#a143a1dc24b61dfc78017a9631284e3ce">HSBColor</a>
+</li>
+<li>ToColor()
+: <a class="el" href="struct_h_s_b_color.html#afe0e9d94cfd4813b8c0fc322e0ef12c6">HSBColor</a>
+</li>
+<li>ToolbarWindow()
+: <a class="el" href="class_u_i___toolbar.html#ab9b66d19194ae7171bdb2d70ed1e5ff9">UI_Toolbar</a>
+</li>
+<li>ToString()
+: <a class="el" href="struct_h_s_b_color.html#a799473cf4fe8473979c37c7ef0ad0154">HSBColor</a>
 </li>
 </ul>
 
 
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
+<li>UI_CameraControls()
+: <a class="el" href="class_u_i___camera_controls.html#af7e34aef69784156970a913f561ce30c">UI_CameraControls</a>
+</li>
+<li>UI_EnvironmentEditor()
+: <a class="el" href="class_u_i___environment_editor.html#a2484d94c7b1506f93a6878a0dbfdfb91">UI_EnvironmentEditor</a>
+</li>
+<li>UI_Log()
+: <a class="el" href="class_u_i___log.html#a5974a056f7b982ec3acef3366b7325c8">UI_Log</a>
+</li>
+<li>UI_LogLoader()
+: <a class="el" href="class_u_i___log_loader.html#a592f4089c333b908615d3faeb9ffc845">UI_LogLoader</a>
+</li>
+<li>UI_Prompt()
+: <a class="el" href="class_u_i___prompt.html#ab4b5ebf64532abd4bda06c80a417e587">UI_Prompt</a>
+</li>
+<li>UI_RobotEditor()
+: <a class="el" href="class_u_i___robot_editor.html#a51742449f7af5e592f54adae65a49849">UI_RobotEditor</a>
+</li>
+<li>UI_SimulationBatch()
+: <a class="el" href="class_u_i___simulation_batch.html#a3dc46c7353404769232afd886ba3b354">UI_SimulationBatch</a>
+</li>
+<li>UI_SimulationControl()
+: <a class="el" href="class_u_i___simulation_control.html#a969ba8eecf494973de5a2b00e6c88c22">UI_SimulationControl</a>
+</li>
+<li>UI_SimulationSettings()
+: <a class="el" href="class_u_i___simulation_settings.html#a434e0ad617b0e4d06462502ffaaa23df">UI_SimulationSettings</a>
+</li>
+<li>Update()
+: <a class="el" href="class_ar_drone.html#a2beb780c8858343dfcfb877b03e19db5">ArDrone</a>
+, <a class="el" href="class_boe_bot.html#acd88a2101b8783561d361fc30b0a05a6">BoeBot</a>
+, <a class="el" href="class_cam_controller.html#a334e63b10f0847387ded5feebd4d0e47">CamController</a>
+, <a class="el" href="class_destination.html#ab133257bf922df2e5b43e7f39e5f20dc">Destination</a>
+, <a class="el" href="class_draw.html#a076c7f5fa502155c4f0d4bc2cd1e7d58">Draw</a>
+, <a class="el" href="class_robot.html#ab81df4f69bbcd6b6caf81ffcde046335">Robot</a>
+, <a class="el" href="class_simulation.html#a8486cde41c003277c1ac75fffeda973b">Simulation</a>
+, <a class="el" href="class_sprite_fade.html#aeaa4ae71dcccaa9026d7a009bdead034">SpriteFade</a>
+, <a class="el" href="class_test_camera.html#a6caf7a21af03c7094125d94024ee6058">TestCamera</a>
+</li>
+<li>UpdateData()
+: <a class="el" href="class_param_sensor.html#abb24cf5c858c4fb098ff5bc23ae078c1">ParamSensor</a>
+</li>
 <li>UpdatePathColors()
 : <a class="el" href="class_log_loader.html#acf7773975b3d62b2f090a851c9a705f3">LogLoader</a>
 </li>
 </ul>
+
+
+<h3><a class="anchor" id="index_w"></a>- w -</h3><ul>
+<li>Window()
+: <a class="el" href="class_u_i___credits.html#a4a663d044fe9427aa773124dc946fe3e">UI_Credits</a>
+, <a class="el" href="class_u_i___prompt.html#ad711b65eee3e31a8b3fea608451b2439">UI_Prompt</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_x"></a>- x -</h3><ul>
+<li>XmlBrowser()
+: <a class="el" href="class_u_i___simulation_batch.html#a0be8c1b0a68044323959cd1afa6253dd">UI_SimulationBatch</a>
+</li>
+</ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 31 2015 15:48:40 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Tue May 5 2015 18:48:31 for BotNavSim by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

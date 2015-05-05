@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hsbcolor',['HSBColor',['../struct_h_s_b_color.html',1,'']]]
+  ['filebrowser',['FileBrowser',['../class_file_browser.html',1,'']]]
 ];

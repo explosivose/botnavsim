@@ -1,0 +1,4 @@
+<map id="BotLoader.RandomRobot" name="BotLoader.RandomRobot">
+<area shape="rect" id="node2" href="$dc/dc7/class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11" title="Searchs for robots. " alt="" coords="220,5,407,32"/>
+<area shape="rect" id="node3" href="$dc/dc7/class_bot_loader.html#ac2faa1786bf8a8393cdd4e8cdb88355a" title="Load a robot by index in robotsFound list. " alt="" coords="240,56,387,83"/>
+</map>

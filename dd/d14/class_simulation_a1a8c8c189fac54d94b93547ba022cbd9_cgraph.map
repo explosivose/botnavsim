@@ -1,0 +1,6 @@
+<map id="Simulation.Exit" name="Simulation.Exit">
+<area shape="rect" id="node2" href="$d6/d70/class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="236,5,311,32"/>
+<area shape="rect" id="node3" href="$de/d55/class_cam_controller.html#ac52c95de4b66978159f970aa3dcc0a9a" title="Clears the area list. " alt="" coords="180,56,367,83"/>
+<area shape="rect" id="node4" href="$de/d55/class_cam_controller.html#a96f405da52abf0f91444da6ed198c0a2" title="Clears the view mode list. " alt="" coords="164,107,383,133"/>
+<area shape="rect" id="node5" href="$de/d55/class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84" title="Sets the view mode. " alt="" coords="431,107,619,133"/>
+</map>

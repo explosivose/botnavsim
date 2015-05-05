@@ -1,0 +1,17 @@
+<map id="PluginFactory.ListPlugins" name="PluginFactory.ListPlugins">
+<area shape="rect" id="node2" href="$d5/d9e/class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8" title="Searchs for plugins in the INavigation directory (Strings.navigationPluginDirectory) Results are stor..." alt="" coords="224,103,413,130"/>
+<area shape="rect" id="node3" href="$d5/d9e/class_nav_loader.html#af2ecfdb48341c5916439a08912876992" title="Instantiates a random INavigation plugin from any plugin in the INavigation directory. " alt="" coords="478,27,649,54"/>
+<area shape="rect" id="node4" href="$d5/d9e/class_nav_loader.html#a994f84c5e6dfc0a171ae32e8eff92c48" title="Returns a random filename from the pluginsFound list. " alt="" coords="461,78,665,105"/>
+<area shape="rect" id="node14" href="$d8/d83/class_u_i___simulation_settings.html#af3f4dde668a285dc4c6643081ec9131a" title="Edit Simulation.Settings window function (always top of _windows stack) " alt="" coords="713,155,928,196"/>
+<area shape="rect" id="node16" href="$d8/d83/class_u_i___simulation_settings.html#ae53c7e587b741f5adbd58816374880f7" title="Navigation algorithm gallery window. " alt="" coords="476,180,651,221"/>
+<area shape="rect" id="node5" href="$dd/d6c/class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="719,78,923,105"/>
+<area shape="rect" id="node6" href="$dd/d14/class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="1004,78,1115,105"/>
+<area shape="rect" id="node7" href="$dd/d14/class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="1191,129,1365,155"/>
+<area shape="rect" id="node11" href="$d7/de1/class_u_i___simulation_control.html#abdd1ac4ce1f9765e1b4e93e031e8db7a" title="Simulation settings window function called by UI_Toolbar. " alt="" coords="1600,71,1775,112"/>
+<area shape="rect" id="node8" href="$dd/d14/class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="1423,27,1543,54"/>
+<area shape="rect" id="node12" href="$dd/d14/class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="1413,129,1552,155"/>
+<area shape="rect" id="node9" href="$dc/d03/class_u_i___simulation_batch.html#a7cd5f8b7f7521a41a072bcd9a71f8241" title="List Simulation.Settings in Simulation.batch and provide controls and editing the Simulation..." alt="" coords="1600,5,1775,47"/>
+<area shape="rect" id="node10" href="$dc/d03/class_u_i___simulation_batch.html#a3dc46c7353404769232afd886ba3b354" title="UI_SimulationBatch.UI\l_SimulationBatch" alt="" coords="1823,5,1975,47"/>
+<area shape="rect" id="node13" href="$dd/d14/class_simulation.html#a8486cde41c003277c1ac75fffeda973b" title="Simulation.Update" alt="" coords="1623,137,1751,163"/>
+<area shape="rect" id="node15" href="$d8/d83/class_u_i___simulation_settings.html#a434e0ad617b0e4d06462502ffaaa23df" title="UI_SimulationSettings.UI\l_SimulationSettings" alt="" coords="976,155,1143,196"/>
+</map>

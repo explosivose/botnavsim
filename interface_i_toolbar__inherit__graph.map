@@ -1,10 +1,10 @@
 <map id="IToolbar" name="IToolbar">
-<area shape="rect" id="node3" href="$class_u_i___camera_controls.html" title="UI_CameraControls" alt="" coords="295,5,430,32"/>
-<area shape="rect" id="node4" href="$class_u_i___environment_editor.html" title="UI_EnvironmentEditor" alt="" coords="289,56,436,83"/>
-<area shape="rect" id="node5" href="$class_u_i___log.html" title="UI_Log" alt="" coords="331,107,394,133"/>
-<area shape="rect" id="node6" href="$class_u_i___log_loader.html" title="UI_LogLoader" alt="" coords="312,157,413,184"/>
-<area shape="rect" id="node7" href="$class_u_i___robot_editor.html" title="UI for the robot editor (not yet implemented) " alt="" coords="308,208,417,235"/>
-<area shape="rect" id="node8" href="$class_u_i___simulation_batch.html" title="UI for displaying and editing the simulation batch list " alt="" coords="295,259,431,285"/>
-<area shape="rect" id="node9" href="$class_u_i___simulation_control.html" title="UI window for simulation control. Provides controls for pausing, stopping or skipping the current tes..." alt="" coords="291,309,434,336"/>
+<area shape="rect" id="node3" href="$class_u_i___camera_controls.html" title="IToolbar class for controlling the camera. " alt="" coords="295,5,430,32"/>
+<area shape="rect" id="node4" href="$class_u_i___environment_editor.html" title="IToolbar class provides controls for the Environment Editor (not implemented!) " alt="" coords="289,56,436,83"/>
+<area shape="rect" id="node5" href="$class_u_i___log.html" title="IToolbar class for providing controls of data logging. Includes editing parameters to log and enable/..." alt="" coords="331,107,394,133"/>
+<area shape="rect" id="node6" href="$class_u_i___log_loader.html" title="IToolbar class provides controls for loading and viewing CSV data logs. " alt="" coords="312,157,413,184"/>
+<area shape="rect" id="node7" href="$class_u_i___robot_editor.html" title="IToolbar class provides controls for the Robot Editor (not implemented!) " alt="" coords="308,208,417,235"/>
+<area shape="rect" id="node8" href="$class_u_i___simulation_batch.html" title="IToolbar class for displaying and editing the simulation batch list " alt="" coords="295,259,431,285"/>
+<area shape="rect" id="node9" href="$class_u_i___simulation_control.html" title="IToolbar class for simulation control. Provides controls for pausing, stopping or skipping the curren..." alt="" coords="291,309,434,336"/>
 <area shape="rect" id="node2" href="$interface_i_window_function.html" title="Interface for classes that implement a GUI.WindowFunction " alt="" coords="5,157,127,184"/>
 </map>

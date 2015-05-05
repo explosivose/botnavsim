@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['objectserializer',['ObjectSerializer',['../class_object_serializer.html',1,'']]]
+  ['navloader',['NavLoader',['../class_nav_loader.html',1,'']]]
 ];

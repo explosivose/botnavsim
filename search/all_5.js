@@ -1,4 +1,22 @@
 var searchData=
 [
-  ['filebrowser',['FileBrowser',['../class_file_browser.html',1,'']]]
+  ['editing',['editing',['../class_environment_editor.html#aed31385be21678709737f6cee21596fca3f86cc36e1df1334da973da6771b8160',1,'EnvironmentEditor.editing()'],['../class_robot_editor.html#a76643b8162cfb492eae5c5a0f74e857fa3f86cc36e1df1334da973da6771b8160',1,'RobotEditor.editing()']]],
+  ['editingenvironment',['EditingEnvironment',['../class_bot_nav_sim.html#afe45830547a947680425ef43c781029ba84f0035b6bca34bbf4d9f137c330863f',1,'BotNavSim']]],
+  ['editingrobot',['EditingRobot',['../class_bot_nav_sim.html#afe45830547a947680425ef43c781029ba027c8b2c0944a6677670da08e461d20b',1,'BotNavSim']]],
+  ['editorwindow',['EditorWindow',['../class_u_i___environment_editor.html#a62db2ee5f2b6a02993e02aac198b22e6',1,'UI_EnvironmentEditor.EditorWindow()'],['../class_u_i___robot_editor.html#a6dcf2d8ea9746037a6a4a08b5e70aee9',1,'UI_RobotEditor.EditorWindow()']]],
+  ['enable',['Enable',['../class_param_sensor.html#a66b81a713f0b30ad4d5d4d6494985af5',1,'ParamSensor.Enable()'],['../class_sensor.html#a87b255511d219d65173defe2d2ec5922',1,'Sensor.Enable()'],['../class_ultrasonic_sensor.html#ac7266eb75ac06cb6c0fbd77afb2d3482',1,'UltrasonicSensor.Enable()']]],
+  ['end',['end',['../class_bot_path.html#aa8e98c97ba006ca9146444036b3993ce',1,'BotPath.end()'],['../class_draw_1_1_line_data.html#a4a97576f33ca8fe116d03bcfe3868ccd',1,'Draw.LineData.end()'],['../class_simulation.html#ae78a9ea9fcee1463856ddc068221317da7f021a1415b86f2d013b2618fb31ae53',1,'Simulation.end()'],['../class_simulation.html#abef1fed7499d589fd7df2ff02c09710c',1,'Simulation.End()']]],
+  ['enter',['Enter',['../class_log_loader.html#abca3e3dbb9677a249f571721068bc44b',1,'LogLoader.Enter()'],['../class_simulation.html#a61629da1f637b05df43ea896d7351bfc',1,'Simulation.Enter()']]],
+  ['environment',['Environment',['../class_environment.html',1,'Environment'],['../class_log_loader.html#a2e28c2a2df39811637b109762d90dc9e',1,'LogLoader.environment()'],['../class_simulation.html#a71b6f1eb2f8c8893c9daf19cc36d5456',1,'Simulation.environment()']]],
+  ['environment_2ecs',['Environment.cs',['../_environment_8cs.html',1,'']]],
+  ['environmenteditor',['EnvironmentEditor',['../class_environment_editor.html',1,'']]],
+  ['environmenteditor_2ecs',['EnvironmentEditor.cs',['../_environment_editor_8cs.html',1,'']]],
+  ['environmentgallerywindow',['EnvironmentGalleryWindow',['../class_u_i___simulation_settings.html#ae14cd59a97d8cd477991b7b0fe254239',1,'UI_SimulationSettings']]],
+  ['environmentname',['environmentName',['../class_simulation_1_1_settings.html#a33877ea3298b6d6e659c031d394ac8a2',1,'Simulation::Settings']]],
+  ['environmentsfound',['environmentsFound',['../class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe',1,'EnvLoader']]],
+  ['envloader',['EnvLoader',['../class_env_loader.html',1,'']]],
+  ['envloader_2ecs',['EnvLoader.cs',['../_env_loader_8cs.html',1,'']]],
+  ['error',['error',['../class_pid.html#a336bdce545dbc44cbea6d747c6e31e25',1,'Pid.error()'],['../class_pid_vector3.html#a8c5fc384cf8c3c1b45e6e4fde0c320d6',1,'PidVector3.error()']]],
+  ['exhibitionmode',['exhibitionMode',['../class_simulation.html#a66c9a669b2aa79149d5e31a1594bb3e4',1,'Simulation']]],
+  ['exit',['Exit',['../class_environment_editor.html#a8858de964532d7adeb4e20086782d9f8',1,'EnvironmentEditor.Exit()'],['../class_log_loader.html#ae3ac9739de4354b7465f36327509aba0',1,'LogLoader.Exit()'],['../class_robot_editor.html#acd01f028a602657699916ad56d245ab1',1,'RobotEditor.Exit()'],['../class_simulation.html#a1a8c8c189fac54d94b93547ba022cbd9',1,'Simulation.Exit()']]]
 ];

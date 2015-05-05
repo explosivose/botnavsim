@@ -1,0 +1,11 @@
+<map id="Draw.Line" name="Draw.Line">
+<area shape="rect" id="node2" href="$class_bot_path.html#a29e70d7d903adc0761fb6c03bc2a6ae9" title="Draws the path on screen using Draw class " alt="" coords="143,56,273,83"/>
+<area shape="rect" id="node5" href="$class_param_sensor.html#a624ac360032cab9df6f91d6be99a80d6" title="Wrapper function for a single raycast. Returns the proximity distance in the specified direction..." alt="" coords="142,107,274,133"/>
+<area shape="rect" id="node8" href="$class_ultrasonic_sensor.html#a922b200d598d7a0438526687ca61f95b" title="Cast a ray and return detected obstruction if the hit angle is less than a threshold ..." alt="" coords="132,157,284,184"/>
+<area shape="rect" id="node3" href="$class_log_loader.html#a34b2d5aa8ab177aa4d070e73d1ea5a72" title="Raises the GUI event. " alt="" coords="356,5,481,32"/>
+<area shape="rect" id="node4" href="$class_robot.html#ab81df4f69bbcd6b6caf81ffcde046335" title="Robot.Update" alt="" coords="368,56,469,83"/>
+<area shape="rect" id="node6" href="$class_param_sensor.html#abb24cf5c858c4fb098ff5bc23ae078c1" title="Update data coroutine. Once started, executes until disabled. Calls _callback on Robot every update..." alt="" coords="332,107,505,133"/>
+<area shape="rect" id="node7" href="$class_param_sensor.html#a66b81a713f0b30ad4d5d4d6494985af5" title="Enable this instance and pass the reference to the Robot.SensorData callback function to be called wh..." alt="" coords="563,107,709,133"/>
+<area shape="rect" id="node9" href="$class_ultrasonic_sensor.html#a03369f785e48d4b8068c212315b416e9" title="Scan for obstructions in a cone " alt="" coords="341,157,496,184"/>
+<area shape="rect" id="node10" href="$class_ultrasonic_sensor.html#ac7266eb75ac06cb6c0fbd77afb2d3482" title="Enable this instance and pass the reference to the Robot.SensorData callback function to be called wh..." alt="" coords="553,157,719,184"/>
+</map>

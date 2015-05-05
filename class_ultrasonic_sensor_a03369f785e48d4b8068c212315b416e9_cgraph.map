@@ -1,0 +1,4 @@
+<map id="UltrasonicSensor.Scan" name="UltrasonicSensor.Scan">
+<area shape="rect" id="node2" href="$class_ultrasonic_sensor.html#a922b200d598d7a0438526687ca61f95b" title="Cast a ray and return detected obstruction if the hit angle is less than a threshold ..." alt="" coords="208,5,360,32"/>
+<area shape="rect" id="node3" href="$class_draw.html#a1845793e3f2291ecfc426051c961ac3e" title="Draw a line between two positions, start and end, in a specified color. " alt="" coords="408,5,487,32"/>
+</map>

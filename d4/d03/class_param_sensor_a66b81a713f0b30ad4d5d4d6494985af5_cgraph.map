@@ -1,0 +1,5 @@
+<map id="ParamSensor.Enable" name="ParamSensor.Enable">
+<area shape="rect" id="node2" href="$d4/d03/class_param_sensor.html#abb24cf5c858c4fb098ff5bc23ae078c1" title="Update data coroutine. Once started, executes until disabled. Calls _callback on Robot every update..." alt="" coords="199,5,372,32"/>
+<area shape="rect" id="node3" href="$d4/d03/class_param_sensor.html#a624ac360032cab9df6f91d6be99a80d6" title="Wrapper function for a single raycast. Returns the proximity distance in the specified direction..." alt="" coords="420,5,552,32"/>
+<area shape="rect" id="node4" href="$d5/dc8/class_draw.html#a1845793e3f2291ecfc426051c961ac3e" title="Draw a line between two positions, start and end, in a specified color. " alt="" coords="600,5,679,32"/>
+</map>

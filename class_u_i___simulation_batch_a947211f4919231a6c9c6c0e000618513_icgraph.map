@@ -1,0 +1,5 @@
+<map id="UI_SimulationBatch.Refresh" name="UI_SimulationBatch.Refresh">
+<area shape="rect" id="node2" href="$class_u_i___simulation_batch.html#a7cd5f8b7f7521a41a072bcd9a71f8241" title="List Simulation.Settings in Simulation.batch and provide controls and editing the Simulation..." alt="" coords="493,5,668,47"/>
+<area shape="rect" id="node4" href="$class_u_i___simulation_batch.html#a0be8c1b0a68044323959cd1afa6253dd" title="Browse for XML files to deserialize into Simulation.Settings " alt="" coords="237,38,445,65"/>
+<area shape="rect" id="node3" href="$class_u_i___simulation_batch.html#a3dc46c7353404769232afd886ba3b354" title="UI_SimulationBatch.UI\l_SimulationBatch" alt="" coords="716,5,868,47"/>
+</map>

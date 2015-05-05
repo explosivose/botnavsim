@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,8 +30,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="lulogo-colour-medium.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BotNavSim
+   &#160;<span id="projectnumber">v0.4.3</span>
    </div>
    <div id="projectbrief">Mobile Robot Simulation</div>
   </td>
@@ -40,6 +50,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -66,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('struct_h_s_b_color.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
@@ -91,64 +116,438 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">HSBColor Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Utility struct for transforming RGB Color to HSB Color (sourced from a previous project)  
+ <a href="struct_h_s_b_color.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae2e322691d122d2c38fcf80717bf5edd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae2e322691d122d2c38fcf80717bf5edd"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>HSBColor</b> (float h, float s, float b, float a)</td></tr>
+<tr class="memitem:ae2e322691d122d2c38fcf80717bf5edd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#ae2e322691d122d2c38fcf80717bf5edd">HSBColor</a> (float <a class="el" href="struct_h_s_b_color.html#a7379a79483a187a75bee618f6c453d35">h</a>, float <a class="el" href="struct_h_s_b_color.html#a11db1b5f23ae77f453a43a94ed1581d3">s</a>, float <a class="el" href="struct_h_s_b_color.html#ac583842adef56d674979abb714b91823">b</a>, float <a class="el" href="struct_h_s_b_color.html#a39be022c45e7139a000e5979c6a46c7a">a</a>)</td></tr>
 <tr class="separator:ae2e322691d122d2c38fcf80717bf5edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06542ddd56b2796693d26b07bfb65c08"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06542ddd56b2796693d26b07bfb65c08"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>HSBColor</b> (float h, float s, float b)</td></tr>
+<tr class="memitem:a06542ddd56b2796693d26b07bfb65c08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a06542ddd56b2796693d26b07bfb65c08">HSBColor</a> (float <a class="el" href="struct_h_s_b_color.html#a7379a79483a187a75bee618f6c453d35">h</a>, float <a class="el" href="struct_h_s_b_color.html#a11db1b5f23ae77f453a43a94ed1581d3">s</a>, float <a class="el" href="struct_h_s_b_color.html#ac583842adef56d674979abb714b91823">b</a>)</td></tr>
 <tr class="separator:a06542ddd56b2796693d26b07bfb65c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06a0ebb86c23706ee507338f7d786c6a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a06a0ebb86c23706ee507338f7d786c6a"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>HSBColor</b> (Color col)</td></tr>
+<tr class="memitem:a06a0ebb86c23706ee507338f7d786c6a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a06a0ebb86c23706ee507338f7d786c6a">HSBColor</a> (Color col)</td></tr>
 <tr class="separator:a06a0ebb86c23706ee507338f7d786c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6a3ec80f77b6f8d3c5fe51e292214bd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6a3ec80f77b6f8d3c5fe51e292214bd"></a>
-Color&#160;</td><td class="memItemRight" valign="bottom"><b>ToColor</b> ()</td></tr>
+<tr class="memitem:ad6a3ec80f77b6f8d3c5fe51e292214bd"><td class="memItemLeft" align="right" valign="top">Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#ad6a3ec80f77b6f8d3c5fe51e292214bd">ToColor</a> ()</td></tr>
 <tr class="separator:ad6a3ec80f77b6f8d3c5fe51e292214bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a799473cf4fe8473979c37c7ef0ad0154"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a799473cf4fe8473979c37c7ef0ad0154"></a>
-override string&#160;</td><td class="memItemRight" valign="bottom"><b>ToString</b> ()</td></tr>
+<tr class="memitem:a799473cf4fe8473979c37c7ef0ad0154"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a799473cf4fe8473979c37c7ef0ad0154">ToString</a> ()</td></tr>
 <tr class="separator:a799473cf4fe8473979c37c7ef0ad0154"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a09fe0e400c97db94d39e321e7701ec88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09fe0e400c97db94d39e321e7701ec88"></a>
-static <a class="el" href="struct_h_s_b_color.html">HSBColor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>FromColor</b> (Color color)</td></tr>
+<tr class="memitem:a09fe0e400c97db94d39e321e7701ec88"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_h_s_b_color.html">HSBColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a09fe0e400c97db94d39e321e7701ec88">FromColor</a> (Color color)</td></tr>
 <tr class="separator:a09fe0e400c97db94d39e321e7701ec88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe0e9d94cfd4813b8c0fc322e0ef12c6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0e9d94cfd4813b8c0fc322e0ef12c6"></a>
-static Color&#160;</td><td class="memItemRight" valign="bottom"><b>ToColor</b> (<a class="el" href="struct_h_s_b_color.html">HSBColor</a> hsbColor)</td></tr>
+<tr class="memitem:afe0e9d94cfd4813b8c0fc322e0ef12c6"><td class="memItemLeft" align="right" valign="top">static Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#afe0e9d94cfd4813b8c0fc322e0ef12c6">ToColor</a> (<a class="el" href="struct_h_s_b_color.html">HSBColor</a> hsbColor)</td></tr>
 <tr class="separator:afe0e9d94cfd4813b8c0fc322e0ef12c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2d9e2c78ad2be94d57fd2daa6eb6ab9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2d9e2c78ad2be94d57fd2daa6eb6ab9"></a>
-static <a class="el" href="struct_h_s_b_color.html">HSBColor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Lerp</b> (<a class="el" href="struct_h_s_b_color.html">HSBColor</a> a, <a class="el" href="struct_h_s_b_color.html">HSBColor</a> b, float t)</td></tr>
+<tr class="memitem:aa2d9e2c78ad2be94d57fd2daa6eb6ab9"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_h_s_b_color.html">HSBColor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#aa2d9e2c78ad2be94d57fd2daa6eb6ab9">Lerp</a> (<a class="el" href="struct_h_s_b_color.html">HSBColor</a> <a class="el" href="struct_h_s_b_color.html#a39be022c45e7139a000e5979c6a46c7a">a</a>, <a class="el" href="struct_h_s_b_color.html">HSBColor</a> <a class="el" href="struct_h_s_b_color.html#ac583842adef56d674979abb714b91823">b</a>, float t)</td></tr>
 <tr class="separator:aa2d9e2c78ad2be94d57fd2daa6eb6ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a143a1dc24b61dfc78017a9631284e3ce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a143a1dc24b61dfc78017a9631284e3ce"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>Test</b> ()</td></tr>
+<tr class="memitem:a143a1dc24b61dfc78017a9631284e3ce"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a143a1dc24b61dfc78017a9631284e3ce">Test</a> ()</td></tr>
 <tr class="separator:a143a1dc24b61dfc78017a9631284e3ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a7379a79483a187a75bee618f6c453d35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7379a79483a187a75bee618f6c453d35"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>h</b></td></tr>
+<tr class="memitem:a7379a79483a187a75bee618f6c453d35"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a7379a79483a187a75bee618f6c453d35">h</a></td></tr>
 <tr class="separator:a7379a79483a187a75bee618f6c453d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11db1b5f23ae77f453a43a94ed1581d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11db1b5f23ae77f453a43a94ed1581d3"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>s</b></td></tr>
+<tr class="memitem:a11db1b5f23ae77f453a43a94ed1581d3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a11db1b5f23ae77f453a43a94ed1581d3">s</a></td></tr>
 <tr class="separator:a11db1b5f23ae77f453a43a94ed1581d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac583842adef56d674979abb714b91823"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac583842adef56d674979abb714b91823"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>b</b></td></tr>
+<tr class="memitem:ac583842adef56d674979abb714b91823"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#ac583842adef56d674979abb714b91823">b</a></td></tr>
 <tr class="separator:ac583842adef56d674979abb714b91823"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39be022c45e7139a000e5979c6a46c7a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39be022c45e7139a000e5979c6a46c7a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>a</b></td></tr>
+<tr class="memitem:a39be022c45e7139a000e5979c6a46c7a"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_h_s_b_color.html#a39be022c45e7139a000e5979c6a46c7a">a</a></td></tr>
 <tr class="separator:a39be022c45e7139a000e5979c6a46c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Utility struct for transforming RGB Color to HSB Color (sourced from a previous project) </p>
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00008">8</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ae2e322691d122d2c38fcf80717bf5edd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HSBColor.HSBColor </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>a</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00015">15</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_ae2e322691d122d2c38fcf80717bf5edd_icgraph.png" border="0" usemap="#struct_h_s_b_color_ae2e322691d122d2c38fcf80717bf5edd_icgraph" alt=""/></div>
+<map name="struct_h_s_b_color_ae2e322691d122d2c38fcf80717bf5edd_icgraph" id="struct_h_s_b_color_ae2e322691d122d2c38fcf80717bf5edd_icgraph">
+<area shape="rect" id="node2" href="struct_h_s_b_color.html#a09fe0e400c97db94d39e321e7701ec88" title="HSBColor.FromColor" alt="" coords="193,5,336,32"/><area shape="rect" id="node4" href="struct_h_s_b_color.html#aa2d9e2c78ad2be94d57fd2daa6eb6ab9" title="HSBColor.Lerp" alt="" coords="211,56,319,83"/><area shape="rect" id="node5" href="struct_h_s_b_color.html#a143a1dc24b61dfc78017a9631284e3ce" title="HSBColor.Test" alt="" coords="211,107,319,133"/><area shape="rect" id="node3" href="struct_h_s_b_color.html#a06a0ebb86c23706ee507338f7d786c6a" title="HSBColor.HSBColor" alt="" coords="384,5,524,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a06542ddd56b2796693d26b07bfb65c08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HSBColor.HSBColor </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00023">23</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a06a0ebb86c23706ee507338f7d786c6a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">HSBColor.HSBColor </td>
+          <td>(</td>
+          <td class="paramtype">Color&#160;</td>
+          <td class="paramname"><em>col</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00031">31</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_a06a0ebb86c23706ee507338f7d786c6a_cgraph.png" border="0" usemap="#struct_h_s_b_color_a06a0ebb86c23706ee507338f7d786c6a_cgraph" alt=""/></div>
+<map name="struct_h_s_b_color_a06a0ebb86c23706ee507338f7d786c6a_cgraph" id="struct_h_s_b_color_a06a0ebb86c23706ee507338f7d786c6a_cgraph">
+<area shape="rect" id="node2" href="struct_h_s_b_color.html#a09fe0e400c97db94d39e321e7701ec88" title="HSBColor.FromColor" alt="" coords="193,5,336,32"/><area shape="rect" id="node3" href="struct_h_s_b_color.html#ae2e322691d122d2c38fcf80717bf5edd" title="HSBColor.HSBColor" alt="" coords="384,5,524,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a09fe0e400c97db94d39e321e7701ec88"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_h_s_b_color.html">HSBColor</a> HSBColor.FromColor </td>
+          <td>(</td>
+          <td class="paramtype">Color&#160;</td>
+          <td class="paramname"><em>color</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00040">40</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_cgraph.png" border="0" usemap="#struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_cgraph" alt=""/></div>
+<map name="struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_cgraph" id="struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_cgraph">
+<area shape="rect" id="node2" href="struct_h_s_b_color.html#ae2e322691d122d2c38fcf80717bf5edd" title="HSBColor.HSBColor" alt="" coords="196,5,336,32"/></map>
+</div>
+</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_icgraph.png" border="0" usemap="#struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_icgraph" alt=""/></div>
+<map name="struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_icgraph" id="struct_h_s_b_color_a09fe0e400c97db94d39e321e7701ec88_icgraph">
+<area shape="rect" id="node2" href="struct_h_s_b_color.html#a06a0ebb86c23706ee507338f7d786c6a" title="HSBColor.HSBColor" alt="" coords="196,5,336,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="aa2d9e2c78ad2be94d57fd2daa6eb6ab9"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_h_s_b_color.html">HSBColor</a> HSBColor.Lerp </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_h_s_b_color.html">HSBColor</a>&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_h_s_b_color.html">HSBColor</a>&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>t</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00163">163</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_aa2d9e2c78ad2be94d57fd2daa6eb6ab9_cgraph.png" border="0" usemap="#struct_h_s_b_color_aa2d9e2c78ad2be94d57fd2daa6eb6ab9_cgraph" alt=""/></div>
+<map name="struct_h_s_b_color_aa2d9e2c78ad2be94d57fd2daa6eb6ab9_cgraph" id="struct_h_s_b_color_aa2d9e2c78ad2be94d57fd2daa6eb6ab9_cgraph">
+<area shape="rect" id="node2" href="struct_h_s_b_color.html#ae2e322691d122d2c38fcf80717bf5edd" title="HSBColor.HSBColor" alt="" coords="161,5,301,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a143a1dc24b61dfc78017a9631284e3ce"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void HSBColor.Test </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00194">194</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_a143a1dc24b61dfc78017a9631284e3ce_cgraph.png" border="0" usemap="#struct_h_s_b_color_a143a1dc24b61dfc78017a9631284e3ce_cgraph" alt=""/></div>
+<map name="struct_h_s_b_color_a143a1dc24b61dfc78017a9631284e3ce_cgraph" id="struct_h_s_b_color_a143a1dc24b61dfc78017a9631284e3ce_cgraph">
+<area shape="rect" id="node2" href="struct_h_s_b_color.html#ae2e322691d122d2c38fcf80717bf5edd" title="HSBColor.HSBColor" alt="" coords="161,5,301,32"/><area shape="rect" id="node3" href="struct_h_s_b_color.html#ad6a3ec80f77b6f8d3c5fe51e292214bd" title="HSBColor.ToColor" alt="" coords="168,56,295,83"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="afe0e9d94cfd4813b8c0fc322e0ef12c6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Color HSBColor.ToColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_h_s_b_color.html">HSBColor</a>&#160;</td>
+          <td class="paramname"><em>hsbColor</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00093">93</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_afe0e9d94cfd4813b8c0fc322e0ef12c6_icgraph.png" border="0" usemap="#struct_h_s_b_color_afe0e9d94cfd4813b8c0fc322e0ef12c6_icgraph" alt=""/></div>
+<map name="struct_h_s_b_color_afe0e9d94cfd4813b8c0fc322e0ef12c6_icgraph" id="struct_h_s_b_color_afe0e9d94cfd4813b8c0fc322e0ef12c6_icgraph">
+<area shape="rect" id="node2" href="class_log_loader.html#acf7773975b3d62b2f090a851c9a705f3" title="Updates the path colors with evenly spaced hues. " alt="" coords="180,5,371,32"/><area shape="rect" id="node3" href="class_log_loader.html#ad7466ad8d9ce603fb335372dc5748d23" title="Main routine for loading a CSV log file. " alt="" coords="419,5,597,32"/><area shape="rect" id="node4" href="class_log_loader.html#a371b2b5f820022b2af6a28780b07406c" title="Loads the paths stored in a CSV file. Also attempts to load the relevant environment. " alt="" coords="645,5,793,32"/><area shape="rect" id="node5" href="class_u_i___log_loader.html#ae845c97ac1a9acaa1885269aeaa76e4c" title="GUI window function: browse and load CSV files " alt="" coords="841,5,1015,32"/><area shape="rect" id="node6" href="class_u_i___log_loader.html#a3ff37e9dbca567dc3f0b83171af11d99" title="GUI window function: Display controls for loaded CSV files. " alt="" coords="1063,5,1209,32"/><area shape="rect" id="node7" href="class_u_i___log_loader.html#a592f4089c333b908615d3faeb9ffc845" title="UI_LogLoader.UI_LogLoader" alt="" coords="1257,5,1441,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="ad6a3ec80f77b6f8d3c5fe51e292214bd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Color HSBColor.ToColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00153">153</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+<p><div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="struct_h_s_b_color_ad6a3ec80f77b6f8d3c5fe51e292214bd_icgraph.png" border="0" usemap="#struct_h_s_b_color_ad6a3ec80f77b6f8d3c5fe51e292214bd_icgraph" alt=""/></div>
+<map name="struct_h_s_b_color_ad6a3ec80f77b6f8d3c5fe51e292214bd_icgraph" id="struct_h_s_b_color_ad6a3ec80f77b6f8d3c5fe51e292214bd_icgraph">
+<area shape="rect" id="node2" href="struct_h_s_b_color.html#a143a1dc24b61dfc78017a9631284e3ce" title="HSBColor.Test" alt="" coords="180,5,288,32"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a799473cf4fe8473979c37c7ef0ad0154"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override string HSBColor.ToString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00158">158</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a39be022c45e7139a000e5979c6a46c7a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float HSBColor.a</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00013">13</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac583842adef56d674979abb714b91823"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float HSBColor.b</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00012">12</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7379a79483a187a75bee618f6c453d35"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float HSBColor.h</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00010">10</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a11db1b5f23ae77f453a43a94ed1581d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float HSBColor.s</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="_h_s_b_color_8cs_source.html#l00011">11</a> of file <a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>Assets/botnavsim/Scripts/Utility/HSBColor.cs</li>
+<li>Assets/botnavsim/Scripts/Utility/<a class="el" href="_h_s_b_color_8cs_source.html">HSBColor.cs</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 31 2015 15:48:39 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="struct_h_s_b_color.html">HSBColor</a></li>
+    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

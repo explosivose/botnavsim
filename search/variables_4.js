@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['i',['I',['../class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288',1,'UI_Toolbar']]],
-  ['instance',['Instance',['../class_environment_editor.html#aced92ba849394e310fb86ec2456c83f6',1,'EnvironmentEditor.Instance()'],['../class_robot_editor.html#af3051771a350b1452da42eb7696c0569',1,'RobotEditor.Instance()'],['../class_simulation.html#a37caf1e823ec85202677212a905ea21c',1,'Simulation.Instance()']]]
+  ['description',['description',['../class_u_i___credits_1_1_credit.html#a5c273cb68a3a3c0211ef10f624ef8bbf',1,'UI_Credits::Credit']]],
+  ['destination',['destination',['../class_environment.html#afbd02a5cd0cac2ee8098e504ac4ce392',1,'Environment.destination()'],['../class_robot.html#a87800e0f32bfe81d7b5d76d36dfb6d96',1,'Robot.destination()']]],
+  ['direction',['direction',['../struct_proximity_data.html#a424aff6ff8aa064e3c4ca2a2259fdce6',1,'ProximityData']]],
+  ['drawdebug',['drawDebug',['../class_param_sensor.html#a5ee6c07c5cd59a88145d73a5145e988f',1,'ParamSensor']]]
 ];

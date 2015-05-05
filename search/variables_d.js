@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['radius',['radius',['../class_sensor.html#ae39198510a52a35cd60f0826b1dc8c89',1,'Sensor']]],
-  ['randomizedestination',['randomizeDestination',['../class_simulation_1_1_settings.html#aab3edee47a02bd101722bbe7017e9771',1,'Simulation::Settings']]],
-  ['randomizeorigin',['randomizeOrigin',['../class_simulation_1_1_settings.html#a8c962bc81df9faa71c3a55c2c4e5dfbd',1,'Simulation::Settings']]],
-  ['robotname',['robotName',['../class_simulation_1_1_settings.html#aa56e012c09932cc3e1c90f8fb81aa3a6',1,'Simulation::Settings']]],
-  ['robotsfound',['robotsFound',['../class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23',1,'BotLoader']]]
+  ['name',['name',['../class_u_i___credits_1_1_credit.html#a9f85ca8916279a2ef896cb29ab76f0c3',1,'UI_Credits::Credit']]],
+  ['navigationassemblyname',['navigationAssemblyName',['../class_simulation_1_1_settings.html#a2048fe4e5173aef742c27579d1822a34',1,'Simulation::Settings']]],
+  ['numberoftests',['numberOfTests',['../class_simulation_1_1_settings.html#ae4791094892b6ee261c26479bad13acd',1,'Simulation::Settings']]]
 ];

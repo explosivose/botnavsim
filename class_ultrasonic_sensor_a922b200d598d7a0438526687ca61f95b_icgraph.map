@@ -1,0 +1,4 @@
+<map id="UltrasonicSensor.Cast" name="UltrasonicSensor.Cast">
+<area shape="rect" id="node2" href="$class_ultrasonic_sensor.html#a03369f785e48d4b8068c212315b416e9" title="Scan for obstructions in a cone " alt="" coords="205,5,360,32"/>
+<area shape="rect" id="node3" href="$class_ultrasonic_sensor.html#ac7266eb75ac06cb6c0fbd77afb2d3482" title="Enable this instance and pass the reference to the Robot.SensorData callback function to be called wh..." alt="" coords="408,5,573,32"/>
+</map>

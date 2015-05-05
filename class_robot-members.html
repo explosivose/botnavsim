@@ -8,6 +8,14 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -22,8 +30,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="lulogo-colour-medium.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">BotNavSim
+   &#160;<span id="projectnumber">v0.4.3</span>
    </div>
    <div id="projectbrief">Mobile Robot Simulation</div>
   </td>
@@ -40,6 +50,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
+      <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -66,6 +77,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('class_robot.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,7 +106,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Robot Member List</div>  </div>
@@ -89,29 +114,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_robot.html">Robot</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>atDestination</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_robot.html#a9e75149591318c8001fb429c6e036fbd">cameraMount</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>centerOfMass</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>destination</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>distanceToDestination</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>isStuck</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>manualControl</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_robot.html#a0e9663da23be43fc8891ca883a264ce9">moveCommand</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>moveEnabled</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_robot.html#a5b65c89b0ac1ddf276e853918938e80b">NavigateToDestination</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#afbccea715a85421212ceb044d738c9b6">navigation</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_robot.html#a102f39082cd2eb0a51a4680dffaef5f7">nextSensorData</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a5d77d856a7a536ce77191f472ff465e7">position</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Reset</b>() (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>sensors</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>stopDistance</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>stuckpc</b> (defined in <a class="el" href="class_robot.html">Robot</a>)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a18261868c84401c8dfb342bfa107220e">_move</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#ad63ebe7811536f9254f58f527d12a101">_navigation</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a53a891cb960e7150d76cab795b83762c">_path</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a0e7b80e484d71094159d6548059c299f">_positions</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a93472f8314d9fa04cd84e1f3290d884a">_sensors</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#ad7bba9fc496935628be289289c362edc">_size</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a786f0b486d6fedff82125ff4cb47f281">_stuckCounter</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#ab8a5b666f4a792b229c7ae766f5e8e26">atDestination</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#aa92806fc6290a83fdbb0910ae12f2211">Awake</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a2bac0c606e3a19eb447166de68d7081f">bounds</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a9e75149591318c8001fb429c6e036fbd">cameraMount</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a47f7d7a9c1eeea4533343402b2b86abd">centerOfMassOffset</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a87800e0f32bfe81d7b5d76d36dfb6d96">destination</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#ad495f949ff25ac41029ba365cb078fe6">distanceToDestination</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a58d2f003d9b9a764043231cad3cce986">isStuck</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a9d6d56746b41ba655c240e561be9ee61">manualControl</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a363d1bd7dc2c5e04abed7078da0c0803">moveEnabled</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="interface_i_observable.html#aa559aecd83eef3969c4eae9e3bb5dcd4">name</a></td><td class="entry"><a class="el" href="interface_i_observable.html">IObservable</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a5b65c89b0ac1ddf276e853918938e80b">NavigateToDestination</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#afbccea715a85421212ceb044d738c9b6">navigation</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#aff3b843487fe32dbb6b135c52de1cbd2">navigationCommand</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#ac3085712bb97d2e87bbc1149b10df9cc">OnDrawGizmos</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a0cd2fc177264d49a1e2c321f9b7aaef5">pathFound</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a5d77d856a7a536ce77191f472ff465e7">position</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a076adabbb40b0a1aa553d4ca57c8282b">ReceiveSensorData</a>(ProximityData data)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a2e92c2fe9fb76c28897ae6e2b56f7728">RecordPath</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a35a96b7d44d1dea25cbc714307c480ec">Reset</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a8b3e76d0d025f776891d8b8f6152c774">SensorData</a>(ProximityData data)</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a265a0c42050d3a762e0d429b9c3b3c41">stopDistance</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#a31d57b0b6bb91b1fb5aa976a695a9f6a">StuckDetector</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_robot.html#a17496e6a03cb72ddc06f188bd9cbb422">stuckpc</a></td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_robot.html#ab81df4f69bbcd6b6caf81ffcde046335">Update</a>()</td><td class="entry"><a class="el" href="class_robot.html">Robot</a></td><td class="entry"><span class="mlabel">private</span></td></tr>
 </table></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 31 2015 15:48:40 for BotNavSim by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.9.1
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
+  </ul>
+</div>
 </body>
 </html>

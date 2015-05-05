@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['timestep',['timeStep',['../class_log.html#a3980497df1505348b58cb232bce0ae78',1,'Log']]],
-  ['title',['title',['../class_simulation_1_1_settings.html#a1652fc3e24e9b2443d6166f360408ff0',1,'Simulation::Settings']]],
-  ['type',['type',['../class_sensor.html#a82d38530a80a82ea5e60e6e77f0657bb',1,'Sensor']]]
+  ['pitchcontroller',['pitchController',['../class_ar_drone.html#a5b99ea44d1ee88b3455568bc5f76cad8',1,'ArDrone']]],
+  ['pluginsfound',['pluginsFound',['../class_nav_loader.html#a6488d33ba223e47ba433a38b130be311',1,'NavLoader']]],
+  ['projectabout',['projectAbout',['../class_strings.html#ad44a270dab13b2cdfed24e057d4f86b8',1,'Strings']]],
+  ['projecttitle',['projectTitle',['../class_strings.html#a63cf01e83d4d3adf10badae87addd18c',1,'Strings']]],
+  ['projectversion',['projectVersion',['../class_strings.html#a15f20acbb2bb93c307785d49d331818e',1,'Strings']]]
 ];

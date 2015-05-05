@@ -1,2 +1,7 @@
 <map id="BoeBot" name="BoeBot">
+<area shape="rect" id="node3" href="$class_robot.html" title="Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro..." alt="" coords="133,171,189,197"/>
+<area shape="rect" id="node6" href="$class_sensor.html" title="Abstract Sensor class for all sensor implementations to inherit from. " alt="" coords="99,81,161,108"/>
+<area shape="rect" id="node4" href="$interface_i_observable.html" title="Interface for objects that are observable via CamController must keep their world bounds up&#45;to&#45;date ..." alt="" coords="171,5,260,32"/>
+<area shape="rect" id="node5" href="$class_bot_path.html" title="BotPath displays information about a recorded path taken or calculated. " alt="" coords="237,81,306,108"/>
+<area shape="rect" id="node7" href="$interface_i_navigation.html" title="INavigation interface for robot navigation algorithms. This component of the robot is responsible for..." alt="" coords="331,81,415,108"/>
 </map>

@@ -1,0 +1,44 @@
+<map id="UI_SimulationControl.MainWindow" name="UI_SimulationControl.MainWindow">
+<area shape="rect" id="node2" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="228,312,339,339"/>
+<area shape="rect" id="node11" href="$class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="429,363,549,389"/>
+<area shape="rect" id="node25" href="$class_simulation.html#aa8f4a9a54dac81e55bf15929289d4df0" title="Stops the current test and starts the next test in current simulation. " alt="" coords="968,259,1107,285"/>
+<area shape="rect" id="node3" href="$class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="387,81,591,108"/>
+<area shape="rect" id="node4" href="$class_env_loader.html#afc588d0754a0a3ba2e9a8cfa9dbe65b9" title="Selects a random environment name. " alt="" coords="639,107,877,133"/>
+<area shape="rect" id="node6" href="$class_bot_loader.html#a8fccb4b234dbde2f5f9ede7f2954d6fe" title="Returns a random robot name from the robotsFound list. " alt="" coords="657,56,859,83"/>
+<area shape="rect" id="node8" href="$class_nav_loader.html#a994f84c5e6dfc0a171ae32e8eff92c48" title="Returns a random filename from the pluginsFound list. " alt="" coords="656,5,860,32"/>
+<area shape="rect" id="node5" href="$class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c" title="Searchs for environments. " alt="" coords="925,107,1149,133"/>
+<area shape="rect" id="node7" href="$class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11" title="Searchs for robots. " alt="" coords="944,56,1131,83"/>
+<area shape="rect" id="node9" href="$class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8" title="Searchs for plugins in the INavigation directory (Strings.navigationPluginDirectory) Results are stor..." alt="" coords="943,5,1132,32"/>
+<area shape="rect" id="node10" href="$class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4" title="Lists assembly (DLL) file names that implement the type T. " alt="" coords="1204,5,1375,32"/>
+<area shape="rect" id="node12" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Halt current simulation. Load the next simulation in batch, or change state to State.end if at the end of batch. " alt="" coords="671,367,845,393"/>
+<area shape="rect" id="node13" href="$class_simulation.html#ad6b5099e0dede90883b8577c371c6998" title="Halt simulation and write log to file. " alt="" coords="1483,512,1594,539"/>
+<area shape="rect" id="node15" href="$class_log.html#aba2c46c870c74e4822034595d2448a56" title="Serialize the current simulation settings and write to XML file. " alt="" coords="990,731,1085,757"/>
+<area shape="rect" id="node16" href="$class_env_loader.html#af4a7bdfa4bc32b722e9081f2a5a4abdd" title="Loads the environment. " alt="" coords="945,309,1130,336"/>
+<area shape="rect" id="node17" href="$class_simulation.html#a2adc55eb075e1bdc3cc78cb75517b9a9" title="Return a random position inside the bounds, but not inside any physical objects. " alt="" coords="1716,107,1905,133"/>
+<area shape="rect" id="node18" href="$class_cam_controller.html#a9c5dcf85014e79bc3274e54930643627" title="Removes an area of interest from the list of areas for the camera to observe. " alt="" coords="947,361,1128,402"/>
+<area shape="rect" id="node19" href="$class_bot_loader.html#ac2faa1786bf8a8393cdd4e8cdb88355a" title="Load a robot by index in robotsFound list. " alt="" coords="964,427,1111,453"/>
+<area shape="rect" id="node20" href="$class_nav_loader.html#a98fbe88961a4608870a0be25ef01a081" title="Instantiate the INavigation assembly from a given filename (not filepath). " alt="" coords="962,629,1113,656"/>
+<area shape="rect" id="node22" href="$class_cam_controller.html#a7e9db667e81e0c68d8b2950e015ebeb1" title="Adds an area of interest to the list of areas for the camera to observe. " alt="" coords="930,528,1145,555"/>
+<area shape="rect" id="node23" href="$class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84" title="Sets the view mode. " alt="" coords="1973,528,2161,555"/>
+<area shape="rect" id="node24" href="$class_cam_controller.html#a661dfecf0c1e8e57193ebd38a8978c98" title="Sets the area of interest by index. " alt="" coords="932,579,1143,605"/>
+<area shape="rect" id="node14" href="$class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="1773,629,1848,656"/>
+<area shape="rect" id="node21" href="$class_plugin_factory.html#a5fe25dd7659351d0cb5ea30193f33ddf" title="Find and instantiate a type from a specified assembly file (accepts only DLL files) ..." alt="" coords="1199,629,1379,656"/>
+<area shape="rect" id="node26" href="$class_simulation.html#a726e7deb89ce9d87415fba120c231d27" title="Routine for starting a new test " alt="" coords="1197,309,1381,336"/>
+<area shape="rect" id="node27" href="$class_cam_controller.html#ada7cd42a6b338f0585b9b2cbd1312431" title="Raises the test end event. (handles camera exhibitionMode behaviour) " alt="" coords="1452,360,1625,387"/>
+<area shape="rect" id="node28" href="$class_robot.html#a35a96b7d44d1dea25cbc714307c480ec" title="Reset the robot, disable sensors " alt="" coords="1491,461,1586,488"/>
+<area shape="rect" id="node30" href="$class_simulation.html#a12310cd98817299df3b6c232d9bf3e97" title="Places the robot in start area. " alt="" coords="1429,208,1648,235"/>
+<area shape="rect" id="node31" href="$class_simulation.html#a8ccbe465767d83b14bf270af6a5ca55e" title="Places the destination. " alt="" coords="1446,157,1631,184"/>
+<area shape="rect" id="node32" href="$class_cam_controller.html#a6e84614e825b03be16e472146c633e82" title="Raises the test start event. (handles camera exhibitionMode behaviour) " alt="" coords="1449,411,1628,437"/>
+<area shape="rect" id="node36" href="$class_log.html#a811f811c78bb482ac889945a9fbe5330" title="Start logging. " alt="" coords="1501,309,1576,336"/>
+<area shape="rect" id="node39" href="$class_robot.html#a5b65c89b0ac1ddf276e853918938e80b" title="Enable sensors, start moving toward destination using INavigation " alt="" coords="1445,259,1633,285"/>
+<area shape="rect" id="node29" href="$class_sensor.html#a6c33eca38d457681f4fb9faddaf2bb35" title="Disable this instance. " alt="" coords="1755,579,1866,605"/>
+<area shape="rect" id="node33" href="$class_cam_controller.html#a4dccd5f2c8ea2e9e48f10d7cfdd93beb" title="Set viewMode to random ViewMode in viewModeList. " alt="" coords="1703,528,1919,555"/>
+<area shape="rect" id="node34" href="$class_cam_controller.html#a71315cf5772277c346eb64ec08cdae0a" title="Set renderMode to random RenderMode. " alt="" coords="1696,411,1925,437"/>
+<area shape="rect" id="node35" href="$class_cam_controller.html#aff28c0727c456c60a79321904916b252" title="Set area to next area of interest (circular index of areas list) " alt="" coords="1720,462,1901,503"/>
+<area shape="rect" id="node37" href="$class_log.html#a27ea097f7a83e82c03eb628e761c4f65" title="logging routine " alt="" coords="1755,309,1867,336"/>
+<area shape="rect" id="node38" href="$class_log.html#a92e2f1b38bb7e416d7fb4116622fbdfb" title="Gets the data for a specified parameter " alt="" coords="2020,309,2115,336"/>
+<area shape="rect" id="node40" href="$interface_i_navigation.html#a27acb501951d73246becb995085816a2" title="Start the search algorithm to find a path from origin to destination. " alt="" coords="1723,157,1898,184"/>
+<area shape="rect" id="node41" href="$class_sensor.html#a87b255511d219d65173defe2d2ec5922" title="Enable this instance and pass the reference to the Robot.SensorData callback function to be called wh..." alt="" coords="1757,208,1864,235"/>
+<area shape="rect" id="node42" href="$class_robot.html#a076adabbb40b0a1aa553d4ca57c8282b" title="Sensor data callback passes proximity data to INavigation " alt="" coords="1724,259,1897,285"/>
+<area shape="rect" id="node43" href="$interface_i_navigation.html#a513402dd6e3243b48cdc635f919b5d00" title="Proximity sensor data. " alt="" coords="1996,259,2139,285"/>
+</map>

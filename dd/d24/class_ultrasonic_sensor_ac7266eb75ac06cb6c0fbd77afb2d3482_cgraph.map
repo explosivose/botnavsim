@@ -1,0 +1,5 @@
+<map id="UltrasonicSensor.Enable" name="UltrasonicSensor.Enable">
+<area shape="rect" id="node2" href="$dd/d24/class_ultrasonic_sensor.html#a03369f785e48d4b8068c212315b416e9" title="Scan for obstructions in a cone " alt="" coords="219,5,373,32"/>
+<area shape="rect" id="node3" href="$dd/d24/class_ultrasonic_sensor.html#a922b200d598d7a0438526687ca61f95b" title="Cast a ray and return detected obstruction if the hit angle is less than a threshold ..." alt="" coords="421,5,573,32"/>
+<area shape="rect" id="node4" href="$d5/dc8/class_draw.html#a1845793e3f2291ecfc426051c961ac3e" title="Draw a line between two positions, start and end, in a specified color. " alt="" coords="621,5,700,32"/>
+</map>

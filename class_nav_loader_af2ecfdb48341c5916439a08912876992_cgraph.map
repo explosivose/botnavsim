@@ -1,6 +1,6 @@
 <map id="NavLoader.RandomPlugin" name="NavLoader.RandomPlugin">
-<area shape="rect" id="node2" href="$class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8" title="NavLoader.SearchForPlugins" alt="" coords="224,5,413,32"/>
-<area shape="rect" id="node4" href="$class_nav_loader.html#a98fbe88961a4608870a0be25ef01a081" title="NavLoader.LoadPlugin" alt="" coords="243,56,394,83"/>
-<area shape="rect" id="node3" href="$class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4" title="PluginFactory.ListPlugins" alt="" coords="466,5,637,32"/>
-<area shape="rect" id="node5" href="$class_plugin_factory.html#a5fe25dd7659351d0cb5ea30193f33ddf" title="PluginFactory.CreatePlugin" alt="" coords="461,56,641,83"/>
+<area shape="rect" id="node2" href="$class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8" title="Searchs for plugins in the INavigation directory (Strings.navigationPluginDirectory) Results are stor..." alt="" coords="224,5,413,32"/>
+<area shape="rect" id="node4" href="$class_nav_loader.html#a98fbe88961a4608870a0be25ef01a081" title="Instantiate the INavigation assembly from a given filename (not filepath). " alt="" coords="243,56,394,83"/>
+<area shape="rect" id="node3" href="$class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4" title="Lists assembly (DLL) file names that implement the type T. " alt="" coords="466,5,637,32"/>
+<area shape="rect" id="node5" href="$class_plugin_factory.html#a5fe25dd7659351d0cb5ea30193f33ddf" title="Find and instantiate a type from a specified assembly file (accepts only DLL files) ..." alt="" coords="461,56,641,83"/>
 </map>

@@ -1,0 +1,6 @@
+<map id="UI_CameraControls.CameraControlsWindow" name="UI_CameraControls.CameraControlsWindow">
+<area shape="rect" id="node2" href="$de/d55/class_cam_controller.html#a87896206d418061a74f9e3e2d75d173a" title="Set viewMode to the next ViewMode in viewModeList (circular index of viewModeList). " alt="" coords="243,5,444,32"/>
+<area shape="rect" id="node4" href="$de/d55/class_cam_controller.html#a0e8a2edfa91ed1ff3ba6039d57085010" title="Set renderMode to next RenderMode (circular index of render modes). " alt="" coords="236,56,451,83"/>
+<area shape="rect" id="node5" href="$de/d55/class_cam_controller.html#aff28c0727c456c60a79321904916b252" title="Set area to next area of interest (circular index of areas list) " alt="" coords="253,107,434,149"/>
+<area shape="rect" id="node3" href="$de/d55/class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84" title="Sets the view mode. " alt="" coords="499,5,687,32"/>
+</map>

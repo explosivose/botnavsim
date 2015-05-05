@@ -1,0 +1,5 @@
+<map id="LogLoader.Exit" name="LogLoader.Exit">
+<area shape="rect" id="node2" href="$de/d55/class_cam_controller.html#ac52c95de4b66978159f970aa3dcc0a9a" title="Clears the area list. " alt="" coords="179,5,365,32"/>
+<area shape="rect" id="node3" href="$de/d55/class_cam_controller.html#a96f405da52abf0f91444da6ed198c0a2" title="Clears the view mode list. " alt="" coords="163,56,381,83"/>
+<area shape="rect" id="node4" href="$de/d55/class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84" title="Sets the view mode. " alt="" coords="429,56,617,83"/>
+</map>
