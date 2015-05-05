@@ -213,15 +213,15 @@ public class Log  {
 		case Parameters.SimulationTimeScale:
 			return Simulation.timeScale.ToString();
 		case Parameters.RobotPosition:
-			return Simulation.robot.rigidbody.worldCenterOfMass.ToString();
+			return Simulation.robot.rigidbody.worldCenterOfMass.ToString("F2");
 		case Parameters.RobotIsStuck:
 			return Simulation.robot.stuckpc.ToString();
 		case Parameters.DestinationPosition:
-			return Simulation.destination.transform.position.ToString();
+			return Simulation.destination.transform.position.ToString("F2");
 		case Parameters.NavigationPathFound:
 			return Simulation.robot.navigation.pathFound.ToString();
 		case Parameters.NavigationMoveDirection:
-			return Simulation.robot.navigationCommand.ToString();
+			return Simulation.robot.navigationCommand.ToString("F2");
 		}
 		return null;
 	}
