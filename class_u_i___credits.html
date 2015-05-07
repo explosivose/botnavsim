@@ -215,7 +215,11 @@ Private Attributes</h2></td></tr>
 <p>Awake this instance. </p>
 
 <p>Definition at line <a class="el" href="_u_i___credits_8cs_source.html#l00071">71</a> of file <a class="el" href="_u_i___credits_8cs_source.html">UI_Credits.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                 {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="class_u_i___credits.html#a0ccec83599985bc4d6d3001de082d2f6">windowRect</a> = <span class="keyword">new</span> Rect(0,0,500,500);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="ttc" id="class_u_i___credits_html_a0ccec83599985bc4d6d3001de082d2f6"><div class="ttname"><a href="class_u_i___credits.html#a0ccec83599985bc4d6d3001de082d2f6">UI_Credits.windowRect</a></div><div class="ttdeci">Rect windowRect</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___credits_8cs_source.html#l00053">UI_Credits.cs:53</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a4a663d044fe9427aa773124dc946fe3e"></a>
@@ -243,7 +247,31 @@ Private Attributes</h2></td></tr>
 <p>GUI Window function to display credits in a scroll view. </p>
 
 <p>Definition at line <a class="el" href="_u_i___credits_8cs_source.html#l00078">78</a> of file <a class="el" href="_u_i___credits_8cs_source.html">UI_Credits.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                        {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">if</span> (GUILayout.Button(<span class="stringliteral">&quot;Close&quot;</span>)) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            <a class="code" href="class_u_i___credits.html#a1d156ac712433b265825fc6aeecc67ca">close</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_u_i___credits.html#a81a46756a055d58fde0f4cf4c7504262">_scrollPos</a> = GUILayout.BeginScrollView(<a class="code" href="class_u_i___credits.html#a81a46756a055d58fde0f4cf4c7504262">_scrollPos</a>, <span class="keyword">true</span>, <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        GUILayout.Label(<a class="code" href="class_strings.html">Strings</a>.<a class="code" href="class_strings.html#ad44a270dab13b2cdfed24e057d4f86b8">projectAbout</a>, GUILayout.Width(<a class="code" href="class_u_i___credits.html#a8c0c911c3faca0a3e8d5ea9a4a1e1345">width</a>-60f));</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        GUILayout.Space (25);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        GUILayout.Label(<span class="stringliteral">&quot;The following resources were used in this project: &quot;</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        GUILayout.Space (25);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">foreach</span>(Credit c <span class="keywordflow">in</span> <a class="code" href="class_u_i___credits.html#aab010eec853ee2e16dcc8d5c17ffef4a">credits</a>) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            GUILayout.Label(c.name + <span class="stringliteral">&quot; by &quot;</span> + c.author,GUILayout.Width(<a class="code" href="class_u_i___credits.html#a8c0c911c3faca0a3e8d5ea9a4a1e1345">width</a>-60f));</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            GUILayout.Label(c.description,GUILayout.Width(<a class="code" href="class_u_i___credits.html#a8c0c911c3faca0a3e8d5ea9a4a1e1345">width</a>-60f));</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <span class="keywordflow">if</span> (GUILayout.Button(c.url,GUILayout.Width(<a class="code" href="class_u_i___credits.html#a8c0c911c3faca0a3e8d5ea9a4a1e1345">width</a>-60f))) Application.OpenURL(c.url);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;            GUILayout.Space (50);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        GUILayout.EndScrollView();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        GUI.DragWindow();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="ttc" id="class_strings_html_ad44a270dab13b2cdfed24e057d4f86b8"><div class="ttname"><a href="class_strings.html#ad44a270dab13b2cdfed24e057d4f86b8">Strings.projectAbout</a></div><div class="ttdeci">const string projectAbout</div><div class="ttdoc">Project summary. </div><div class="ttdef"><b>Definition:</b> <a href="_strings_8cs_source.html#l00024">Strings.cs:24</a></div></div>
+<div class="ttc" id="class_u_i___credits_html_a81a46756a055d58fde0f4cf4c7504262"><div class="ttname"><a href="class_u_i___credits.html#a81a46756a055d58fde0f4cf4c7504262">UI_Credits._scrollPos</a></div><div class="ttdeci">Vector2 _scrollPos</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___credits_8cs_source.html#l00066">UI_Credits.cs:66</a></div></div>
+<div class="ttc" id="class_u_i___credits_html_a8c0c911c3faca0a3e8d5ea9a4a1e1345"><div class="ttname"><a href="class_u_i___credits.html#a8c0c911c3faca0a3e8d5ea9a4a1e1345">UI_Credits.width</a></div><div class="ttdeci">float width</div><div class="ttdoc">The width of the window. </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___credits_8cs_source.html#l00045">UI_Credits.cs:45</a></div></div>
+<div class="ttc" id="class_strings_html"><div class="ttname"><a href="class_strings.html">Strings</a></div><div class="ttdoc">A utility class for strings used in this project. </div><div class="ttdef"><b>Definition:</b> <a href="_strings_8cs_source.html#l00009">Strings.cs:9</a></div></div>
+<div class="ttc" id="class_u_i___credits_html_a1d156ac712433b265825fc6aeecc67ca"><div class="ttname"><a href="class_u_i___credits.html#a1d156ac712433b265825fc6aeecc67ca">UI_Credits.close</a></div><div class="ttdeci">bool close</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___credits_8cs_source.html#l00064">UI_Credits.cs:64</a></div></div>
+<div class="ttc" id="class_u_i___credits_html_aab010eec853ee2e16dcc8d5c17ffef4a"><div class="ttname"><a href="class_u_i___credits.html#aab010eec853ee2e16dcc8d5c17ffef4a">UI_Credits.credits</a></div><div class="ttdeci">Credit[] credits</div><div class="ttdoc">Array of credits exposed and edited in the Unity Inspector </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___credits_8cs_source.html#l00040">UI_Credits.cs:40</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -391,7 +419,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_u_i___credits.html">UI_Credits</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

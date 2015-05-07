@@ -1,4 +1,0 @@
-<map id="ParamSensor.Cast" name="ParamSensor.Cast">
-<area shape="rect" id="node2" href="$d4/d03/class_param_sensor.html#abb24cf5c858c4fb098ff5bc23ae078c1" title="Update data coroutine. Once started, executes until disabled. Calls _callback on Robot every update..." alt="" coords="185,5,359,32"/>
-<area shape="rect" id="node3" href="$d4/d03/class_param_sensor.html#a66b81a713f0b30ad4d5d4d6494985af5" title="Enable this instance and pass the reference to the Robot.SensorData callback function to be called wh..." alt="" coords="407,5,552,32"/>
-</map>

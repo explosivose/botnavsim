@@ -123,11 +123,15 @@ $(document).ready(function(){initNavTree('class_sprite_fade.html','');});
 Inheritance diagram for SpriteFade:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_sprite_fade__inherit__graph.png" border="0" usemap="#_sprite_fade_inherit__map" alt="Inheritance graph"/></div>
+<map name="_sprite_fade_inherit__map" id="_sprite_fade_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for SpriteFade:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_sprite_fade__coll__graph.png" border="0" usemap="#_sprite_fade_coll__map" alt="Collaboration graph"/></div>
+<map name="_sprite_fade_coll__map" id="_sprite_fade_coll__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -174,7 +178,11 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_sprite_fade_8cs_source.html#l00014">14</a> of file <a class="el" href="_sprite_fade_8cs_source.html">SpriteFade.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;                  {</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">sr</a> = GetComponent&lt;SpriteRenderer&gt;();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+<div class="ttc" id="class_sprite_fade_html_a6f7a1ea3b8f17932e4176d9e997bf721"><div class="ttname"><a href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">SpriteFade.sr</a></div><div class="ttdeci">SpriteRenderer sr</div><div class="ttdef"><b>Definition:</b> <a href="_sprite_fade_8cs_source.html#l00011">SpriteFade.cs:11</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aeaa4ae71dcccaa9026d7a009bdead034"></a>
@@ -199,7 +207,17 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_sprite_fade_8cs_source.html#l00018">18</a> of file <a class="el" href="_sprite_fade_8cs_source.html">SpriteFade.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                  {</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">sr</a>.enabled) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        Color color = <a class="code" href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">sr</a>.color;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        color.a -= <a class="code" href="class_sprite_fade.html#abf024a84c0b473a3e289962e857d765a">fadeRate</a> * Time.deltaTime;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">sr</a>.color = color;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">if</span> (color.a &lt;= 0f) <a class="code" href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">sr</a>.enabled = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    }</div>
+<div class="ttc" id="class_sprite_fade_html_a6f7a1ea3b8f17932e4176d9e997bf721"><div class="ttname"><a href="class_sprite_fade.html#a6f7a1ea3b8f17932e4176d9e997bf721">SpriteFade.sr</a></div><div class="ttdeci">SpriteRenderer sr</div><div class="ttdef"><b>Definition:</b> <a href="_sprite_fade_8cs_source.html#l00011">SpriteFade.cs:11</a></div></div>
+<div class="ttc" id="class_sprite_fade_html_abf024a84c0b473a3e289962e857d765a"><div class="ttname"><a href="class_sprite_fade.html#abf024a84c0b473a3e289962e857d765a">SpriteFade.fadeRate</a></div><div class="ttdeci">float fadeRate</div><div class="ttdef"><b>Definition:</b> <a href="_sprite_fade_8cs_source.html#l00009">SpriteFade.cs:9</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -248,7 +266,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_sprite_fade.html">SpriteFade</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

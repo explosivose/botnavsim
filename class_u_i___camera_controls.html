@@ -194,7 +194,11 @@ Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_u_i___camera_controls_8cs_source.html#l00009">9</a> of file <a class="el" href="_u_i___camera_controls_8cs_source.html">UI_CameraControls.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;                               {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="class_u_i___camera_controls.html#afdd68d06d496bfe1bb97df19ca1e2796">hidden</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    }</div>
+<div class="ttc" id="class_u_i___camera_controls_html_afdd68d06d496bfe1bb97df19ca1e2796"><div class="ttname"><a href="class_u_i___camera_controls.html#afdd68d06d496bfe1bb97df19ca1e2796">UI_CameraControls.hidden</a></div><div class="ttdeci">bool hidden</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___camera_controls_8cs_source.html#l00019">UI_CameraControls.cs:19</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -223,7 +227,45 @@ Private Member Functions</h2></td></tr>
 <p>Provide controls for calling <a class="el" href="class_cam_controller.html" title="Controls the camera orientation and render modes according to ViewMode in viewModeList user input...">CamController</a> functions </p>
 
 <p>Definition at line <a class="el" href="_u_i___camera_controls_8cs_source.html#l00042">42</a> of file <a class="el" href="_u_i___camera_controls_8cs_source.html">UI_CameraControls.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                                            {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">float</span> lw = 200f;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="comment">// camera perspective controls</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        GUILayout.BeginHorizontal(GUILayout.Width(<a class="code" href="class_u_i___toolbar.html">UI_Toolbar</a>.<a class="code" href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">I</a>.<a class="code" href="class_u_i___toolbar.html#a688713a110ec0c4f44ab28512f253ee0">innerWidth</a>));</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        GUILayout.Label(<span class="stringliteral">&quot;Camera Perspective: &quot;</span>, GUILayout.Width(lw));</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">if</span> (GUILayout.Button(<a class="code" href="class_cam_controller.html">CamController</a>.<a class="code" href="class_cam_controller.html#afd7b1bef41da188dc239240ca6655a24">viewMode</a>.ToString())) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <a class="code" href="class_cam_controller.html">CamController</a>.<a class="code" href="class_cam_controller.html#a87896206d418061a74f9e3e2d75d173a">CycleViewMode</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        GUILayout.EndHorizontal();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="comment">// camera render mode controls</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        GUILayout.BeginHorizontal(GUILayout.Width(<a class="code" href="class_u_i___toolbar.html">UI_Toolbar</a>.<a class="code" href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">I</a>.<a class="code" href="class_u_i___toolbar.html#a688713a110ec0c4f44ab28512f253ee0">innerWidth</a>));</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        GUILayout.Label(<span class="stringliteral">&quot;Render Mode: &quot;</span>, GUILayout.Width(lw));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> (GUILayout.Button(<a class="code" href="class_cam_controller.html">CamController</a>.<a class="code" href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">renderMode</a>.ToString())) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <a class="code" href="class_cam_controller.html">CamController</a>.<a class="code" href="class_cam_controller.html#a0e8a2edfa91ed1ff3ba6039d57085010">CycleRenderMode</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        GUILayout.EndHorizontal();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// camera areas of interest</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        GUILayout.BeginHorizontal(GUILayout.Width(<a class="code" href="class_u_i___toolbar.html">UI_Toolbar</a>.<a class="code" href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">I</a>.<a class="code" href="class_u_i___toolbar.html#a688713a110ec0c4f44ab28512f253ee0">innerWidth</a>));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        GUILayout.Label(<span class="stringliteral">&quot;Observing: &quot;</span>, GUILayout.Width(lw));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span> (GUILayout.Button(<a class="code" href="class_cam_controller.html">CamController</a>.<a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#aa559aecd83eef3969c4eae9e3bb5dcd4">name</a>)) {</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            <a class="code" href="class_cam_controller.html">CamController</a>.<a class="code" href="class_cam_controller.html#aff28c0727c456c60a79321904916b252">CycleAreaOfInterest</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        GUILayout.EndHorizontal();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    } </div>
+<div class="ttc" id="class_cam_controller_html_aff28c0727c456c60a79321904916b252"><div class="ttname"><a href="class_cam_controller.html#aff28c0727c456c60a79321904916b252">CamController.CycleAreaOfInterest</a></div><div class="ttdeci">static void CycleAreaOfInterest()</div><div class="ttdoc">Set area to next area of interest (circular index of areas list) </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00209">CamController.cs:209</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a73854bfb4f9bf841857d770048fa10d5"><div class="ttname"><a href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">CamController.area</a></div><div class="ttdeci">static IObservable area</div><div class="ttdoc">Gets the current observable area of interest. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00123">CamController.cs:123</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html_a688713a110ec0c4f44ab28512f253ee0"><div class="ttname"><a href="class_u_i___toolbar.html#a688713a110ec0c4f44ab28512f253ee0">UI_Toolbar.innerWidth</a></div><div class="ttdeci">float innerWidth</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00033">UI_Toolbar.cs:33</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html_a5961aca02254e2e566c4ece1db8de288"><div class="ttname"><a href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">UI_Toolbar.I</a></div><div class="ttdeci">static UI_Toolbar I</div><div class="ttdoc">Singleton pattern. </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00016">UI_Toolbar.cs:16</a></div></div>
+<div class="ttc" id="interface_i_observable_html_aa559aecd83eef3969c4eae9e3bb5dcd4"><div class="ttname"><a href="interface_i_observable.html#aa559aecd83eef3969c4eae9e3bb5dcd4">IObservable.name</a></div><div class="ttdeci">string name</div><div class="ttdoc">Gets the name of the observable object </div><div class="ttdef"><b>Definition:</b> <a href="_i_observable_8cs_source.html#l00012">IObservable.cs:12</a></div></div>
+<div class="ttc" id="class_cam_controller_html_afd7b1bef41da188dc239240ca6655a24"><div class="ttname"><a href="class_cam_controller.html#afd7b1bef41da188dc239240ca6655a24">CamController.viewMode</a></div><div class="ttdeci">static ViewMode viewMode</div><div class="ttdoc">Gets the current ViewMode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00090">CamController.cs:90</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a0e8a2edfa91ed1ff3ba6039d57085010"><div class="ttname"><a href="class_cam_controller.html#a0e8a2edfa91ed1ff3ba6039d57085010">CamController.CycleRenderMode</a></div><div class="ttdeci">static void CycleRenderMode()</div><div class="ttdoc">Set renderMode to next RenderMode (circular index of render modes). </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00216">CamController.cs:216</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html"><div class="ttname"><a href="class_u_i___toolbar.html">UI_Toolbar</a></div><div class="ttdoc">UI Toolbar provides controls for choosing which UI windows to display </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00011">UI_Toolbar.cs:11</a></div></div>
+<div class="ttc" id="class_cam_controller_html"><div class="ttname"><a href="class_cam_controller.html">CamController</a></div><div class="ttdoc">Controls the camera orientation and render modes according to ViewMode in viewModeList user input...</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00012">CamController.cs:12</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a87896206d418061a74f9e3e2d75d173a"><div class="ttname"><a href="class_cam_controller.html#a87896206d418061a74f9e3e2d75d173a">CamController.CycleViewMode</a></div><div class="ttdeci">static void CycleViewMode()</div><div class="ttdoc">Set viewMode to the next ViewMode in viewModeList (circular index of viewModeList). </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00315">CamController.cs:315</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ae95875e11f2eba5a942dede7a9133bdb"><div class="ttname"><a href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">CamController.renderMode</a></div><div class="ttdeci">static RenderMode renderMode</div><div class="ttdoc">Gets or sets the RenderMode in use. RenderMode determines which render layers are drawn...</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00099">CamController.cs:99</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -355,7 +397,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_u_i___camera_controls.html">UI_CameraControls</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -1,4 +1,0 @@
-<map id="Sensor" name="Sensor">
-<area shape="rect" id="node3" href="$d4/d03/class_param_sensor.html" title="Parameter sensor is a 2D FOV sensor model, loosely based on real ultrasonic sensor behaviour ..." alt="" coords="5,155,107,181"/>
-<area shape="rect" id="node4" href="$dd/d24/class_ultrasonic_sensor.html" title="Ultrasonic sensor model. " alt="" coords="131,155,253,181"/>
-</map>

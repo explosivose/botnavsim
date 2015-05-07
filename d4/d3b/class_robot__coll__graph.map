@@ -1,6 +1,0 @@
-<map id="Robot" name="Robot">
-<area shape="rect" id="node5" href="$d7/daf/class_sensor.html" title="Abstract Sensor class for all sensor implementations to inherit from. " alt="" coords="81,81,144,108"/>
-<area shape="rect" id="node3" href="$d2/df0/interface_i_observable.html" title="IObservable" alt="" coords="157,5,247,32"/>
-<area shape="rect" id="node4" href="$df/d51/class_bot_path.html" title="BotPath displays information about a recorded path taken or calculated. " alt="" coords="223,81,293,108"/>
-<area shape="rect" id="node6" href="$dd/dea/interface_i_navigation.html" title="INavigation interface for robot navigation algorithms. This component of the robot is responsible for..." alt="" coords="317,81,401,108"/>
-</map>

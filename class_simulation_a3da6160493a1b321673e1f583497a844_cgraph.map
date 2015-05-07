@@ -1,7 +1,0 @@
-<map id="Simulation.NextTest" name="Simulation.NextTest">
-<area shape="rect" id="node2" href="$class_log.html#a77c4f25d268a02c63a196a6ef336b602" title="Stop logging with Simulation.Stopcode and write log to CSV file. " alt="" coords="638,31,713,57"/>
-<area shape="rect" id="node3" href="$class_simulation.html#ad08bc6a93c41913a29635d4bc4d92370" title="Run the next simulation in batch. " alt="" coords="192,56,367,83"/>
-<area shape="rect" id="node4" href="$class_simulation.html#abef1fed7499d589fd7df2ff02c09710c" title="Stop all simulations. " alt="" coords="415,81,525,108"/>
-<area shape="rect" id="node5" href="$class_simulation_1_1_settings.html#aff34e6835415f14f38b1c6e075fd38c5" title="Randomly select simulation parameters. " alt="" coords="573,81,777,108"/>
-<area shape="rect" id="node6" href="$class_simulation.html#aced98f22a509ee955a4d1d50712c6643" title="Begin simulating. " alt="" coords="615,132,735,159"/>
-</map>

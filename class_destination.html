@@ -124,11 +124,15 @@ $(document).ready(function(){initNavTree('class_destination.html','');});
 Inheritance diagram for Destination:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_destination__inherit__graph.png" border="0" usemap="#_destination_inherit__map" alt="Inheritance graph"/></div>
+<map name="_destination_inherit__map" id="_destination_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for Destination:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_destination__coll__graph.png" border="0" usemap="#_destination_coll__map" alt="Collaboration graph"/></div>
+<map name="_destination_coll__map" id="_destination_coll__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -187,7 +191,11 @@ Private Attributes</h2></td></tr>
 <p>Awake this instance. </p>
 
 <p>Definition at line <a class="el" href="_destination_8cs_source.html#l00029">29</a> of file <a class="el" href="_destination_8cs_source.html">Destination.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                 {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="class_destination.html#a79505a5ccc55272c0c4d77331bbaba5d">_sr</a> = GetComponent&lt;SpriteRenderer&gt;();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="ttc" id="class_destination_html_a79505a5ccc55272c0c4d77331bbaba5d"><div class="ttname"><a href="class_destination.html#a79505a5ccc55272c0c4d77331bbaba5d">Destination._sr</a></div><div class="ttdeci">SpriteRenderer _sr</div><div class="ttdoc">Reference to the sprite renderer component. </div><div class="ttdef"><b>Definition:</b> <a href="_destination_8cs_source.html#l00017">Destination.cs:17</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a8cd134f8d36a56289e4431433789e752"></a>
@@ -206,7 +214,12 @@ Private Attributes</h2></td></tr>
 <p>Chooses the random sprite. </p>
 
 <p>Definition at line <a class="el" href="_destination_8cs_source.html#l00022">22</a> of file <a class="el" href="_destination_8cs_source.html">Destination.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                                     {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="class_destination.html#a79505a5ccc55272c0c4d77331bbaba5d">_sr</a>.sprite = <a class="code" href="class_destination.html#aa09380c91307ed74747b3d893b0c21f7">sprites</a>[Random.Range(0, <a class="code" href="class_destination.html#aa09380c91307ed74747b3d893b0c21f7">sprites</a>.Length-1)];</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
+<div class="ttc" id="class_destination_html_a79505a5ccc55272c0c4d77331bbaba5d"><div class="ttname"><a href="class_destination.html#a79505a5ccc55272c0c4d77331bbaba5d">Destination._sr</a></div><div class="ttdeci">SpriteRenderer _sr</div><div class="ttdoc">Reference to the sprite renderer component. </div><div class="ttdef"><b>Definition:</b> <a href="_destination_8cs_source.html#l00017">Destination.cs:17</a></div></div>
+<div class="ttc" id="class_destination_html_aa09380c91307ed74747b3d893b0c21f7"><div class="ttname"><a href="class_destination.html#aa09380c91307ed74747b3d893b0c21f7">Destination.sprites</a></div><div class="ttdeci">Sprite[] sprites</div><div class="ttdoc">Sprite library (values set in Unity Inspector) </div><div class="ttdef"><b>Definition:</b> <a href="_destination_8cs_source.html#l00012">Destination.cs:12</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ab133257bf922df2e5b43e7f39e5f20dc"></a>
@@ -233,7 +246,12 @@ Private Attributes</h2></td></tr>
 <p>Set the sprite to face the camera. </p>
 
 <p>Definition at line <a class="el" href="_destination_8cs_source.html#l00036">36</a> of file <a class="el" href="_destination_8cs_source.html">Destination.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;                  {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        transform.LookAt(<a class="code" href="class_cam_controller.html">CamController</a>.<a class="code" href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">Instance</a>.transform);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a54d049dd2da8862659d38e9f3ed15224"><div class="ttname"><a href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">CamController.Instance</a></div><div class="ttdeci">static CamController Instance</div><div class="ttdoc">Gets the MonoBehaviour instance. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00083">CamController.cs:83</a></div></div>
+<div class="ttc" id="class_cam_controller_html"><div class="ttname"><a href="class_cam_controller.html">CamController</a></div><div class="ttdoc">Controls the camera orientation and render modes according to ViewMode in viewModeList user input...</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00012">CamController.cs:12</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -286,7 +304,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_destination.html">Destination</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:06:59 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

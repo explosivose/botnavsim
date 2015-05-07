@@ -1,7 +1,0 @@
-<map id="IObservable" name="IObservable">
-<area shape="rect" id="node2" href="$df/d51/class_bot_path.html" title="BotPath displays information about a recorded path taken or calculated. " alt="" coords="5,80,75,107"/>
-<area shape="rect" id="node3" href="$d5/de5/class_cam_controller_1_1_stub_observable.html" title="A blank IObservable implementation (used when the _areas list is empty) " alt="" coords="99,80,298,107"/>
-<area shape="rect" id="node4" href="$dc/d31/class_log_loader.html" title="Log loader state machine. " alt="" coords="323,80,405,107"/>
-<area shape="rect" id="node5" href="$d4/d84/class_robot.html" title="Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro..." alt="" coords="429,80,485,107"/>
-<area shape="rect" id="node6" href="$de/d3e/class_simulation_1_1_observer.html" title="Simulation.Observer" alt="" coords="509,80,648,107"/>
-</map>

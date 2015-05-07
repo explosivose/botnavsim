@@ -1,5 +1,0 @@
-<map id="CamController.ClearViewModeList" name="CamController.ClearViewModeList">
-<area shape="rect" id="node2" href="$dc/d31/class_log_loader.html#ae3ac9739de4354b7465f36327509aba0" title="Exit BotNavSim.state behaviour: remove environment, clear paths " alt="" coords="273,5,382,32"/>
-<area shape="rect" id="node4" href="$dd/d14/class_simulation.html#a1a8c8c189fac54d94b93547ba022cbd9" title="Exit simulation. " alt="" coords="272,56,383,83"/>
-<area shape="rect" id="node3" href="$d3/d25/class_bot_nav_sim.html#a64babfd55696cdd6d46dc635e8cb63a7" title="BotNavSim.ChangeState" alt="" coords="431,31,596,57"/>
-</map>

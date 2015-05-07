@@ -125,11 +125,15 @@ $(document).ready(function(){initNavTree('class_environment_editor.html','');});
 Inheritance diagram for EnvironmentEditor:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_environment_editor__inherit__graph.png" border="0" usemap="#_environment_editor_inherit__map" alt="Inheritance graph"/></div>
+<map name="_environment_editor_inherit__map" id="_environment_editor_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for EnvironmentEditor:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_environment_editor__coll__graph.png" border="0" usemap="#_environment_editor_coll__map" alt="Collaboration graph"/></div>
+<map name="_environment_editor_coll__map" id="_environment_editor_coll__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -185,7 +189,13 @@ Private Member Functions</h2></td></tr>
 </table>
 
 <p>Definition at line <a class="el" href="_environment_editor_8cs_source.html#l00009">9</a> of file <a class="el" href="_environment_editor_8cs_source.html">EnvironmentEditor.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;                      {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;        <a class="code" href="class_environment_editor.html#aed31385be21678709737f6cee21596fca19d3894f53ce79c3f836f26cf8a3be3b">inactive</a>,</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="class_environment_editor.html#aed31385be21678709737f6cee21596fca3f86cc36e1df1334da973da6771b8160">editing</a></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    }</div>
+<div class="ttc" id="class_environment_editor_html_aed31385be21678709737f6cee21596fca3f86cc36e1df1334da973da6771b8160"><div class="ttname"><a href="class_environment_editor.html#aed31385be21678709737f6cee21596fca3f86cc36e1df1334da973da6771b8160">EnvironmentEditor.editing</a></div></div>
+<div class="ttc" id="class_environment_editor_html_aed31385be21678709737f6cee21596fca19d3894f53ce79c3f836f26cf8a3be3b"><div class="ttname"><a href="class_environment_editor.html#aed31385be21678709737f6cee21596fca19d3894f53ce79c3f836f26cf8a3be3b">EnvironmentEditor.inactive</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -214,7 +224,15 @@ Private Member Functions</h2></td></tr>
 <p>Instance Methods </p>
 
 <p>Definition at line <a class="el" href="_environment_editor_8cs_source.html#l00038">38</a> of file <a class="el" href="_environment_editor_8cs_source.html">EnvironmentEditor.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                 {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_environment_editor.html#aced92ba849394e310fb86ec2456c83f6">Instance</a> == null) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            <a class="code" href="class_environment_editor.html#aced92ba849394e310fb86ec2456c83f6">Instance</a> = <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;            Destroy(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="ttc" id="class_environment_editor_html_aced92ba849394e310fb86ec2456c83f6"><div class="ttname"><a href="class_environment_editor.html#aced92ba849394e310fb86ec2456c83f6">EnvironmentEditor.Instance</a></div><div class="ttdeci">static EnvironmentEditor Instance</div><div class="ttdoc">Singleton pattern for MonoBehaviour. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_editor_8cs_source.html#l00017">EnvironmentEditor.cs:17</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a8858de964532d7adeb4e20086782d9f8"></a>
@@ -241,7 +259,12 @@ Private Member Functions</h2></td></tr>
 <p>Exit this state machine. </p>
 
 <p>Definition at line <a class="el" href="_environment_editor_8cs_source.html#l00029">29</a> of file <a class="el" href="_environment_editor_8cs_source.html">EnvironmentEditor.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                              {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <a class="code" href="class_environment_editor.html#a8d5b6faace4d502877055eeca7030587">state</a> = <a class="code" href="class_environment_editor.html#aed31385be21678709737f6cee21596fc">State</a>.inactive;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    }</div>
+<div class="ttc" id="class_environment_editor_html_aed31385be21678709737f6cee21596fc"><div class="ttname"><a href="class_environment_editor.html#aed31385be21678709737f6cee21596fc">EnvironmentEditor.State</a></div><div class="ttdeci">State</div><div class="ttdef"><b>Definition:</b> <a href="_environment_editor_8cs_source.html#l00009">EnvironmentEditor.cs:9</a></div></div>
+<div class="ttc" id="class_environment_editor_html_a8d5b6faace4d502877055eeca7030587"><div class="ttname"><a href="class_environment_editor.html#a8d5b6faace4d502877055eeca7030587">EnvironmentEditor.state</a></div><div class="ttdeci">static State state</div><div class="ttdoc">Gets the RobotEditor.State. </div><div class="ttdef"><b>Definition:</b> <a href="_environment_editor_8cs_source.html#l00022">EnvironmentEditor.cs:22</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -303,7 +326,7 @@ Private Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_environment_editor.html">EnvironmentEditor</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

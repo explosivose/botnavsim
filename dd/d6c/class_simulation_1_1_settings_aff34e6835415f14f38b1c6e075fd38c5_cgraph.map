@@ -1,9 +1,0 @@
-<map id="Simulation.Settings.Randomize" name="Simulation.Settings.Randomize">
-<area shape="rect" id="node2" href="$d8/d92/class_env_loader.html#afc588d0754a0a3ba2e9a8cfa9dbe65b9" title="EnvLoader.RandomEnvironmentName" alt="" coords="257,5,496,32"/>
-<area shape="rect" id="node4" href="$dc/dc7/class_bot_loader.html#a8fccb4b234dbde2f5f9ede7f2954d6fe" title="Returns a random robot name from the robotsFound list. " alt="" coords="276,56,477,83"/>
-<area shape="rect" id="node6" href="$d5/d9e/class_nav_loader.html#a994f84c5e6dfc0a171ae32e8eff92c48" title="Returns a random filename from the pluginsFound list. " alt="" coords="275,107,479,133"/>
-<area shape="rect" id="node3" href="$d8/d92/class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c" title="EnvLoader.SearchForEnvironments" alt="" coords="544,5,768,32"/>
-<area shape="rect" id="node5" href="$dc/dc7/class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11" title="Searchs for robots. " alt="" coords="563,56,749,83"/>
-<area shape="rect" id="node7" href="$d5/d9e/class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8" title="Searchs for plugins in the INavigation directory (Strings.navigationPluginDirectory) Results are stor..." alt="" coords="561,107,751,133"/>
-<area shape="rect" id="node8" href="$d0/dd1/class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4" title="PluginFactory.ListPlugins" alt="" coords="816,107,987,133"/>
-</map>

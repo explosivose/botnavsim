@@ -181,7 +181,18 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_pid_8cs_source.html#l00079">79</a> of file <a class="el" href="_pid_8cs_source.html">Pid.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                                      {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="class_pid_vector3.html#abe3cd81f615ec0ee784f8fb9068a727f">kp</a> = pid.<a class="code" href="class_pid.html#a99180cdf6ffdd4d337f3e8cd3e509e17">kp</a>;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="class_pid_vector3.html#a3f6fa9eb8433c6f5e1b6cd09f5636534">ki</a> = pid.<a class="code" href="class_pid.html#addc744336fba5400847d8143a8ccc44d">ki</a>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_pid_vector3.html#a7bc48380246d8d67e5dd6b7959aab331">kd</a> = pid.<a class="code" href="class_pid.html#ac0cefd4f25313a710279c325af57d200">kd</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="ttc" id="class_pid_html_ac0cefd4f25313a710279c325af57d200"><div class="ttname"><a href="class_pid.html#ac0cefd4f25313a710279c325af57d200">Pid.kd</a></div><div class="ttdeci">float kd</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00010">Pid.cs:10</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_a3f6fa9eb8433c6f5e1b6cd09f5636534"><div class="ttname"><a href="class_pid_vector3.html#a3f6fa9eb8433c6f5e1b6cd09f5636534">PidVector3.ki</a></div><div class="ttdeci">float ki</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00056">Pid.cs:56</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_abe3cd81f615ec0ee784f8fb9068a727f"><div class="ttname"><a href="class_pid_vector3.html#abe3cd81f615ec0ee784f8fb9068a727f">PidVector3.kp</a></div><div class="ttdeci">float kp</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00056">Pid.cs:56</a></div></div>
+<div class="ttc" id="class_pid_html_addc744336fba5400847d8143a8ccc44d"><div class="ttname"><a href="class_pid.html#addc744336fba5400847d8143a8ccc44d">Pid.ki</a></div><div class="ttdeci">float ki</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00010">Pid.cs:10</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_a7bc48380246d8d67e5dd6b7959aab331"><div class="ttname"><a href="class_pid_vector3.html#a7bc48380246d8d67e5dd6b7959aab331">PidVector3.kd</a></div><div class="ttdeci">float kd</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00056">Pid.cs:56</a></div></div>
+<div class="ttc" id="class_pid_html_a99180cdf6ffdd4d337f3e8cd3e509e17"><div class="ttname"><a href="class_pid.html#a99180cdf6ffdd4d337f3e8cd3e509e17">Pid.kp</a></div><div class="ttdeci">float kp</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00010">Pid.cs:10</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a6a58e9f6d1603be9ddf0fdd38c6243b3"></a>
@@ -218,7 +229,21 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_pid_8cs_source.html#l00067">67</a> of file <a class="el" href="_pid_8cs_source.html">Pid.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                                                          {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="class_pid_vector3.html#a8c5fc384cf8c3c1b45e6e4fde0c320d6">error</a> = target - actual;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="class_pid_vector3.html#a47ab608d98c3e5d856cc6ad5f29ec333">integral</a> += <a class="code" href="class_pid_vector3.html#a8c5fc384cf8c3c1b45e6e4fde0c320d6">error</a> * Time.deltaTime;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="class_pid_vector3.html#a5301b7bb86b7d815a9e2cd267344b84c">derivative</a> = (<a class="code" href="class_pid_vector3.html#a8c5fc384cf8c3c1b45e6e4fde0c320d6">error</a> - <a class="code" href="class_pid_vector3.html#a6a89bb64be37735469570786132215c1">previous_error</a>) / Time.deltaTime;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="class_pid_vector3.html#a6a89bb64be37735469570786132215c1">previous_error</a> = <a class="code" href="class_pid_vector3.html#a8c5fc384cf8c3c1b45e6e4fde0c320d6">error</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        return (<a class="code" href="class_pid_vector3.html#abe3cd81f615ec0ee784f8fb9068a727f">kp</a>*<a class="code" href="class_pid_vector3.html#a8c5fc384cf8c3c1b45e6e4fde0c320d6">error</a>) + (<a class="code" href="class_pid_vector3.html#a3f6fa9eb8433c6f5e1b6cd09f5636534">ki</a>*<a class="code" href="class_pid_vector3.html#a47ab608d98c3e5d856cc6ad5f29ec333">integral</a>) + (<a class="code" href="class_pid_vector3.html#a7bc48380246d8d67e5dd6b7959aab331">kd</a>*<a class="code" href="class_pid_vector3.html#a5301b7bb86b7d815a9e2cd267344b84c">derivative</a>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="ttc" id="class_pid_vector3_html_a5301b7bb86b7d815a9e2cd267344b84c"><div class="ttname"><a href="class_pid_vector3.html#a5301b7bb86b7d815a9e2cd267344b84c">PidVector3.derivative</a></div><div class="ttdeci">Vector3 derivative</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00060">Pid.cs:60</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_a47ab608d98c3e5d856cc6ad5f29ec333"><div class="ttname"><a href="class_pid_vector3.html#a47ab608d98c3e5d856cc6ad5f29ec333">PidVector3.integral</a></div><div class="ttdeci">Vector3 integral</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00059">Pid.cs:59</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_a8c5fc384cf8c3c1b45e6e4fde0c320d6"><div class="ttname"><a href="class_pid_vector3.html#a8c5fc384cf8c3c1b45e6e4fde0c320d6">PidVector3.error</a></div><div class="ttdeci">Vector3 error</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00057">Pid.cs:57</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_a6a89bb64be37735469570786132215c1"><div class="ttname"><a href="class_pid_vector3.html#a6a89bb64be37735469570786132215c1">PidVector3.previous_error</a></div><div class="ttdeci">Vector3 previous_error</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00058">Pid.cs:58</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_a3f6fa9eb8433c6f5e1b6cd09f5636534"><div class="ttname"><a href="class_pid_vector3.html#a3f6fa9eb8433c6f5e1b6cd09f5636534">PidVector3.ki</a></div><div class="ttdeci">float ki</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00056">Pid.cs:56</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_abe3cd81f615ec0ee784f8fb9068a727f"><div class="ttname"><a href="class_pid_vector3.html#abe3cd81f615ec0ee784f8fb9068a727f">PidVector3.kp</a></div><div class="ttdeci">float kp</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00056">Pid.cs:56</a></div></div>
+<div class="ttc" id="class_pid_vector3_html_a7bc48380246d8d67e5dd6b7959aab331"><div class="ttname"><a href="class_pid_vector3.html#a7bc48380246d8d67e5dd6b7959aab331">PidVector3.kd</a></div><div class="ttdeci">float kd</div><div class="ttdef"><b>Definition:</b> <a href="_pid_8cs_source.html#l00056">Pid.cs:56</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -378,7 +403,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_pid_vector3.html">PidVector3</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

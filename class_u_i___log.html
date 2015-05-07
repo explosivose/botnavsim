@@ -194,7 +194,11 @@ Private Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_u_i___log_8cs_source.html#l00011">11</a> of file <a class="el" href="_u_i___log_8cs_source.html">UI_Log.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                    {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="class_u_i___log.html#abcbcbd8e33a52e9fc92359e3d0e698dc">hidden</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    }</div>
+<div class="ttc" id="class_u_i___log_html_abcbcbd8e33a52e9fc92359e3d0e698dc"><div class="ttname"><a href="class_u_i___log.html#abcbcbd8e33a52e9fc92359e3d0e698dc">UI_Log.hidden</a></div><div class="ttdeci">bool hidden</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___log_8cs_source.html#l00022">UI_Log.cs:22</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -223,7 +227,62 @@ Private Member Functions</h2></td></tr>
 <p>GUI Window function provides controls for logging data. </p>
 
 <p>Definition at line <a class="el" href="_u_i___log_8cs_source.html#l00045">45</a> of file <a class="el" href="_u_i___log_8cs_source.html">UI_Log.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                         {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">float</span> w = <a class="code" href="class_u_i___toolbar.html">UI_Toolbar</a>.<a class="code" href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">I</a>.<a class="code" href="class_u_i___toolbar.html#a688713a110ec0c4f44ab28512f253ee0">innerWidth</a>/2f;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">// close window button</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        GUILayout.BeginHorizontal();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">if</span> (GUILayout.Button(<span class="stringliteral">&quot;&lt;&quot;</span>, GUILayout.Width(30f))) {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <a class="code" href="class_u_i___log.html#abcbcbd8e33a52e9fc92359e3d0e698dc">hidden</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        }</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        GUILayout.EndHorizontal();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// toggle logging</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        GUILayout.BeginHorizontal();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        GUILayout.Label(<span class="stringliteral">&quot;Log to file: &quot;</span>, GUILayout.Width(w));</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#ab2214921f8d18853905bc57a6d3364e6">loggingEnabled</a> = GUILayout.Toggle(<a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#ab2214921f8d18853905bc57a6d3364e6">loggingEnabled</a>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        GUILayout.EndHorizontal();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        </div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        GUILayout.BeginHorizontal();</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        GUILayout.Label(<span class="stringliteral">&quot;Available Parameters&quot;</span>, GUILayout.Width(w));</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        GUILayout.Label(<span class="stringliteral">&quot;Parameters To Be Logged&quot;</span>, GUILayout.Width(w));</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        GUILayout.EndHorizontal();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keywordtype">int</span> max = Mathf.Max(<a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#a6f0606e80ea21c53300d7b08f49887a7">availableParams</a>.Count, <a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#aacfeb0e2f7ac219f54a43f4fa6ef3324">selectedParams</a>.Count);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; max; i++) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            GUILayout.BeginHorizontal();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="keywordflow">if</span> (i &lt; <a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#a6f0606e80ea21c53300d7b08f49887a7">availableParams</a>.Count) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                <span class="keywordflow">if</span> (GUILayout.Button(<a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#a6f0606e80ea21c53300d7b08f49887a7">availableParams</a>[i].ToString(), GUILayout.Width(w))) {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;                    <a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#a242879169fcd3a93350846e0ecf1a1a5">LogParameter</a>(<a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#a6f0606e80ea21c53300d7b08f49887a7">availableParams</a>[i], <span class="keyword">true</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;                }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            }</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;                GUILayout.Button(<span class="stringliteral">&quot;&quot;</span>, GUILayout.Width(w));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <span class="keywordflow">if</span> (i &lt; <a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#aacfeb0e2f7ac219f54a43f4fa6ef3324">selectedParams</a>.Count) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;                <span class="keywordflow">if</span>(GUILayout.Button(<a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#aacfeb0e2f7ac219f54a43f4fa6ef3324">selectedParams</a>[i].ToString(),GUILayout.Width(w))) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;                    <a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#a242879169fcd3a93350846e0ecf1a1a5">LogParameter</a>(<a class="code" href="class_log.html">Log</a>.<a class="code" href="class_log.html#aacfeb0e2f7ac219f54a43f4fa6ef3324">selectedParams</a>[i], <span class="keyword">false</span>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                GUILayout.Button(<span class="stringliteral">&quot;&quot;</span>, GUILayout.Width(w));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            GUILayout.EndHorizontal();</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="ttc" id="class_u_i___log_html_abcbcbd8e33a52e9fc92359e3d0e698dc"><div class="ttname"><a href="class_u_i___log.html#abcbcbd8e33a52e9fc92359e3d0e698dc">UI_Log.hidden</a></div><div class="ttdeci">bool hidden</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___log_8cs_source.html#l00022">UI_Log.cs:22</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html_a688713a110ec0c4f44ab28512f253ee0"><div class="ttname"><a href="class_u_i___toolbar.html#a688713a110ec0c4f44ab28512f253ee0">UI_Toolbar.innerWidth</a></div><div class="ttdeci">float innerWidth</div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00033">UI_Toolbar.cs:33</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html_a5961aca02254e2e566c4ece1db8de288"><div class="ttname"><a href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">UI_Toolbar.I</a></div><div class="ttdeci">static UI_Toolbar I</div><div class="ttdoc">Singleton pattern. </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00016">UI_Toolbar.cs:16</a></div></div>
+<div class="ttc" id="class_log_html_a242879169fcd3a93350846e0ecf1a1a5"><div class="ttname"><a href="class_log.html#a242879169fcd3a93350846e0ecf1a1a5">Log.LogParameter</a></div><div class="ttdeci">static void LogParameter(Parameters parameter, bool log)</div><div class="ttdoc">Moves parameters between availableParams and selectedParams lists. </div><div class="ttdef"><b>Definition:</b> <a href="_log_8cs_source.html#l00095">Log.cs:95</a></div></div>
+<div class="ttc" id="class_log_html_a6f0606e80ea21c53300d7b08f49887a7"><div class="ttname"><a href="class_log.html#a6f0606e80ea21c53300d7b08f49887a7">Log.availableParams</a></div><div class="ttdeci">static List&lt; Parameters &gt; availableParams</div><div class="ttdoc">List of parameters that haven&#39;t been selected for logging. </div><div class="ttdef"><b>Definition:</b> <a href="_log_8cs_source.html#l00052">Log.cs:52</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html"><div class="ttname"><a href="class_u_i___toolbar.html">UI_Toolbar</a></div><div class="ttdoc">UI Toolbar provides controls for choosing which UI windows to display </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00011">UI_Toolbar.cs:11</a></div></div>
+<div class="ttc" id="class_simulation_html"><div class="ttname"><a href="class_simulation.html">Simulation</a></div><div class="ttdoc">This is a manager class used to overlook the running of a simulation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00008">Simulation.cs:8</a></div></div>
+<div class="ttc" id="class_log_html"><div class="ttname"><a href="class_log.html">Log</a></div><div class="ttdoc">Provides data logging capabilities. Data is logged in CSV format. </div><div class="ttdef"><b>Definition:</b> <a href="_log_8cs_source.html#l00010">Log.cs:10</a></div></div>
+<div class="ttc" id="class_simulation_html_ab2214921f8d18853905bc57a6d3364e6"><div class="ttname"><a href="class_simulation.html#ab2214921f8d18853905bc57a6d3364e6">Simulation.loggingEnabled</a></div><div class="ttdeci">static bool loggingEnabled</div><div class="ttdoc">If true, simulation will be logged to a file via Log class. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00347">Simulation.cs:347</a></div></div>
+<div class="ttc" id="class_log_html_aacfeb0e2f7ac219f54a43f4fa6ef3324"><div class="ttname"><a href="class_log.html#aacfeb0e2f7ac219f54a43f4fa6ef3324">Log.selectedParams</a></div><div class="ttdeci">static List&lt; Parameters &gt; selectedParams</div><div class="ttdoc">List of parameters selected for logging. </div><div class="ttdef"><b>Definition:</b> <a href="_log_8cs_source.html#l00057">Log.cs:57</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -355,7 +414,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_u_i___log.html">UI_Log</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

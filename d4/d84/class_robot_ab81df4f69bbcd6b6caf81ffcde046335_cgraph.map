@@ -1,7 +1,0 @@
-<map id="Robot.Update" name="Robot.Update">
-<area shape="rect" id="node2" href="$df/d51/class_bot_path.html#a29e70d7d903adc0761fb6c03bc2a6ae9" title="Draws the path on screen using Draw class and text labels. " alt="" coords="177,31,307,57"/>
-<area shape="rect" id="node5" href="$dd/dea/interface_i_navigation.html#a27acb501951d73246becb995085816a2" title="Start the search algorithm to find a path from origin to destination. " alt="" coords="155,81,329,108"/>
-<area shape="rect" id="node6" href="$dd/dea/interface_i_navigation.html#affcf964d42b72e86ac5611256de427db" title="Gives a direction to follow the path given your location. " alt="" coords="159,132,325,159"/>
-<area shape="rect" id="node3" href="$d5/dc8/class_draw.html#a1845793e3f2291ecfc426051c961ac3e" title="Draw a line between two positions, start and end, in a specified color. " alt="" coords="381,5,459,32"/>
-<area shape="rect" id="node4" href="$d5/dc8/class_draw.html#a560db59c6ea54f1b066d03acb72a00a1" title="Draw any sized cube at a location in any color. " alt="" coords="377,56,463,83"/>
-</map>

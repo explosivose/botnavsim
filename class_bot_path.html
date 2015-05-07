@@ -206,7 +206,17 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_bot_path_8cs_source.html#l00011">11</a> of file <a class="el" href="_bot_path_8cs_source.html">BotPath.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;                     {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a> = <span class="keyword">new</span> List&lt;Vector3&gt;();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="class_bot_path.html#acda5dfd039062d00d58f9927e203024c">_times</a> = <span class="keyword">new</span> List&lt;float&gt;();</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="class_bot_path.html#a039216be589f0de18f98c77f52b1ed29">color</a> = Color.blue;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="class_bot_path.html#a94449de72cc0088f08ba5aa0eacd7389">visible</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    }</div>
+<div class="ttc" id="class_bot_path_html_a039216be589f0de18f98c77f52b1ed29"><div class="ttname"><a href="class_bot_path.html#a039216be589f0de18f98c77f52b1ed29">BotPath.color</a></div><div class="ttdeci">Color color</div><div class="ttdoc">Gets or sets the color used in drawing the path via Draw. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00070">BotPath.cs:70</a></div></div>
+<div class="ttc" id="class_bot_path_html_acda5dfd039062d00d58f9927e203024c"><div class="ttname"><a href="class_bot_path.html#acda5dfd039062d00d58f9927e203024c">BotPath._times</a></div><div class="ttdeci">List&lt; float &gt; _times</div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00074">BotPath.cs:74</a></div></div>
+<div class="ttc" id="class_bot_path_html_a94449de72cc0088f08ba5aa0eacd7389"><div class="ttname"><a href="class_bot_path.html#a94449de72cc0088f08ba5aa0eacd7389">BotPath.visible</a></div><div class="ttdeci">bool visible</div><div class="ttdoc">Gets or sets a value indicating whether this BotPath is visible. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00022">BotPath.cs:22</a></div></div>
+<div class="ttc" id="class_bot_path_html_afbfca403428aa1a839e8b0581faf5f4f"><div class="ttname"><a href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">BotPath._nodes</a></div><div class="ttdeci">List&lt; Vector3 &gt; _nodes</div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00073">BotPath.cs:73</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -244,7 +254,27 @@ Private Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_bot_path_8cs_source.html#l00081">81</a> of file <a class="el" href="_bot_path_8cs_source.html">BotPath.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;                                                  {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>.Count &gt; 1) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            <a class="code" href="class_bot_path.html#a52adbc02f476a6e23642bd46e0330795">distance</a> += Vector3.Distance(<a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>[<a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>.Count-1], node);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            Bounds b = <span class="keyword">new</span> Bounds(node, Vector3.one);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;            b.Encapsulate(<a class="code" href="class_bot_path.html#a7949a046701245d5f6a73366fec61478">bounds</a>);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <a class="code" href="class_bot_path.html#a7949a046701245d5f6a73366fec61478">bounds</a> = b;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;            <a class="code" href="class_bot_path.html#a7949a046701245d5f6a73366fec61478">bounds</a> = <span class="keyword">new</span> Bounds(node, Vector3.one);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>.Add(node);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_bot_path.html#acda5dfd039062d00d58f9927e203024c">_times</a>.Add(time);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="ttc" id="class_bot_path_html_a7949a046701245d5f6a73366fec61478"><div class="ttname"><a href="class_bot_path.html#a7949a046701245d5f6a73366fec61478">BotPath.bounds</a></div><div class="ttdeci">Bounds bounds</div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00059">BotPath.cs:59</a></div></div>
+<div class="ttc" id="class_bot_path_html_a52adbc02f476a6e23642bd46e0330795"><div class="ttname"><a href="class_bot_path.html#a52adbc02f476a6e23642bd46e0330795">BotPath.distance</a></div><div class="ttdeci">float distance</div><div class="ttdoc">Gets the total distance this BotPath covers. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00039">BotPath.cs:39</a></div></div>
+<div class="ttc" id="class_bot_path_html_acda5dfd039062d00d58f9927e203024c"><div class="ttname"><a href="class_bot_path.html#acda5dfd039062d00d58f9927e203024c">BotPath._times</a></div><div class="ttdeci">List&lt; float &gt; _times</div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00074">BotPath.cs:74</a></div></div>
+<div class="ttc" id="class_bot_path_html_afbfca403428aa1a839e8b0581faf5f4f"><div class="ttname"><a href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">BotPath._nodes</a></div><div class="ttdeci">List&lt; Vector3 &gt; _nodes</div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00073">BotPath.cs:73</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -272,7 +302,40 @@ Here is the caller graph for this function:</div>
 <p>Draws the path on screen using <a class="el" href="class_draw.html" title="Draws stuff, useful for displaying debug data in the simulation. Note that GL implementations require...">Draw</a> class </p>
 
 <p>Definition at line <a class="el" href="_bot_path_8cs_source.html#l00101">101</a> of file <a class="el" href="_bot_path_8cs_source.html">BotPath.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                           {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        Color c = <a class="code" href="class_bot_path.html#a3cf8fc405623752d663b817520ced767">highlight</a> ? Color.white : <a class="code" href="class_bot_path.html#a039216be589f0de18f98c77f52b1ed29">color</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 1; i &lt; <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>.Count-1; i++) {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;            <a class="code" href="class_draw.html">Draw</a>.<a class="code" href="class_draw.html#aaaba92a90b3121f7f78ec2683dc67c5c">Instance</a>.<a class="code" href="class_draw.html#a1845793e3f2291ecfc426051c961ac3e">Line</a>(</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>[i-1],</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>[i],</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                c);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>.Count &gt; 2) {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            <span class="comment">// draw start node</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            <a class="code" href="class_draw.html">Draw</a>.<a class="code" href="class_draw.html#aaaba92a90b3121f7f78ec2683dc67c5c">Instance</a>.<a class="code" href="class_draw.html#a560db59c6ea54f1b066d03acb72a00a1">Cube</a>(</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>[0],</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                Vector3.one * 0.25f,</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                c);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            <span class="comment">// draw end node</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <a class="code" href="class_draw.html">Draw</a>.<a class="code" href="class_draw.html#aaaba92a90b3121f7f78ec2683dc67c5c">Instance</a>.<a class="code" href="class_draw.html#a560db59c6ea54f1b066d03acb72a00a1">Cube</a>(</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;                <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>[<a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>.Count-1],</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                Vector3.one,</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                c);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;            <a class="code" href="class_draw.html">Draw</a>.<a class="code" href="class_draw.html#aaaba92a90b3121f7f78ec2683dc67c5c">Instance</a>.<a class="code" href="class_draw.html#a560db59c6ea54f1b066d03acb72a00a1">Cube</a>(</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>[<a class="code" href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">_nodes</a>.Count-1],</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                Vector3.one * 0.1f,</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                c);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        }</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    }</div>
+<div class="ttc" id="class_draw_html_a560db59c6ea54f1b066d03acb72a00a1"><div class="ttname"><a href="class_draw.html#a560db59c6ea54f1b066d03acb72a00a1">Draw.Cube</a></div><div class="ttdeci">void Cube(Vector3 center, Vector3 size, Color color)</div><div class="ttdoc">Draw any sized cube at a location in any color. </div><div class="ttdef"><b>Definition:</b> <a href="_draw_8cs_source.html#l00101">Draw.cs:101</a></div></div>
+<div class="ttc" id="class_draw_html"><div class="ttname"><a href="class_draw.html">Draw</a></div><div class="ttdoc">Draws stuff, useful for displaying debug data in the simulation. Note that GL implementations require...</div><div class="ttdef"><b>Definition:</b> <a href="_draw_8cs_source.html#l00010">Draw.cs:10</a></div></div>
+<div class="ttc" id="class_bot_path_html_a039216be589f0de18f98c77f52b1ed29"><div class="ttname"><a href="class_bot_path.html#a039216be589f0de18f98c77f52b1ed29">BotPath.color</a></div><div class="ttdeci">Color color</div><div class="ttdoc">Gets or sets the color used in drawing the path via Draw. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00070">BotPath.cs:70</a></div></div>
+<div class="ttc" id="class_bot_path_html_a3cf8fc405623752d663b817520ced767"><div class="ttname"><a href="class_bot_path.html#a3cf8fc405623752d663b817520ced767">BotPath.highlight</a></div><div class="ttdeci">bool highlight</div><div class="ttdoc">Gets or sets a value indicating whether this BotPath is highlighted. When highlighted, the path is drawn in white. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00029">BotPath.cs:29</a></div></div>
+<div class="ttc" id="class_bot_path_html_afbfca403428aa1a839e8b0581faf5f4f"><div class="ttname"><a href="class_bot_path.html#afbfca403428aa1a839e8b0581faf5f4f">BotPath._nodes</a></div><div class="ttdeci">List&lt; Vector3 &gt; _nodes</div><div class="ttdef"><b>Definition:</b> <a href="_bot_path_8cs_source.html#l00073">BotPath.cs:73</a></div></div>
+<div class="ttc" id="class_draw_html_a1845793e3f2291ecfc426051c961ac3e"><div class="ttname"><a href="class_draw.html#a1845793e3f2291ecfc426051c961ac3e">Draw.Line</a></div><div class="ttdeci">void Line(Vector3 start, Vector3 end, Color color, Space relativeTo=Space.World)</div><div class="ttdoc">Draw a line between two positions, start and end, in a specified color. </div><div class="ttdef"><b>Definition:</b> <a href="_draw_8cs_source.html#l00076">Draw.cs:76</a></div></div>
+<div class="ttc" id="class_draw_html_aaaba92a90b3121f7f78ec2683dc67c5c"><div class="ttname"><a href="class_draw.html#aaaba92a90b3121f7f78ec2683dc67c5c">Draw.Instance</a></div><div class="ttdeci">static Draw Instance</div><div class="ttdoc">Reference to the MonoBehaviour instance. </div><div class="ttdef"><b>Definition:</b> <a href="_draw_8cs_source.html#l00039">Draw.cs:39</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -562,7 +625,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_bot_path.html">BotPath</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:06:59 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

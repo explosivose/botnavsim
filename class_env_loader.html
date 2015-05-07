@@ -176,7 +176,19 @@ Static Public Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_env_loader_8cs_source.html#l00029">29</a> of file <a class="el" href="_env_loader_8cs_source.html">EnvLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                                                          {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordflow">foreach</span> (GameObject e <span class="keywordflow">in</span> <a class="code" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">environmentsFound</a>) {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            <span class="keywordflow">if</span> (e.name == name) {</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                Transform env = e.transform.Spawn();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                env.position = e.transform.position;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <span class="keywordflow">return</span> env.gameObject;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            }</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        Debug.LogError(name + <span class="stringliteral">&quot; environment not found.&quot;</span>);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordflow">return</span> null;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
+<div class="ttc" id="class_env_loader_html_afd4a20a414cc1d5a1148f6c75acef2fe"><div class="ttname"><a href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">EnvLoader.environmentsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; environmentsFound</div><div class="ttdef"><b>Definition:</b> <a href="_env_loader_8cs_source.html#l00011">EnvLoader.cs:11</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -213,7 +225,14 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The environment.</dd></dl>
 
 <p>Definition at line <a class="el" href="_env_loader_8cs_source.html#l00045">45</a> of file <a class="el" href="_env_loader_8cs_source.html">EnvLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                                                 {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <a class="code" href="class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c">SearchForEnvironments</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">int</span> index = Random.Range(0, <a class="code" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">environmentsFound</a>.Count);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">environmentsFound</a>[index];</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="ttc" id="class_env_loader_html_afd4a20a414cc1d5a1148f6c75acef2fe"><div class="ttname"><a href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">EnvLoader.environmentsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; environmentsFound</div><div class="ttdef"><b>Definition:</b> <a href="_env_loader_8cs_source.html#l00011">EnvLoader.cs:11</a></div></div>
+<div class="ttc" id="class_env_loader_html_aeadf24edd5e285b9f435c2d659b9266c"><div class="ttname"><a href="class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c">EnvLoader.SearchForEnvironments</a></div><div class="ttdeci">static void SearchForEnvironments()</div><div class="ttdoc">Searchs for environments. </div><div class="ttdef"><b>Definition:</b> <a href="_env_loader_8cs_source.html#l00016">EnvLoader.cs:16</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -250,7 +269,14 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The environment name.</dd></dl>
 
 <p>Definition at line <a class="el" href="_env_loader_8cs_source.html#l00055">55</a> of file <a class="el" href="_env_loader_8cs_source.html">EnvLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                                                 {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c">SearchForEnvironments</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">int</span> index = Random.Range(0, <a class="code" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">environmentsFound</a>.Count);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">environmentsFound</a>[index].name;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="ttc" id="class_env_loader_html_afd4a20a414cc1d5a1148f6c75acef2fe"><div class="ttname"><a href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">EnvLoader.environmentsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; environmentsFound</div><div class="ttdef"><b>Definition:</b> <a href="_env_loader_8cs_source.html#l00011">EnvLoader.cs:11</a></div></div>
+<div class="ttc" id="class_env_loader_html_aeadf24edd5e285b9f435c2d659b9266c"><div class="ttname"><a href="class_env_loader.html#aeadf24edd5e285b9f435c2d659b9266c">EnvLoader.SearchForEnvironments</a></div><div class="ttdeci">static void SearchForEnvironments()</div><div class="ttdoc">Searchs for environments. </div><div class="ttdef"><b>Definition:</b> <a href="_env_loader_8cs_source.html#l00016">EnvLoader.cs:16</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -295,7 +321,15 @@ Here is the caller graph for this function:</div>
 <p>Searchs for environments. </p>
 
 <p>Definition at line <a class="el" href="_env_loader_8cs_source.html#l00016">16</a> of file <a class="el" href="_env_loader_8cs_source.html">EnvLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;                                               {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">environmentsFound</a>.Clear();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        GameObject[] envs = Resources.LoadAll&lt;GameObject&gt;(<span class="stringliteral">&quot;Environments/&quot;</span>);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordflow">foreach</span> (GameObject e <span class="keywordflow">in</span> envs) {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">environmentsFound</a>.Add(e);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="ttc" id="class_env_loader_html_afd4a20a414cc1d5a1148f6c75acef2fe"><div class="ttname"><a href="class_env_loader.html#afd4a20a414cc1d5a1148f6c75acef2fe">EnvLoader.environmentsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; environmentsFound</div><div class="ttdef"><b>Definition:</b> <a href="_env_loader_8cs_source.html#l00011">EnvLoader.cs:11</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -339,7 +373,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_env_loader.html">EnvLoader</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

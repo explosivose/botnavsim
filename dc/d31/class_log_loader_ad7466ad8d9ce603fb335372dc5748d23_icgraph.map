@@ -1,6 +1,0 @@
-<map id="LogLoader.LoadCsvRoutine" name="LogLoader.LoadCsvRoutine">
-<area shape="rect" id="node2" href="$dc/d31/class_log_loader.html#a371b2b5f820022b2af6a28780b07406c" title="Loads the paths stored in a CSV file. Also attempts to load the relevant environment. " alt="" coords="232,5,380,32"/>
-<area shape="rect" id="node3" href="$d6/d9b/class_u_i___log_loader.html#ae845c97ac1a9acaa1885269aeaa76e4c" title="Top window function &#45; browse CSV files. " alt="" coords="428,5,601,32"/>
-<area shape="rect" id="node4" href="$d6/d9b/class_u_i___log_loader.html#a3ff37e9dbca567dc3f0b83171af11d99" title="UI_LogLoader.Legend" alt="" coords="649,5,796,32"/>
-<area shape="rect" id="node5" href="$d6/d9b/class_u_i___log_loader.html#a592f4089c333b908615d3faeb9ffc845" title="UI_LogLoader.UI_LogLoader" alt="" coords="844,5,1028,32"/>
-</map>

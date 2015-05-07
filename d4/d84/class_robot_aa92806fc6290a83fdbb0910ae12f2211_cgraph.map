@@ -1,5 +1,0 @@
-<map id="Robot.Awake" name="Robot.Awake">
-<area shape="rect" id="node2" href="$d4/d84/class_robot.html#a31d57b0b6bb91b1fb5aa976a695a9f6a" title="Robot.StuckDetector" alt="" coords="152,5,295,32"/>
-<area shape="rect" id="node3" href="$d4/d84/class_robot.html#a2e92c2fe9fb76c28897ae6e2b56f7728" title="Robot.RecordPath" alt="" coords="159,56,287,83"/>
-<area shape="rect" id="node4" href="$df/d51/class_bot_path.html#a5acc3f483ba27e6d57fd455c9b1eeb01" title="Adds a node to the path. " alt="" coords="343,56,469,83"/>
-</map>

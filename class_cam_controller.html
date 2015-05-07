@@ -130,6 +130,8 @@ $(document).ready(function(){initNavTree('class_cam_controller.html','');});
 Inheritance diagram for CamController:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_cam_controller__inherit__graph.png" border="0" usemap="#_cam_controller_inherit__map" alt="Inheritance graph"/></div>
+<map name="_cam_controller_inherit__map" id="_cam_controller_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for CamController:</div>
@@ -343,7 +345,17 @@ Static Private Attributes</h2></td></tr>
 </table>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00044">44</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                           {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcfafb1b6e23a3767d2a31ef7899e6dd3f1e">Hybrid</a>,</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcfa960b44c579bc2f6818d2daaf9e4c16f0">Normal</a>,</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcfa18228d09d09ccd207febbe167ce6ba6e">BotData</a></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a4db77974da38f8b8c1b648ad35b94fcfa960b44c579bc2f6818d2daaf9e4c16f0"><div class="ttname"><a href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcfa960b44c579bc2f6818d2daaf9e4c16f0">CamController.Normal</a></div><div class="ttdoc">Display scene geometry only. </div></div>
+<div class="ttc" id="class_cam_controller_html_a4db77974da38f8b8c1b648ad35b94fcfafb1b6e23a3767d2a31ef7899e6dd3f1e"><div class="ttname"><a href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcfafb1b6e23a3767d2a31ef7899e6dd3f1e">CamController.Hybrid</a></div><div class="ttdoc">Display BotData and scene geometry. </div></div>
+<div class="ttc" id="class_cam_controller_html_a4db77974da38f8b8c1b648ad35b94fcfa18228d09d09ccd207febbe167ce6ba6e"><div class="ttname"><a href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcfa18228d09d09ccd207febbe167ce6ba6e">CamController.BotData</a></div><div class="ttdoc">Display the robot data (drawn with Draw class) only. </div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="af1451a7b8ca8dbdda689bb74b75c78b2"></a>
@@ -374,7 +386,23 @@ Static Private Attributes</h2></td></tr>
 </table>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00017">17</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;                         {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a19a443a1595ebad678c13adcf476d165">Birdseye</a>,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a76e1ab7a1df8e64fe867b420645c8a68">Orbit</a>,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2aab4e7334a8f96cc4068b7de43e57b9e4">Mounted</a>,</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        </div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a84a8921b25f505d0d2077aeb5db4bc16">Static</a>,</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a0ab4371a9585e3008c3f5ef24d53613d">FreeMovement</a></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2a76e1ab7a1df8e64fe867b420645c8a68"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a76e1ab7a1df8e64fe867b420645c8a68">CamController.Orbit</a></div><div class="ttdoc">Camera orbit around a point of interest. </div></div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2aab4e7334a8f96cc4068b7de43e57b9e4"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2aab4e7334a8f96cc4068b7de43e57b9e4">CamController.Mounted</a></div><div class="ttdoc">Camera attached to an object i.e. robot. </div></div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2a84a8921b25f505d0d2077aeb5db4bc16"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a84a8921b25f505d0d2077aeb5db4bc16">CamController.Static</a></div><div class="ttdoc">A stationary camera position </div></div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2a0ab4371a9585e3008c3f5ef24d53613d"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a0ab4371a9585e3008c3f5ef24d53613d">CamController.FreeMovement</a></div><div class="ttdoc">Free-flying camera. </div></div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2a19a443a1595ebad678c13adcf476d165"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2a19a443a1595ebad678c13adcf476d165">CamController.Birdseye</a></div><div class="ttdoc">Top-down orthographic view. </div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -400,7 +428,18 @@ Static Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00151">151</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;                           {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <span class="comment">// modes list will always have ViewMode.FreeMovement, and any other modes registered by AddViewMode</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a> = <span class="keyword">new</span> List&lt;ViewMode&gt;();</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Add(<a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.FreeMovement);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a> = <span class="keyword">new</span> List&lt;IObservable&gt;();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        <a class="code" href="class_cam_controller.html#a1165f49035cff0323eb6d9dc8720303b">_stub</a> = <span class="keyword">new</span> StubObservable();</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">CamController.ViewMode</a></div><div class="ttdeci">ViewMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00017">CamController.cs:17</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a811dc9b33b6df50d6ceacdc3b7e0285c"><div class="ttname"><a href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController._areas</a></div><div class="ttdeci">static List&lt; IObservable &gt; _areas</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00140">CamController.cs:140</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a1165f49035cff0323eb6d9dc8720303b"><div class="ttname"><a href="class_cam_controller.html#a1165f49035cff0323eb6d9dc8720303b">CamController._stub</a></div><div class="ttdeci">static IObservable _stub</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00141">CamController.cs:141</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -435,7 +474,11 @@ Static Private Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00163">163</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                                                           {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Contains(area)) <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Add(area);</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a811dc9b33b6df50d6ceacdc3b7e0285c"><div class="ttname"><a href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController._areas</a></div><div class="ttdeci">static List&lt; IObservable &gt; _areas</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00140">CamController.cs:140</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -478,7 +521,11 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00234">234</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                                                  {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Contains(mode)) <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Add(mode);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -512,7 +559,18 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00397">397</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;                 {</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">Instance</a> == null) { </div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            <a class="code" href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">Instance</a> = <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        }</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;        <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;            Destroy(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;        }</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;        <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a> = GetComponent&lt;Camera&gt;();</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_ad9d92b88add8f18d4f7cdb2d11393466"><div class="ttname"><a href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">CamController._camera</a></div><div class="ttdeci">static Camera _camera</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00144">CamController.cs:144</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a54d049dd2da8862659d38e9f3ed15224"><div class="ttname"><a href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">CamController.Instance</a></div><div class="ttdeci">static CamController Instance</div><div class="ttdoc">Gets the MonoBehaviour instance. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00083">CamController.cs:83</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="aadbc0f72c25dacc38d18e2ca8f845c0e"></a>
@@ -539,7 +597,34 @@ Here is the caller graph for this function:</div>
 <p>Place the camera above the area of interest </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00481">481</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;                          {</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;        </div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;        <span class="keywordtype">float</span> size = Mathf.Max(<a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">bounds</a>.size.x/2f, <a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">bounds</a>.size.z/2f);</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;        size += <a class="code" href="class_cam_controller.html#a59f2a63795d8dfe380807271306a79c9">_birdseyeDist</a>;</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;        size = Mathf.Max(size, 0.5f);</div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;        <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.orthographicSize = Mathf.Lerp(<a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.orthographicSize, size, Time.unscaledDeltaTime * 4f);</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;        Vector3 targetPosition = <a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">bounds</a>.center + Vector3.up * 10f;</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;        </div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;        <span class="comment">// smooth move to position</span></div>
+<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;        <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.position = Vector3.Slerp(</div>
+<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.position, </div>
+<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;            targetPosition, </div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;            Time.unscaledDeltaTime * 4f</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;            );</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;        </div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;        <span class="comment">// look down</span></div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;        Quaternion targetRotation = Quaternion.LookRotation(Vector3.down);</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;        <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.rotation = Quaternion.Slerp(</div>
+<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.rotation, </div>
+<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;            targetRotation, </div>
+<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;            Time.unscaledDeltaTime * 8f</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;            );</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a73854bfb4f9bf841857d770048fa10d5"><div class="ttname"><a href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">CamController.area</a></div><div class="ttdeci">static IObservable area</div><div class="ttdoc">Gets the current observable area of interest. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00123">CamController.cs:123</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ad9d92b88add8f18d4f7cdb2d11393466"><div class="ttname"><a href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">CamController._camera</a></div><div class="ttdeci">static Camera _camera</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00144">CamController.cs:144</a></div></div>
+<div class="ttc" id="interface_i_observable_html_a300c65585f5647de539d3a198699e52c"><div class="ttname"><a href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">IObservable.bounds</a></div><div class="ttdeci">Bounds bounds</div><div class="ttdoc">Gets the bounds of the observable object (size and location) </div><div class="ttdef"><b>Definition:</b> <a href="_i_observable_8cs_source.html#l00018">IObservable.cs:18</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a59f2a63795d8dfe380807271306a79c9"><div class="ttname"><a href="class_cam_controller.html#a59f2a63795d8dfe380807271306a79c9">CamController._birdseyeDist</a></div><div class="ttdeci">float _birdseyeDist</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00368">CamController.cs:368</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -575,7 +660,13 @@ Here is the caller graph for this function:</div>
 <p>Clears the area list. </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00179">179</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;                                       {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Clear();</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <a class="code" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">_area</a> = 0;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a811dc9b33b6df50d6ceacdc3b7e0285c"><div class="ttname"><a href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController._areas</a></div><div class="ttdeci">static List&lt; IObservable &gt; _areas</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00140">CamController.cs:140</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a0243e9703c3720126597dc99687dc5fc"><div class="ttname"><a href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">CamController._area</a></div><div class="ttdeci">static int _area</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00143">CamController.cs:143</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -611,7 +702,15 @@ Here is the caller graph for this function:</div>
 <p>Clears the view mode list. </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00252">252</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                                           {</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Clear();</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Add(<a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Static);</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <a class="code" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">SetViewMode</a>(0);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">CamController.ViewMode</a></div><div class="ttdeci">ViewMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00017">CamController.cs:17</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a9403b32ba88fef5e04dbee1402f92f84"><div class="ttname"><a href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController.SetViewMode</a></div><div class="ttdeci">static void SetViewMode(ViewMode mode)</div><div class="ttdoc">Sets the view mode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00262">CamController.cs:262</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -656,7 +755,12 @@ Here is the caller graph for this function:</div>
 <p>Set area to next area of interest (circular index of areas list) </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00209">209</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                                             {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        <a class="code" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">_area</a> = (++<a class="code" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">_area</a>) % <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Count;</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a811dc9b33b6df50d6ceacdc3b7e0285c"><div class="ttname"><a href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController._areas</a></div><div class="ttdeci">static List&lt; IObservable &gt; _areas</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00140">CamController.cs:140</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a0243e9703c3720126597dc99687dc5fc"><div class="ttname"><a href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">CamController._area</a></div><div class="ttdeci">static int _area</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00143">CamController.cs:143</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -692,7 +796,14 @@ Here is the caller graph for this function:</div>
 <p>Set renderMode to next RenderMode (circular index of render modes). </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00216">216</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                                         {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordtype">int</span> length = <a class="code" href="namespace_system.html">System</a>.Enum.GetValues(typeof(<a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">RenderMode</a>)).Length;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <a class="code" href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">renderMode</a> = (<a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">RenderMode</a>)((<span class="keywordtype">int</span>)(++<a class="code" href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">renderMode</a>) % length);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a4db77974da38f8b8c1b648ad35b94fcf"><div class="ttname"><a href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">CamController.RenderMode</a></div><div class="ttdeci">RenderMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00044">CamController.cs:44</a></div></div>
+<div class="ttc" id="namespace_system_html"><div class="ttname"><a href="namespace_system.html">System</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ae95875e11f2eba5a942dede7a9133bdb"><div class="ttname"><a href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">CamController.renderMode</a></div><div class="ttdeci">static RenderMode renderMode</div><div class="ttdoc">Gets or sets the RenderMode in use. RenderMode determines which render layers are drawn...</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00099">CamController.cs:99</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -728,7 +839,13 @@ Here is the caller graph for this function:</div>
 <p>Set viewMode to the next ViewMode in viewModeList (circular index of viewModeList). </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00315">315</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;                                       {</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;        <a class="code" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">SetViewMode</a>((++<a class="code" href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">_mode</a>) % <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Count);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a8de046fb2763ec3f446c9f93f9c62d03"><div class="ttname"><a href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">CamController._mode</a></div><div class="ttdeci">static int _mode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00142">CamController.cs:142</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a9403b32ba88fef5e04dbee1402f92f84"><div class="ttname"><a href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController.SetViewMode</a></div><div class="ttdeci">static void SetViewMode(ViewMode mode)</div><div class="ttdoc">Sets the view mode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00262">CamController.cs:262</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -773,7 +890,24 @@ Here is the caller graph for this function:</div>
 <p>Camera position and rotation controlled by axis keys and mouse axis </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00508">508</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;                              {</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;        <span class="comment">// rotate accoring to right click drag calculated in Update()</span></div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;        transform.rotation = Quaternion.LookRotation(<a class="code" href="class_cam_controller.html#ac85aa9a4cb61e4cdcf071036d64e198f">_1stPersonDir</a>);</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;        <span class="comment">// boost movement speed if LeftShift is held down</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;        <span class="keywordtype">float</span> b = Input.GetKey(KeyCode.LeftShift) ? <a class="code" href="class_cam_controller.html#a5f58c3572e2ae72a7c4c2e252fa17881">freeMoveSpeedShiftMult</a> : 1f;</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;        <span class="comment">// grab axis input</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;        <span class="keywordtype">float</span> y = Input.GetAxisRaw(<span class="stringliteral">&quot;Z&quot;</span>) * <a class="code" href="class_cam_controller.html#a537d5ef15b92a4fedf0125bab75575fc">freeMoveSpeed</a> * b * Time.unscaledDeltaTime;</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;        <span class="keywordtype">float</span> x = Input.GetAxisRaw(<span class="stringliteral">&quot;X&quot;</span>) * <a class="code" href="class_cam_controller.html#a537d5ef15b92a4fedf0125bab75575fc">freeMoveSpeed</a> * b * Time.unscaledDeltaTime;</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;        <span class="comment">// modify position according to orientation (move forward/back, strafe left/right)</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;        Vector3 pos = transform.position;</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;        pos += transform.forward * y;</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;        pos += transform.right * x;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;        transform.position = pos;</div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_ac85aa9a4cb61e4cdcf071036d64e198f"><div class="ttname"><a href="class_cam_controller.html#ac85aa9a4cb61e4cdcf071036d64e198f">CamController._1stPersonDir</a></div><div class="ttdeci">Vector3 _1stPersonDir</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00371">CamController.cs:371</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a537d5ef15b92a4fedf0125bab75575fc"><div class="ttname"><a href="class_cam_controller.html#a537d5ef15b92a4fedf0125bab75575fc">CamController.freeMoveSpeed</a></div><div class="ttdeci">float freeMoveSpeed</div><div class="ttdoc">Camera translation speed when in free movement mode </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00339">CamController.cs:339</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a5f58c3572e2ae72a7c4c2e252fa17881"><div class="ttname"><a href="class_cam_controller.html#a5f58c3572e2ae72a7c4c2e252fa17881">CamController.freeMoveSpeedShiftMult</a></div><div class="ttdeci">float freeMoveSpeedShiftMult</div><div class="ttdoc">Camera translation speed multiplier when the SHIFT key is used </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00344">CamController.cs:344</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -801,7 +935,17 @@ Here is the caller graph for this function:</div>
 <p>Raises the test end event. (handles camera exhibitionMode behaviour) </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00390">390</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;                            {</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#a66c9a669b2aa79149d5e31a1594bb3e4">exhibitionMode</a>) {</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;            <a class="code" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">SetViewMode</a>(<a class="code" href="class_cam_controller.html#a00de5992eed1b4b0abd7188dfa04332c">viewModeList</a>.IndexOf(<a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Birdseye));</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        }</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">CamController.ViewMode</a></div><div class="ttdeci">ViewMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00017">CamController.cs:17</a></div></div>
+<div class="ttc" id="class_simulation_html_a66c9a669b2aa79149d5e31a1594bb3e4"><div class="ttname"><a href="class_simulation.html#a66c9a669b2aa79149d5e31a1594bb3e4">Simulation.exhibitionMode</a></div><div class="ttdeci">static bool exhibitionMode</div><div class="ttdoc">Exhibition mode will run continually and randomly choose camera perspectives and simulation settings...</div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00236">Simulation.cs:236</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a9403b32ba88fef5e04dbee1402f92f84"><div class="ttname"><a href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController.SetViewMode</a></div><div class="ttdeci">static void SetViewMode(ViewMode mode)</div><div class="ttdoc">Sets the view mode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00262">CamController.cs:262</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a00de5992eed1b4b0abd7188dfa04332c"><div class="ttname"><a href="class_cam_controller.html#a00de5992eed1b4b0abd7188dfa04332c">CamController.viewModeList</a></div><div class="ttdeci">static ReadOnlyCollection&lt; ViewMode &gt; viewModeList</div><div class="ttdoc">List of all ViewMode in effect. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00135">CamController.cs:135</a></div></div>
+<div class="ttc" id="class_simulation_html"><div class="ttname"><a href="class_simulation.html">Simulation</a></div><div class="ttdoc">This is a manager class used to overlook the running of a simulation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00008">Simulation.cs:8</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -838,7 +982,19 @@ Here is the caller graph for this function:</div>
 <p>Raises the test start event. (handles camera exhibitionMode behaviour) </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00379">379</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                              {</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#a66c9a669b2aa79149d5e31a1594bb3e4">exhibitionMode</a>) {</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;            <a class="code" href="class_cam_controller.html#a4dccd5f2c8ea2e9e48f10d7cfdd93beb">RandomViewMode</a>();</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;            <a class="code" href="class_cam_controller.html#a71315cf5772277c346eb64ec08cdae0a">RandomRenderMode</a>();</div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;            <a class="code" href="class_cam_controller.html#aff28c0727c456c60a79321904916b252">CycleAreaOfInterest</a>();</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;        }</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_aff28c0727c456c60a79321904916b252"><div class="ttname"><a href="class_cam_controller.html#aff28c0727c456c60a79321904916b252">CamController.CycleAreaOfInterest</a></div><div class="ttdeci">static void CycleAreaOfInterest()</div><div class="ttdoc">Set area to next area of interest (circular index of areas list) </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00209">CamController.cs:209</a></div></div>
+<div class="ttc" id="class_simulation_html_a66c9a669b2aa79149d5e31a1594bb3e4"><div class="ttname"><a href="class_simulation.html#a66c9a669b2aa79149d5e31a1594bb3e4">Simulation.exhibitionMode</a></div><div class="ttdeci">static bool exhibitionMode</div><div class="ttdoc">Exhibition mode will run continually and randomly choose camera perspectives and simulation settings...</div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00236">Simulation.cs:236</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a4dccd5f2c8ea2e9e48f10d7cfdd93beb"><div class="ttname"><a href="class_cam_controller.html#a4dccd5f2c8ea2e9e48f10d7cfdd93beb">CamController.RandomViewMode</a></div><div class="ttdeci">static void RandomViewMode()</div><div class="ttdoc">Set viewMode to random ViewMode in viewModeList. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00322">CamController.cs:322</a></div></div>
+<div class="ttc" id="class_simulation_html"><div class="ttname"><a href="class_simulation.html">Simulation</a></div><div class="ttdoc">This is a manager class used to overlook the running of a simulation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00008">Simulation.cs:8</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a71315cf5772277c346eb64ec08cdae0a"><div class="ttname"><a href="class_cam_controller.html#a71315cf5772277c346eb64ec08cdae0a">CamController.RandomRenderMode</a></div><div class="ttdeci">static void RandomRenderMode()</div><div class="ttdoc">Set renderMode to random RenderMode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00224">CamController.cs:224</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -883,7 +1039,43 @@ Here is the caller graph for this function:</div>
 <p>Camera orbit around the area of interest center </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00526">526</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;                       {</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        </div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        Vector3 targetPosition = <a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">bounds</a>.center;</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        <span class="comment">// raycast from robot in a direction to avoid placing camera inside other objects</span></div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;        Ray ray = <span class="keyword">new</span> Ray(<a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">bounds</a>.center, <a class="code" href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">_3rdPersonDir</a>);</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        RaycastHit hit;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        <span class="comment">// if raycast hit, put camera on hit object</span></div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;        <span class="comment">//if (Physics.SphereCast(ray, 0.5f, out hit, _3rdPersonDist, maskCameraCollision)) {</span></div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;        <span class="comment">//  targetPosition = hit.point + hit.normal;</span></div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;        <span class="comment">//  Debug.DrawLine(ray.origin, hit.point, Color.red);</span></div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        <span class="comment">//}</span></div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        <span class="comment">// else place camera at _3rdPersonDist away from robot</span></div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;        <span class="comment">//else {</span></div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;            targetPosition = <a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">bounds</a>.center + <a class="code" href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">_3rdPersonDir</a> * <a class="code" href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">_3rdPersonDist</a>;</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        <span class="comment">//}</span></div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;        </div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;        <span class="comment">// smooth move to position</span></div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;        <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.position = Vector3.Slerp(</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.position, </div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;            targetPosition, </div>
+<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;            Time.unscaledDeltaTime * 4f</div>
+<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;            );</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;        </div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;        <span class="comment">// look at robot</span></div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;        Quaternion targetRotation = Quaternion.LookRotation(<a class="code" href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">area</a>.<a class="code" href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">bounds</a>.center - targetPosition);</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;        <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.rotation = Quaternion.Slerp(</div>
+<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.rotation, </div>
+<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;            targetRotation, </div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;            Time.unscaledDeltaTime * 8f</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;            );</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a73854bfb4f9bf841857d770048fa10d5"><div class="ttname"><a href="class_cam_controller.html#a73854bfb4f9bf841857d770048fa10d5">CamController.area</a></div><div class="ttdeci">static IObservable area</div><div class="ttdoc">Gets the current observable area of interest. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00123">CamController.cs:123</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ad9d92b88add8f18d4f7cdb2d11393466"><div class="ttname"><a href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">CamController._camera</a></div><div class="ttdeci">static Camera _camera</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00144">CamController.cs:144</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a07d5dc21106a343565185eb650074173"><div class="ttname"><a href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">CamController._3rdPersonDir</a></div><div class="ttdeci">Vector3 _3rdPersonDir</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00370">CamController.cs:370</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a2b3896ff31212949a88b8e6e98650fb2"><div class="ttname"><a href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">CamController._3rdPersonDist</a></div><div class="ttdeci">float _3rdPersonDist</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00369">CamController.cs:369</a></div></div>
+<div class="ttc" id="interface_i_observable_html_a300c65585f5647de539d3a198699e52c"><div class="ttname"><a href="interface_i_observable.html#a300c65585f5647de539d3a198699e52c">IObservable.bounds</a></div><div class="ttdeci">Bounds bounds</div><div class="ttdoc">Gets the bounds of the observable object (size and location) </div><div class="ttdef"><b>Definition:</b> <a href="_i_observable_8cs_source.html#l00018">IObservable.cs:18</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -919,7 +1111,14 @@ Here is the caller graph for this function:</div>
 <p>Set renderMode to random RenderMode. </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00224">224</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;                                          {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <a class="code" href="namespace_system.html">System</a>.Array values = <a class="code" href="namespace_system.html">System</a>.Enum.GetValues(typeof(<a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">RenderMode</a>));</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <a class="code" href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">renderMode</a> = (<a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">RenderMode</a>)values.GetValue(Random.Range(0,values.Length-1));</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a4db77974da38f8b8c1b648ad35b94fcf"><div class="ttname"><a href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">CamController.RenderMode</a></div><div class="ttdeci">RenderMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00044">CamController.cs:44</a></div></div>
+<div class="ttc" id="namespace_system_html"><div class="ttname"><a href="namespace_system.html">System</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ae95875e11f2eba5a942dede7a9133bdb"><div class="ttname"><a href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">CamController.renderMode</a></div><div class="ttdeci">static RenderMode renderMode</div><div class="ttdoc">Gets or sets the RenderMode in use. RenderMode determines which render layers are drawn...</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00099">CamController.cs:99</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -955,7 +1154,12 @@ Here is the caller graph for this function:</div>
 <p>Set viewMode to random ViewMode in viewModeList. </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00322">322</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;                                        {</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        <a class="code" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">SetViewMode</a>(Random.Range(0, <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Count-1));</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a9403b32ba88fef5e04dbee1402f92f84"><div class="ttname"><a href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController.SetViewMode</a></div><div class="ttdeci">static void SetViewMode(ViewMode mode)</div><div class="ttdoc">Sets the view mode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00262">CamController.cs:262</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1007,7 +1211,13 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00171">171</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                                                              {</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Count &gt; 1) <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Remove(area);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">_area</a> &gt;= <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Count) <a class="code" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">_area</a> = 0;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a811dc9b33b6df50d6ceacdc3b7e0285c"><div class="ttname"><a href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController._areas</a></div><div class="ttdeci">static List&lt; IObservable &gt; _areas</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00140">CamController.cs:140</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a0243e9703c3720126597dc99687dc5fc"><div class="ttname"><a href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">CamController._area</a></div><div class="ttdeci">static int _area</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00143">CamController.cs:143</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1050,7 +1260,17 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00242">242</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                                                     {</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        <span class="keywordflow">if</span> (mode != <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.FreeMovement) <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Remove(mode);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">_mode</a> &gt; <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Count) {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <a class="code" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">SetViewMode</a>(0);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">CamController.ViewMode</a></div><div class="ttdeci">ViewMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00017">CamController.cs:17</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a8de046fb2763ec3f446c9f93f9c62d03"><div class="ttname"><a href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">CamController._mode</a></div><div class="ttdeci">static int _mode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00142">CamController.cs:142</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a9403b32ba88fef5e04dbee1402f92f84"><div class="ttname"><a href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController.SetViewMode</a></div><div class="ttdeci">static void SetViewMode(ViewMode mode)</div><div class="ttdoc">Sets the view mode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00262">CamController.cs:262</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1086,7 +1306,19 @@ Here is the call graph for this function:</div>
 <p>Call <a class="el" href="interface_i_navigation.html#a32349e2ef77d61a31c53975a68efbf30">INavigation.DrawDebugInfo</a> as appropriate (Camera culling mask is handled in renderMode.set) </p>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00472">472</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;                            {</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#a69e1c97b9c85cf42e06cb0012884e5f1">isRunning</a>)</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">renderMode</a> != <a class="code" href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">RenderMode</a>.Normal) </div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;                <a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#a835d6e2a07339f1d5a71d54524c16e2c">robot</a>.<a class="code" href="class_robot.html#afbccea715a85421212ceb044d738c9b6">navigation</a>.<a class="code" href="interface_i_navigation.html#a32349e2ef77d61a31c53975a68efbf30">DrawDebugInfo</a>();</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a4db77974da38f8b8c1b648ad35b94fcf"><div class="ttname"><a href="class_cam_controller.html#a4db77974da38f8b8c1b648ad35b94fcf">CamController.RenderMode</a></div><div class="ttdeci">RenderMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00044">CamController.cs:44</a></div></div>
+<div class="ttc" id="interface_i_navigation_html_a32349e2ef77d61a31c53975a68efbf30"><div class="ttname"><a href="interface_i_navigation.html#a32349e2ef77d61a31c53975a68efbf30">INavigation.DrawDebugInfo</a></div><div class="ttdeci">void DrawDebugInfo()</div></div>
+<div class="ttc" id="class_simulation_html_a835d6e2a07339f1d5a71d54524c16e2c"><div class="ttname"><a href="class_simulation.html#a835d6e2a07339f1d5a71d54524c16e2c">Simulation.robot</a></div><div class="ttdeci">static Robot robot</div><div class="ttdoc">Gets reference to the robot in the current simulation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00273">Simulation.cs:273</a></div></div>
+<div class="ttc" id="class_simulation_html_a69e1c97b9c85cf42e06cb0012884e5f1"><div class="ttname"><a href="class_simulation.html#a69e1c97b9c85cf42e06cb0012884e5f1">Simulation.isRunning</a></div><div class="ttdeci">static bool isRunning</div><div class="ttdoc">Gets a value indicating whether this Simulation is running. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00325">Simulation.cs:325</a></div></div>
+<div class="ttc" id="class_robot_html_afbccea715a85421212ceb044d738c9b6"><div class="ttname"><a href="class_robot.html#afbccea715a85421212ceb044d738c9b6">Robot.navigation</a></div><div class="ttdeci">INavigation navigation</div><div class="ttdoc">Interface to the navigation assembly. </div><div class="ttdef"><b>Definition:</b> <a href="_robot_8cs_source.html#l00067">Robot.cs:67</a></div></div>
+<div class="ttc" id="class_simulation_html"><div class="ttname"><a href="class_simulation.html">Simulation</a></div><div class="ttdoc">This is a manager class used to overlook the running of a simulation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00008">Simulation.cs:8</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ae95875e11f2eba5a942dede7a9133bdb"><div class="ttname"><a href="class_cam_controller.html#ae95875e11f2eba5a942dede7a9133bdb">CamController.renderMode</a></div><div class="ttdeci">static RenderMode renderMode</div><div class="ttdoc">Gets or sets the RenderMode in use. RenderMode determines which render layers are drawn...</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00099">CamController.cs:99</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1138,7 +1370,17 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00188">188</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;                                                    {</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="comment">// ignore out of range indexes</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordflow">if</span> (index &lt; 0 || index &gt;= <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.Count) {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            Debug.LogWarning(<span class="stringliteral">&quot;SetAreaOfInterest index param out of range. Ignoring.&quot;</span>);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        }</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <a class="code" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">_area</a> = index;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a811dc9b33b6df50d6ceacdc3b7e0285c"><div class="ttname"><a href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController._areas</a></div><div class="ttdeci">static List&lt; IObservable &gt; _areas</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00140">CamController.cs:140</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a0243e9703c3720126597dc99687dc5fc"><div class="ttname"><a href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">CamController._area</a></div><div class="ttdeci">static int _area</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00143">CamController.cs:143</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1181,7 +1423,13 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00201">201</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;                                                          {</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="keywordtype">int</span> index = <a class="code" href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">_areas</a>.IndexOf(obj);</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordflow">if</span> (index &gt;= 0) <a class="code" href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">_area</a> = index;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a811dc9b33b6df50d6ceacdc3b7e0285c"><div class="ttname"><a href="class_cam_controller.html#a811dc9b33b6df50d6ceacdc3b7e0285c">CamController._areas</a></div><div class="ttdeci">static List&lt; IObservable &gt; _areas</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00140">CamController.cs:140</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a0243e9703c3720126597dc99687dc5fc"><div class="ttname"><a href="class_cam_controller.html#a0243e9703c3720126597dc99687dc5fc">CamController._area</a></div><div class="ttdeci">static int _area</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00143">CamController.cs:143</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a9403b32ba88fef5e04dbee1402f92f84"></a>
@@ -1215,7 +1463,13 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00262">262</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;                                                  {</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordtype">int</span> index = <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.IndexOf(mode);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <a class="code" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">SetViewMode</a>(index);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a9403b32ba88fef5e04dbee1402f92f84"><div class="ttname"><a href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController.SetViewMode</a></div><div class="ttdeci">static void SetViewMode(ViewMode mode)</div><div class="ttdoc">Sets the view mode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00262">CamController.cs:262</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -1258,7 +1512,57 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00271">271</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                                              {</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;        <span class="comment">// ignore out of range indexes</span></div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        <span class="keywordflow">if</span> (index &lt; 0 || index &gt;= <a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>.Count) {</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;            Debug.LogWarning(<span class="stringliteral">&quot;SetViewMode index param out of range. Ignoring.&quot;</span>);</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <a class="code" href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">_mode</a> = index;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.parent = null;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="comment">// set camera properties for new ViewMode</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="keywordflow">switch</span> (<a class="code" href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">_modes</a>[<a class="code" href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">_mode</a>]) {</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Mounted:</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.orthographic = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.fieldOfView = 90f;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.parent = <a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#a835d6e2a07339f1d5a71d54524c16e2c">robot</a>.<a class="code" href="class_robot.html#a9e75149591318c8001fb429c6e036fbd">cameraMount</a>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.localPosition = Vector3.zero;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.localRotation = Quaternion.identity;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Orbit:</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.FreeMovement:</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.orthographic = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.fieldOfView = 60f;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Static:</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.orthographic = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.fieldOfView = 60f;</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;            Bounds b = <a class="code" href="class_simulation.html">Simulation</a>.<a class="code" href="class_simulation.html#a37caf1e823ec85202677212a905ea21c">Instance</a>.<a class="code" href="class_simulation.html#a7518eb936a84fc617a4eadd925014d9c">bounds</a>;</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;            Vector3 position = b.max;</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;            position.y *= 2f;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;            position.x = Random.value &lt; 0.5f ? b.min.x : b.max.x;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;            position.z = Random.value &lt; 0.5f ? b.min.z : b.max.z;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;            <a class="code" href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">Instance</a>.transform.position = position;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;            <a class="code" href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">Instance</a>.transform.rotation = Quaternion.LookRotation(b.center - <a class="code" href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">Instance</a>.transform.position);</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Birdseye:</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.camera.orthographic = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;            <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.parent = null;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        }</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">CamController.ViewMode</a></div><div class="ttdeci">ViewMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00017">CamController.cs:17</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ad9d92b88add8f18d4f7cdb2d11393466"><div class="ttname"><a href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">CamController._camera</a></div><div class="ttdeci">static Camera _camera</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00144">CamController.cs:144</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a8de046fb2763ec3f446c9f93f9c62d03"><div class="ttname"><a href="class_cam_controller.html#a8de046fb2763ec3f446c9f93f9c62d03">CamController._mode</a></div><div class="ttdeci">static int _mode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00142">CamController.cs:142</a></div></div>
+<div class="ttc" id="class_simulation_html_a37caf1e823ec85202677212a905ea21c"><div class="ttname"><a href="class_simulation.html#a37caf1e823ec85202677212a905ea21c">Simulation.Instance</a></div><div class="ttdeci">static Simulation Instance</div><div class="ttdoc">Reference to the MonoBebehaviour instance </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00222">Simulation.cs:222</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a54d049dd2da8862659d38e9f3ed15224"><div class="ttname"><a href="class_cam_controller.html#a54d049dd2da8862659d38e9f3ed15224">CamController.Instance</a></div><div class="ttdeci">static CamController Instance</div><div class="ttdoc">Gets the MonoBehaviour instance. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00083">CamController.cs:83</a></div></div>
+<div class="ttc" id="class_simulation_html_a835d6e2a07339f1d5a71d54524c16e2c"><div class="ttname"><a href="class_simulation.html#a835d6e2a07339f1d5a71d54524c16e2c">Simulation.robot</a></div><div class="ttdeci">static Robot robot</div><div class="ttdoc">Gets reference to the robot in the current simulation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00273">Simulation.cs:273</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a1172dbb0490b3bf5fe173728f0401214"><div class="ttname"><a href="class_cam_controller.html#a1172dbb0490b3bf5fe173728f0401214">CamController._modes</a></div><div class="ttdeci">static List&lt; ViewMode &gt; _modes</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00139">CamController.cs:139</a></div></div>
+<div class="ttc" id="class_simulation_html_a7518eb936a84fc617a4eadd925014d9c"><div class="ttname"><a href="class_simulation.html#a7518eb936a84fc617a4eadd925014d9c">Simulation.bounds</a></div><div class="ttdeci">Bounds bounds</div><div class="ttdoc">The simulation bounds described as a cube. This is the search space indicated to INavigation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00637">Simulation.cs:637</a></div></div>
+<div class="ttc" id="class_robot_html_a9e75149591318c8001fb429c6e036fbd"><div class="ttname"><a href="class_robot.html#a9e75149591318c8001fb429c6e036fbd">Robot.cameraMount</a></div><div class="ttdeci">Transform cameraMount</div><div class="ttdoc">The first-person perspective camera position. </div><div class="ttdef"><b>Definition:</b> <a href="_robot_8cs_source.html#l00114">Robot.cs:114</a></div></div>
+<div class="ttc" id="class_simulation_html"><div class="ttname"><a href="class_simulation.html">Simulation</a></div><div class="ttdoc">This is a manager class used to overlook the running of a simulation. </div><div class="ttdef"><b>Definition:</b> <a href="_simulation_8cs_source.html#l00008">Simulation.cs:8</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="a6932c662c22e96927847d85ca9092d08"></a>
@@ -1283,7 +1587,11 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00408">408</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;                 {</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;        <a class="code" href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">SetViewMode</a>(0);</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_a9403b32ba88fef5e04dbee1402f92f84"><div class="ttname"><a href="class_cam_controller.html#a9403b32ba88fef5e04dbee1402f92f84">CamController.SetViewMode</a></div><div class="ttdeci">static void SetViewMode(ViewMode mode)</div><div class="ttdoc">Sets the view mode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00262">CamController.cs:262</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1317,7 +1625,79 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_cam_controller_8cs_source.html#l00413">413</a> of file <a class="el" href="_cam_controller_8cs_source.html">CamController.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;                  {</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        <span class="comment">// set camera size on screen</span></div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        <span class="keywordtype">float</span> w = <a class="code" href="class_u_i___toolbar.html">UI_Toolbar</a>.<a class="code" href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">I</a>.<a class="code" href="class_u_i___toolbar.html#a578a411d042e8be28d5be7cda52c48ca">width</a>/Screen.width;</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        camera.rect = <span class="keyword">new</span> Rect(0, 0, 1f-w, 1f);</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        </div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;        <span class="comment">// ignore input unless mouse position is inside camera screen area</span></div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;        <span class="keywordflow">if</span> ( camera.pixelRect.Contains(Input.mousePosition) ) {</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;            <span class="keywordflow">if</span> (Input.GetKeyDown(KeyCode.C)) <a class="code" href="class_cam_controller.html#a87896206d418061a74f9e3e2d75d173a">CycleViewMode</a>();</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            <span class="keywordflow">if</span> (Input.GetKeyDown(KeyCode.R)) <a class="code" href="class_cam_controller.html#a0e8a2edfa91ed1ff3ba6039d57085010">CycleRenderMode</a>();</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;            <span class="keywordflow">if</span> (Input.GetKeyDown(KeyCode.Space)) <a class="code" href="class_cam_controller.html#aff28c0727c456c60a79321904916b252">CycleAreaOfInterest</a>();</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            <span class="comment">// scrollwheel zoom</span></div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <a class="code" href="class_cam_controller.html#a59f2a63795d8dfe380807271306a79c9">_birdseyeDist</a> -= Input.GetAxis(<span class="stringliteral">&quot;Mouse ScrollWheel&quot;</span>) * 4f;</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;            <span class="comment">// adjust third person distance with scroll wheel input</span></div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;            <a class="code" href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">_3rdPersonDist</a> -= Input.GetAxis(<span class="stringliteral">&quot;Mouse ScrollWheel&quot;</span>) * 4f;</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;            <a class="code" href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">_3rdPersonDist</a> = Mathf.Min(<a class="code" href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">_3rdPersonDist</a>, 20f);</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;            <a class="code" href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">_3rdPersonDist</a> = Mathf.Max(<a class="code" href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">_3rdPersonDist</a>, 0.25f);</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;            </div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            <span class="comment">// move orbit direction vector while rightclick drag</span></div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            <span class="keywordflow">if</span> (Input.GetMouseButton(1)) {</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;                <span class="keywordtype">float</span> x = Input.GetAxisRaw(<span class="stringliteral">&quot;Mouse Y&quot;</span>) * <a class="code" href="class_cam_controller.html#a7507213b069ed5d149cd1fd5502ad9af">mouseSensitivity</a>;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;                <span class="keywordtype">float</span> y = Input.GetAxisRaw(<span class="stringliteral">&quot;Mouse X&quot;</span>) * <a class="code" href="class_cam_controller.html#a7507213b069ed5d149cd1fd5502ad9af">mouseSensitivity</a>;</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;                Quaternion rotation = Quaternion.AngleAxis(-y, Vector3.up);</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;                <a class="code" href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">_3rdPersonDir</a> = rotation * <a class="code" href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">_3rdPersonDir</a>;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;                rotation = Quaternion.AngleAxis(x, <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.right);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;                _3rdPersonDir = rotation * <a class="code" href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">_3rdPersonDir</a>;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;                </div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;                rotation = Quaternion.AngleAxis(y, Vector3.up);</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;                <a class="code" href="class_cam_controller.html#ac85aa9a4cb61e4cdcf071036d64e198f">_1stPersonDir</a> = rotation * <a class="code" href="class_cam_controller.html#ac85aa9a4cb61e4cdcf071036d64e198f">_1stPersonDir</a>;</div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                rotation = Quaternion.AngleAxis(-x, <a class="code" href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">_camera</a>.transform.right);</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                _1stPersonDir = rotation * <a class="code" href="class_cam_controller.html#ac85aa9a4cb61e4cdcf071036d64e198f">_1stPersonDir</a>;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            }</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        }</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        <span class="comment">// choose update behaviour </span></div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;        <span class="keywordflow">switch</span>(<a class="code" href="class_cam_controller.html#afd7b1bef41da188dc239240ca6655a24">viewMode</a>) {</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Birdseye:</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            <a class="code" href="class_cam_controller.html#aadbc0f72c25dacc38d18e2ca8f845c0e">BirdseyeUpdate</a>();</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.FreeMovement:</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            <a class="code" href="class_cam_controller.html#a4cd9889db2c531b75d1df82de68a4e2f">FreeMovementUpdate</a>();</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Orbit:</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            <a class="code" href="class_cam_controller.html#a7aadc708da948bf69ab57a08da503039">OrbitUpdate</a>();  </div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Mounted:</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">ViewMode</a>.Static:</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;        <span class="keywordflow">default</span>:</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        }</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;        </div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;        <a class="code" href="class_cam_controller.html#acb4ae0fa2e56c716f8ee95206d1c4288">RenderModeUpdate</a>();</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;        </div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;    }</div>
+<div class="ttc" id="class_cam_controller_html_af1451a7b8ca8dbdda689bb74b75c78b2"><div class="ttname"><a href="class_cam_controller.html#af1451a7b8ca8dbdda689bb74b75c78b2">CamController.ViewMode</a></div><div class="ttdeci">ViewMode</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00017">CamController.cs:17</a></div></div>
+<div class="ttc" id="class_cam_controller_html_aff28c0727c456c60a79321904916b252"><div class="ttname"><a href="class_cam_controller.html#aff28c0727c456c60a79321904916b252">CamController.CycleAreaOfInterest</a></div><div class="ttdeci">static void CycleAreaOfInterest()</div><div class="ttdoc">Set area to next area of interest (circular index of areas list) </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00209">CamController.cs:209</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ac85aa9a4cb61e4cdcf071036d64e198f"><div class="ttname"><a href="class_cam_controller.html#ac85aa9a4cb61e4cdcf071036d64e198f">CamController._1stPersonDir</a></div><div class="ttdeci">Vector3 _1stPersonDir</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00371">CamController.cs:371</a></div></div>
+<div class="ttc" id="class_cam_controller_html_ad9d92b88add8f18d4f7cdb2d11393466"><div class="ttname"><a href="class_cam_controller.html#ad9d92b88add8f18d4f7cdb2d11393466">CamController._camera</a></div><div class="ttdeci">static Camera _camera</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00144">CamController.cs:144</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a7507213b069ed5d149cd1fd5502ad9af"><div class="ttname"><a href="class_cam_controller.html#a7507213b069ed5d149cd1fd5502ad9af">CamController.mouseSensitivity</a></div><div class="ttdeci">float mouseSensitivity</div><div class="ttdoc">Multiplies speed of mouse axis input </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00334">CamController.cs:334</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a4cd9889db2c531b75d1df82de68a4e2f"><div class="ttname"><a href="class_cam_controller.html#a4cd9889db2c531b75d1df82de68a4e2f">CamController.FreeMovementUpdate</a></div><div class="ttdeci">void FreeMovementUpdate()</div><div class="ttdoc">Camera position and rotation controlled by axis keys and mouse axis </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00508">CamController.cs:508</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a7aadc708da948bf69ab57a08da503039"><div class="ttname"><a href="class_cam_controller.html#a7aadc708da948bf69ab57a08da503039">CamController.OrbitUpdate</a></div><div class="ttdeci">void OrbitUpdate()</div><div class="ttdoc">Camera orbit around the area of interest center </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00526">CamController.cs:526</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a07d5dc21106a343565185eb650074173"><div class="ttname"><a href="class_cam_controller.html#a07d5dc21106a343565185eb650074173">CamController._3rdPersonDir</a></div><div class="ttdeci">Vector3 _3rdPersonDir</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00370">CamController.cs:370</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html_a5961aca02254e2e566c4ece1db8de288"><div class="ttname"><a href="class_u_i___toolbar.html#a5961aca02254e2e566c4ece1db8de288">UI_Toolbar.I</a></div><div class="ttdeci">static UI_Toolbar I</div><div class="ttdoc">Singleton pattern. </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00016">UI_Toolbar.cs:16</a></div></div>
+<div class="ttc" id="class_cam_controller_html_afd7b1bef41da188dc239240ca6655a24"><div class="ttname"><a href="class_cam_controller.html#afd7b1bef41da188dc239240ca6655a24">CamController.viewMode</a></div><div class="ttdeci">static ViewMode viewMode</div><div class="ttdoc">Gets the current ViewMode. </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00090">CamController.cs:90</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a2b3896ff31212949a88b8e6e98650fb2"><div class="ttname"><a href="class_cam_controller.html#a2b3896ff31212949a88b8e6e98650fb2">CamController._3rdPersonDist</a></div><div class="ttdeci">float _3rdPersonDist</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00369">CamController.cs:369</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a0e8a2edfa91ed1ff3ba6039d57085010"><div class="ttname"><a href="class_cam_controller.html#a0e8a2edfa91ed1ff3ba6039d57085010">CamController.CycleRenderMode</a></div><div class="ttdeci">static void CycleRenderMode()</div><div class="ttdoc">Set renderMode to next RenderMode (circular index of render modes). </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00216">CamController.cs:216</a></div></div>
+<div class="ttc" id="class_cam_controller_html_aadbc0f72c25dacc38d18e2ca8f845c0e"><div class="ttname"><a href="class_cam_controller.html#aadbc0f72c25dacc38d18e2ca8f845c0e">CamController.BirdseyeUpdate</a></div><div class="ttdeci">void BirdseyeUpdate()</div><div class="ttdoc">Place the camera above the area of interest </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00481">CamController.cs:481</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html"><div class="ttname"><a href="class_u_i___toolbar.html">UI_Toolbar</a></div><div class="ttdoc">UI Toolbar provides controls for choosing which UI windows to display </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00011">UI_Toolbar.cs:11</a></div></div>
+<div class="ttc" id="class_cam_controller_html_acb4ae0fa2e56c716f8ee95206d1c4288"><div class="ttname"><a href="class_cam_controller.html#acb4ae0fa2e56c716f8ee95206d1c4288">CamController.RenderModeUpdate</a></div><div class="ttdeci">void RenderModeUpdate()</div><div class="ttdoc">Call INavigation.DrawDebugInfo as appropriate (Camera culling mask is handled in renderMode.set) </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00472">CamController.cs:472</a></div></div>
+<div class="ttc" id="class_u_i___toolbar_html_a578a411d042e8be28d5be7cda52c48ca"><div class="ttname"><a href="class_u_i___toolbar.html#a578a411d042e8be28d5be7cda52c48ca">UI_Toolbar.width</a></div><div class="ttdeci">float width</div><div class="ttdoc">The width of the toolbar in screen px. </div><div class="ttdef"><b>Definition:</b> <a href="_u_i___toolbar_8cs_source.html#l00021">UI_Toolbar.cs:21</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a87896206d418061a74f9e3e2d75d173a"><div class="ttname"><a href="class_cam_controller.html#a87896206d418061a74f9e3e2d75d173a">CamController.CycleViewMode</a></div><div class="ttdeci">static void CycleViewMode()</div><div class="ttdoc">Set viewMode to the next ViewMode in viewModeList (circular index of viewModeList). </div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00315">CamController.cs:315</a></div></div>
+<div class="ttc" id="class_cam_controller_html_a59f2a63795d8dfe380807271306a79c9"><div class="ttname"><a href="class_cam_controller.html#a59f2a63795d8dfe380807271306a79c9">CamController._birdseyeDist</a></div><div class="ttdeci">float _birdseyeDist</div><div class="ttdef"><b>Definition:</b> <a href="_cam_controller_8cs_source.html#l00368">CamController.cs:368</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1814,7 +2194,7 @@ Here is the call graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_cam_controller.html">CamController</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:06:59 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

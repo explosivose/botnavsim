@@ -1,4 +1,0 @@
-<map id="BotPath.DrawPath" name="BotPath.DrawPath">
-<area shape="rect" id="node2" href="$d5/dc8/class_draw.html#a1845793e3f2291ecfc426051c961ac3e" title="Draw a line between two positions, start and end, in a specified color. " alt="" coords="186,5,265,32"/>
-<area shape="rect" id="node3" href="$d5/dc8/class_draw.html#a560db59c6ea54f1b066d03acb72a00a1" title="Draw any sized cube at a location in any color. " alt="" coords="183,56,268,83"/>
-</map>

@@ -123,6 +123,8 @@ $(document).ready(function(){initNavTree('class_boe_bot.html','');});
 Inheritance diagram for BoeBot:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_boe_bot__inherit__graph.png" border="0" usemap="#_boe_bot_inherit__map" alt="Inheritance graph"/></div>
+<map name="_boe_bot_inherit__map" id="_boe_bot_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for BoeBot:</div>
@@ -203,7 +205,15 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_boe_bot_8cs_source.html#l00048">48</a> of file <a class="el" href="_boe_bot_8cs_source.html">BoeBot.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                 {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="class_boe_bot.html#af9dae0b833656f89d09154ca0fb6d935">_robot</a> = GetComponent&lt;Robot&gt;();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">_leftWheel</a> = transform.Find(<span class="stringliteral">&quot;Left Wheel&quot;</span>).GetComponent&lt;WheelCollider&gt;();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">_rightWheel</a> = transform.Find(<span class="stringliteral">&quot;Right Wheel&quot;</span>).GetComponent&lt;WheelCollider&gt;();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
+<div class="ttc" id="class_boe_bot_html_accacf78a5a8121eefa2f36ea7e45163e"><div class="ttname"><a href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">BoeBot._leftWheel</a></div><div class="ttdeci">WheelCollider _leftWheel</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00034">BoeBot.cs:34</a></div></div>
+<div class="ttc" id="class_boe_bot_html_af9dae0b833656f89d09154ca0fb6d935"><div class="ttname"><a href="class_boe_bot.html#af9dae0b833656f89d09154ca0fb6d935">BoeBot._robot</a></div><div class="ttdeci">Robot _robot</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00033">BoeBot.cs:33</a></div></div>
+<div class="ttc" id="class_boe_bot_html_a335daac82e72417115adf181f102ff5d"><div class="ttname"><a href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">BoeBot._rightWheel</a></div><div class="ttdeci">WheelCollider _rightWheel</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00035">BoeBot.cs:35</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="acd88a2101b8783561d361fc30b0a05a6"></a>
@@ -228,7 +238,60 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Definition at line <a class="el" href="_boe_bot_8cs_source.html#l00054">54</a> of file <a class="el" href="_boe_bot_8cs_source.html">BoeBot.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                  {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="class_boe_bot.html#af9dae0b833656f89d09154ca0fb6d935">_robot</a>.<a class="code" href="class_robot.html#a363d1bd7dc2c5e04abed7078da0c0803">moveEnabled</a>) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <a class="code" href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">_leftWheel</a>.motorTorque = 0f;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <a class="code" href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">_rightWheel</a>.motorTorque = 0f;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            <span class="keywordflow">return</span>; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        Vector3 target = <a class="code" href="class_boe_bot.html#af9dae0b833656f89d09154ca0fb6d935">_robot</a>.<a class="code" href="class_robot.html#aff3b843487fe32dbb6b135c52de1cbd2">navigationCommand</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        target.y = 0f;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        target.Normalize();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        Debug.DrawRay(transform.position, target, Color.green);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <span class="keywordflow">if</span>(target.magnitude &lt; 0.1f) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            <a class="code" href="class_boe_bot.html#aa1c19d2831b60ff4b05cf5bb5fb788b9">rightTarget</a> = 0f;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            <a class="code" href="class_boe_bot.html#a35f01a8a07eb0a489321898b4e3a68fc">leftTarget</a> = 0f;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <a class="code" href="class_boe_bot.html#afd191e50e37f926464f4b67747b68220">forwardAngle</a> = Vector3.Angle(target, transform.forward);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            <a class="code" href="class_boe_bot.html#a11c77b1d440bd547ecec26a1ed620b37">frontBack</a> = Mathf.Cos(<a class="code" href="class_boe_bot.html#afd191e50e37f926464f4b67747b68220">forwardAngle</a> * Mathf.Deg2Rad);        <span class="comment">//1:forward, -1:backward, 0:(left or right)</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            <a class="code" href="class_boe_bot.html#a344ca5a9e6094d7045c197f6c712f10d">rightAngle</a> = Vector3.Angle(target, transform.right);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;            <a class="code" href="class_boe_bot.html#aec7e1e5dd8dccc7409d0a52baf75141d">rightLeft</a> = Mathf.Cos(<a class="code" href="class_boe_bot.html#a344ca5a9e6094d7045c197f6c712f10d">rightAngle</a> * Mathf.Deg2Rad);      <span class="comment">//1:right, -1:left, 0:(forward or back)</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <a class="code" href="class_boe_bot.html#aa1c19d2831b60ff4b05cf5bb5fb788b9">rightTarget</a> = Mathf.Clamp(<a class="code" href="class_boe_bot.html#a11c77b1d440bd547ecec26a1ed620b37">frontBack</a>+<a class="code" href="class_boe_bot.html#aec7e1e5dd8dccc7409d0a52baf75141d">rightLeft</a>, -1f, 1f);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            <a class="code" href="class_boe_bot.html#a35f01a8a07eb0a489321898b4e3a68fc">leftTarget</a> = Mathf.Clamp(<a class="code" href="class_boe_bot.html#a11c77b1d440bd547ecec26a1ed620b37">frontBack</a>-<a class="code" href="class_boe_bot.html#aec7e1e5dd8dccc7409d0a52baf75141d">rightLeft</a>, -1f, 1f);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="comment">// drive wheel</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_boe_bot.html#adc562797e165aab55854af003580dba2">leftTorque</a> = (<a class="code" href="class_boe_bot.html#a35f01a8a07eb0a489321898b4e3a68fc">leftTarget</a>*<a class="code" href="class_boe_bot.html#ac043e157c76b2ed7d9d3230e661b2d02">maxWheelRpm</a> - <a class="code" href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">_leftWheel</a>.rpm) * <a class="code" href="class_boe_bot.html#a1758c9739f156ce952c2d4d19ff4b3da">Kp</a>;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">_leftWheel</a>.motorTorque = Mathf.Clamp(<a class="code" href="class_boe_bot.html#adc562797e165aab55854af003580dba2">leftTorque</a>, -<a class="code" href="class_boe_bot.html#aa1e8231a5935cdb91062012397b1ef5b">maxWheelTorque</a>, <a class="code" href="class_boe_bot.html#aa1e8231a5935cdb91062012397b1ef5b">maxWheelTorque</a>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="class_boe_bot.html#a7f9f7385a945b0b98f5bec653c4032aa">rightTorque</a> = (<a class="code" href="class_boe_bot.html#aa1c19d2831b60ff4b05cf5bb5fb788b9">rightTarget</a>*<a class="code" href="class_boe_bot.html#ac043e157c76b2ed7d9d3230e661b2d02">maxWheelRpm</a> - <a class="code" href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">_rightWheel</a>.rpm) * <a class="code" href="class_boe_bot.html#a1758c9739f156ce952c2d4d19ff4b3da">Kp</a>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">_rightWheel</a>.motorTorque = Mathf.Clamp(<a class="code" href="class_boe_bot.html#a7f9f7385a945b0b98f5bec653c4032aa">rightTorque</a>, -<a class="code" href="class_boe_bot.html#aa1e8231a5935cdb91062012397b1ef5b">maxWheelTorque</a>, <a class="code" href="class_boe_bot.html#aa1e8231a5935cdb91062012397b1ef5b">maxWheelTorque</a>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        Debug.DrawRay(<a class="code" href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">_leftWheel</a>.transform.position, transform.forward * <a class="code" href="class_boe_bot.html#a35f01a8a07eb0a489321898b4e3a68fc">leftTarget</a> * 0.1f, Color.magenta);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        Debug.DrawRay(<a class="code" href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">_rightWheel</a>.transform.position, transform.forward * <a class="code" href="class_boe_bot.html#aa1c19d2831b60ff4b05cf5bb5fb788b9">rightTarget</a> * 0.1f, Color.magenta);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    }</div>
+<div class="ttc" id="class_boe_bot_html_ac043e157c76b2ed7d9d3230e661b2d02"><div class="ttname"><a href="class_boe_bot.html#ac043e157c76b2ed7d9d3230e661b2d02">BoeBot.maxWheelRpm</a></div><div class="ttdeci">float maxWheelRpm</div><div class="ttdoc">The max wheel RPM (50RPM for parallax continuous rotation servo) </div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00017">BoeBot.cs:17</a></div></div>
+<div class="ttc" id="class_boe_bot_html_a11c77b1d440bd547ecec26a1ed620b37"><div class="ttname"><a href="class_boe_bot.html#a11c77b1d440bd547ecec26a1ed620b37">BoeBot.frontBack</a></div><div class="ttdeci">float frontBack</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00038">BoeBot.cs:38</a></div></div>
+<div class="ttc" id="class_robot_html_aff3b843487fe32dbb6b135c52de1cbd2"><div class="ttname"><a href="class_robot.html#aff3b843487fe32dbb6b135c52de1cbd2">Robot.navigationCommand</a></div><div class="ttdeci">Vector3 navigationCommand</div><div class="ttdoc">The cached navigation bearing from INavigation. </div><div class="ttdef"><b>Definition:</b> <a href="_robot_8cs_source.html#l00089">Robot.cs:89</a></div></div>
+<div class="ttc" id="class_boe_bot_html_a35f01a8a07eb0a489321898b4e3a68fc"><div class="ttname"><a href="class_boe_bot.html#a35f01a8a07eb0a489321898b4e3a68fc">BoeBot.leftTarget</a></div><div class="ttdeci">float leftTarget</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00042">BoeBot.cs:42</a></div></div>
+<div class="ttc" id="class_boe_bot_html_aa1c19d2831b60ff4b05cf5bb5fb788b9"><div class="ttname"><a href="class_boe_bot.html#aa1c19d2831b60ff4b05cf5bb5fb788b9">BoeBot.rightTarget</a></div><div class="ttdeci">float rightTarget</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00043">BoeBot.cs:43</a></div></div>
+<div class="ttc" id="class_boe_bot_html_aec7e1e5dd8dccc7409d0a52baf75141d"><div class="ttname"><a href="class_boe_bot.html#aec7e1e5dd8dccc7409d0a52baf75141d">BoeBot.rightLeft</a></div><div class="ttdeci">float rightLeft</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00040">BoeBot.cs:40</a></div></div>
+<div class="ttc" id="class_boe_bot_html_accacf78a5a8121eefa2f36ea7e45163e"><div class="ttname"><a href="class_boe_bot.html#accacf78a5a8121eefa2f36ea7e45163e">BoeBot._leftWheel</a></div><div class="ttdeci">WheelCollider _leftWheel</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00034">BoeBot.cs:34</a></div></div>
+<div class="ttc" id="class_boe_bot_html_a7f9f7385a945b0b98f5bec653c4032aa"><div class="ttname"><a href="class_boe_bot.html#a7f9f7385a945b0b98f5bec653c4032aa">BoeBot.rightTorque</a></div><div class="ttdeci">float rightTorque</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00046">BoeBot.cs:46</a></div></div>
+<div class="ttc" id="class_robot_html_a363d1bd7dc2c5e04abed7078da0c0803"><div class="ttname"><a href="class_robot.html#a363d1bd7dc2c5e04abed7078da0c0803">Robot.moveEnabled</a></div><div class="ttdeci">bool moveEnabled</div><div class="ttdoc">A flag indicating whether the robot should try moving. </div><div class="ttdef"><b>Definition:</b> <a href="_robot_8cs_source.html#l00029">Robot.cs:29</a></div></div>
+<div class="ttc" id="class_boe_bot_html_af9dae0b833656f89d09154ca0fb6d935"><div class="ttname"><a href="class_boe_bot.html#af9dae0b833656f89d09154ca0fb6d935">BoeBot._robot</a></div><div class="ttdeci">Robot _robot</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00033">BoeBot.cs:33</a></div></div>
+<div class="ttc" id="class_boe_bot_html_a1758c9739f156ce952c2d4d19ff4b3da"><div class="ttname"><a href="class_boe_bot.html#a1758c9739f156ce952c2d4d19ff4b3da">BoeBot.Kp</a></div><div class="ttdeci">float Kp</div><div class="ttdoc">Control system gain parameter. </div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00027">BoeBot.cs:27</a></div></div>
+<div class="ttc" id="class_boe_bot_html_afd191e50e37f926464f4b67747b68220"><div class="ttname"><a href="class_boe_bot.html#afd191e50e37f926464f4b67747b68220">BoeBot.forwardAngle</a></div><div class="ttdeci">float forwardAngle</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00037">BoeBot.cs:37</a></div></div>
+<div class="ttc" id="class_boe_bot_html_adc562797e165aab55854af003580dba2"><div class="ttname"><a href="class_boe_bot.html#adc562797e165aab55854af003580dba2">BoeBot.leftTorque</a></div><div class="ttdeci">float leftTorque</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00045">BoeBot.cs:45</a></div></div>
+<div class="ttc" id="class_boe_bot_html_a335daac82e72417115adf181f102ff5d"><div class="ttname"><a href="class_boe_bot.html#a335daac82e72417115adf181f102ff5d">BoeBot._rightWheel</a></div><div class="ttdeci">WheelCollider _rightWheel</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00035">BoeBot.cs:35</a></div></div>
+<div class="ttc" id="class_boe_bot_html_aa1e8231a5935cdb91062012397b1ef5b"><div class="ttname"><a href="class_boe_bot.html#aa1e8231a5935cdb91062012397b1ef5b">BoeBot.maxWheelTorque</a></div><div class="ttdeci">float maxWheelTorque</div><div class="ttdoc">The max wheel torque (0.268NM for parallax continuous rotation servo). </div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00022">BoeBot.cs:22</a></div></div>
+<div class="ttc" id="class_boe_bot_html_a344ca5a9e6094d7045c197f6c712f10d"><div class="ttname"><a href="class_boe_bot.html#a344ca5a9e6094d7045c197f6c712f10d">BoeBot.rightAngle</a></div><div class="ttdeci">float rightAngle</div><div class="ttdef"><b>Definition:</b> <a href="_boe_bot_8cs_source.html#l00039">BoeBot.cs:39</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -531,7 +594,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_boe_bot.html">BoeBot</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:06:59 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

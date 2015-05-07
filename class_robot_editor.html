@@ -125,11 +125,15 @@ $(document).ready(function(){initNavTree('class_robot_editor.html','');});
 Inheritance diagram for RobotEditor:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_editor__inherit__graph.png" border="0" usemap="#_robot_editor_inherit__map" alt="Inheritance graph"/></div>
+<map name="_robot_editor_inherit__map" id="_robot_editor_inherit__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for RobotEditor:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_editor__coll__graph.png" border="0" usemap="#_robot_editor_coll__map" alt="Collaboration graph"/></div>
+<map name="_robot_editor_coll__map" id="_robot_editor_coll__map">
+</map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -185,7 +189,13 @@ Private Member Functions</h2></td></tr>
 </table>
 
 <p>Definition at line <a class="el" href="_robot_editor_8cs_source.html#l00010">10</a> of file <a class="el" href="_robot_editor_8cs_source.html">RobotEditor.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;                      {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <a class="code" href="class_robot_editor.html#a76643b8162cfb492eae5c5a0f74e857fa19d3894f53ce79c3f836f26cf8a3be3b">inactive</a>,</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="class_robot_editor.html#a76643b8162cfb492eae5c5a0f74e857fa3f86cc36e1df1334da973da6771b8160">editing</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    }</div>
+<div class="ttc" id="class_robot_editor_html_a76643b8162cfb492eae5c5a0f74e857fa3f86cc36e1df1334da973da6771b8160"><div class="ttname"><a href="class_robot_editor.html#a76643b8162cfb492eae5c5a0f74e857fa3f86cc36e1df1334da973da6771b8160">RobotEditor.editing</a></div></div>
+<div class="ttc" id="class_robot_editor_html_a76643b8162cfb492eae5c5a0f74e857fa19d3894f53ce79c3f836f26cf8a3be3b"><div class="ttname"><a href="class_robot_editor.html#a76643b8162cfb492eae5c5a0f74e857fa19d3894f53ce79c3f836f26cf8a3be3b">RobotEditor.inactive</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -214,7 +224,15 @@ Private Member Functions</h2></td></tr>
 <p>Instance Methods </p>
 
 <p>Definition at line <a class="el" href="_robot_editor_8cs_source.html#l00039">39</a> of file <a class="el" href="_robot_editor_8cs_source.html">RobotEditor.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                 {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="class_robot_editor.html#af3051771a350b1452da42eb7696c0569">Instance</a> == null) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;            <a class="code" href="class_robot_editor.html#af3051771a350b1452da42eb7696c0569">Instance</a> = <span class="keyword">this</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            Destroy(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
+<div class="ttc" id="class_robot_editor_html_af3051771a350b1452da42eb7696c0569"><div class="ttname"><a href="class_robot_editor.html#af3051771a350b1452da42eb7696c0569">RobotEditor.Instance</a></div><div class="ttdeci">static RobotEditor Instance</div><div class="ttdoc">Singleton pattern for MonoBehaviour </div><div class="ttdef"><b>Definition:</b> <a href="_robot_editor_8cs_source.html#l00018">RobotEditor.cs:18</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="acd01f028a602657699916ad56d245ab1"></a>
@@ -241,7 +259,12 @@ Private Member Functions</h2></td></tr>
 <p>Exit this state machine. </p>
 
 <p>Definition at line <a class="el" href="_robot_editor_8cs_source.html#l00030">30</a> of file <a class="el" href="_robot_editor_8cs_source.html">RobotEditor.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                              {</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="class_robot_editor.html#ad5c0f7dca09295668ec90a93ced66109">state</a> = <a class="code" href="class_robot_editor.html#a76643b8162cfb492eae5c5a0f74e857f">State</a>.inactive;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    }</div>
+<div class="ttc" id="class_robot_editor_html_ad5c0f7dca09295668ec90a93ced66109"><div class="ttname"><a href="class_robot_editor.html#ad5c0f7dca09295668ec90a93ced66109">RobotEditor.state</a></div><div class="ttdeci">static State state</div><div class="ttdoc">Gets the RobotEditor.State. </div><div class="ttdef"><b>Definition:</b> <a href="_robot_editor_8cs_source.html#l00023">RobotEditor.cs:23</a></div></div>
+<div class="ttc" id="class_robot_editor_html_a76643b8162cfb492eae5c5a0f74e857f"><div class="ttname"><a href="class_robot_editor.html#a76643b8162cfb492eae5c5a0f74e857f">RobotEditor.State</a></div><div class="ttdeci">State</div><div class="ttdef"><b>Definition:</b> <a href="_robot_editor_8cs_source.html#l00010">RobotEditor.cs:10</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -303,7 +326,7 @@ Private Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_robot_editor.html">RobotEditor</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

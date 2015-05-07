@@ -1,6 +1,0 @@
-<map id="Robot.NavigateToDestination" name="Robot.NavigateToDestination">
-<area shape="rect" id="node2" href="$dd/dea/interface_i_navigation.html#a27acb501951d73246becb995085816a2" title="Start the search algorithm to find a path from origin to destination. " alt="" coords="241,5,416,32"/>
-<area shape="rect" id="node3" href="$d7/daf/class_sensor.html#a87b255511d219d65173defe2d2ec5922" title="Enable this instance and pass the reference to the Robot.SensorData callback function to be called wh..." alt="" coords="275,56,382,83"/>
-<area shape="rect" id="node4" href="$d4/d84/class_robot.html#a076adabbb40b0a1aa553d4ca57c8282b" title="Sensor data callback passes proximity data to INavigation " alt="" coords="242,107,415,133"/>
-<area shape="rect" id="node5" href="$dd/dea/interface_i_navigation.html#a513402dd6e3243b48cdc635f919b5d00" title="Proximity sensor data. " alt="" coords="464,107,607,133"/>
-</map>

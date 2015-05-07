@@ -190,7 +190,15 @@ Static Private Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_nav_loader_8cs_source.html#l00035">35</a> of file <a class="el" href="_nav_loader_8cs_source.html">NavLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                                                      {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">if</span> (!name.Contains(<span class="stringliteral">&quot;.dll&quot;</span>)) name += <span class="stringliteral">&quot;.dll&quot;</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_nav_loader.html#a78eb838781ad6962889dc9e93638e187">_loader</a>.<a class="code" href="class_plugin_factory.html#a5fe25dd7659351d0cb5ea30193f33ddf">CreatePlugin</a>(<a class="code" href="class_strings.html">Strings</a>.<a class="code" href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa">navigationPluginDirectory</a> + <span class="stringliteral">&quot;\\&quot;</span> + name);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    }</div>
+<div class="ttc" id="class_nav_loader_html_a78eb838781ad6962889dc9e93638e187"><div class="ttname"><a href="class_nav_loader.html#a78eb838781ad6962889dc9e93638e187">NavLoader._loader</a></div><div class="ttdeci">static PluginFactory&lt; INavigation &gt; _loader</div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00016">NavLoader.cs:16</a></div></div>
+<div class="ttc" id="class_strings_html"><div class="ttname"><a href="class_strings.html">Strings</a></div><div class="ttdoc">A utility class for strings used in this project. </div><div class="ttdef"><b>Definition:</b> <a href="_strings_8cs_source.html#l00009">Strings.cs:9</a></div></div>
+<div class="ttc" id="class_plugin_factory_html_a5fe25dd7659351d0cb5ea30193f33ddf"><div class="ttname"><a href="class_plugin_factory.html#a5fe25dd7659351d0cb5ea30193f33ddf">PluginFactory.CreatePlugin</a></div><div class="ttdeci">T CreatePlugin(string file)</div><div class="ttdoc">Find and instantiate a type from a specified assembly file (accepts only DLL files) ...</div><div class="ttdef"><b>Definition:</b> <a href="_plugin_factory_8cs_source.html#l00020">PluginFactory.cs:20</a></div></div>
+<div class="ttc" id="class_strings_html_a137f1b89cfd001ebd52821fc6bdab8fa"><div class="ttname"><a href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa">Strings.navigationPluginDirectory</a></div><div class="ttdeci">static string navigationPluginDirectory</div><div class="ttdoc">Gets the navigation plugin directory. </div><div class="ttdef"><b>Definition:</b> <a href="_strings_8cs_source.html#l00060">Strings.cs:60</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -236,7 +244,16 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The plugin.</dd></dl>
 
 <p>Definition at line <a class="el" href="_nav_loader_8cs_source.html#l00044">44</a> of file <a class="el" href="_nav_loader_8cs_source.html">NavLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                             {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <a class="code" href="class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8">SearchForPlugins</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">int</span> index = <a class="code" href="namespace_unity_engine.html">UnityEngine</a>.Random.Range(0, <a class="code" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">pluginsFound</a>.Count);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_nav_loader.html#a98fbe88961a4608870a0be25ef01a081">LoadPlugin</a>(<a class="code" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">pluginsFound</a>[index]);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    }</div>
+<div class="ttc" id="class_nav_loader_html_ae5148b0a4fcaacc20dd33cbac30da3f8"><div class="ttname"><a href="class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8">NavLoader.SearchForPlugins</a></div><div class="ttdeci">static void SearchForPlugins()</div><div class="ttdoc">Searchs for plugins in the INavigation directory (Strings.navigationPluginDirectory) Results are stor...</div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00022">NavLoader.cs:22</a></div></div>
+<div class="ttc" id="class_nav_loader_html_a6488d33ba223e47ba433a38b130be311"><div class="ttname"><a href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">NavLoader.pluginsFound</a></div><div class="ttdeci">static List&lt; string &gt; pluginsFound</div><div class="ttdoc">List of .dll files that implement INavigation. </div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00015">NavLoader.cs:15</a></div></div>
+<div class="ttc" id="class_nav_loader_html_a98fbe88961a4608870a0be25ef01a081"><div class="ttname"><a href="class_nav_loader.html#a98fbe88961a4608870a0be25ef01a081">NavLoader.LoadPlugin</a></div><div class="ttdeci">static INavigation LoadPlugin(string name)</div><div class="ttdoc">Instantiate the INavigation assembly from a given filename (not filepath). </div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00035">NavLoader.cs:35</a></div></div>
+<div class="ttc" id="namespace_unity_engine_html"><div class="ttname"><a href="namespace_unity_engine.html">UnityEngine</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -273,7 +290,15 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The plugin name.</dd></dl>
 
 <p>Definition at line <a class="el" href="_nav_loader_8cs_source.html#l00054">54</a> of file <a class="el" href="_nav_loader_8cs_source.html">NavLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                                            {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8">SearchForPlugins</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordtype">int</span> index = <a class="code" href="namespace_unity_engine.html">UnityEngine</a>.Random.Range(0, <a class="code" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">pluginsFound</a>.Count);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">pluginsFound</a>[index];</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="ttc" id="class_nav_loader_html_ae5148b0a4fcaacc20dd33cbac30da3f8"><div class="ttname"><a href="class_nav_loader.html#ae5148b0a4fcaacc20dd33cbac30da3f8">NavLoader.SearchForPlugins</a></div><div class="ttdeci">static void SearchForPlugins()</div><div class="ttdoc">Searchs for plugins in the INavigation directory (Strings.navigationPluginDirectory) Results are stor...</div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00022">NavLoader.cs:22</a></div></div>
+<div class="ttc" id="class_nav_loader_html_a6488d33ba223e47ba433a38b130be311"><div class="ttname"><a href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">NavLoader.pluginsFound</a></div><div class="ttdeci">static List&lt; string &gt; pluginsFound</div><div class="ttdoc">List of .dll files that implement INavigation. </div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00015">NavLoader.cs:15</a></div></div>
+<div class="ttc" id="namespace_unity_engine_html"><div class="ttname"><a href="namespace_unity_engine.html">UnityEngine</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -318,7 +343,19 @@ Here is the caller graph for this function:</div>
 <p>Searchs for plugins in the <a class="el" href="interface_i_navigation.html" title="INavigation interface for robot navigation algorithms. This component of the robot is responsible for...">INavigation</a> directory (<a class="el" href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa" title="Gets the navigation plugin directory. ">Strings.navigationPluginDirectory</a>) Results are stored in pluginsFound. </p>
 
 <p>Definition at line <a class="el" href="_nav_loader_8cs_source.html#l00022">22</a> of file <a class="el" href="_nav_loader_8cs_source.html">NavLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                                          {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <a class="code" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">pluginsFound</a>.Clear();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordflow">if</span> (!Directory.Exists(<a class="code" href="class_strings.html">Strings</a>.<a class="code" href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa">navigationPluginDirectory</a>))</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            Directory.CreateDirectory(<a class="code" href="class_strings.html">Strings</a>.<a class="code" href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa">navigationPluginDirectory</a>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <a class="code" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">pluginsFound</a> = <a class="code" href="class_nav_loader.html#a78eb838781ad6962889dc9e93638e187">_loader</a>.<a class="code" href="class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4">ListPlugins</a>(<a class="code" href="class_strings.html">Strings</a>.<a class="code" href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa">navigationPluginDirectory</a>);  </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        Debug.Log (<span class="stringliteral">&quot;Found &quot;</span> + <a class="code" href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">pluginsFound</a>.Count + <span class="stringliteral">&quot; plugins at &quot;</span> + <a class="code" href="class_strings.html">Strings</a>.<a class="code" href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa">navigationPluginDirectory</a>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="ttc" id="class_plugin_factory_html_a9571dc2ee00f66d11514f0670955cfe4"><div class="ttname"><a href="class_plugin_factory.html#a9571dc2ee00f66d11514f0670955cfe4">PluginFactory.ListPlugins</a></div><div class="ttdeci">List&lt; string &gt; ListPlugins(string path)</div><div class="ttdoc">Lists assembly (DLL) file names that implement the type T. </div><div class="ttdef"><b>Definition:</b> <a href="_plugin_factory_8cs_source.html#l00045">PluginFactory.cs:45</a></div></div>
+<div class="ttc" id="class_nav_loader_html_a78eb838781ad6962889dc9e93638e187"><div class="ttname"><a href="class_nav_loader.html#a78eb838781ad6962889dc9e93638e187">NavLoader._loader</a></div><div class="ttdeci">static PluginFactory&lt; INavigation &gt; _loader</div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00016">NavLoader.cs:16</a></div></div>
+<div class="ttc" id="class_nav_loader_html_a6488d33ba223e47ba433a38b130be311"><div class="ttname"><a href="class_nav_loader.html#a6488d33ba223e47ba433a38b130be311">NavLoader.pluginsFound</a></div><div class="ttdeci">static List&lt; string &gt; pluginsFound</div><div class="ttdoc">List of .dll files that implement INavigation. </div><div class="ttdef"><b>Definition:</b> <a href="_nav_loader_8cs_source.html#l00015">NavLoader.cs:15</a></div></div>
+<div class="ttc" id="class_strings_html"><div class="ttname"><a href="class_strings.html">Strings</a></div><div class="ttdoc">A utility class for strings used in this project. </div><div class="ttdef"><b>Definition:</b> <a href="_strings_8cs_source.html#l00009">Strings.cs:9</a></div></div>
+<div class="ttc" id="class_strings_html_a137f1b89cfd001ebd52821fc6bdab8fa"><div class="ttname"><a href="class_strings.html#a137f1b89cfd001ebd52821fc6bdab8fa">Strings.navigationPluginDirectory</a></div><div class="ttdeci">static string navigationPluginDirectory</div><div class="ttdoc">Gets the navigation plugin directory. </div><div class="ttdef"><b>Definition:</b> <a href="_strings_8cs_source.html#l00060">Strings.cs:60</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -395,7 +432,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_nav_loader.html">NavLoader</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:30 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:07:00 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>

@@ -180,7 +180,13 @@ Static Public Attributes</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="_bot_loader_8cs_source.html#l00034">34</a> of file <a class="el" href="_bot_loader_8cs_source.html">BotLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                                             {</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        Transform robot = <a class="code" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">robotsFound</a>[index].transform.Spawn();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordflow">return</span> robot.GetComponent&lt;<a class="code" href="class_robot.html">Robot</a>&gt;();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
+<div class="ttc" id="class_robot_html"><div class="ttname"><a href="class_robot.html">Robot</a></div><div class="ttdoc">Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro...</div><div class="ttdef"><b>Definition:</b> <a href="_robot_8cs_source.html#l00011">Robot.cs:11</a></div></div>
+<div class="ttc" id="class_bot_loader_html_ae7a36d47dbe084f689ee2d5b5c957b23"><div class="ttname"><a href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">BotLoader.robotsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; robotsFound</div><div class="ttdoc">List of robots found in the Robots/ resources directory </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00013">BotLoader.cs:13</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -224,7 +230,19 @@ Here is the caller graph for this function:</div>
 </dl>
 
 <p>Definition at line <a class="el" href="_bot_loader_8cs_source.html#l00044">44</a> of file <a class="el" href="_bot_loader_8cs_source.html">BotLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                                               {</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordflow">foreach</span> (GameObject r <span class="keywordflow">in</span> <a class="code" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">robotsFound</a>) {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordflow">if</span> (r.name == name) {</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;                Transform robot = r.transform.Spawn();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordflow">return</span> robot.GetComponent&lt;<a class="code" href="class_robot.html">Robot</a>&gt;();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        }</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        Debug.LogError(name + <span class="stringliteral">&quot; robot not found.&quot;</span>);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordflow">return</span> null;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    }</div>
+<div class="ttc" id="class_robot_html"><div class="ttname"><a href="class_robot.html">Robot</a></div><div class="ttdoc">Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro...</div><div class="ttdef"><b>Definition:</b> <a href="_robot_8cs_source.html#l00011">Robot.cs:11</a></div></div>
+<div class="ttc" id="class_bot_loader_html_ae7a36d47dbe084f689ee2d5b5c957b23"><div class="ttname"><a href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">BotLoader.robotsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; robotsFound</div><div class="ttdoc">List of robots found in the Robots/ resources directory </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00013">BotLoader.cs:13</a></div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a class="anchor" id="ab3034713abb9c56628f710c77f11411f"></a>
@@ -252,7 +270,15 @@ Here is the caller graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The robot.</dd></dl>
 
 <p>Definition at line <a class="el" href="_bot_loader_8cs_source.html#l00059">59</a> of file <a class="el" href="_bot_loader_8cs_source.html">BotLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                                      {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11">SearchForRobots</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">int</span> index = Random.Range(0, <a class="code" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">robotsFound</a>.Count);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_bot_loader.html#ac2faa1786bf8a8393cdd4e8cdb88355a">LoadRobot</a>(index);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
+<div class="ttc" id="class_bot_loader_html_a583d1c69876bd4a61ee785b3b2ab4a11"><div class="ttname"><a href="class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11">BotLoader.SearchForRobots</a></div><div class="ttdeci">static void SearchForRobots()</div><div class="ttdoc">Searchs for robots. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00019">BotLoader.cs:19</a></div></div>
+<div class="ttc" id="class_bot_loader_html_ac2faa1786bf8a8393cdd4e8cdb88355a"><div class="ttname"><a href="class_bot_loader.html#ac2faa1786bf8a8393cdd4e8cdb88355a">BotLoader.LoadRobot</a></div><div class="ttdeci">static Robot LoadRobot(int index)</div><div class="ttdoc">Load a robot by index in robotsFound list. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00034">BotLoader.cs:34</a></div></div>
+<div class="ttc" id="class_bot_loader_html_ae7a36d47dbe084f689ee2d5b5c957b23"><div class="ttname"><a href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">BotLoader.robotsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; robotsFound</div><div class="ttdoc">List of robots found in the Robots/ resources directory </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00013">BotLoader.cs:13</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -289,7 +315,14 @@ Here is the call graph for this function:</div>
 <dl class="section return"><dt>Returns</dt><dd>The robot name.</dd></dl>
 
 <p>Definition at line <a class="el" href="_bot_loader_8cs_source.html#l00069">69</a> of file <a class="el" href="_bot_loader_8cs_source.html">BotLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                                           {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11">SearchForRobots</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordtype">int</span> index = Random.Range(0, <a class="code" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">robotsFound</a>.Count);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">robotsFound</a>[index].name;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="ttc" id="class_bot_loader_html_a583d1c69876bd4a61ee785b3b2ab4a11"><div class="ttname"><a href="class_bot_loader.html#a583d1c69876bd4a61ee785b3b2ab4a11">BotLoader.SearchForRobots</a></div><div class="ttdeci">static void SearchForRobots()</div><div class="ttdoc">Searchs for robots. </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00019">BotLoader.cs:19</a></div></div>
+<div class="ttc" id="class_bot_loader_html_ae7a36d47dbe084f689ee2d5b5c957b23"><div class="ttname"><a href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">BotLoader.robotsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; robotsFound</div><div class="ttdoc">List of robots found in the Robots/ resources directory </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00013">BotLoader.cs:13</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -334,7 +367,18 @@ Here is the caller graph for this function:</div>
 <p>Searchs for robots. </p>
 
 <p>Definition at line <a class="el" href="_bot_loader_8cs_source.html#l00019">19</a> of file <a class="el" href="_bot_loader_8cs_source.html">BotLoader.cs</a>.</p>
-
+<div class="fragment"><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                                         {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">robotsFound</a>.Clear();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        GameObject[] robots = Resources.LoadAll&lt;GameObject&gt;(<span class="stringliteral">&quot;Robots/&quot;</span>);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordflow">foreach</span> (GameObject r <span class="keywordflow">in</span> robots) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordflow">if</span> (r.GetComponent&lt;<a class="code" href="class_robot.html">Robot</a>&gt;()) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                <a class="code" href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">robotsFound</a>.Add(r);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            }</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    }</div>
+<div class="ttc" id="class_robot_html"><div class="ttname"><a href="class_robot.html">Robot</a></div><div class="ttdoc">Robot class bridges the gap between sensors and INavigation. The navigation direction is cached in Ro...</div><div class="ttdef"><b>Definition:</b> <a href="_robot_8cs_source.html#l00011">Robot.cs:11</a></div></div>
+<div class="ttc" id="class_bot_loader_html_ae7a36d47dbe084f689ee2d5b5c957b23"><div class="ttname"><a href="class_bot_loader.html#ae7a36d47dbe084f689ee2d5b5c957b23">BotLoader.robotsFound</a></div><div class="ttdeci">static List&lt; GameObject &gt; robotsFound</div><div class="ttdoc">List of robots found in the Robots/ resources directory </div><div class="ttdef"><b>Definition:</b> <a href="_bot_loader_8cs_source.html#l00013">BotLoader.cs:13</a></div></div>
+</div><!-- fragment -->
 <p><div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -380,7 +424,7 @@ Here is the caller graph for this function:</div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_bot_loader.html">BotLoader</a></li>
-    <li class="footer">Generated on Tue May 5 2015 18:48:29 for BotNavSim by
+    <li class="footer">Generated on Thu May 7 2015 02:06:59 for BotNavSim by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.9.1 </li>
   </ul>
