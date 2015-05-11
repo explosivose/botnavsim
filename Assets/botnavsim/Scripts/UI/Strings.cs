@@ -16,7 +16,7 @@ public static class Strings  {
 	/// <summary>
 	/// The project version.
 	/// </summary>
-	public const string projectVersion = "v0.4.3";
+	public const string projectVersion = "v0.4.4-dev";
 	
 	/// <summary>
 	/// Project summary.
