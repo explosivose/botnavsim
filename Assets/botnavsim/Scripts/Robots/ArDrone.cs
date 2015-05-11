@@ -140,6 +140,7 @@ public class ArDrone : MonoBehaviour {
 		rollController.Reset();
 		throttleController.Reset();
 		tiltController.Reset();
+		_targetHeight = transform.position.y;
 	}
 	
 	// calculate control forces
