@@ -29,6 +29,11 @@ public class Robot : MonoBehaviour, IObservable {
 	public bool 		moveEnabled;
 	
 	/// <summary>
+	/// A flag indicating whether the robot sensors have been enabled.
+	/// </summary>
+	public bool 		sensorsEnabled;
+	
+	/// <summary>
 	/// The maximum distance from the destination before setting <see cref="atDestination"/> to <c>true</c>.
 	/// </summary>
 	public float		stopDistance;	// how close the robot will get to destination before stopping
@@ -53,6 +58,7 @@ public class Robot : MonoBehaviour, IObservable {
 	private Vector3[]	_positions;
 	private BotPath 	_path;
 	private Vector3 	_size;
+	private bool 		_sensorsEnabled; // a second sensor flag to capture unity inspector changes to the public field
 	
 	// public properties
 	// ~-~-~-~-~-~-~-~-
@@ -165,9 +171,7 @@ public class Robot : MonoBehaviour, IObservable {
 		if (_navigation == null) return;
 		StartCoroutine( _navigation.SearchForPath(rigidbody.worldCenterOfMass, destination.position) );
 		Debug.Log("Path search due to NavigationToDestination() call.");
-		foreach(Sensor s in _sensors) {
-			s.Enable(ReceiveSensorData);
-		}
+		EnableSensors();
 	}
 	
 	/// <summary>
@@ -176,8 +180,32 @@ public class Robot : MonoBehaviour, IObservable {
 	public void Reset() {
 		_path = new BotPath();
 		_positions = new Vector3[30];
+		DisableSensors();
+	}
+	
+	/// <summary>
+	/// Enables the sensors.
+	/// </summary>
+	public void EnableSensors() {
+		sensorsEnabled = true; _sensorsEnabled = true;
 		foreach(Sensor s in _sensors) {
-			s.Disable();
+			if (s != null) 
+				s.Enable(ReceiveSensorData);
+			else
+				Debug.LogError("Sensor reference is null or missing.");
+		}
+	}
+	
+	/// <summary>
+	/// Disables the sensors.
+	/// </summary>
+	public void DisableSensors() {
+		sensorsEnabled = false; _sensorsEnabled = false;
+		foreach(Sensor s in _sensors) {
+			if (s != null) 
+				s.Disable();
+			else
+				Debug.LogError("Sensor reference is null or missing.");
 		}
 	}
 	
@@ -230,7 +258,14 @@ public class Robot : MonoBehaviour, IObservable {
 	// called every rendered frame
 	private void Update() {
 	
-	
+		// check whether unity inspector has enabled/disabled sensors
+		if (sensorsEnabled != _sensorsEnabled) {
+			if (sensorsEnabled) {
+				EnableSensors();
+			} else {
+				DisableSensors();
+			}
+		}
 	
 		// manual control for testing robots
 		if (manualControl) {
