@@ -50167,6 +50167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   manualControl: 0
   moveEnabled: 0
+  sensorsEnabled: 0
   stopDistance: .200000003
   destination: {fileID: 0}
   centerOfMassOffset: {x: 0, y: 0, z: 0}
@@ -50195,7 +50196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039b36f81e6099e41b47e2d42ef17c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateDt: 0
+  updateDt: .100000001
   Fov: 30
   maxRange: 4
   raycastLayer:
@@ -50212,7 +50213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039b36f81e6099e41b47e2d42ef17c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateDt: 0
+  updateDt: .100000001
   Fov: 30
   maxRange: 4
   raycastLayer:
@@ -50229,7 +50230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039b36f81e6099e41b47e2d42ef17c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateDt: 0
+  updateDt: .100000001
   Fov: 30
   maxRange: 4
   raycastLayer:
