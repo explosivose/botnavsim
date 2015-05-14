@@ -10,6 +10,7 @@ public class UI_Log : IToolbar  {
 
 	public UI_Log() {
 		hidden = true;
+		priority = 0;
 	}
 	
 	public bool contextual {
@@ -21,6 +22,10 @@ public class UI_Log : IToolbar  {
 
 	public bool hidden {
 		get; set; 
+	}
+
+	public int priority {
+		get; set;
 	}
 
 	public string windowTitle {

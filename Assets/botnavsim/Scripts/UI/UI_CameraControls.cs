@@ -8,6 +8,7 @@ public class UI_CameraControls : IToolbar {
 
 	public UI_CameraControls() {
 		hidden = true;
+		priority = 20;
 	}
 	
 	public bool contextual {
@@ -19,7 +20,11 @@ public class UI_CameraControls : IToolbar {
 	public bool hidden {
 		get; set;
 	}
-
+	
+	public int priority {
+		get; set;
+	}
+	
 	public string windowTitle {
 		get {
 			return "Camera Controls";

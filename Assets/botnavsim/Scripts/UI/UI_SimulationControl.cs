@@ -13,6 +13,7 @@ public class UI_SimulationControl : IToolbar {
 	public UI_SimulationControl() {
 		_editSettings = new UI_SimulationSettings(Simulation.settings);
 		hidden = true;
+		priority = 10;
 	}
 
 	public bool contextual {
@@ -23,6 +24,10 @@ public class UI_SimulationControl : IToolbar {
 
 	public bool hidden {
 		get; set; 
+	}
+
+	public int priority {
+		get; set;
 	}
 
 	public string windowTitle {

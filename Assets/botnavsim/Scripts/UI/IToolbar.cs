@@ -18,4 +18,5 @@ public interface IToolbar : IWindowFunction {
 	/// <value><c>true</c> if hidden; otherwise, <c>false</c>.</value>
 	bool hidden			{ get; set; }
 	
+	int priority		{ get; set; }
 }

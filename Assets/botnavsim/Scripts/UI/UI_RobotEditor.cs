@@ -8,6 +8,7 @@ public class UI_RobotEditor : IToolbar {
 
 	public UI_RobotEditor() {
 		hidden = true;
+		priority = -1;
 	}
 	
 	public bool contextual {
@@ -18,6 +19,10 @@ public class UI_RobotEditor : IToolbar {
 	}
 
 	public bool hidden {
+		get; set;
+	}
+
+	public int priority {
 		get; set;
 	}
 

@@ -32,6 +32,10 @@ public class UI_SimulationBatch : IToolbar  {
 		get; set;
 	}
 	
+	public int priority {
+		get; set;
+	}
+	
 	public string windowTitle {
 		get {
 			return "Simulation Batch";

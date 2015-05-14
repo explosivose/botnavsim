@@ -73,6 +73,12 @@ public class UI_Toolbar : MonoBehaviour {
 			}
 		}
 		
+		_tools.Sort(delegate(IToolbar x, IToolbar y) {
+			if (x.priority < y.priority) return 1;
+			else if (x.priority > y.priority) return -1;
+			else return 0;
+		});
+		
 		// get GUISkin
 		_skin = Resources.Load<GUISkin>("GUI_style");
 		_scrollPos = new Vector2();

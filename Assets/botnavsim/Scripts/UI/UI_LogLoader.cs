@@ -19,6 +19,7 @@ public class UI_LogLoader : IToolbar {
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(Legend);
 		hidden = true;
+		priority = 10;
 	}
 	
 	public bool contextual {
@@ -29,6 +30,10 @@ public class UI_LogLoader : IToolbar {
 	}
 
 	public bool hidden {
+		get; set;
+	}
+
+	public int priority {
 		get; set;
 	}
 
