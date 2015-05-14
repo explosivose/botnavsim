@@ -50168,7 +50168,7 @@ MonoBehaviour:
   manualControl: 0
   moveEnabled: 0
   sensorsEnabled: 0
-  stopDistance: .200000003
+  stopDistance: .300000012
   destination: {fileID: 0}
   centerOfMassOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &11403946

@@ -12,7 +12,7 @@ public class UI_SimulationControl : IToolbar {
 
 	public UI_SimulationControl() {
 		_editSettings = new UI_SimulationSettings(Simulation.settings);
-		hidden = true;
+		hidden = false;
 		priority = 10;
 	}
 

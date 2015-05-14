@@ -12055,7 +12055,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: .43599999
   m_Drag: .100000001
-  m_AngularDrag: .100000001
+  m_AngularDrag: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -12187,7 +12187,7 @@ MonoBehaviour:
   maxTilt: 25
   rotateYaw: 1
   maxYawVelocity: 40
-  yawKp: 1
+  yawKp: 2
   rollController:
     kp: .400000006
     ki: 0
