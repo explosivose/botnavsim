@@ -92,7 +92,7 @@ public class UI_LogLoader : IToolbar {
 		GUILayout.EndHorizontal();
 		
 		// go up one directory
-		if (_subPath != "") {
+		if (_subPath != "\\") {
 			if (GUILayout.Button("..")) {
 				_subPath = Directory.GetParent(_subPath).Name;
 				Refresh();

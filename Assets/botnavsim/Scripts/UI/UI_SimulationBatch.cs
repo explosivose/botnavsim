@@ -15,6 +15,7 @@ public class UI_SimulationBatch : IToolbar  {
 		_folders = new List<string>();
 		_windows = new Stack<GUI.WindowFunction>();
 		_windows.Push(BatchListWindow);
+		_subPath = "\\";
 		// hide window initially
 		hidden = true;
 	}
@@ -154,7 +155,7 @@ public class UI_SimulationBatch : IToolbar  {
 		GUILayout.EndHorizontal();
 		
 		// go up one directory
-		if (_subPath != "") {
+		if (_subPath != "\\") {
 			if (GUILayout.Button("..")) {
 				_subPath = Directory.GetParent(_subPath).Name;
 				Refresh();
@@ -164,7 +165,7 @@ public class UI_SimulationBatch : IToolbar  {
 		for (int i = 0; i < _folders.Count; i++) {
 			// enter subdirectory
 			if (GUILayout.Button(_folders[i])) {
-				_subPath += "\\" + new DirectoryInfo(_folders[i]).Name;
+				_subPath += new DirectoryInfo(_folders[i]).Name;
 				Refresh();
 			}
 		}
