@@ -1,15 +1,44 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// Laser Range Finder (LRF) sensor model
+/// </summary>
 public class Lrf : Sensor {
 
+	/// <summary>
+	/// The maximum range.
+	/// </summary>
 	public float range;
+	
+	/// <summary>
+	/// Delta time between measurements.
+	/// </summary>
 	public float dt;
+	
+	/// <summary>
+	/// The raycast collision layer.
+	/// </summary>
 	public LayerMask raycastLayer;
+	
+	/// <summary>
+	/// If <c>true</c> this sensor object will rotate 
+	/// </summary>
 	public bool rotating;
+	
+	/// <summary>
+	/// Speed of rotation in degrees per second
+	/// </summary>
 	public float rotateSpeed;
 	
+	/// <summary>
+	/// Boolean flag indicating whether this sensor is scanning.
+	/// </summary>
 	private bool scanning;
+	
+	/// <summary>
+	/// The callback function for the robot when new proximity data is ready
+	/// </summary>
 	private Robot.SensorData callback;
 	
 	public override void Enable (Robot.SensorData callback)
@@ -24,6 +53,9 @@ public class Lrf : Sensor {
 		scanning = false;
 	}
 	
+	/// <summary>
+	/// Scan for proximity
+	/// </summary>
 	private IEnumerator Scan() {
 		scanning = true;
 		while(scanning) {
@@ -43,6 +75,9 @@ public class Lrf : Sensor {
 		}
 	}
 	
+	/// <summary>
+	/// Update this instance. (rotate if rotating is <c>true</c>)
+	/// </summary>
 	void Update(){
 		if (rotating && scanning) {
 			transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime, Space.Self);
